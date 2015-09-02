@@ -166,12 +166,12 @@ item由list的数据生成，由于immutable两者之后的state变化互不影�
 
     - 500 – Internal Server Error – 标准服务端错误，API开发人员应该尽量避开这种错误
 
-资源、子资源、相关资源，都能通过「links」关联，达到从一个资源找到所有资源
+资源、子资源、相关资源，都能通过「links」关联，达到从一个资源找到相关资源(links列出URL)，或者直接embedded相关资源。
 
     {
       data: {
         published_at: "02/21/1848",
-        body: "In bourgeois society capital is independent and has individuality, while the living person is dependent and has no individuality.",
+        body: "In bourgeois ..",
         author: {
           data: {
             nickname: "karlm",
@@ -190,7 +190,6 @@ item由list的数据生成，由于immutable两者之后的state变化互不影�
       }
     }
 
-
 根据[richardson模型](http://martinfowler.com/articles/richardsonMaturityModel.html), REST架构的成熟度有3个等级:
 
 - Level 0 POX (这个就不算REST了)
@@ -208,6 +207,12 @@ item由list的数据生成，由于immutable两者之后的state变化互不影�
 这种service discoverablility和self-documenting就是level 3想解决的问题 在这里面, 告诉用户当前状态以及各种下一步操作的东西, 比如链接, 按钮等等, 就是Hypermedia Controls. Hypermedia Controls 就是这个状态机的引擎.
 Level 3的REST架构就是希望能够统一这一类的Hypermedia Controls, 赋予他们标准的, 高度可扩展的标准语义及表现形式, 使得甚至无人工干预的机器与机器间的通用交互协议边的可能. 比如你可以告诉一个通用的购物客户端, "给我买个最便宜的xbox", 客户端自动连上google进行搜索, 自动在前10个购物网站进行搜索, 进行价格排序, 然后自动挑选最便宜的网站, 进行一系列操作最终完成用信用卡付费, 填写个人收件地址然后邮寄. 这些都依赖于Hypermedia Controls带来的这种service discoverablility和self-documenting。
 
+### 业务实例
+具体到业务中的表现就是“embedded resources”，代码中的实现方式是在一些标记@RestResource注解的bean中(model)的一些属性上加入@Relation注解(自定义的注解)，并设置相应的loader用来加载相关资源，然后写具体的loader来实现功能。
+
+目前只在业务中的一部分实现了这个功能，前端能通过拼接参数获得关联资源(也能exclude掉不需要的数据字段)，实例如`http://xx?e=xx&_xfields=title&_embedded=category,category.types,type,rank,status`，通过改变`_xfields / _embedded`会得到不同结果，其实这样已经带来了不少便利。当然如果像github-API一样把关联资源子资源等的link-uri的给出，那么也就产生了在线API文档，少了些找文档的问题。
+
+如果不用这样的@Relation注解实现、Java怎么处理这个问题呢？一般是要设置不少`多余的`model，如父子资源各有一个model，当需要一起用的时候，又要设置新的合并起来的model。或者会形成很多map数据结构的层层嵌套，导致代码耦合难以阅读。
 
 
 # http
