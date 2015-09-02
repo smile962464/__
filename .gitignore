@@ -17,3 +17,6 @@ Thumbs.db
 *.pyo
 node_modules
 bower_components/
+npm-debug.log
+.module-cache
+.*.sw*
