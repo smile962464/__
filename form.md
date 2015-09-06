@@ -75,7 +75,8 @@ FormData 配合 xhr2 能很方便的处理form表单！[介绍](https://develope
 
 
 ## 安全
-jsonp请求也需要「防止csrf漏洞」，例如可以用jsonp获取通讯录列表
+- jsonp请求也需要「防止csrf漏洞」，例如可以用jsonp获取通讯录列表
+- cors跨域：http头可以伪造，所以跨域的时候记得带上sessionId做身份验证；防止允许跨域的站点被入侵，从而导致源站信息泄露；不要对Access–Control-Allow-Origin使用`*`
 
 ### [csrf漏洞](http://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html)、[wiki](http://en.wikipedia.org/wiki/Cross-site_request_forgery)、[wiki中文](http://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0)
 XSS 利用的是用户对指定网站的信任，CSRF 利用的是网站对用户网页浏览器的信任。

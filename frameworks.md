@@ -2,7 +2,7 @@
 # 各种
 
 - [famo.us](http://famo.us/)、[js-repaint-perfs](http://leeluolee.github.io/js-repaint-perfs/#)
-
+- [Javascript-WYSIWYG-editors](https://github.com/cheeaun/mooeditable/wiki/Javascript-WYSIWYG-editors)
 - [watch.js](https://github.com/melanke/Watch.JS) 、[分析](http://dailyjs.com/2012/11/12/code-review-watch-js/)
 - [observe-js](https://github.com/Polymer/observe-js)
 - [validator.js](https://github.com/chriso/validator.js)、 [URI.js](https://github.com/medialize/URI.js/)
