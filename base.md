@@ -15,6 +15,12 @@
 - [如何实现一个mvvm组件](http://shepherdwind.com/2014/05/17/how-to-reliaze-mvvm--bidi/)
 - [框架性能关注点](http://www.zhihu.com/question/31809713/answer/53544875)
 
+## 工程化
+组件库，业务库是两个仓库。业务代码里引用“已发布的”组件库cdn地址。
+但组件发到CDN上需要时间，业务代码里也需要更改新版本号才生效。这个发布时间可能比较短，但仍然不可接受。
+为什么？因为很多组件bug，只能(或很方便)在业务里复现，需要立即修改组件并验证。
+这时候再等组件发到cdn这一套流程太久！
+
 ## 具体组件
 ### form及验证
 - form要支持只使用“键盘完成”，按enter键要能触发表单提交，使用type="submit"
@@ -30,6 +36,11 @@
 ### tabs - tab
 - API：selected | on-select | on-deselect
 - tab切换后，前一个页面的Ajax请求还没完成，要不要abort掉？
+
+### modal
+- 弹出框允许放到某个内层元素里，或者body元素下
+- 在body下时，都append到body末尾闭合处，而不是在body标签开始处
+- 背景层backdrop/mask，有的直接放在body下和modal框平级，有的放到各自的modal-container里边(感觉更好)
 
 ### 其他组件
 - 弹窗类、展开收起类组件，处于页面底部时，展开后，不能全部出现在可视区域，需要改变滚动条位置。
