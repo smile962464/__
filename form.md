@@ -3,6 +3,17 @@
 
 ## 知识点：
 
+    编码和字符集的区别：gbk、utf-8都是字符集。
+    http数据传输时的编码和界面显示使用的的字符集的区别。
+
+    <meta charset="utf-8" /> 要置于 <title>标题</title> 之前，
+    能使得浏览器先获得编码设置，来正确解析页面中文本内容。（不然，老IE浏览器可能会有问题）
+
+[URIEncode](http://anjia.github.io/2015/04/15/jsURIEncode/)
+
+浏览器在自动选择编码方式的时候不会优先根据html源码中的所展示的`<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />`代码来决定选择什么编码方式，而是优先根据“响应标头-response header”中的键为“Content-Type”的值来自动选择判断。（老IE浏览器相反）
+
+
 ### get、post区别
 - 获取数据用get，get速度快、有长度限制
     - get只能向服务器发送ASCII字符，这是W3C组织规定的，所以任何参数最后都要以ASCII码的形式传递，不能有中文字符。

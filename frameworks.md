@@ -35,6 +35,10 @@
 ### 智能
 [brain](https://github.com/harthur/brain)、[convnetjs](https://github.com/karpathy/convnetjs)、[synaptic](https://github.com/cazala/synaptic)
 
+## design
+- [materialup](http://www.materialup.com/)
+- [materialpalette](http://www.materialpalette.com/)
+- [bootstrap-material-design](http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html)
 
 ### react 与 angular 对比
 Angular, Ember and Knockout put “JS” in your HTML. React puts “HTML” in your JS.
