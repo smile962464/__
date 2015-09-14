@@ -23,6 +23,8 @@
 
 - 提交数据用post，post慢、理论上无长度限制(服务器端可能会规定最大长度)，post相对安全
 
+> 用post做查询，刷新浏览器会弹出 “是否重复提交数据” 的弹框。改用get来做。
+
 ### form的method、action、target、enctype
 - method 默认值为get
 - action 属性表示 向何处发送表单数据 (一般为url)。
