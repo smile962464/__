@@ -4,12 +4,7 @@
 * fileName：collection.js
 *****************************************************/
 
-    var $ = require('jquery');
-    var _ = require('underscore');
-    var Backbone = require('backbone');
-    var Music = require('./model');
-
-    var List = Backbone.Collection.extend({
+    var MusicList = Backbone.Collection.extend({
         model: Music,
         //url: 'data/list.json',
          fetch: function () {
@@ -28,8 +23,6 @@
                      });
                      self.trigger("fetchCompleted:allMusics");
                  }
-             });  
+             });
          }
     });
-
-    return List;

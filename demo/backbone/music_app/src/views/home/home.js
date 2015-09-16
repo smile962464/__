@@ -4,10 +4,6 @@
 * fileName：home.js
 *****************************************************/
 
-
-    var $ = require('jquery');
-    var _ = require('underscore');
-    var Backbone = require('backbone');
     var homeViewTemplate = '<!--ptpl-text!./homeView.html--><div class="home"><p>这是个音乐的web app ，使用 backbone 构造，使用seajs管理依赖。</p><p><a href="#list">音乐列表 &gt;</a></p><p><a href="#other">其他 &gt;</a></p></div>';
 
     function createElement(str) {
@@ -21,7 +17,7 @@
         return container.childNodes;
     }
 
-    var mainHomeView = Backbone.View.extend({
+    var HomeView = Backbone.View.extend({
         el: '.bd',
         render: function () {
             //$(this.el).append(this.template());
@@ -31,4 +27,3 @@
             return this;
         }
     });
-    return mainHomeView;

@@ -1,10 +1,7 @@
 
-    npm install spm-server -g
-    cd ./dir
-    spm-server
+## music app
+> 原本用的seajs做的模块化，现在去掉了，可改换最新模块化方式
 
-    # standalone build
-    spm build
-    
-## qs
-audio/video问题：未下载完成时，缓冲期间，触发的事件？
+> audio/video问题：未下载完成时，缓冲期间，触发的事件？
+
+切换页面view不销毁，简单转场动画效果

@@ -3,12 +3,8 @@
 * time：    2012/12/20 18:44:55
 * fileName：model.js
 *****************************************************/
-    var $ = require('jquery');
-    var _ = require('underscore');
-    var Backbone = require('backbone');
 
     var Music = Backbone.Model.extend({
-
         defaults: {
             id: "1",
             name: 'k歌之王',
@@ -19,7 +15,7 @@
         fetch: function (id) {
             var self = this;
             var tmpContact;
-            
+
             $.ajax({
                 url: 'data/' + id + '.json',
                 type: "GET",
@@ -40,21 +36,5 @@
                     //console.log("fetch complete + " + this);
                 }
             });
-            
-            // var jqxhr = $.getJSON("data/" + id + ".json").success(function (data, status, xhr) {
-                // self.set({
-                    // id: data.id,
-                    // name: data.name,
-                    // src: data.src,
-                    // singer: data.singer,
-                    // lyric: data.lyric
-                // });
-                // self.trigger("fetchCompleted:oneMusic");
-
-            // }).error(function () { alert("error"); }).complete(function () {
-                // console.log("fetch complete + " + this);
-            // });
         }
     });
-
-    return Music;

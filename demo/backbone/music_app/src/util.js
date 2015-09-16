@@ -1,8 +1,6 @@
 
 
-    var util;
-    util = {
-
+    var util = {
     	browser : (function(ua){
 			var device = '', version = '', android, ipad, iphone;
 	        (android = ua.match(/(Android)\s+([\d.]+)/)) && (device = 'android') && (version = android[2]) ||
@@ -25,12 +23,10 @@
     	},
 
     	// 保留两位小数
-    	toDecimal: function(x) {  
-	        var f = parseFloat(x); 
-	        if (isNaN(f)) return; 
-	        f = Math.round(x*100)/100;  
-	        return f;  
-	    }  
+    	toDecimal: function(x) {
+	        var f = parseFloat(x);
+	        if (isNaN(f)) return;
+	        f = Math.round(x*100)/100;
+	        return f;
+	    }
     }
-
-    module.exports = util;

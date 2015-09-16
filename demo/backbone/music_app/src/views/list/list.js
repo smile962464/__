@@ -4,18 +4,10 @@
 * fileName：list.js
 *****************************************************/
 
-
-    // 获取依赖
-    var $ = require('jquery');
-    var _ = require('underscore');
-    var Backbone = require('backbone');
-    // -
     var listViewTemplate = '<!--ptpl-text!./listView.html--><div class="lists"><ul><% for (var i = 0; i < data.length; i++) { %><% var item = data[i]; %><li><a href="#detail/<%=item.name%>/<%= item.id%>"><%= item.name %></a></li><% } %></ul><p><a href="#other1">其他视图1 &gt;</a></p></div>';
 
-    var listView = Backbone.View.extend({
-
+    var ListView = Backbone.View.extend({
         template: _.template(listViewTemplate),
-
         initialize: function () {
             this.collection.bind('fetchCompleted:allMusics', this.render, this);
         },
@@ -28,8 +20,3 @@
             return this;
         }
     });
-
-    return listView;
-
-
-

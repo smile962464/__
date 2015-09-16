@@ -24,9 +24,10 @@ man 查看命令帮助文档。 例如：使用 man ascii 来查看 ASCII 表。
 jsonp： curl https://api.github.com?callback=foo
 CORS：curl -i https://api.github.com -H "Origin: http://example.com"
 
-curl https://api.github.com
-curl -i "https://api.github.com/repos/vmg/redcarpet/issues?state=closed"
 curl 'https://api.github.com/user/repos?page=2&per_page=100'
+curl https://www.baidu.com -o xx.html
+curl -i "https://api.github.com/repos/vmg/redcarpet/issues?state=closed"
+curl https://xx/master/bin/alda -o /usr/local/bin/xx && chmod +x /usr/local/bin/xx
 
 ### grep
 grep是根据文件的内容进行查找，会对文件的每一行按照给定的模式(patter)进行匹配查找。  

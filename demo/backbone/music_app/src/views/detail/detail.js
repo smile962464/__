@@ -4,22 +4,11 @@
 * fileName：detail.js
 *****************************************************/
 
-
-    // 获取依赖
-    var $ = require('jquery');
-    var _ = require('underscore');
-    var Backbone = require('backbone');
-    var util = require('../../util');
-    // 
     var detailViewTemplate = '<!--ptpl-text!./detailView.html--><div class="player"><div class="info"><span class="name"><%= name %></span><span class="singer">--<%= singer %></span><span class="lrc-btn">歌词</span><audio class="none" src="<%= src %>"></audio></div><div class="ctrl"><span class="c-btn play"></span><span class="proBar"><b></b></span><span class="time"></span></div><div class="lrc none"><div class="lrc-text"><%= lrc %></div></div></div>';
 
-
-    var detailView = Backbone.View.extend({
-
+    var DetailView = Backbone.View.extend({
         template: _.template(detailViewTemplate),
-
         initialize: function () {
-
             this.model.bind('fetchCompleted:oneMusic', this.render, this);
         },
         el: '.bd',
@@ -28,17 +17,15 @@
             //$(this.el).append(this.template(this.model.toJSON()));
 
             var playerEle = $('.player-box');
-            playerEle.removeClass('none'); 
+            playerEle.removeClass('none');
             playerEle.html(this.template(this.model.toJSON()));
 
             //this.trigger("renderCompleted:detail", this, "this is detail view");
             this.music_player();
             return this;
         },
-
         music_player: function () {
             var that = this;
-
             var $contain = $('.player');
             that.audioEle = $contain.find('audio');
             that.ctrlBtn = $contain.find('.c-btn');
@@ -82,7 +69,8 @@
 
             // audio events
             this.audioEle.on('durationchange', function (e) {
-                that.dtime = that.audioEle.attr('duration');
+                // that.dtime = that.audioEle.attr('duration');
+                that.dtime = that.audioEle[0].duration;
                 if (!isNaN(that.dtime)) {
                     timeEle(that.dtime);
                 }
@@ -103,7 +91,8 @@
                 clearInterval(timer);
             });
             this.audioEle.on('timeupdate', function (e) {
-                var curTime = that.audioEle.attr('currentTime');
+                // var curTime = that.audioEle.attr('currentTime');
+                var curTime = that.audioEle[0].currentTime;
                 // console.log(curTime);
                 // change progressBar display
                 ctrlBar.css({
@@ -155,7 +144,7 @@
             var index;
             var change = function (lrcObj, first) {
                 var obj = lrcObj;
-                var curTime = parseFloat(that.audioEle.attr('currentTime'));
+                var curTime = parseFloat(that.audioEle[0].currentTime);
                 var len = obj.timeArr.length;
                 if (!isNaN(curTime)) {
                     if (curTime >= obj.timeArr[len - 1]) {
@@ -175,7 +164,7 @@
                 }
                 //console.log(index);
                 var handler = function (e) {
-                    var curTime = that.audioEle.attr('currentTime');
+                    var curTime = that.audioEle[0].currentTime;
                     //console.log(index);
                     if (index < len) {
                         if (curTime >= obj.timeArr[len - 1]) {
@@ -219,7 +208,3 @@
 
 
     });
-
-    return detailView;
-
-

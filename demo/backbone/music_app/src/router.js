@@ -4,23 +4,6 @@
 * fileName：router.js
 *****************************************************/
 
-    // 库
-    var $ = require('jquery');
-    var _ = require('underscore');
-    var Backbone = require('backbone');
-    var util = require('./util');
-
-    // 数据
-    var Collection = require('./model/collection');
-    var Model = require('./model/model');
-
-    // 视图
-    var HomeView = require('./views/home/home');
-    var ListView = require('./views/list/list');
-    var DetailView = require('./views/detail/detail');
-    var OtherView = require('./views/other/other');
-    var OtherView1 = require('./views/other/other1');
-
     var Router = Backbone.Router.extend({
         routes: {
             '': 'showHome',           //home view
@@ -28,7 +11,6 @@
             'list': 'showList',         //list view
             'detail/:name/:id': 'showDetail',   //detail view
             'other': 'showOther',
-            'other1': 'showOther1',
             '*actions': 'defaultAction' //default action
         },
         defaultAction: function () { },
@@ -37,24 +19,19 @@
             otherView.render();
             this.triggerChangeView(otherView, "this is other view");
         },
-        showOther1: function () {
-            var otherView1 = new OtherView1();
-            otherView1.render();
-            this.triggerChangeView(otherView1, "this is other1 view");
-        },
         showHome: function (actions) {
             var homeView = new HomeView();
             homeView.render();
             this.triggerChangeView(homeView, "this is home view");
         },
         showList: function () {
-            var musicList = new Collection();
+            var musicList = new MusicList();
             var listView = new ListView({ collection: musicList });
             listView.bind('renderCompleted:list', this.triggerChangeView, this);
             musicList.fetch();
         },
         showDetail: function (name, id) {
-            var model = new Model();
+            var model = new Music();
             var detailView = new DetailView({ model: model });
             //detailView.bind('renderCompleted:detail', this.triggerChangeView, this);
             model.fetch(id);
@@ -141,11 +118,15 @@
                     return;
                 }
             }
-            var n = $(view.html).attr('viewNum', vnum),
-                html = $('<div></div>').html(n).html();
+            // var n = $(view.html).attr('viewNum', vnum),
+            //     html = $('<div></div>').html(n).html();
+            // arr.push(view.html);
+            // $el.append(html);
+            // this.curEle = $(html);
             arr.push(view.html);
-            $el.append(html);
-            this.curEle = $(html);
+            this.curEle = $('<div>' + view.html + '</div>');
+            this.curEle.attr('viewNum', vnum);
+            $el.append(this.curEle);
             console.log(this.curEle.attr('viewNum'))
             this.showEle.push(vnum);
             this.changeView(view);
@@ -153,6 +134,3 @@
             this.viewNum++;
         }
     });
-    // 对外提供接口
-    module.exports = Router;
-
