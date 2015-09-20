@@ -7,6 +7,14 @@ git pull --rebase 拉远程的主分支
 git rebase -i  重写历史
 回滚一个 rebasing：使用 git reflog 查看 git 操作历史，然后强制 reset head。
 
+如果你需要将自己开发分支上的某个 commit 快速提供给其他人用，但该分支上的其他 commit 不想 push：
+
+- git checkout develop 切换到 dev 分支，也可以新建个 feature 分支
+- git cherry-pick 62ecb3 将目标 commit pick 到 develop 上
+- git push 至远程即可，其他人 pull 更新
+
+cherry-pick 一般用于将 bugfix commit pick 到不同版本上。
+
 ### submodule
 [详解](http://www.kafeitu.me/git/2012/03/27/git-submodule.html)
 
