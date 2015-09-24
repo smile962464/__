@@ -50,6 +50,7 @@
 - pagination组件，如图![](https://t.alipayobjects.com/images/rmsweb/T1OIlhXmVcXXXXXXXX.png)
   如果数据总数50万+时，每页显示5个页码，下拉框就会有10万条目，导致页面dom数过大，浏览器崩溃。
 - 图表组件，给出`destroy`方法，并测试是否有内存泄露(多操作或刷新几次页面是否卡顿)。
+- upload组件，添加了不允许上传的文件类型，给出错误提示。
 
 ## 设计原则：
 ### 职责清晰
