@@ -43,8 +43,11 @@
 - 背景层backdrop/mask，有的直接放在body下和modal框平级，有的放到modal-container里边(感觉更好)
 
 ### 其他组件
+> [元素定位](https://github.com/HubSpot/tether)
+
 - 弹窗类、展开收起类组件，处于页面底部时，展开后，不能全部出现在可视区域，需要改变滚动条位置。
-- Datepicker、timepicker 注意能合到一起使用的情况，也要能分开使用
+- Datepicker、timepicker 注意能合到一起使用的情况（最好看起来是无缝整合），也要能分开使用
+    - 业务中常见：搜索当天的东西，从00:00:00到23:59:59
 - select组件：支持Infinite scroll
 - modal等弹窗类组件，必须有`destroy`方法。应用场景：普通按钮，列表
 - pagination组件，如图![](https://t.alipayobjects.com/images/rmsweb/T1OIlhXmVcXXXXXXXX.png)

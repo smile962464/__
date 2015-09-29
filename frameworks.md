@@ -145,6 +145,8 @@ Just remember that once the data has been serialized, it will always be read bac
 These tiles can be stored in [TypedArrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays) for further memory efficiency and performance benefits. The size can become as little as ~3% if you fit the format into two bytes, then store it in a [Uint16Array](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array).
 数据被存储为TypedArrays后性能得到提升，被存为Uint16Array后、大小是原来的3%左右。
 
+[JS中的二进制操作简介](http://jimliu.net/2015/09/26/a-brief-look-at-binary-ops-in-js/)
+
 
 [Asm.js](http://developer.51cto.com/art/201401/428154_all.htm)
 ------
