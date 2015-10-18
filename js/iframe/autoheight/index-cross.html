@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>iframe</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
+<body>
+	<div style="padding:20px">
+		<h4>跨域自适应高度</h4>
+		<pre>
+		需求: A页面使用iframe标签跨域包含B页面
+		问题: A/B页面不同域，A页面无法获取并自适应B页面高度
+		方案: 增加C页面，A/C页面同域，A包含B，B包含C，B通知C高度，C调整A页面iframe高度~
+
+		起服务器：python -m SimpleHTTPServer 3435
+
+		方案二：http://www.zhaidoushi.com/archives-25.html
+		通过设置 iframe 页面的 window.name
+		</pre>
+		<script>
+		  // Resize iframe to full height
+		  function resizeIframe(height) {
+		    // "+60" is a general rule of thumb to allow for differences in
+		    // IE & and FF height reporting, can be adjusted as required..
+		    document.getElementById('ifr').height = parseInt(height)+60;
+		  }
+
+			// 方案二：通过获取 iframe 的 window.name
+			function autoHeightIFrameNavigate(iframeId,url) {
+		    var iframe = $('#'+iframeId);
+				//备份原来的name　
+		    iframe.attr('_name_',iframe.attr('name'))
+		    iframe.attr('src',url); //设置URL
+		    iframe.one('load',function(){
+		        //导向代理页面，我直接使用了这个
+		        this.contentWindow.location = "about:blank";
+		        $(this).one('load',function(){
+		　　    	 var msg = this.contentWindow.name;//得到值　这个值就是高度了
+		　　　			this.contentWindow.name = $(this).attr('_name_'); //恢复原来的　Name
+		　　　			this.contentWindow.location = url;//再次导向目标页面
+		            try{
+		                var height = eval(msg); //得到并设置高度
+					　　　    //alert(height);
+					　　　    iframe.css('height',height + 'px');
+		　　         } catch(e){
+		                alert('目标页面没有设置高度到window.name');
+		            }
+		        });
+		    });
+		 }
+		 $(function(){autoHeightIFrameNavigate('ifr',$('#ifr').attr('src'));});
+		</script>
+		<iframe id="ifr" src="http://localhost:3435/autoheight.html" width="100%" scrolling="no" frameborder="0"></iframe>
+
+		<script>
+			function getIfrHeight(ifr) {
+				ifr.onload = function () {
+					// 跨域取不到window
+          var iframeWin = ifr.contentWindow || ifr.contentDocument.parentWindow;
+        }
+			}
+			getIfrHeight(document.getElementById('ifr'))
+		</script>
+	</div>
+</body>
+</html>

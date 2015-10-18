@@ -57,7 +57,7 @@
         }
         //方法三：正确方法！
         function writeIra(finalHtml) {
-            //angular不允许重复加载，当必须要重复时，先设置其为undefined
+            //iframe里和父文档都有angular时，会重复加载会引起问题，当必须要重复时，先设置其为undefined
             //demoIfa[0].contentWindow.angular = undefined;
 
             var ifaDom = demoIfa[0].contentDocument || demoIfa[0].contentWindow.document;

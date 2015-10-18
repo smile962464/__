@@ -28,7 +28,8 @@ app.config(function($sceProvider) {
 app.directive('autoHeightIframe', [
   function () {
     return {
-      restrict: 'EA', link: function (scope, element, attrs) {
+      restrict: 'EA',
+      link: function (scope, element, attrs) {
         var ele = element[0];
         ele.onload = function () {
           var iframeWin = ele.contentWindow || ele.contentDocument.parentWindow;
