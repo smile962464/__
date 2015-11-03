@@ -2,21 +2,20 @@
 <html>
 <head>
     <style type="text/css">
-        
-        #test:after {
+
+    #test:after {
 			content: attr(data-d);
 		}
-		
-		@media screen { /* 用于打印，@media print */
-		    a:after {
-		        content: " (link to " attr(href) ") ";
-		    }
-	    }
-    </style>
 
+		@media screen { /* 用于打印，@media print */
+	    a:after {
+	        content: " (link to " attr(href) ") ";
+	    }
+    }
+    </style>
 </head>
 <body>
-<!-- 
+<!--
     css attr()、data-* attributes、：after{ content:' ' } 结合使用，数据展示，
     [参考一](http://davidwalsh.name/css-attr-content-l10n)、
     [参考二](http://css-tricks.com/css-content/)。

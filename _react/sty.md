@@ -1,0 +1,70 @@
+
+
+
+The former is Passive programming, while the latter is Reactive programming
+
+
+### flux中的Ajax放到什么地方
+- 官方推荐单独放到utils模块下，被某个action调用，并且Ajax返回结果触发新的action，store里不出现。（见flux-chat）
+- 另一种是在store里的某个方法发送Ajax；也在store里注册Ajax返回的回调函数，并直接调用`Dispatcher.dispatch()`。
+
+
+### 怎么划分组件、怎么确定state
+[怎么划分组件](http://facebook.github.io/react/docs/thinking-in-react.html#step-1-break-the-ui-into-a-component-hierarchy)
+
+how do you know what should be its own component? Just use the same techniques for deciding if you should create a new function or object. One such technique is the single responsibility principle, that is, a component should ideally only do one thing. If it ends up growing it should be decomposed into smaller subcomponents.
+
+[怎么确定state](http://facebook.github.io/react/docs/thinking-in-react.html#step-3-identify-the-minimal-but-complete-representation-of-ui-state)
+
+To build your app correctly you first need to think of the minimal set of mutable state that your app needs.
+例如：有一个todo-list的数组是组件的state，不用再有list.length这样的state。
+
+### UI state and application state
+[todo-input的state](http://facebook.github.io/flux/docs/todo-list.html#content)
+
+All application state should live in the store, while components occasionally hold on to UI state. Ideally, React components preserve as little state as possible.
+
+### 知识点
+
+[暴露组件函数-嵌套组件常用](http://facebook.github.io/react/tips/expose-component-functions.html)
+
+- 何时该用`props`、何时该用`state`
+    - a component cannot mutate its props — they are always consistent with what its owner sets them to.
+- 子组件更新父组件状态：The parent is the source of truth, so the child needs to tell the parent to change its state. Pass a callback from the parent to the child, and have the child call it.
+- 两个component里如果都要用到相同的一个方法，这个方法该放到哪个component？一些公共方法函数，该放到哪里？
+- 不同的component维护许多各自不同state，导致数据碎片化，flux模式利用顶层store能解决这个问题？
+
+- [Dynamic Children - Why the Keys are Important](http://blog.arkency.com/2014/10/react-dot-js-and-dynamic-children-why-the-keys-are-important/)
+
+
+    http://facebook.github.io/react/docs/component-specs.html#updating-shouldcomponentupdate
+    一：有助于提高性能。
+    二：间接解决了一个问题，如下描述：
+    当列表里有`<input />`，input的onChange事件回调里有改变state，会让input被重新render，导致input的焦点丢失。
+    怎么解决呢？
+     - 可以利用shouldComponentUpdate，在input输入内容时，虽然改变了state，但不用再重新render
+     - 也可以把onChange事件，改为onBlur事件，即blur后再改变state、再render
+
+
+#### 生命周期
+不管页面有多少个component标签实例，它里边的生命周期函数
+
+- getDefaultProps() 只会运行一次？
+- getInitialState()、componentDidMount() 有几个实例，就运行几次
+    - 例如嵌套元素`<ele> <ele> </ele> </ele>`，从里到外依次执行componentDidMount
+- render() 当state被改变，就会运行，但不一定更改相应的实际dom
+- componentWillReceiveProps() 当props被改变时运行。
+    - 场景：父组件的某个事件需要触发子组件某个state的改变，子组件的state与其props有关：
+    - 父组件想改变子组件，一般只能通过向子组件传递改变后的props，这时会触发子组件上的此函数，在此函数里改变state
+
+
+
+### 其他
+
+- 双向绑定的坏处：We found that two-way data bindings led to cascading updates, where changing one object led to another object changing, which could also trigger more updates. As applications grew, these cascading updates made it very difficult to predict what would change as the result of one user interaction. When updates can only change data within a single round, the system as a whole becomes more predictable.（出自flux）
+
+- one issue with React is that your logic and your view are tightly knit together.
+- Another issue with React is that because DOM updates are completely delegated to the Virtual DOM, it’s a bit tricky when you actually want to control the DOM yourself.
+
+- 一次digest中virtual-dom的diff只需一次，但是会随着ui的复杂度，性能损耗严重，virtual-dom与原dom的对应也更难(如果angular的脏检查的性能取决与watcher的数量，那react则是取决与ui规模)
+- virtual-dom的内部结构变化是不可预知的

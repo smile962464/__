@@ -1,0 +1,18 @@
+{
+  "name": "rc",
+  "version": "1.0.0",
+  "main": "lib/index",
+  "scripts": {
+    "build": "rc-tools run build",
+    "start": "node --harmony node_modules/.bin/rc-server"
+  },
+  "config": {
+    "port": 8018
+  },
+  "devDependencies": {
+    "rc-server": "3.x",
+    "rc-tools": "4.x",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0"
+  }
+}
