@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="http://zeptojs.com/zepto.js"></script>
+</head>
+<body>
+    <!--  -->
+    <form id="signup" method="GET" action="http://localhost:3000/Signup">
+        <label>使用者名稱：</label><input type="text" id="username" name="username" /><br>
+        <label>電子郵件：</label><input type="text" id="email" name="email" /><br>
+        <input type="submit" value="註冊我的帳號" /><br>
+    </form>
+    <div id="result">
+    </div>
+    <script type="text/javascript">
+        $(function(){
+           $('#signup input[type="submit"]').click(function(e){    
+               e.preventDefault();
+               var user = {};
+               user.username = $("#username").val();
+               user.email = $("#email").val();
+
+               $.ajax({
+                   url: "http://localhost:3000/Signup", //可以不为实际存在的文件
+                   data: user,
+                   dataType: "jsonp",  // 端口不一样，就算跨域，需要用jsonp
+                   //jsonpCallback: "callback",
+                   success: function (data) {
+                    greet(data)                             
+                   }
+               });
+
+            });
+                   
+            var greet = function(msg){
+                var resultNode = $('#result'),
+                    greeting = $('<h2>Hi,'+JSON.stringify(msg)+'</h2>');
+
+                $('#signup').hide();
+                resultNode.html("");
+                resultNode.append(greeting);
+            };       
+        });      
+    </script>               
+</body>
+</html>

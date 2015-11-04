@@ -1,0 +1,11 @@
+{
+  "posts": [
+    { "id": 1, "title": "p1", "author": "a" },
+    { "id": 2, "title": "p2", "author": "a1" }
+  ],
+  "comments": [
+    { "id": 1, "body": "c1", "postId": 1 },
+    { "id": 2, "body": "c2", "postId": 1 },
+    { "id": 3, "body": "c3", "postId": 2 }
+  ]
+}
