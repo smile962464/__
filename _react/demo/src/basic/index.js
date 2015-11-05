@@ -4,19 +4,19 @@ import ReactDOM from 'react-dom'
 
 const Life = React.createClass({
   componentWillUpdate() {
-    console.log('componentWillUpdate');
+    console.log('Life componentWillUpdate');
   },
   componentDidUpdate() {
-    console.log('componentDidUpdate');
+    console.log('Life componentDidUpdate');
   },
   componentWillMount() {
-    console.log('componentWillMount');
+    console.log('Life componentWillMount');
   },
   componentDidMount() {
-    console.log('componentDidMount');
+    console.log('Life componentDidMount');
   },
   render() {
-    console.log('render');
+    console.log('Life render');
     return (
       <div>lifecycle</div>
     );
@@ -28,6 +28,9 @@ const App = React.createClass({
     return {
       now: 1
     }
+  },
+  componentDidMount() {
+    console.log('App componentDidMount');
   },
   cli() {
     this.setState({
