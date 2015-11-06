@@ -1,25 +1,31 @@
 /*
  *
  */
-import WebapiUtil from '../common/webapiUtil';
+import Resource from '../common/Resource';
 
-class Webapi extends WebapiUtil {
-  constructor(url) {
-    super(url);
-  }
-  get() {
-    return new Promise((resolve, reject) => {
-      // debugger
-      super.get(this.url).query({page: 'jry'}).end((error, res) => {
-        error ? reject(error) : resolve(res);
-      });
-    });
-  }
-  save() {
-    return this.save(this.url);
-  }
-}
+const appApi = new Resource('/tests/:id/attr/:sub', {id: 0}, {
+  actionName: {
+    method: 'PUT',
+    params: {
+      sub: 'sub',
+      argExa: true,
+    },
+  },
+}, {
+  timeout: 1000,
+  headers: {
+    jry: 'jin rong yun',
+  },
+});
 
-const appApi = new Webapi('app.json');
+appApi.get({}).then(res => {
+  window.console.log('Resource get ', res);
+});
+
+// invoke custom action
+appApi.actionName({}, {postBody: 'custom body'}).then(res => {
+  window.console.log('Resource actionName ', res);
+});
+
 
 export default appApi;

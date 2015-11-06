@@ -1,7 +1,7 @@
 import React from 'react';
 
 import request from 'superagent';
-// import cookie from 'react-cookie';
+import cookie from 'react-cookie';
 // import localStorage from './localStorage';
 
 import { Menu } from 'antd';
@@ -10,14 +10,17 @@ const locales = {
   'zh_CN': '中文',
   'en_US': 'English',
 };
-const _current = 'zh_CN';
+
+const _current = cookie.load('LOCALE') || 'zh_CN';
 const prefix = 'src/i18n/apps-';
 let data = {};
 
 // 获取文件路径
 function getResource(current) {
+  const locale = current || _current;
+  cookie.save('LOCALE', locale);
   return new Promise((resolve, reject) => {
-    request.get(`${prefix}${current || _current}.json`).end((error, res) => {
+    request.get(`${prefix}${locale}.json`).end((error, res) => {
       error ? reject(error) : resolve(res);
       data = res.body;
     });
@@ -28,7 +31,7 @@ function translate(key) {
   return data[key] || key;
 }
 
-const I18nSelector = React.createClass({
+const Selector = React.createClass({
   propTypes: {
     onSelectLang: React.PropTypes.func,
   },
@@ -55,7 +58,10 @@ const I18nSelector = React.createClass({
     return <Menu selectedKeys={[this.state.current]} onClick={this.handleClick}>{items}</Menu>;
   },
 });
-I18nSelector.getResource = getResource;
-I18nSelector.gettext = translate;
 
-export default I18nSelector;
+export default {
+  Selector,
+  getResource,
+  gettext: translate,
+  currentLang: locales[_current],
+};

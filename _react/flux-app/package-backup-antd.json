@@ -24,12 +24,10 @@
     "eslint": "~1.1.0",
     "eslint-config-airbnb": "0.0.8",
     "eslint-plugin-react": "~3.3.1",
-    "express": "~4.13.3",
-    "precommit-hook": "^1.0.7",
-    "require-dir": "~0.3.0"
+    "precommit-hook": "^1.0.7"
   },
   "scripts": {
-    "dev": "./server.js",
+    "dev": "./node_modules/antd-bin/bin/antd-build && antd server",
     "lint": "eslint --ext .js,.jsx src",
     "build": "rm -rf dist && antd-build && mkdir -p dist/${npm_package_name}/${npm_package_version} && mv dist/*.* dist/${npm_package_name}/${npm_package_version}/"
   }

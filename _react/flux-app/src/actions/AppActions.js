@@ -1,14 +1,14 @@
 import AppDispatcher from '../common/AppDispatcher';
 import Constants from '../constants/Constants';
 import appApi from '../webapi/App';
-import I18nSelector from '../common/i18n';
+import i18n from '../common/i18n';
 
 export default {
   getResource: (key) => {
     AppDispatcher.ajaxStart({
       type: Constants.I18N_RESOURCE_LOADED,
     });
-    I18nSelector.getResource(key).then(res => {
+    i18n.getResource(key).then(res => {
       AppDispatcher.ajaxEnd({
         type: Constants.I18N_RESOURCE_LOADED,
         data: res,
@@ -21,6 +21,8 @@ export default {
     });
 
     appApi.get(123).then((res) => {
+      window.console.log('app action', res);
+
       AppDispatcher.ajaxEnd({
         type: Constants.INIT,
         data: res,

@@ -1,3 +1,8 @@
 {
-  "app.name" : "金融云"
+  "app.name" : "金融云",
+  "app.lang": "中文",
+
+  "head.home": "首页",
+  "head.solution": "解决方案",
+  "head.product": "产品"
 }

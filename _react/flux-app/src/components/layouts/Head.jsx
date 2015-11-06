@@ -1,18 +1,18 @@
 import React from 'react';
 import { Row, Dropdown } from 'antd';
-import I18nSelector from '../../common/i18n';
 import AppActions from '../../actions/AppActions';
+
+import { Selector as I18nSelector, gettext, currentLang } from '../../common/i18n';
 
 const HomeMenu = React.createClass({
   getInitialState() {
     return {
-      lang: '',
+      lang: currentLang,
     };
   },
   onSelectLang(key, locales) {
-    this.locales = locales;
     this.setState({
-      lang: key,
+      lang: locales[key],
     });
     AppActions.getResource(key);
   },
@@ -26,13 +26,13 @@ const HomeMenu = React.createClass({
           <div className="pull-right">
             <ul className="my-nav clearfix">
               <li className="my-nav-list">
-                <a href="/" className="link" target="_self"><sapn className="act">首页</sapn><span className="hov">首页</span></a>
+                <a href="/" className="link" target="_self"><sapn className="act">{gettext('head.home')}</sapn><span className="hov">{gettext('head.home')}</span></a>
               </li>
               <li className="my-nav-list">
-                <a href="/solutions" className="link" target="_self"><sapn className="act">解决方案</sapn><span className="hov">解决方案</span></a>
+                <a href="/solutions" className="link" target="_self"><sapn className="act">{gettext('head.solution')}</sapn><span className="hov">{gettext('head.solution')}</span></a>
               </li>
               <li className="my-nav-list">
-                <a href="/products" className="link" target="_self"><sapn className="act">产品</sapn><span className="hov">产品</span></a>
+                <a href="/products" className="link" target="_self"><sapn className="act">{gettext('head.product')}</sapn><span className="hov">{gettext('head.product')}</span></a>
               </li>
               <li className="my-nav-list">
                 <a href="/support" className="link" target="_self"><sapn className="act">文档</sapn><span className="hov">文档</span></a>
@@ -45,7 +45,7 @@ const HomeMenu = React.createClass({
               </li>
               <li className="my-nav-list">
                 <Dropdown overlay={<I18nSelector onSelectLang={this.onSelectLang} />}>
-                  <a className="link">{this.locales ? this.locales[this.state.lang] : '中文'}</a>
+                  <a className="link">{this.state.lang}</a>
                 </Dropdown>
               </li>
             </ul>

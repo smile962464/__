@@ -6,13 +6,6 @@ const Main = React.createClass({
     children: React.PropTypes.element,
     initData: React.PropTypes.object,
   },
-
-  getDefaultProps() {
-    return {
-      children: React.PropTypes.node,
-    };
-  },
-
   render() {
     return (
       <Row className="content">
