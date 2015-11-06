@@ -89,11 +89,11 @@ Resource.setGlobalHeaders(() => {
   return {myHeader: 121, myHeader1: 333};
 });
 
-const appApi = new Resource('/tests/:id/attr/:sub', {id: 0}, {
+const appApi = new Resource('/users/:id/photos/:file', {id: 0}, {
   actionName: {
     method: 'PUT',
     params: {
-      sub: 'sub',
+      file: 'file',
       argExa: true,
     },
   },

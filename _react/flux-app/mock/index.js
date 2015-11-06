@@ -6,10 +6,10 @@ function mock(req, res) {
 }
 
 module.exports = {
-  'GET /tests/:id': mock,
-  'GET /tests/:id/attr': mock,
-  'GET /tests/:id/attr/:sub': mock,
-  'POST /tests/:id/attr/:sub': {stat: 'ok'},
-  'PUT /tests/:id/attr/:sub': {stat: 'ok'},
-  'DELETE /tests/:id/attr/:sub': {stat: 'ok'}
+  'GET /users/:id?': mock,
+  'GET /users/:id?/photos': mock,
+  'GET /users/:id?/photos/:file?': mock,
+  'POST /users/:id?/photos/:file?': {stat: 'ok'},
+  'PUT /users/:id?/photos/:file?': {stat: 'ok'},
+  'DELETE /users/:id?/photos/:file?': {stat: 'ok'}
 }
