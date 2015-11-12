@@ -1,5 +1,40 @@
-# 组件设计
 
+# 页面
+## 架构
+### MVC
+- Model
+    - model里存放的是「需要持久化的数据」(DO, domain object)，而不是页面显示用的临时数据（VO, view object / ui state）。
+    - model里可以包含对Ajax请求参数的组装、处理；如果返回数据也需要统一处理，可以写相应的统一处理函数？
+    - 公共model抽取出来放一个地方；不同页面特有的model邻近相应view放置
+    - model是否是singleton的？使用时需不需要new ？
+- View
+    - 页面全部组件化（参考react组件化思路）
+        - 抽象出组件的方式尽量简单（react比angular组件简单）
+        - 需要复用的代码片段、抽象成组件（哪怕仅是两三行代码，但需要到处复用）-- 小组件
+- controller
+    - 内容应尽量少，在controller里设置页面显示用的运行时数据（VO, view object / ui state），持久化的数据从model里获取。
+    - Any time you need to store information only for the lifetime of this application run, you should store it on a controller.
+
+#### 不同的设计思路：
+fat model, skinny controller. the model should do the heavy lifting are:
+
+- Validation in the case of CRUD functionality and post methods.
+- Type-conversions and data manipulation.
+- Storing data in memory or in HTML5 databases to minimize server hits.
+
+The server-side code mainly does model manipulation and notifications, and so having a fat model/thin controllers makes sense. The controller is essentially the router to the model.
+
+在 react.js 的 flux 等架构中，是不建议使用「fat model」的。[model使用](https://medium.com/swlh/the-case-for-flux-379b7d1982c6)
+
+## SPA
+- 页面上发出了Ajax请求，要等比较久时间才返回，返回成败都有弹框，但在返回结果之前「跳走」，页面跳转后弹窗是否还会有？
+- 页面的边界测试：如数据量特别大时
+- 切换路由后会把上个路由状态生成的html全部销毁掉，再切回来恢复不到原来的样子。问题场景如：列表页由许多查询条件组合查询出来，点击列表里某个条目进入详情，再返回到列表页，就需要手动再查询出列表。更好的是恢复上次查询生成的列表html，再更好要保持原来的滚动条位置，完全恢复现场，不会打断用户继续浏览列表。（切走之前保存查询条件、切回来再重新查询，不是个好办法，不能完全恢复之前状态）
+
+--------
+
+
+# 组件设计
 - [javascript组件化](http://purplebamboo.github.io/2015/03/16/javascript-component/)
     - 设计一个组件类（如 function TreeView(){ } ）
     - 设置组件类的配置项或属性（ function TreeView(config){ this.cfg = extend({}, config) } ）
@@ -78,26 +113,6 @@
 
 --------
 
-# 页面
-
-## 架构
-### MVC
-- Model
-    - model里可以包含对Ajax请求参数的组装、处理；如果返回数据也需要统一处理，可以写相应的统一处理函数？
-    - 公共model抽取出来放一个地方；不同页面特有的model邻近相应view放置
-    - model是否是singleton的？使用时需不需要new ？
-- View
-    - 页面全部组件化（参考react组件化思路）
-        - 抽象出组件的方式尽量简单（react比angular组件简单）
-        - 需要复用的代码片段、抽象成组件（哪怕仅是两三行代码，但需要到处复用）-- 小组件
-
-## SPA
-- 页面上发出了Ajax请求，要等比较久时间才返回，返回成败都有弹框，但在返回结果之前「跳走」，页面跳转后弹窗是否还会有？
-- 页面的边界测试：如数据量特别大时
-- 切换路由后会把上个路由状态生成的html全部销毁掉，再切回来恢复不到原来的样子。问题场景如：列表页由许多查询条件组合查询出来，点击列表里某个条目进入详情，再返回到列表页，就需要手动再查询出列表。更好的是恢复上次查询生成的列表html，再更好要保持原来的滚动条位置，完全恢复现场，不会打断用户继续浏览列表。（切走之前保存查询条件、切回来再重新查询，不是个好办法，不能完全恢复之前状态）
-
---------
-
 
 # 反模式
 - 过早优化
@@ -156,4 +171,3 @@
 ```
 item由list的数据生成，由于immutable两者之后的state变化互不影响，但变化后两者数据状态需要同步。
 同步操作也是产生新的数据，似乎比较乱？
-

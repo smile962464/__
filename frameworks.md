@@ -21,7 +21,7 @@
     - highcharts：商用需购买
     - [amcharts](http://www.amcharts.com/demos/)
 
-- [CSS与界面动效](http://www.imooc.com/video/6041)、[]()、[]()、[]()
+- [CSS与界面动效](http://www.imooc.com/video/6041)、[headroom.js](http://wicky.nillia.ms/headroom.js/)、[]()、[]()
 
 - [Javascript reactive frameworks](http://rrees.me/2015/06/04/overview-of-javascript-reactive-frameworks/)
 

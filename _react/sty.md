@@ -3,6 +3,26 @@
 
 The former is Passive programming, while the latter is Reactive programming
 
+## redux
+[UI state应该放到哪里？](https://github.com/rackt/redux/issues/595)
+
+## flux
+[本质：(state, action) => state](https://speakerdeck.com/jmorrell/jsconf-uy-flux-those-who-forget-the-past-dot-dot-dot)
+
+- Stores hold data, and signal when something has changed
+- Views subscribe to the stores that contain the data that it needs
+- Data updates, re-render the view, we know this stuff
+- This tends to be pretty intuitive for frontend developers
+
+actions 其实就是 data，或者我认为是 mutations，即 ui 或者 server 的 response。
+action creator 是一个 help method，调用 dispatcher，传递 mutations。
+所以，action creator 是直接调用 dispatcher (passive) 的。
+
+dispatcher 是一个 pub-sub systems。
+
+component 直接调用 action creator
+store 监听 action creator
+component 监听 store
 
 ### flux中的Ajax放到什么地方
 - 官方推荐单独放到utils模块下，被某个action调用，并且Ajax返回结果触发新的action，store里不出现。（见flux-chat）
