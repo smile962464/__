@@ -27,9 +27,19 @@ The server-side code mainly does model manipulation and notifications, and so ha
 在 react.js 的 flux 等架构中，是不建议使用「fat model」的。[model使用](https://medium.com/swlh/the-case-for-flux-379b7d1982c6)
 
 ## SPA
+### 注意点
 - 页面上发出了Ajax请求，要等比较久时间才返回，返回成败都有弹框，但在返回结果之前「跳走」，页面跳转后弹窗是否还会有？
 - 页面的边界测试：如数据量特别大时
 - 切换路由后会把上个路由状态生成的html全部销毁掉，再切回来恢复不到原来的样子。问题场景如：列表页由许多查询条件组合查询出来，点击列表里某个条目进入详情，再返回到列表页，就需要手动再查询出列表。更好的是恢复上次查询生成的列表html，再更好要保持原来的滚动条位置，完全恢复现场，不会打断用户继续浏览列表。（切走之前保存查询条件、切回来再重新查询，不是个好办法，不能完全恢复之前状态）
+
+### SPA 实现原理
+- 如果浏览器支持 history API，使用 pjax (pushState + Ajax)
+    - 点击一个链接，通过 Ajax 获取页面部分区域数据（向服务器发送一个有PJAX标志(设置在header里)的请求，服务器返回一段相应的html片段）
+    - 通过 pushState 修改 URL 和 document.title，并把服务器返回的htm片段插入页面。
+    - Github上的文件/目录跳转加载，就是采用 pjax 的方式实现的。
+- 如果浏览器不支持 history API，使用 hash 如 http://example.com#word
+    - 浏览器会把不同的 hash 记录到历史记录中，但需要监听 hash 值的变化。
+    - 对于支持 onhashchange 的浏览器，监听此事件；不支持的则要定时去判断hash的变化。
 
 --------
 
