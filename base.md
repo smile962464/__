@@ -3,16 +3,16 @@
 ## 架构
 ### MVC
 - Model
-    - model里存放的是「需要持久化的数据」(DO, domain object)，而不是页面显示用的临时数据（VO, view object / ui state）。
-    - model里可以包含对Ajax请求参数的组装、处理；如果返回数据也需要统一处理，可以写相应的统一处理函数？
-    - 公共model抽取出来放一个地方；不同页面特有的model邻近相应view放置
-    - model是否是singleton的？使用时需不需要new ？
+    - model 里存放的是「需要持久化的数据」(DO, domain object)，而不是页面显示用的临时数据（VO, view object / ui state）。
+    - model 里可以包含对Ajax请求参数的组装、处理；如果返回数据也需要统一处理，可以写相应的统一处理函数？
+    - 公共 model 抽取出来放一个地方；不同页面特有的 model 邻近相应 view 放置
+    - model 是否是 singleton 的？使用时需不需要 new ？
 - View
     - 页面全部组件化（参考react组件化思路）
         - 抽象出组件的方式尽量简单（react比angular组件简单）
         - 需要复用的代码片段、抽象成组件（哪怕仅是两三行代码，但需要到处复用）-- 小组件
 - controller
-    - 内容应尽量少，在controller里设置页面显示用的运行时数据（VO, view object / ui state），持久化的数据从model里获取。
+    - 内容应尽量少，在 controller 里设置页面显示用的运行时数据（VO, view object / ui state），持久化的数据从model里获取。
     - Any time you need to store information only for the lifetime of this application run, you should store it on a controller.
 
 #### 不同的设计思路：
@@ -25,6 +25,17 @@ fat model, skinny controller. the model should do the heavy lifting are:
 The server-side code mainly does model manipulation and notifications, and so having a fat model/thin controllers makes sense. The controller is essentially the router to the model.
 
 在 react.js 的 flux 等架构中，是不建议使用「fat model」的。[model使用](https://medium.com/swlh/the-case-for-flux-379b7d1982c6)
+
+### 业务场景
+#### 文章下边的 “like” ：
+- 有一个 “like” 按钮。
+- 显示前十个喜欢此文章的用户。（对应一个 API）
+- 单独一个模块显示喜欢此文章的全部用户，带有分页。（对应另一个 API）
+- 点击 “like” 按钮，以上两个区域的数据改变。
+
+这里对于点击了喜欢的用户，需要有个「 model collection」，但是需要一个 model 或者是 两个 ？
+
+> It would be nice if those two lists corresponded to the same model collection, but this means the same model collection needs to be fed from two different API responses. Turns out, 1:1 correspondence between API responses and model objects doesn’t scale!
 
 ## SPA
 ### 注意点

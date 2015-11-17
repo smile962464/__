@@ -4,7 +4,8 @@
 The former is Passive programming, while the latter is Reactive programming
 
 ## redux
-[UI state应该放到哪里？](https://github.com/rackt/redux/issues/595)
+- [UI state应该放到哪里？](https://github.com/rackt/redux/issues/595)
+- [解读 redux 的设计思路与用法](http://div.io/topic/1309)
 
 ## flux
 [本质：(state, action) => state](https://speakerdeck.com/jmorrell/jsconf-uy-flux-those-who-forget-the-past-dot-dot-dot)
@@ -23,6 +24,14 @@ dispatcher 是一个 pub-sub systems。
 component 直接调用 action creator
 store 监听 action creator
 component 监听 store
+
+Flux isolates all data mutations to a particular layer in the application and establishes a completely predictable way to get data in and out of there.
+
+If you are serious about working with data, there has to be a single source of truth for all of it. Neither the UI nor other models should be able to mutate the data.
+
+In Flux, Store is the only place in your whole app that has privilege to mutate the data. It has no setters and only responds to actions emitted by the components. API responses are also actions, as they serve as inputs to Store. Only Store gets to decide how to update the data.
+
+[Smart and Dumb Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
 
 ### flux中的Ajax放到什么地方
 - 官方推荐单独放到utils模块下，被某个action调用，并且Ajax返回结果触发新的action，store里不出现。（见flux-chat）
@@ -55,7 +64,6 @@ All application state should live in the store, while components occasionally ho
 - 不同的component维护许多各自不同state，导致数据碎片化，flux模式利用顶层store能解决这个问题？
 
 - [Dynamic Children - Why the Keys are Important](http://blog.arkency.com/2014/10/react-dot-js-and-dynamic-children-why-the-keys-are-important/)
-
 
     http://facebook.github.io/react/docs/component-specs.html#updating-shouldcomponentupdate
     一：有助于提高性能。
