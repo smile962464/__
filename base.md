@@ -1,5 +1,9 @@
 
 # 页面
+- [客户端渲染和服务端渲染，哪个快？](http://www.onebigfluke.com/2015/01/experimentally-verified-why-client-side.html)
+    - It depends on what you're doing. If you care about first paint time, server-side rendering wins. If your app needs all of the data on the page before it can do anything, client-side rendering wins.
+    - Below 1,000 cats worth of complexity, the client- and server-side rendering approaches have essentially the same time to first paint on both desktop and mobile. Above 1,000 cats worth of complexity, server-side rendering will do first paint faster than client-side rendering. But the client-side rendering approach will always win for last paint time above 1,000 cats.
+
 ## 架构
 ### MVC
 - Model
@@ -101,6 +105,9 @@ The server-side code mainly does model manipulation and notifications, and so ha
 ### 其他组件
 > [元素定位](https://github.com/HubSpot/tether)
 
+- notify、message 类的组件应该区分成两类。
+    - 一类：点击某个按钮，或操作成功失败时，页面某个位置出现的弹出框。（例如顶部或右上角弹出的通知）
+    - 二类：页面最顶部固定的一行横通知条。（例如系统维护通知）
 - 弹窗类、展开收起类组件，处于页面底部时，展开后，不能全部出现在可视区域，需要改变滚动条位置。
 - Datepicker、timepicker 注意能合到一起使用的情况（最好看起来是无缝整合），也要能分开使用
     - 业务中常见：搜索当天的东西，从00:00:00到23:59:59

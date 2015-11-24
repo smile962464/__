@@ -4,8 +4,8 @@
 
 [ng-stats](https://github.com/kentcdodds/ng-stats)
 
-
-- [angular2全面理解1](http://blog.mgechev.com/2015/04/06/angular2-first-impressions/)、
+[ng2-DI](http://blog.thoughtram.io/angular/2015/05/18/dependency-injection-in-angular-2.html)、
+[angular2全面理解1](http://blog.mgechev.com/2015/04/06/angular2-first-impressions/)、
 [angular2全面理解](http://angular-tips.com/blog/2015/06/why-will-angular-2-rock/)、
 [angular2-change-detection](http://victorsavkin.com/post/114168430846/two-phases-of-angular-2-applications)、
 [change-detection-in-angular-2](http://victorsavkin.com/post/110170125256/change-detection-in-angular-2)

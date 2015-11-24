@@ -7,6 +7,7 @@
 <body>
     <script>
     var o = {
+      _t: 'm',
       a: 7,
       d: 20,
       get b() { return this.a + 1; },
@@ -15,7 +16,13 @@
     console.log(o.a, o.d)
     console.log(o.b)
     o.b = 10
-    console.log(o.a, o.d)
+    console.log(o.a, o.b, o.d, o.t)
+
+    o.__defineGetter__("t", function() { return this.a + this._t; });
+    o.__defineSetter__("t", function(arg) { this._t = arg; });
+    console.log(o.t);
+    o.t = 'e';
+    console.log(o.t);
 
 
     function Vehicle(name) {
