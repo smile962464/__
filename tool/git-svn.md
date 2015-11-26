@@ -62,14 +62,16 @@ git merge origin/xx   远程上有xx分支，并且git fetch origin，执行此�
 
 
 ### 操作tag
+git tag 0.0.1  打轻量标签  
 git tag -a 0.0.1 -m 'Release version 0.0.1'  打标签  
-git tag -l                列出全部的tag清單  
+git tag (-l)                列出全部的tag清單  
+git push --tags    推送所有标签到服务器  
 git push origin --tags    推送所有标签到服务器  
 
-git tag -d 0.0.1   删除标签  
-git push origin :refs/tags/0.0.1
+git tag -d 0.0.1   删除本地标签  
+git push origin :refs/tags/0.0.1   删除远程标签
 
-git checkout tag_name
+git checkout tag_name  检出标签
 
 ### 回退恢复：
 你的修改就可能存在三块区域中，working tree、index或者commit之后的历史对象区域。

@@ -3,9 +3,33 @@
 - [客户端渲染和服务端渲染，哪个快？](http://www.onebigfluke.com/2015/01/experimentally-verified-why-client-side.html)
     - It depends on what you're doing. If you care about first paint time, server-side rendering wins. If your app needs all of the data on the page before it can do anything, client-side rendering wins.
     - Below 1,000 cats worth of complexity, the client- and server-side rendering approaches have essentially the same time to first paint on both desktop and mobile. Above 1,000 cats worth of complexity, server-side rendering will do first paint faster than client-side rendering. But the client-side rendering approach will always win for last paint time above 1,000 cats.
+- [Batching HTTP Requests in Angular to Improve Performance](https://github.com/jonsamwell/angular-http-batcher)
+    - HTTP Batching is actual fairly simple as a concept. The idea is to group multiple HTTP requests into a single HTTP call. It basically defines a way to represent a complete HTTP request (headers and all) as a section in a single HTTP POST body.
 
-## 架构
-### MVC
+## API 设计
+[Swagger 及 API 管理](https://www.linkedin.com/pulse/swagger-%E5%8F%8A-api-%E7%AE%A1%E7%90%86%E7%AE%80%E4%BB%8B-minglei-tu)
+
+### [Falcor](http://netflix.github.io/falcor/)
+- rpc优却点：低延迟，数据量小；不可缓存(手动管理)，紧耦合
+- rest优却点：可缓存，松耦合；高延迟，数据量大
+- 两者结合:
+    - one model everywhere
+    - The data is the API
+
+### [GraphQL](https://github.com/facebook/graphql)
+GraphQL is Facebook's [graph API](https://developers.facebook.com/docs/graph-api)
+（[How to get lots of data from the Facebook Graph API with just one request - Optimizing request queries to the Facebook Graph API](https://www.sammyk.me/optimizing-request-queries-to-the-facebook-graph-api)）。
+[基于 GraphQL 的产品](https://www.reindex.io/)。
+
+[graphql-js](https://github.com/graphql/graphql-js)
+[From REST to GraphQL](https://news.ycombinator.com/item?id=10365555):
+
+GraphQL is essentially the one [API Gateway](http://microservices.io/patterns/apigateway.html) to rule them all. And then you add Relay on top of it to build up the exact query you want.
+
+ []()
+ []()
+
+## MVC
 - Model
     - model 里存放的是「需要持久化的数据」(DO, domain object)，而不是页面显示用的临时数据（VO, view object / ui state）。
     - model 里可以包含对Ajax请求参数的组装、处理；如果返回数据也需要统一处理，可以写相应的统一处理函数？
@@ -19,7 +43,22 @@
     - 内容应尽量少，在 controller 里设置页面显示用的运行时数据（VO, view object / ui state），持久化的数据从model里获取。
     - Any time you need to store information only for the lifetime of this application run, you should store it on a controller.
 
-#### 不同的设计思路：
+### model 不同的设计思路：
+- [Backbone.Model](http://backbonejs.org/#Model)
+- [ember-models](http://guides.emberjs.com/v1.10.0/models/)、[ember-data-model-maker](http://andycrum.github.io/ember-data-model-maker/)
+
+ember-data 处理方式：
+
+- `DS.Model` 用来创建数据模型。定义了需要呈现给用户的数据的属性和行为。
+    - 不同模型之间会有关联关系：一对一，一对多，多对多。与后台数据库模型类似。[原文](http://guides.emberjs.com/v1.10.0/models/defining-models/#toc_defining-relationships)、[翻译](https://m.oschina.net/blog/518608)
+    - 模型本身没有任何数据；模型只定义了其实例所具有的属性和行为，而这些实例被称为记录。
+    - 记录是模型的实例，包含了从服务器端加载而来的数据。应用本身也可以创建新的记录，以及将新记录保存到服务器端。
+- `DS.Store` 中心数据仓库，是应用的所有数据的缓存。一般整个应用只有一个 store 生成，负责创建/删除/查找/过滤/定位 `DS.Model` 的实例。
+    - 注意，重申下 Model 只是数据的属性和行为，Model 的实例 record 包含具体的数据，由 store 创建存储管理。
+- 利用不同的 Adapter 和不同服务端通信，如：HTTP、Websocket 等。
+
+在 react.js 的 flux 等架构中，是不建议使用「fat model」的。[model使用](https://medium.com/swlh/the-case-for-flux-379b7d1982c6)
+
 fat model, skinny controller. the model should do the heavy lifting are:
 
 - Validation in the case of CRUD functionality and post methods.
@@ -28,7 +67,6 @@ fat model, skinny controller. the model should do the heavy lifting are:
 
 The server-side code mainly does model manipulation and notifications, and so having a fat model/thin controllers makes sense. The controller is essentially the router to the model.
 
-在 react.js 的 flux 等架构中，是不建议使用「fat model」的。[model使用](https://medium.com/swlh/the-case-for-flux-379b7d1982c6)
 
 ### 业务场景
 #### 文章下边的 “like” ：
