@@ -48,8 +48,11 @@
       </div>
       <div class="col-sm-2">
         <input type="text" size="8" class="form-control"
+               trigger="click"
                ng-model="pInfo.maxDate"
                data-autoclose="1"
+               data-time-format="HH:mm:ss"
+               data-time-type="number" data-min-time="10:10:00" data-max-time="12:30:00"
                placeholder="时间"
                bs-timepicker />
       </div>
@@ -62,8 +65,10 @@
   ]);
   app.controller('main', ['$scope', function ($scope) {
     var pInfo = $scope.pInfo = {};
-    pInfo.maxDate = new Date(2016, 11, 30);
+    pInfo.maxDate = new Date(2016, 11, 30, 11, 30, 20);
     pInfo.minDate = new Date(2013, 11, 30);
+
+    $scope.selectedTimeAsNumber = 12640000; // (formatted: 11:30 AM)
   }])
 </script>
 </body>

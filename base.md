@@ -15,19 +15,29 @@
 - 两者结合:
     - one model everywhere
     - The data is the API
+- You can convert any JSON object into a JSON Graph in two steps:
+    - Move all objects to a unique location within the JSON object
+    - Replace all other occurrences of the object with a Reference to that object’s unique location
 
 ### [GraphQL](https://github.com/facebook/graphql)
 GraphQL is Facebook's [graph API](https://developers.facebook.com/docs/graph-api)
 （[How to get lots of data from the Facebook Graph API with just one request - Optimizing request queries to the Facebook Graph API](https://www.sammyk.me/optimizing-request-queries-to-the-facebook-graph-api)）。
 [基于 GraphQL 的产品](https://www.reindex.io/)。
 
+- [GraphQL is the King. Long Live the King!](https://medium.com/@scbarrus/graphql-is-the-king-long-live-the-king-r-i-p-rest-cf04ce38f6c#.avmpteg2j)
+- [Introducing Relay and GraphQL译](http://segmentfault.com/a/1190000002570887)
+- [文档](http://graphql.org/docs/getting-started/)、
 [graphql-js](https://github.com/graphql/graphql-js)
-[From REST to GraphQL](https://news.ycombinator.com/item?id=10365555):
+- [From REST to GraphQL](https://news.ycombinator.com/item?id=10365555)
 
 GraphQL is essentially the one [API Gateway](http://microservices.io/patterns/apigateway.html) to rule them all. And then you add Relay on top of it to build up the exact query you want.
 
- []()
- []()
+- GraphQL Returns Only the Data You Request. 请求什么返回什么
+- GraphQL Returns Data in the Same Shape You Requested It. 返回的数据结构和请求结构一致
+- GraphQL Sends a Single Request to the API and Returns a Single Response. 把同时发出的多个请求合并为一个，返回一个请求结果集合，并自动拆分到不同的组件里
+
+
+[]()
 
 ## MVC
 - Model
@@ -147,8 +157,9 @@ The server-side code mainly does model manipulation and notifications, and so ha
     - 一类：点击某个按钮，或操作成功失败时，页面某个位置出现的弹出框。（例如顶部或右上角弹出的通知）
     - 二类：页面最顶部固定的一行横通知条。（例如系统维护通知）
 - 弹窗类、展开收起类组件，处于页面底部时，展开后，不能全部出现在可视区域，需要改变滚动条位置。
-- Datepicker、timepicker 注意能合到一起使用的情况（最好看起来是无缝整合），也要能分开使用
-    - 业务中常见：搜索当天的东西，从00:00:00到23:59:59
+- datepicker、timepicker 注意能合到一起使用的情况（最好看起来是无缝整合），也要能分开使用。
+    - timepicker 搜索当天，从00:00:00到23:59:59；限定可以选择的时间范围，最小时间、最大时间(例如最小时间是now，最大时间如果不设置、那默认是多少?)
+    - datepicker、timepicker 共用一个时间点时，之间的影响（例如datepicker选完日期，可能会重置时间为00:00，影响timepicker，怎么处理?）
 - select组件：支持Infinite scroll
 - modal等弹窗类组件，必须有`destroy`方法。应用场景：普通按钮，列表
 - pagination组件，如图![](https://t.alipayobjects.com/images/rmsweb/T1OIlhXmVcXXXXXXXX.png)

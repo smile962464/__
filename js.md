@@ -16,6 +16,7 @@
 - [js和css的顺序关系](http://hikejun.com/blog/2012/02/02/js%E5%92%8Ccss%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%85%B3%E7%B3%BB/)
 
 - [True Hash Maps in JavaScript](http://ryanmorr.com/true-hash-maps-in-javascript/)
+- [使用JavaScript实现“真·函数式编程”](http://jimliu.net/2015/10/21/real-functional-programming-in-javascript-1/)
 
 # es6
 - [ECMAScript 6入门](http://es6.ruanyifeng.com/#README)

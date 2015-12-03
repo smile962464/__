@@ -41,6 +41,9 @@
 - [bootstrap-material-design](http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html)
 
 ### react 与 angular 对比
+
+angular把js放到html里的问题：因为 html 容错性比较好，所以诸如html里的`js变量`定义错误、不小心写错、渲染错误等，不会显式地提示出来，很难排查。特别对于不太熟悉angular的开发同学，对这类错误很容易视而不见。
+
 Angular, Ember and Knockout put “JS” in your HTML. React puts “HTML” in your JS.
 例如：ng: `<div style="margin: {{$$showAdvance?'0':'-43px'}} 0 15px 0;">`
 

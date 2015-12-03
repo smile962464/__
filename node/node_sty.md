@@ -1,10 +1,12 @@
 # node
 
 ### npm命令：
-    npm install tnpm -g --registry="http://registry.npm.alibaba-inc.com"
-    npm install --save-dev gulp-insert
 
+npm install tnpm -g --registry="http://registry.npm.alibaba-inc.com"
+
+- npm init -f
 - npm install/i xx -g
+- npm i --save-dev xx
 - npm rm/uninstall xx -g
 
 - npm root/prefix -g  -- 全局安装包位置。
