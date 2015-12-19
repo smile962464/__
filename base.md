@@ -1,10 +1,4 @@
 
-# 页面
-- [客户端渲染和服务端渲染，哪个快？](http://www.onebigfluke.com/2015/01/experimentally-verified-why-client-side.html)
-    - It depends on what you're doing. If you care about first paint time, server-side rendering wins. If your app needs all of the data on the page before it can do anything, client-side rendering wins.
-    - Below 1,000 cats worth of complexity, the client- and server-side rendering approaches have essentially the same time to first paint on both desktop and mobile. Above 1,000 cats worth of complexity, server-side rendering will do first paint faster than client-side rendering. But the client-side rendering approach will always win for last paint time above 1,000 cats.
-- [Batching HTTP Requests in Angular to Improve Performance](https://github.com/jonsamwell/angular-http-batcher)
-    - HTTP Batching is actual fairly simple as a concept. The idea is to group multiple HTTP requests into a single HTTP call. It basically defines a way to represent a complete HTTP request (headers and all) as a section in a single HTTP POST body.
 
 ## API 设计
 [Swagger 及 API 管理](https://www.linkedin.com/pulse/swagger-%E5%8F%8A-api-%E7%AE%A1%E7%90%86%E7%AE%80%E4%BB%8B-minglei-tu)
@@ -28,7 +22,8 @@ GraphQL is Facebook's [graph API](https://developers.facebook.com/docs/graph-api
 - [Introducing Relay and GraphQL译](http://segmentfault.com/a/1190000002570887)
 - [文档](http://graphql.org/docs/getting-started/)、
 [graphql-js](https://github.com/graphql/graphql-js)
-- [From REST to GraphQL](https://news.ycombinator.com/item?id=10365555)
+- [From REST to GraphQL](https://blog.jacobwgillespie.com/from-rest-to-graphql-b4e95e94c26b#.e3re515s5)
+- [From REST to GraphQL-](https://news.ycombinator.com/item?id=10365555)
 
 GraphQL is essentially the one [API Gateway](http://microservices.io/patterns/apigateway.html) to rule them all. And then you add Relay on top of it to build up the exact query you want.
 
@@ -37,7 +32,9 @@ GraphQL is essentially the one [API Gateway](http://microservices.io/patterns/ap
 - GraphQL Sends a Single Request to the API and Returns a Single Response. 把同时发出的多个请求合并为一个，返回一个请求结果集合，并自动拆分到不同的组件里
 
 
-[]()
+------
+
+------
 
 ## MVC
 - Model
@@ -77,7 +74,6 @@ fat model, skinny controller. the model should do the heavy lifting are:
 
 The server-side code mainly does model manipulation and notifications, and so having a fat model/thin controllers makes sense. The controller is essentially the router to the model.
 
-
 ### 业务场景
 #### 文章下边的 “like” ：
 - 有一个 “like” 按钮。
@@ -88,6 +84,22 @@ The server-side code mainly does model manipulation and notifications, and so ha
 这里对于点击了喜欢的用户，需要有个「 model collection」，但是需要一个 model 或者是 两个 ？
 
 > It would be nice if those two lists corresponded to the same model collection, but this means the same model collection needs to be fed from two different API responses. Turns out, 1:1 correspondence between API responses and model objects doesn’t scale!
+
+
+------
+
+## dom 优化
+
+dom批量更新：dom操作如，1.删除一个元素，2.增加一个元素，3.在增加的元素上改变一个属性。
+如果用 dom-api 一步步操作，会导致中间多次的 repaints 和 reflows，这是比较低效耗性能的。
+如果放到「虚拟dom」上操作，会把这三个过程最终的结果，一次更新到实际dom树上，只用操作一次实际dom。
+
+react virtual-dom 里一次digest中的diff只需一次，但是会随着ui的复杂度，性能损耗严重，virtual-dom与原dom的对应也更难(如果angular的脏检查的性能取决与watcher的数量，那react则是取决与ui规模)。 virtual-dom的内部结构变化是不可预知的
+
+[React Virtual DOM vs Incremental DOM vs Ember’s Glimmer: Fight](https://auth0.com/blog/2015/11/20/face-off-virtual-dom-vs-incremental-dom-vs-glimmer/)
+
+
+------
 
 ## SPA
 ### 注意点
@@ -103,6 +115,14 @@ The server-side code mainly does model manipulation and notifications, and so ha
 - 如果浏览器不支持 history API，使用 hash 如 http://example.com#word
     - 浏览器会把不同的 hash 记录到历史记录中，但需要监听 hash 值的变化。
     - 对于支持 onhashchange 的浏览器，监听此事件；不支持的则要定时去判断hash的变化。
+
+### spa 基础问题
+- [客户端渲染和服务端渲染，哪个快？](http://www.onebigfluke.com/2015/01/experimentally-verified-why-client-side.html)
+    - It depends on what you're doing. If you care about first paint time, server-side rendering wins. If your app needs all of the data on the page before it can do anything, client-side rendering wins.
+    - Below 1,000 cats worth of complexity, the client- and server-side rendering approaches have essentially the same time to first paint on both desktop and mobile. Above 1,000 cats worth of complexity, server-side rendering will do first paint faster than client-side rendering. But the client-side rendering approach will always win for last paint time above 1,000 cats.
+- [Batching HTTP Requests in Angular to Improve Performance](https://github.com/jonsamwell/angular-http-batcher)
+    - HTTP Batching is actual fairly simple as a concept. The idea is to group multiple HTTP requests into a single HTTP call. It basically defines a way to represent a complete HTTP request (headers and all) as a section in a single HTTP POST body.
+
 
 --------
 
@@ -167,6 +187,9 @@ The server-side code mainly does model manipulation and notifications, and so ha
 - 图表组件，给出`destroy`方法，并测试是否有内存泄露(多操作或刷新几次页面是否卡顿)。
     - 图表纵坐标根据数据自动生成，要满足业务对生成数据的特殊要求，如：不能有负值；只能是整数值(不能是小数)
 - upload组件，添加了不允许上传的文件类型，给出错误提示。
+- select / tags-input 组件
+    - 特殊需求：在 [tags input select](http://react-component.github.io/select/examples/tags.html) 里，想直接输入一串如 `name1,name2,name3,name4,nam5,....` 这样比较长的内容（预先准备好的人员列表），组件自动根据分隔符(例如这里的逗号)，split 出来，然后分别验证这些条目是否合法（如果分别发Ajax将会很多、不可行），再转换为一个个 tag。 这种需求一般是单独做一个「导入」文件或组的功能来实现，但放到 tags-input 组件或 select 组件里，感觉也有一定合理性。 在 select2 的 [Automatic tokenization](https://select2.github.io/examples.html#tokenizer) example 里输入 `red,blue,green,`  这串特定分割的字符串，会自动根据逗号 split 出三个 tag 出来。select2 这个还能输入更多自动保存到选择list里，也不涉及到发Ajax操作。
+
 
 ## 设计原则：
 ### 职责清晰

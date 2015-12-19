@@ -59,6 +59,11 @@ Angular, Ember and Knockout put “JS” in your HTML. React puts “HTML” in 
 - React components are far more powerful than Angular templates; they should be compared with Angular's directives instead.
 - There's no linking function because React figures out how to most efficiently update the DOM for you when your data changes. Just write your render() function and React will keep the UI up-to-date for you.
 
+- 双向绑定的坏处：We found that two-way data bindings led to cascading updates, where changing one object led to another object changing, which could also trigger more updates. As applications grew, these cascading updates made it very difficult to predict what would change as the result of one user interaction. When updates can only change data within a single round, the system as a whole becomes more predictable.（出自flux）
+
+- one issue with React is that your logic and your view are tightly knit together.
+- Another issue with React is that because DOM updates are completely delegated to the Virtual DOM, it’s a bit tricky when you actually want to control the DOM yourself.
+
 
 ## `mv*`
 [什么时候需要mv框架](http://coding.smashingmagazine.com/2012/07/27/journey-through-the-javascript-mvc-jungle/)：

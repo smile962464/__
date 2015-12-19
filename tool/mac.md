@@ -14,10 +14,6 @@
 * say hello world  — 说话
 
 
-### item2 
-- 选中即复制，选中某个路径或者某个词汇，iterm2 自动复制
-- 另一种是 command+f,弹出iterm2的查找模式，按 tab 或 shift+tab
-
 #### 其他
 
     将 文件或文件夹拖放到Terminal窗口上，显示完整路径
@@ -36,7 +32,7 @@
     这样可以打开Mac App Store的Debug菜单，清空Cookies或Reset Application重置一下程序即可
 
 
-### homebrew 
+### homebrew
 安装：
 `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`  
 
@@ -48,34 +44,34 @@
 
 
 #### 启用Apache
-    
+
     打开“终端(terminal)”，输入 sudo apachectl -v
     输入 sudo apachectl start，这样Apache就启动了
     Apache的安装目录在：/etc/apache2/
-    
+
     终端运行“sudo vi /etc/apache2/httpd.conf”，打开Apche的配置文件
     修改 DocumentRoot "/Library/WebServer/Documents" 为自定义路径
     再更改 <Directory "/Library/WebServer/Documents"> 也为上边自定义路径
-    
+
     使目录可见：
-    把`<Directory>` 节点下的`Options FollowSymLinks Multiviews` 
+    把`<Directory>` 节点下的`Options FollowSymLinks Multiviews`
     改为`Options Indexes FollowSymLinks MultiViews`
-    
+
     打开php：
     找到`#LoadModule php5_module libexec/apache2/libphp5.so`
     去掉前边的`#`号
-        
+
     重启Apache    
-    sudo apachectl restart 
-    
+    sudo apachectl restart
+
     sudo apachectl stop
 
 #### nginx
-    
+
     安装：brew install nginx
     启动：sudo nginx
     测试：http://localhost:8080
-    
+
     打开配置文件：/usr/local/etc/nginx/nginx.conf
     更改 http → server 区块里的配置如下：
         location / {
@@ -84,9 +80,6 @@
             index  index.html index.htm;
             autoindex on;
         }    
-    
-    关闭：sudo nginx -s stop 
+
+    关闭：sudo nginx -s stop
     重启：sudo nginx -s stop && sudo nginx
-    
-
-

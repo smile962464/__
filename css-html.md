@@ -24,11 +24,11 @@
 
 
 ## 其他
+居中、布局、圆角模拟、清除浮动等等，奇淫技巧~几大绝技~魔法
 
 [等宽字体（Monospaced Font）](http://zh.wikipedia.org/wiki/%E7%AD%89%E5%AE%BD%E5%AD%97%E4%BD%93)
 
 html特殊字符：[HTML特殊字符大全](http://www.qianduan.net/html-special-characters-daquan.html)、[显示](http://www.sjyhome.com/html/html-special-characters.html)
-
 
 - 页面拥有ID的元素会自动创建全局变量，会不会导致JS问题？
 - 浏览器地址栏输入以下代码：

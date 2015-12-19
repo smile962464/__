@@ -95,6 +95,8 @@ WebSocket与传统基于HTTP的通信机制相比，有很大的优势。它可�
 
 # 性能
 
+使用 innerHTML 把一大块元素替换掉，因为销毁的元素比较多、绑定着事件，会导致 GC 压力大。再插入新元素，再重新绑定事件。整体性能耗费比较大。
+
 ## 内存泄露
 - [了解 JavaScript 应用程序中的内存泄漏](http://www.ibm.com/developerworks/cn/web/wa-jsmemory/index.html)
 - [memory-leaks](http://javascript.info/tutorial/memory-leaks)

@@ -48,10 +48,20 @@
 </style>
 </head>
 <body>
-
-<a href="http://www.html5rocks.com/en/tutorials/dnd/basics/">html5rocks dnd</a> 、
-<a href="http://html5demos.com/drag">demo（支持ie8）</a> <br>
-<a href="https://msdn.microsoft.com/library/hh673539(v=vs.85).aspx">ie兼容性</a>
+<ul>
+  <li>
+    <a href="http://www.html5rocks.com/en/tutorials/dnd/basics/">html5rocks dnd</a> 、
+    <a href="http://html5demos.com/drag">demo（支持ie8）</a> 、
+    <a href="https://msdn.microsoft.com/library/hh673539(v=vs.85).aspx">ie兼容性</a>
+  </li>
+  <li>
+    <pre>
+      使用 drag-drop API的优势（相对于用mousedown/mousemove模拟）：
+      - 如果拖动元素所在的容器尺寸小，拖动过程产生滚动条、会自动触发滚动条移动。
+      - 不用再clone出一个要拖动的元素；不用计算涉及到的元素的位置和尺寸。
+    </pre>
+  </li>
+</ul>
 
 <p>
   <strong>Note:</strong>
@@ -70,18 +80,18 @@
     在ie<=8版本上，需要把dragenter/drageover/drop事件绑定到具体的元素上，而不能绑定到document做委托处理。
   </p>
 </div>
-
 <div id="dt" class="droptarget"></div>
-
 <p id="demo"></p>
 
 <script>
 var dt = document.getElementById('dt');
+// var dt = document.getElementsByTagName('div');
 
 /* Events fired on the drag target */
 // document.addEventListener("dragstart", function(event) {
 addEvent(document, "dragstart", function(event) {
-  event.dataTransfer.effectAllowed = 'copy';
+  console.log('dragstart');
+  // event.dataTransfer.effectAllowed = 'copy';
     event.dataTransfer.setData("Text", (event.target || event.srcElement).id);
 });
 
@@ -101,7 +111,7 @@ addEvent(dt, "dragover", function(event) {
 // to get IE to work
 addEvent(dt, 'dragenter', function (e) {
   this.style.border = '1px solid red';
-  return false;
+  // return false;
 });
 
 // document.addEventListener("drop", function(event) {
@@ -136,7 +146,7 @@ function hackIeDragDrop() {
     });
   }
 }
-hackIeDragDrop();
+// hackIeDragDrop();
 </script>
 
 </body>

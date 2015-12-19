@@ -87,6 +87,10 @@
 
 ## 数组相关
 
+    var numbers = [];
+    for(var i=1; numbers.push(i++)<100;);
+    //numbers = [0,1,2,3 ... 100]
+
     //生成 重复数据 的数组
     Array.apply(null, new Array(10)).map(function(){return 5})
 
