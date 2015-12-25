@@ -85,6 +85,42 @@
       xhr.send();
     }
 
+
+    // 单例模式抽象
+    var getSingle = function(fn){
+        var res;
+        return function(){
+            return res || (res = fn.apply(this, arguments));
+        }
+    };
+
+    // 函数节流
+    var throttle = function(fn, interval){
+        var self = fn,
+            timer,
+            firstTime = true;
+
+        return function(){
+            var args = arguments,
+                that = this;
+
+            if(firstTime){
+                self.apply(that, args);
+                return firstTime = false;
+            }
+
+            if(timer){
+                return false;
+            }
+
+            timer = setTimeout(function(){
+                clearTimeout(timer);
+                timer = null;
+                self.apply(that, args);
+            }, interval || 500);
+        };
+    };
+
 ## 数组相关
 
     var numbers = [];
@@ -105,6 +141,17 @@
 
 
     // 数组去重
+    // 性能最好
+    var uniqueFor = function(arr) {
+      for (var i = 0; i < arr.length - 1; i++) {
+        var item = arr[i];
+        for(var j = i+1; j < arr.length; j++ ) {
+          item === arr[j] && (arr.splice(j, 1), j--);
+        }
+      }
+      return arr;
+    };
+    // 性能次之
     function unique(arr) {
       var a = {}, b = {}, c = [];
       for (var i = 0; i < arr.length; i++){

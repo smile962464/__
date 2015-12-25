@@ -17,9 +17,10 @@ const Life = React.createClass({
   },
   render() {
     console.log('Life render');
-    return (
-      <div>lifecycle</div>
-    );
+    return (<div>
+      defaultValue： <input defaultValue={this.props.defaultValue} /> <br />
+      value：<input value={this.props.defaultValue} />
+    </div>);
   }
 });
 
@@ -34,16 +35,15 @@ const App = React.createClass({
   },
   cli() {
     this.setState({
-      now: Date.now
+      now: Date.now()
     })
   },
   render() {
-    return (
-      <div>
+    return (<div>
         <button onClick={this.cli}>switch</button>
-        <Life key={this.state.now}></Life>
-      </div>
-    )
+        <Life defaultValue={this.state.now + '--'}></Life>
+        <Life key={this.state.now} defaultValue={this.state.now}></Life>
+    </div>);
   }
 })
 
