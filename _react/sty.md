@@ -3,6 +3,10 @@
 
 The former is Passive programming, while the latter is Reactive programming
 
+
+## react native
+[介绍](https://www.youtube.com/watch?v=KVZ-P-ZI6W4)、[深入介绍](https://www.youtube.com/watch?v=7rDsRXj9-cU)
+
 ## redux
 - [UI state应该放到哪里？](https://github.com/rackt/redux/issues/595)
 - [解读 redux 的设计思路与用法](http://div.io/topic/1309)

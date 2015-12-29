@@ -9,9 +9,9 @@ var Input = React.createClass({
     }
   },
   componentWillReceiveProps: function(nextProps) {
-    this.setState({
-      val: nextProps.value
-    });
+    // this.setState({
+    //   val: nextProps.value
+    // });
   },
   valChange: function (e) {
     var val = e.target.value;
@@ -49,7 +49,7 @@ var Form = React.createClass({
     return (
       <div className="form-horizontal" role="form">
         {this.props.list.map(function (item, index) {
-          return <button onClick={this.cli.bind(this, index)}>{item}</button>
+          return <button key={index} onClick={this.cli.bind(this, index)}>{item}</button>
         }, this)}
          -- 点击这些按钮
         <br />
@@ -58,6 +58,8 @@ var Form = React.createClass({
         <Input value={this.state.val} onChange={this.change} />
         <br />
         <input valueLink={this.linkState('val')} />
+        <br />
+        <Input valueLink={this.linkState('val')} />（输入报错，valueLink只能用在原生input上）
       </div>
     )
   }

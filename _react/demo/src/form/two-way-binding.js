@@ -24,7 +24,7 @@ var App = React.createClass({
   render: function () {
     return <div>
             {this.state.values.map(function (item, i) {
-              return <div>
+              return <div key={i}>
                 <input valueLink={this.linkState('values.' + i + '.type')}/>
                 <input valueLink={this.linkState('values.' + i + '.x')}/>
               </div>

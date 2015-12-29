@@ -41,8 +41,14 @@ const App = React.createClass({
   render() {
     return (<div>
         <button onClick={this.cli}>switch</button>
-        <Life defaultValue={this.state.now + '--'}></Life>
+        <h3>不设置key</h3>
+        <Life defaultValue={this.state.now}></Life>
+        <h3>每次都改变的key</h3>
         <Life key={this.state.now} defaultValue={this.state.now}></Life>
+        <h3>一列固定数字的key</h3>
+        {[1,2,3,4].map((item, index) => {
+          return <Life key={index} defaultValue={this.state.now}></Life>
+        })}
     </div>);
   }
 })

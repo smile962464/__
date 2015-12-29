@@ -37,7 +37,6 @@ var Group = React.createClass({
         selectItem: this.selectItem,
         key: item.props.key
       });
-
     }, this);
     return (
       <div>
@@ -50,15 +49,49 @@ var Group = React.createClass({
   }
 });
 
+var Parent = React.createClass({
+  getInitialState: function () {
+    return {
+    };
+  },
+  render: function () {
+    React.Children.forEach(this.props.children, (item, index) => {
+      console.log(item, index);
+    });
+
+    // 如果 this.props.children 不是数组，
+    // this.props.children.map 、 this.props.children.forEach 等会报错！
+    // map 会遍历所有层级的 dom 节点，forEach 只检查一层
+    let newChildren = React.Children.map(this.props.children, item => {
+      return React.cloneElement(item, {
+        style: {color: 'red'},
+      });
+    });
+
+    return (<div>
+      {newChildren}
+    </div>);
+  }
+});
+
 const App = React.createClass({
   render() {
-    return (
+    return (<div>
+      <h3>buttonGroup - button</h3>
       <Group ref="buttonGroup">
         <Button key={1} name="Component A"/>
         <Button key={2} name="Component B"/>
         <Button key={3} name="Component C"/>
       </Group>
-    );
+      <h3>test React.Children methods</h3>
+      <Parent>
+        <div key={1}>
+          2 <br />
+          <span>1</span> <br />
+          <span>11</span>
+        </div>
+      </Parent>
+    </div>);
   }
 })
 
