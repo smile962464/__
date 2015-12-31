@@ -13,6 +13,13 @@ npm install tnpm -g --registry="http://registry.npm.alibaba-inc.com"
 - npm help install/cache
 - npm cache celan [模块名]
 
+#### npm link
+cd ~/projects/proj1  # go into the dir of your main project
+npm link ../proj2     # link the dir of your dependency
+
+> proj1 and proj2 are siblings
+
+
 ### 原理
 It’s not unusual to see a multi-core server with a node.js instance maxing out one CPU while the other CPUs are sitting idle. In order to max out a multi-core server, people often start multiple node.js instances on a single server. That will work fine, but the node.js instances will be independent, and sharing data between them is not possible in plain JavaScript.
 
