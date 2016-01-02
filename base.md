@@ -149,6 +149,15 @@ react virtual-dom 里一次digest中的diff只需一次，但是会随着ui的�
 为什么？因为很多组件bug，只能(或很方便)在业务里复现，需要立即修改组件并验证。
 这时候再等组件发到cdn这一套流程太久！
 
+## tree 组件
+实现功能：节点展开收起、单选/多选、checkbox、异步加载、右键菜单、节点增删改查。  
+
+- 根据用户设置的 checkedKeys（e.g.['key1', 'key2']）遍历所有节点，设置各级节点的「选中/半选/不选」状态。
+    - 某节点设置checked，其子节点都要checked。
+    - 再根据兄弟节点的check状态，循环设置父级节点的check状态。
+- 根据用户设置的 expandedKeys（e.g.['key1', 'key2']）遍历节点，设置节点的 expand 状态。
+    - 子节点设置expand，父节点也要expand。
+
 ## 具体组件
 ### form及验证
 - form要支持只使用“键盘完成”，按enter键要能触发表单提交，使用type="submit"
