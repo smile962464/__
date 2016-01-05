@@ -156,7 +156,8 @@ react virtual-dom 里一次digest中的diff只需一次，但是会随着ui的�
     - 某节点设置checked，其子节点都要checked。
     - 再根据兄弟节点的check状态，循环设置父级节点的check状态。
 - 根据用户设置的 expandedKeys（e.g.['key1', 'key2']）遍历节点，设置节点的 expand 状态。
-    - 子节点设置expand，父节点也要expand。
+    - 子节点设置expand，循环设置父节点也要expand。
+    - 但点击父节点，子节点expand状态不能变。
 
 ## 具体组件
 ### form及验证
@@ -182,6 +183,9 @@ react virtual-dom 里一次digest中的diff只需一次，但是会随着ui的�
 ### 其他组件
 > [元素定位](https://github.com/HubSpot/tether)
 
+- grid 组件与 table 组件区别
+    - grid（[datagrid](https://github.com/zippyui/react-datagrid)），使用div不用table/tr/td，支持可变列数、筛选、排序、列宽度拖动改变、单选多选、分页、行列单元格自定义样式。
+    - table 组件，使用table/tr/td，用于简单表格展示。
 - notify、message 类的组件应该区分成两类。
     - 一类：点击某个按钮，或操作成功失败时，页面某个位置出现的弹出框。（例如顶部或右上角弹出的通知）
     - 二类：页面最顶部固定的一行横通知条。（例如系统维护通知）
