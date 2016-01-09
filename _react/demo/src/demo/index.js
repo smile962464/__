@@ -5,8 +5,11 @@ import ReactDOM from 'react-dom'
 
 const App = React.createClass({
   render() {
+    const items = [{id: '1'}, {id: 'header'}];
     return (
       <div>
+        <span key="header">12</span>
+        {items.map((item) => <span key={item.id} />)}
         demo
       </div>
     );
