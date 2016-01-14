@@ -4,6 +4,7 @@
 [Swagger 及 API 管理](https://www.linkedin.com/pulse/swagger-%E5%8F%8A-api-%E7%AE%A1%E7%90%86%E7%AE%80%E4%BB%8B-minglei-tu)
 
 ### [Falcor](http://netflix.github.io/falcor/)
+- [Demand driven architecture（CQRS/Falcor）](http://www.javacodegeeks.com/2015/10/transcending-rest-and-rpc.html)
 - rpc优却点：低延迟，数据量小；不可缓存(手动管理)，紧耦合
 - rest优却点：可缓存，松耦合；高延迟，数据量大
 - 两者结合:

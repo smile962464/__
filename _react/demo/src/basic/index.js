@@ -14,10 +14,13 @@ const Life = React.createClass({
   },
   componentDidMount() {
     console.log('Life componentDidMount');
+    this.refs.container.addEventListener('mousedown', (e) => {
+      console.log('mousedown event', e);
+    }, false);
   },
   render() {
     console.log('Life render');
-    return (<div>
+    return (<div ref="container">
       defaultValue： <input defaultValue={this.props.defaultValue} /> <br />
       value：<input value={this.props.defaultValue} />
     </div>);
