@@ -132,6 +132,8 @@
 
     _.times(5, _.constant(2));
 
+    Array.from({ length: 2 }, () => 'jack')  // ['jack', 'jack']
+
 
 
     //合并数组  -- 类似concat功能、但concat返回值是一个新的数组。
