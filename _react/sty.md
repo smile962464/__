@@ -64,6 +64,8 @@ All application state should live in the store, while components occasionally ho
 - 何时该用`props`、何时该用`state`
     - a component cannot mutate its props — they are always consistent with what its owner sets them to.
 - 子组件更新父组件状态：The parent is the source of truth, so the child needs to tell the parent to change its state. Pass a callback from the parent to the child, and have the child call it.
+    - 子组件则可以通过事件冒泡或是传递一个回调的方式来对父组件做出反馈。
+    - 子组件并不能任意地改写父组件的状态，无论是触发事件还是调用回调，最终父组件发生了什么还是由父组件自身来决定的，这就保证了子组件对父组件的解耦，从而使得子组件可移植/复用。
 - 两个component里如果都要用到相同的一个方法，这个方法该放到哪个component？一些公共方法函数，该放到哪里？
 - 不同的component维护许多各自不同state，导致数据碎片化，flux模式利用顶层store能解决这个问题？
 

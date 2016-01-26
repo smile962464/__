@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>touch test </title>
+        <style type="text/css">
+            .item {
+                float:left;
+                width:25%;
+            }
+        </style>
+        <script type="text/javascript">
+            function log(name, value) {
+                var dd = document.createElement('dd');
+                var text = document.createTextNode(value);
+                dd.appendChild(text);
+                document.getElementById(name).appendChild(dd);
+            }
+
+            function expandObject(obj) {
+                var html = [];
+                html.push('<ul>');
+                for (var i in obj) {
+                    html.push('<li>' + i + ':' + obj[i] + '</li>');
+                }
+                html.push('</ul>');
+                document.getElementById('obj-expand').innerHTML = html.join('');
+            }
+
+            document.addEventListener('click', function (ev) {
+                log('click', ev.pageX + ',' + ev.pageY + '/' + (ev.timeStamp - 0));
+            }, false);
+            document.addEventListener('touchstart', function (ev) {
+                log('touchstart', ev.touches[0].pageX + ',' + ev.touches[0].pageY + '/' + (ev.timeStamp - 0));
+            }, false);
+            document.addEventListener('touchend', function (ev) {
+                log('touchend', ev.changedTouches[0].pageX + ',' + ev.changedTouches[0].pageY + '/' + (ev.timeStamp - 0));
+            }, false);
+            document.addEventListener('touchmove', function (ev) {
+                log('touchmove', ev.touches[0].pageX + ',' + ev.touches[0].pageY + '/' + (ev.timeStamp - 0));
+            }, false);
+        </script>
+    </head>
+    <body>
+        <div id="obj-expand">
+        </div>
+        <div class="item">
+            <dl id="click">
+                <dt>click event</dt>
+            </dl>
+        </div>
+        <div class="item">
+            <dl id="touchstart">
+                <dt>touchstart event</dt>
+            </dl>
+        </div>
+        <div class="item">
+            <dl id="touchend">
+                <dt>touchend event</dt>
+            </dl>
+        </div>
+        <div class="item">
+            <dl id="touchmove">
+                <dt>touchmove event</dt>
+            </dl>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>demo</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link href="popLayer.css" rel="stylesheet" />
+</head>
+<body>
+    <input id="s" type="button" value="show" />
+    <input id="h" type="button" value="hide" />
+
+    <script src="http://zeptojs.com/zepto.js"></script>
+    <script src="popLayer.js"></script>
+    <script>
+        var G_popLayer = new PopLayer({
+            mask: true,
+            fixed: true,
+            minHeight: 400,
+            content: '',
+            onHide: function () {
+                $doc.off('touchmove', stopScroll);
+            },
+            onShow: function () {
+
+                //处理 ios5_fixed_bug
+                G_popLayer.ios5_fixed_bug_ele.css('height', '200px');
+                setTimeout(function () {
+                    G_popLayer.ios5_fixed_bug_ele.css('height', '0');
+                }, 100);
+                $doc.on('touchmove', stopScroll);
+
+            }
+        });
+
+        G_popLayer.content.append('<div class="js-shop-cates-flag js-scroll-ele">pop layer</div>');
+
+        $('#s').on('click', function (e) {
+            G_popLayer.show('.js-shop-cates-flag');  //传指定元素参数会动态改变内容高度
+        })
+        $('#h').on('click', function (e) {
+            G_popLayer.hide();
+        })
+    </script>
+</body>
+</html>
