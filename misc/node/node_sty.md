@@ -5,13 +5,13 @@
 npm install tnpm -g --registry="http://registry.npm.alibaba-inc.com"
 
 - npm init -f
-- npm install/i xx -g
+- npm install/i xx -g (-f)
 - npm i --save-dev xx
 - npm rm/uninstall xx -g
 
 - npm root/prefix -g  -- 全局安装包位置。
 - npm help install/cache
-- npm cache celan [模块名]
+- npm cache clean [模块名]
 
 #### npm link
 cd ~/projects/proj1  # go into the dir of your main project

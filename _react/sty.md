@@ -1,7 +1,16 @@
 
 
-
+## FRP (Functional Reactive Programming)
 The former is Passive programming, while the latter is Reactive programming
+
+- 展现：render :: Model -> UI
+    - render 是一个接受一个数据模型参数并返回一个用户界面的函数。
+    - React.js本质：(state, props) => state
+- 响应：reactive :: Action -> Model -> Model（Model, Side Effects(异步消息)）
+    - reactive 是一个接受一个动作（事件）参数和一个模型，并返回一个新的模型的函数。
+    - 有「Side Effects(异步消息)」时，reactive :: Action -> Model -> (Model, Effects Action)。参考 https://github.com/evancz/elm-architecture-tutorial/
+    - flux本质：(state, action) => state。 redux的reducer也是这样。
+- render 和 reactive 反复迭代即得到一个用户应该看到并可以操作的用户界面。
 
 
 ## react native

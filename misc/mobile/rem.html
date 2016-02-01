@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>demo</title>
+  <meta charset="utf-8" />
+  <meta name="apple-touch-fullscreen" content="yes" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+  <style>
+  :root {
+    font-size: 16px;
+  }
+  /*
+  Or you can use html
+  html {
+     font-size: 16px;
+  }
+  */
+  body {
+    font-size: 1rem;
+  }
+  button {
+    font-size: 0.875rem;
+    /*All the internal/external value use in 'em'
+    This value use of your "font-size" as the basic font size
+    And you will not have any problem with the font size of the container ( Example bottom )*/
+    padding: .5em 1em;
+    border: .125em solid #e3e3e3;
+    @media (min-width: 48rem){ /* min-width: 768px */
+      font-size: 1.125rem;
+    }
+    @media (min-width: 62rem){ /* min-width: 992px */
+      font-size: 1.375rem;
+    }
+  }
+  .container {
+    /*font-size: 14px;*/
+    font-size: .875rem;
+    width: 80rem;
+    button {
+      font-size: .875rem;  /* Still use font-size: 14px*/
+      padding: .5em 1em;
+      border: .125em solid #e3e3e3;
+      @media (min-width: 48rem){
+        font-size: 1.125rem;
+      }
+      @media (min-width: 62rem){
+        font-size: 1.375rem;
+      }
+    }
+  }
+
+  </style>
+</head>
+<body>
+  <div class="container"></div>
+
+  <script src="http://zeptojs.com/zepto.js"></script>
+  <script>
+
+  </script>
+</body>
+</html>
