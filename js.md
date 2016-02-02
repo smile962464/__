@@ -1,4 +1,6 @@
 
+[js内存泄露与处理](http://lostechies.com/derickbailey/2012/03/19/backbone-js-and-javascript-garbage-collection/)
+
 [js event loop](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop)
 
 [你可能不需要jQuery](http://youmightnotneedjquery.com/)、

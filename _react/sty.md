@@ -1,5 +1,7 @@
 
 
+[Javascript reactive frameworks](http://rrees.me/2015/06/04/overview-of-javascript-reactive-frameworks/)
+
 ## FRP (Functional Reactive Programming)
 The former is Passive programming, while the latter is Reactive programming
 
@@ -50,6 +52,12 @@ In Flux, Store is the only place in your whole app that has privilege to mutate 
 - 官方推荐单独放到utils模块下，被某个action调用，并且Ajax返回结果触发新的action，store里不出现。（见flux-chat）
 - 另一种是在store里的某个方法发送Ajax；也在store里注册Ajax返回的回调函数，并直接调用`Dispatcher.dispatch()`。
 
+
+## react
+- [React](http://facebook.github.io/react/index.html)
+- [react-starter-kit](https://github.com/kriasoft/react-starter-kit)
+- [react-components](http://react-components.com/)
+- [react-bootstrap](http://react-bootstrap.github.io/components.html)
 
 ### 怎么划分组件、怎么确定state
 [怎么划分组件](http://facebook.github.io/react/docs/thinking-in-react.html#step-1-break-the-ui-into-a-component-hierarchy)

@@ -1,6 +1,12 @@
 
 # 基础
 
+## 页面编码
+- 编码和字符集的区别：gbk、utf-8都是字符集。 http数据传输时的编码和界面显示使用的的字符集的区别。
+- `<meta charset="utf-8" />`要置于`<title></title>`之前，能使得浏览器先获得编码设置，来正确解析页面中文本内容。（不然，老IE浏览器可能会有问题）
+- [URL 编码，为什么要编码？](http://anjia.github.io/2015/04/15/jsURIEncode/)
+- 浏览器在自动选择编码方式的时候不会优先根据html源码中的所展示的`<meta charset="utf-8" />`代码来决定选择什么编码方式，而是优先根据“响应标头-response header”中的键为“Content-Type”的值来自动选择判断。（老IE浏览器相反）
+
 
 ## html标签使用注意点
 - [div和span都是作为容器元素](http://www.w3.org/wiki/Generic_containers_-_the_div_and_span_elements)
