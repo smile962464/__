@@ -60,6 +60,7 @@ git merge xx  合并xx分支到某分支（例如：合并到主分支，先切�
 git merge --no-ff xx
 git merge origin/xx   远程上有xx分支，并且git fetch origin，执行此命令，将合并此分支  
 
+git fetch -p (git fetch origin --prune) remove all your local branches which are remotely deleted.
 
 ### 操作tag
 git tag 0.0.1  打轻量标签  
