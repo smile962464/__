@@ -1,44 +1,35 @@
 
-[js内存泄露与处理](http://lostechies.com/derickbailey/2012/03/19/backbone-js-and-javascript-garbage-collection/)
-
-[js event loop](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop)
-
-[你可能不需要jQuery](http://youmightnotneedjquery.com/)、
-[你可能不需要jQuery](http://www.cnblogs.com/lhb25/p/you-might-not-need-jquery.html)
-[you-might-not-need-underscore](https://www.reindex.io/blog/you-might-not-need-underscore/)
-
-- [浏览器如何渲染文本](http://blog.jjgod.org/2011/04/09/how-do-browsers-render-text/)
-- [静态资源版本更新与缓存](http://www.infoq.com/cn/articles/front-end-engineering-and-performance-optimization-part1)
-- [视频: JavaScript的诞生与死亡](http://v.youku.com/v_show/id_XODAzOTY1MTM2.html)
-
-- [全面基础教程](http://yanhaijing.com/basejs/)
-- [js专家必须知道的js概念](http://javascriptissexy.com/16-javascript-concepts-you-must-know-well/)
-- [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
-- [js秘密花园](http://bonsaiden.github.io/JavaScript-Garden/zh/)
-- [js和css的顺序关系](http://hikejun.com/blog/2012/02/02/js%E5%92%8Ccss%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%85%B3%E7%B3%BB/)
-
-- [True Hash Maps in JavaScript](http://ryanmorr.com/true-hash-maps-in-javascript/)
-- [使用JavaScript实现“真·函数式编程”](http://jimliu.net/2015/10/21/real-functional-programming-in-javascript-1/)
 
 # es6
 - [ECMAScript 6入门](http://es6.ruanyifeng.com/#README)
-- [es6rocks](http://es6rocks.com/)
-- [es6-tools](https://github.com/addyosmani/es6-tools)
-- [ECMAScript 567 compatibility table](http://kangax.github.io/compat-table/es6/)
+- [ECMAScript compatibility table](http://kangax.github.io/compat-table/es6/)
+- [es6特性](http://www.cnblogs.com/Wayou/p/es6_new_features.html)
 
-[es6特性](http://colintoh.com/blog/lightweight-es6-features)、
-[es6特性](http://www.cnblogs.com/Wayou/p/es6_new_features.html)
+[迭代器和生成器generators](http://se77en.cc/2014/01/20/iterators-and-generators-translation/)
 
-[generators、yield、let](http://www.aaron-powell.com/posts/2014-01-13-functions-that-yield-mutliple-times.html)、
-[generators-1](http://huangj.in/765)、
-[generators-2](http://segmentfault.com/q/1010000000367154)、
-[generators-3](http://se77en.cc/2014/01/20/iterators-and-generators-translation/)、
-[generators-4](http://jlongster.com/A-Study-on-Solving-Callbacks-with-JavaScript-Generators)
+## es6-modules
+参考其他语言，如Python等模块设计。[es6-modules-final](http://www.2ality.com/2014/09/es6-modules-final.html)
 
-[es6-modules使用](http://guybedford.com/practical-workflows-for-es6-modules)
-[understanding-es6-modules](http://www.sitepoint.com/understanding-es6-modules/)
+- 静态化，支持静态分析，编译时就能确定模块的依赖关系，以及输入和输出的变量。能支持引入宏（macro）和类型检验（type system）。CommonJS和AMD模块，都只能在运行时确定。
+- `import`、`export`可以出现在模块的任何位置，但要处于模块顶层，不能放在块级作用域内。
+- 一个模块里`export deault`只能使用一次，其他输出可以用`export xx`。
+- CommonJS模块输出的是一个值的拷贝（输出后不可变），而ES6模块输出的是值的引用（输出后可变）。
+- ES6模块支持“循环依赖”，正常输出。CommonJS模块也支持，但只输出已经执行的部分，还未执行的部分不会输出。
+
 
 # base
+
+- [你可能不需要jQuery](http://youmightnotneedjquery.com/)、
+[你可能不需要jQuery](http://www.cnblogs.com/lhb25/p/you-might-not-need-jquery.html)、
+[you-might-not-need-underscore](https://www.reindex.io/blog/you-might-not-need-underscore/)
+- [js秘密花园](http://bonsaiden.github.io/JavaScript-Garden/zh/)、[全面基础教程](http://yanhaijing.com/basejs/)
+- [js event loop](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop)、[视频: JavaScript的诞生与死亡](http://v.youku.com/v_show/id_XODAzOTY1MTM2.html)
+- [js内存泄露与处理](http://lostechies.com/derickbailey/2012/03/19/backbone-js-and-javascript-garbage-collection/)、[了解 JavaScript 应用程序中的内存泄漏](http://www.ibm.com/developerworks/cn/web/wa-jsmemory/index.html)、[memory-leaks](http://javascript.info/tutorial/memory-leaks)
+
+
+- [静态资源版本更新与缓存](http://www.infoq.com/cn/articles/front-end-engineering-and-performance-optimization-part1)
+- [使用JavaScript实现“真·函数式编程”](http://jimliu.net/2015/10/21/real-functional-programming-in-javascript-1/)
+
 - 使用`void 0`代替`undefined`、`console.log(void 0 === undefined)`
 - 覆盖 Object.toString() 显示对象具体信息，用以调试
 - 页面有使用`window.opener.xx()`之类、因为opener可以为任何域，所以存在`跨域`错误。利用`try..catch`捕获
@@ -86,7 +77,6 @@
 - [中介者模式与观察者模式有何不同？](http://www.cnblogs.com/aaronjs/archive/2013/07/18/3199282.html)
 - [Five Patterns to Help You Tame Asynchronous JavaScript](http://tech.pro/blog/1402/five-patterns-to-help-you-tame-asynchronous-javascript)
 - [JavaScript 设计模式 – 第二部分： 适配器、装饰者和工厂模式](http://www.adobe.com/cn/devnet/html5/articles/javascript-design-patterns-pt2-adapter-decorator-factory.html)
-- []()
 
 
 ## WebSocket
@@ -98,10 +88,6 @@ WebSocket与传统基于HTTP的通信机制相比，有很大的优势。它可�
 # 性能
 
 使用 innerHTML 把一大块元素替换掉，因为销毁的元素比较多、绑定着事件，会导致 GC 压力大。再插入新元素，再重新绑定事件。整体性能耗费比较大。
-
-## 内存泄露
-- [了解 JavaScript 应用程序中的内存泄漏](http://www.ibm.com/developerworks/cn/web/wa-jsmemory/index.html)
-- [memory-leaks](http://javascript.info/tutorial/memory-leaks)
 
 
 ## 性能优化
@@ -115,7 +101,6 @@ WebSocket与传统基于HTTP的通信机制相比，有很大的优势。它可�
 - [Memory Analysis 101](https://developer.chrome.com/devtools/docs/memory-analysis-101)
 - [Secrets of the Browser Developer Tools](http://www.83rdstasis.net/devtoolsecrets/slides/london-web/#1)
 - [使用Chrome DevTools的Timeline和Profiles提高Web应用程序的性能](http://www.oschina.net/translate/performance-optimisation-with-timeline-profiles?cmp)
-- []()
 
 Garbage collection is a form of memory management.
 
@@ -147,7 +132,6 @@ When you absolutely do need to copy objects in a performance-critical code path 
 It’s never a good idea to mix values of different types (e.g. numbers, strings, undefined or true/false) in the same array (i.e. var arr = [1, “1”, undefined, true, “true”])
 
 be aware that although JavaScript engines continue to get faster, the next real bottleneck is the DOM. Reflows and repaints are just as important to minimize, so remember to only touch the DOM if it’s absolutely required. And do care about networking. HTTP requests are precious, especially on mobile, and you should be using HTTP caching to reduce the size of assets.
-
 
 
 

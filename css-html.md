@@ -28,6 +28,7 @@
 
 结论：在head里面尽量不要引入javascript，如果要引入js 尽量将js内嵌，把内嵌js放在所有css的前面(否则会打断css或图片的并行下载)。
 
+- [浏览器如何渲染文本](http://blog.jjgod.org/2011/04/09/how-do-browsers-render-text/)
 
 ## 其他
 居中、布局、圆角模拟、清除浮动等等，奇淫技巧~几大绝技~魔法
