@@ -7,6 +7,32 @@
 <body>
   <a href="http://www.cnblogs.com/hacke2/p/4086568.html">资料</a>
 
+  <script>
+    // 对象里不能使用 arrow function
+    function Person(name) {
+      this.name = name;
+      this.say();
+    }
+    Person.prototype = {
+      work() {
+        console.log('I can work!');
+        console.log(this);
+      },
+      walk: () => {
+        console.log(this); // 箭头函数，注意此处 this
+      },
+      say() {
+        console.log('I can say!');
+        setTimeout(() => {
+          console.log('say again');
+        }, 10);
+      }
+    };
+    var p = new Person('me');
+    p.work();
+    p.walk();
+    p.say();
+  </script>
 
 </body>
 </html>
