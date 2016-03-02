@@ -13,6 +13,8 @@ npm install tnpm -g --registry="http://registry.npm.alibaba-inc.com"
 - npm help install/cache
 - npm cache clean [模块名]
 
+npm view <pkgname> versions 
+
 #### npm link
 cd ~/projects/proj1  # go into the dir of your main project
 npm link ../proj2     # link the dir of your dependency
