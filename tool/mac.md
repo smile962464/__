@@ -6,6 +6,11 @@
 
 单词自动补全：在内置的文本编辑器里，输入几个字母后，点击 Escape 键，OS X 就会提示多个单词。
 
+    dock上增加最近打开程序的选项：
+    defaults write com.apple.dock persistent-others -array-add '{ "tile-data" = { "list-type" = 1; }; "tile-type" = "recents-tile"; }'
+    然后再执行 killall Dock
+
+
 ## terminal
 
 * pmset noidle — 阻止电脑睡眠
@@ -13,23 +18,18 @@
 * cal -- 显示日历
 * say hello world  — 说话
 
+### iTerm2(go-2-iTerm)
+查历史： history | grep search..
 
-#### 其他
+- 选中即复制，选中某个路径或者某个词汇，iterm2 自动复制
+- cmd+w/t/d/f
+- cmd+; 自动完成
+- cmd/alt + click 打开finder / 定位到相应字符
+- ctrl+c/a/e 退出、到行首、到行尾
+- cmd+shift+h 列出剪切板的历史记录
 
-    将 文件或文件夹拖放到Terminal窗口上，显示完整路径
+brew install autojump
 
-    finder标题栏显示全路径：defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES
-
-    dock上增加最近打开程序的选项：
-    defaults write com.apple.dock persistent-others -array-add '{ "tile-data" = { "list-type" = 1; }; "tile-type" = "recents-tile"; }'
-    然后再执行 killall Dock
-
-    禁止在网络（远程）文件夹中创建.DS_Store文件：
-    defaults write com.apple.desktopservices DSDontWriteNetworkStores true  
-
-    Mac App Store 下载失败如何解决：
-    `defaults write com.apple.appstore ShowDebugMenu -bool true`
-    这样可以打开Mac App Store的Debug菜单，清空Cookies或Reset Application重置一下程序即可
 
 
 ### homebrew
@@ -37,6 +37,17 @@
 `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`  
 
 使用：`brew install/uninstall macvim`  （应用安装在`/usr/local/Cellar/`目录）
+
+homebrew 国内源
+
+    $ cd /usr/local && git remote set-url origin https://git.coding.net/homebrew/homebrew.git
+    $ cd $home && brew update
+
+    更新时报错：
+    cd $(brew --prefix)  或 cd /usr/local
+    git fetch origin
+    git reset --hard origin/master
+    git clean -f
 
 其他命令：
 `brew doctor`、`brew list`、`brew update`、
