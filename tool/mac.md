@@ -1,5 +1,9 @@
 # mac
 
+在桌面生成软连接（快捷方式）：
+
+    ln -s /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app ~/Desktop
+
 服务器：python -m SimpleHTTPServer 3435（port）
 
 从Chrome里下载的一个文件，文件权限不够，从本地ip便访问不到。显示简介，更改「共享与权限」里的everyone为「只读」
