@@ -1,6 +1,8 @@
 
 # 基础
 
+[不能根据子元素class改变父元素class]( http://stackoverflow.com/questions/1014861/is-there-a-css-parent-selector)
+
 ## 页面编码
 - 编码和字符集的区别：gbk、utf-8都是字符集。 http数据传输时的编码和界面显示使用的的字符集的区别。
 - `<meta charset="utf-8" />`要置于`<title></title>`之前，能使得浏览器先获得编码设置，来正确解析页面中文本内容。（不然，老IE浏览器可能会有问题）
