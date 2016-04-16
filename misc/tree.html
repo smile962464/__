@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>tree 遍历算法</title>
+  <script src="https://a.alipayobjects.com/jquery/jquery/1.11.1/jquery-debug.js"></script>
+</head>
+<body>
+  <pre>
+    广度优先和深度优先。
+    Tree Traversal（BFS vs. DFS）：http://kevhuang.com/tree-traversal/
+    库：http://aaronstacy.com/t-js/
+  </pre>
+
+  <script>
+    function unflatten(array, parent, tree) {
+      tree = typeof tree !== 'undefined' ? tree : [];
+      parent = typeof parent !== 'undefined' ? parent : { id: 0 };
+      var children = array.filter(child => child.parentid == parent.id);
+      if (children.length) {
+        if (parent.id == 0) {
+          tree = children;
+        } else {
+          parent['children'] = children;
+        }
+        children.forEach(child => unflatten(array, child));
+      }
+      return tree;
+    }
+
+    function unflatten1(array, parent = { id: 0 }) {
+      var children = array.filter(child => child.parentid == parent.id);
+      if (children.length) {
+        parent['children'] = children;
+        children.forEach(child => unflatten(array, child));
+      }
+      if (parent.id == 0) {
+        return children;
+      }
+    }
+
+    var arr = [
+      {'id':1 ,'parentid' : 0},
+      {'id':2 ,'parentid' : 1},
+      {'id':3 ,'parentid' : 1},
+      {'id':4 ,'parentid' : 2},
+      {'id':5 ,'parentid' : 0},
+      {'id':6 ,'parentid' : 0},
+      {'id':7 ,'parentid' : 4},
+      {'id':8 ,'parentid' : 5},
+    ];
+    var tree = unflatten1(arr);
+    console.log(tree);
+  </script>
+</body>
+</html>

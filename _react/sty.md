@@ -1,5 +1,7 @@
 
 
+react filter（filter子节点）: https://github.com/facebook/react/issues/4867
+
 [Javascript reactive frameworks](http://rrees.me/2015/06/04/overview-of-javascript-reactive-frameworks/)
 
 ## FRP (Functional Reactive Programming)
@@ -21,6 +23,14 @@ The former is Passive programming, while the latter is Reactive programming
 ## redux
 - [UI state应该放到哪里？](https://github.com/rackt/redux/issues/595)
 - [解读 redux 的设计思路与用法](http://div.io/topic/1309)
+
+### redux & redux-saga 场景
+form 表单提交，触发 `FORM_POST` action，
+saga里触发（yield put）`POST_SUCCESS`/`POST_FAILURE` action，
+无论提交成功或失败，都需要改变页面状态、或拉取新的列表数据，触发`UI_CHANGE`/`PULL_DATA` action，
+`UI_CHANGE`/`PULL_DATA`需要参数，用`yield select`从`state`里选取需要的数据（ui状态数据需要存到全局state里），
+复杂场景下、需要在 saga 里对来自不同action的数据结果做比对、筛选等操作，再触发最终的action（比如steps条的下一步）。
+
 
 ## flux
 [本质：(state, action) => state](https://speakerdeck.com/jmorrell/jsconf-uy-flux-those-who-forget-the-past-dot-dot-dot)

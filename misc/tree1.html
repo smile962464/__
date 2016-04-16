@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>tree 选中</title>
+  <script src="https://a.alipayobjects.com/jquery/jquery/1.11.1/jquery-debug.js"></script>
+</head>
+<body>
+  <pre>
+    指定节点的子节点全选，如果兄弟节点都选中、则父节点也选中
+  </pre>
+
+  <script src="./tree-data-generator.js"></script>
+  <script>
+    const gData = generateData();
+    console.log('总节点数（单个tree）：', calcTotal(), gData);
+
+    const checked = ['0-0-0', '0-0-1', '0-0-0-0'];
+    const checkedKeys = [...checked];
+
+    const recursive = (children, cb) => {
+      children.forEach(item => {
+        cb(item);
+        if (item.children) {
+          recursive(item.children, cb);
+        }
+      });
+    }
+
+    function checkChildren(data) {
+      data.forEach((item, index) => {
+        if (item.checked) {
+          return;
+        }
+        const ci = checkedKeys.indexOf(item.key);
+        if (ci > -1) {
+          item.checked = true;
+          checkedKeys.splice(ci, 1);
+          if (item.children) {
+            recursive(item.children, child => {
+              child.checked = true;
+            });
+          }
+        } else {
+          if (item.children) {
+            checkChildren(item.children);
+          }
+        }
+      });
+    }
+
+    function checkParent(children, parent) {
+      // if (parent)
+      const cs = [];
+      let siblingChecked = 0;
+      children.forEach(item => {
+        if (item.checked) {
+          siblingChecked++;
+        } else {
+          if (item.children) {
+            // checkParent(item.children, item);
+            cs.push(item);
+          }
+        }
+      });
+      const len = children.length;
+      if (siblingChecked === len) {
+        parent.check = true;
+      } else if (siblingChecked < len && siblingChecked > 0) {
+        parent.halfChecked = true;
+      }
+      parent.children = children;
+      cs.forEach(item => {
+        checkParent(item.children, item);
+      });
+    }
+
+    const root = {
+      root: true,
+    };
+    checkChildren(gData);
+    checkParent(gData, root);
+    console.log(root);
+  </script>
+  <script src="./tree-display.js"></script>
+</body>
+</html>
