@@ -12,13 +12,13 @@
 
   <script src="./tree-data-generator.js"></script>
   <script>
-    const gData = generateData();
-    console.log('总节点数（单个tree）：', calcTotal(), gData);
+    const gData = generateData(3, 2, 2);
+    console.log('总节点数（单个tree）：', calcTotal(3, 2, 2), gData);
 
-    const checked = ['0-0-0', '0-0-1', '0-0-0-0'];
+    const checked = ['0-0-0', '0-0-2', '0-0-1-0-0', '0-0-1-1', '0-0-1-2', '0-0-0-0'];
     const checkedKeys = [...checked];
 
-    const recursive = (children, cb) => {
+    function recursive(children, cb) {
       children.forEach(item => {
         cb(item);
         if (item.children) {
@@ -27,18 +27,18 @@
       });
     }
 
-    function checkChildren(data) {
-      data.forEach((item, index) => {
-        if (item.checked) {
+    function checkChildren(children) {
+      children.forEach((item, index) => {
+        if (item.__checked) {
           return;
         }
         const ci = checkedKeys.indexOf(item.key);
         if (ci > -1) {
-          item.checked = true;
+          item.__checked = true;
           checkedKeys.splice(ci, 1);
           if (item.children) {
             recursive(item.children, child => {
-              child.checked = true;
+              child.__checked = true;
             });
           }
         } else {
@@ -50,29 +50,31 @@
     }
 
     function checkParent(children, parent) {
-      // if (parent)
-      const cs = [];
       let siblingChecked = 0;
       children.forEach(item => {
-        if (item.checked) {
-          siblingChecked++;
-        } else {
-          if (item.children) {
-            // checkParent(item.children, item);
-            cs.push(item);
+        if (item.children && !item.__checked && !item.__halfChecked) {
+          const p = checkParent(item.children, item);
+          if (p.__checked) {
+            siblingChecked++;
+          } else if (p.__halfChecked) {
+            siblingChecked += 0.5;
           }
+        } else if (item.__checked) {
+          siblingChecked++;
+        } else if (item.__halfChecked) {
+          siblingChecked += 0.5;
         }
       });
       const len = children.length;
       if (siblingChecked === len) {
-        parent.check = true;
+        parent.__checked = true;
       } else if (siblingChecked < len && siblingChecked > 0) {
-        parent.halfChecked = true;
+        parent.__halfChecked = true;
       }
-      parent.children = children;
-      cs.forEach(item => {
-        checkParent(item.children, item);
-      });
+      if (parent.root) {
+        parent.children = children;
+      }
+      return parent;
     }
 
     const root = {
