@@ -49,7 +49,7 @@
       });
     }
 
-    function checkParent(children, parent) {
+    function checkParent(children, parent = { root: true }) {
       let siblingChecked = 0;
       children.forEach(item => {
         if (item.children && !item.__checked && !item.__halfChecked) {
@@ -72,17 +72,14 @@
         parent.__halfChecked = true;
       }
       if (parent.root) {
-        parent.children = children;
+        return children;
       }
       return parent;
     }
 
-    const root = {
-      root: true,
-    };
     checkChildren(gData);
-    checkParent(gData, root);
-    console.log(root);
+    checkParent(gData);
+    console.log(gData);
   </script>
   <script src="./tree-display.js"></script>
 </body>

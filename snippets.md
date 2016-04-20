@@ -123,17 +123,22 @@
 
 ## 数组相关
 
+    //生成数组
     var numbers = [];
     for(var i=1; numbers.push(i++)<100;);
-    //numbers = [0,1,2,3 ... 100]
 
-    //生成 重复数据 的数组
-    Array.apply(null, new Array(10)).map(function(){return 5})
+    Array.apply(null, Array(5)).map(function (_, i) {return i;});
+    Array.apply(null, {length: 10}).map(Number.call, Number);
+    Array.apply(null, {length: 10}).map(Function.call, Math.random);
+    Array.from(new Array(20), (x,i) => i);
+    Array.from(Array(10).keys());
+    [...Array(10).keys()];
+    [...Array(10).keys()].map(x => x++);
+    Array.from({length:10}, (v,i) => i);
 
-    _.times(5, _.constant(2));
-
-    Array.from({ length: 2 }, () => 'jack')  // ['jack', 'jack']
-
+    new Array(10).join().split(',').map(function(item, index){ return ++index;})
+    Array(7).join(0).split(0).map(Number.call, Number);
+    Array(N).fill(0).map((e,i)=>i+1);
 
 
     //合并数组  -- 类似concat功能、但concat返回值是一个新的数组。
