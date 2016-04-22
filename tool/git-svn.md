@@ -3,17 +3,28 @@
 
 工作区(working tree)，暂存区（index）
 
-git pull --rebase 拉远程的主分支
-git rebase -i  重写历史
-回滚一个 rebasing：使用 git reflog 查看 git 操作历史，然后强制 reset head。
-
 如果你需要将自己开发分支上的某个 commit 快速提供给其他人用，但该分支上的其他 commit 不想 push：
 
 - git checkout develop 切换到 dev 分支，也可以新建个 feature 分支
 - git cherry-pick 62ecb3 将目标 commit pick 到 develop 上
-- git push 至远程即可，其他人 pull 更新
+- cherry-pick 一般用于将 bugfix commit pick 到不同版本上。
 
-cherry-pick 一般用于将 bugfix commit pick 到不同版本上。
+- git pull -p
+- git fetch -p (git fetch origin --prune) remove all your local branches which are remotely deleted.
+
+
+### rebase操作
+http://shzhangji.com/blog/2014/12/23/use-git-rebase-to-clarify-history/
+
+git pull === git fetch + git merge
+git pull --rebase === git fetch + git rebase
+
+- 开发分支rebase主分支：git pull --rebase origin master
+- git rebase --continue
+- git rebase --abort
+- git rebase -i  重写历史
+- 回滚一个 rebasing：使用 git reflog 查看 git 操作历史，然后强制 reset head。
+
 
 ### submodule
 [详解](http://www.kafeitu.me/git/2012/03/27/git-submodule.html)
@@ -57,10 +68,8 @@ git push origin xx:xx  上传我本地的xx分支到远程仓库中去，仍称�
 git push origin xx   推送到xx分支
 
 git merge xx  合并xx分支到某分支（例如：合并到主分支，先切到master 再git merge xx）  
-git merge --no-ff xx
+git merge --no-ff xx  不执行"快进式合并"（fast-farward merge）
 git merge origin/xx   远程上有xx分支，并且git fetch origin，执行此命令，将合并此分支  
-
-git fetch -p (git fetch origin --prune) remove all your local branches which are remotely deleted.
 
 ### 操作tag
 git tag 0.0.1  打轻量标签  
@@ -106,14 +115,6 @@ git reset --hard origin/master   将本地的状态回退到和远程的一样
 #### git reset误操作恢复：  
 git reflog       生成某个串，例如98abc5a  
 git reset --hard 98abc5a  
-
-
-### rebase操作
-> git rebase  用于把一个分支的修改合并到当前分支。
-
-如果修改了某个公用代码的BUG，这个时候就应该是把所有的OEM版本分支rebase到这个修复BUG的分支上来
-
-[详情](http://gitbook.liuhui998.com/4_2.html)、[1](http://my.oschina.net/MinGKai/blog/142517)
 
 
 ### 暂存未提交的修改
@@ -193,11 +194,11 @@ git fetch xx        获取服务器上的xx分支
 
 
 ### 提交上传：
-**git add .**               加入新文件  
-**git add -A**              加入new delete modify过的文件  
+git add .               加入新文件  
+git add -A              加入new delete modify过的文件  
 git commit -m "xxx"     提交  
 git commit -a           将modify过的文件提交，自动打开编辑器  
-git commit -a -m "xxx"  将modify过的文件提交并注释，不必再用git add  
+git commit -am "xxx"   将modify过的文件提交并注释，不必再用git add  
 
 
 ## 其他问题
