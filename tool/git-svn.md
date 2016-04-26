@@ -12,6 +12,52 @@
 - git pull -p
 - git fetch -p (git fetch origin --prune) remove all your local branches which are remotely deleted.
 
+撤销`git pull`：git reset --hard
+
+
+### 回退恢复：
+你的修改就可能存在三块区域中，working tree、index或者commit之后的历史对象区域。
+
+#### working tree (add之前)
+- use "git checkout -- <file>..." to discard changes in working directory
+- git checkout .
+
+- git clean -df  Remove untracked directories in addition to untracked files.
+- git clean -f  删除untracked files（即远程仓库没有这个文件，新加的文件）
+
+#### index内的回滚 (commit之前)
+git reset
+git reset HEAD <file>...  如果已经用add 命令把文件加入stage了，就先需要从stage中撤销
+git reset HEAD^    回退所有内容到上一个版本
+git reset HEAD^ a.py    回退a.py这个文件的版本到上一个版本  
+git reset 057d    回退到某个版本  
+
+#### commit之后的回滚
+--soft 不修改本地文件
+--hard 本地的文件修改都被丢弃
+
+git reset --soft HEAD^    撤销commit，重新做
+git reset --hard origin/master   将本地的状态回退到和远程的一样
+
+    $ git branch topic/wip     (1) 新建分支wip
+    $ git reset --hard HEAD~3  (2) 原分支上把最近三次提交丢弃
+    $ git checkout topic/wip   (3) 切换到wip分支，继续工作
+
+
+#### git reset误操作恢复：  
+git reflog       生成某个串，例如98abc5a  
+git reset --hard 98abc5a  
+
+
+### 暂存未提交的修改
+使用git stash保存当前的工作现场，那么就可以切换到其他分支进行工作，
+或者在当前分支上完成其他紧急的工作，比如修订一个bug测试提交
+
+git stash                   隐藏未提交的修改  
+git stash pop               恢复上次未提交的修改  
+git stash list              列出各个stash版本  
+git stash apply stash@{1}   恢复到某个stash版本  
+
 
 ### rebase操作
 http://shzhangji.com/blog/2014/12/23/use-git-rebase-to-clarify-history/
@@ -82,50 +128,6 @@ git tag -d 0.0.1   删除本地标签
 git push origin :refs/tags/0.0.1   删除远程标签
 
 git checkout tag_name  检出标签
-
-### 回退恢复：
-你的修改就可能存在三块区域中，working tree、index或者commit之后的历史对象区域。
-
-#### working tree (add之前)
-- use "git checkout -- <file>..." to discard changes in working directory
-- git checkout .
-
-- git clean -df  Remove untracked directories in addition to untracked files.
-- git clean -f  删除untracked files（即远程仓库没有这个文件，新加的文件）
-
-#### index内的回滚 (commit之前)
-git reset
-git reset HEAD <file>...  如果已经用add 命令把文件加入stage了，就先需要从stage中撤销
-git reset HEAD^    回退所有内容到上一个版本
-git reset HEAD^ a.py    回退a.py这个文件的版本到上一个版本  
-git reset 057d    回退到某个版本  
-
-#### commit之后的回滚
---soft 不修改本地文件
---hard 本地的文件修改都被丢弃
-
-git reset --soft HEAD^    撤销commit，重新做
-git reset --hard origin/master   将本地的状态回退到和远程的一样
-
-    $ git branch topic/wip     (1) 新建分支wip
-    $ git reset --hard HEAD~3  (2) 原分支上把最近三次提交丢弃
-    $ git checkout topic/wip   (3) 切换到wip分支，继续工作
-
-
-#### git reset误操作恢复：  
-git reflog       生成某个串，例如98abc5a  
-git reset --hard 98abc5a  
-
-
-### 暂存未提交的修改
-使用git stash保存当前的工作现场，那么就可以切换到其他分支进行工作，
-或者在当前分支上完成其他紧急的工作，比如修订一个bug测试提交
-
-git stash                   隐藏未提交的修改  
-git stash pop               恢复上次未提交的修改  
-git stash list              列出各个stash版本  
-git stash apply stash@{1}   恢复到某个stash版本  
-
 
 ### fork & pull request
 - [pull request](http://www.worldhello.net/gotgithub/04-work-with-others/010-fork-and-pull.html)
