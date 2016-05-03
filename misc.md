@@ -11,6 +11,8 @@
 
 
 ## component
+https://github.com/STRML/react-grid-layout
+
 - [front-end-application-frameworks-component-architectures](http://developer.telerik.com/featured/front-end-application-frameworks-component-architectures/)
 - [一个对前端模板技术的全面总结](http://www.html-js.com/article/2313)
 - [The State of the Componentised Web](http://www.futureinsights.com/home/the-state-of-the-componentised-web.html)
@@ -32,6 +34,9 @@
 
 
 ## 函数式编程
+
+http://blog.h5jun.com/post/functional-how-far.html
+
 - [函数式编程](http://coolshell.cn/articles/10822.html)
 - [函数式编程有哪些优点？](http://www.nowamagic.net/academy/detail/1220540)
 - [函数式编程扫盲篇](http://www.cnblogs.com/kym/archive/2011/03/07/1976519.html)
