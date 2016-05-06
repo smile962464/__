@@ -32,14 +32,57 @@
       var children = array.filter(child => child.parentid == parent.id);
       if (children.length) {
         parent['children'] = children;
-        children.forEach(child => unflatten(array, child));
+        children.forEach(child => unflatten1(array, child));
       }
       if (parent.id == 0) {
         return children;
       }
     }
 
-    var arr = [
+    // improve performance
+    function unflatten2(array, parent = { id: 0 }) {
+      const children = [];
+      for (let i = 0; i < array.length; i++) {
+        if (array[i].parentid === parent.id) {
+          children.push(array[i]);
+          array.splice(i--, 1);
+        }
+      }
+      if (children.length) {
+        parent['children'] = children;
+        children.forEach(child => unflatten2(array, child));
+      }
+      if (parent.id == 0) {
+        return children;
+      }
+    }
+
+    function findPath(obj, id) {
+      let node = obj[id];
+      const path = [];
+      while(node) {
+        path.push(node.id);
+        node = obj[node.parentid];
+      }
+      return path;
+    }
+
+    function trackParent(array) {
+      array.forEach(i => {
+        if (i.parentid) {
+          i['parent'] = array.filter(ii => ii.id === i.parentid)[0];
+        }
+      });
+    }
+
+    function findPath1(arr, id) {
+      // 不用 reduce 效率更高
+      return arr.reduce((result, next) => {
+        return next.id === id ? next : result;
+      });
+    }
+
+    var treeData = [
       {'id':1 ,'parentid' : 0},
       {'id':2 ,'parentid' : 1},
       {'id':3 ,'parentid' : 1},
@@ -49,7 +92,27 @@
       {'id':7 ,'parentid' : 4},
       {'id':8 ,'parentid' : 5},
     ];
-    var tree = unflatten1(arr);
+    var treeData1 = {
+      1: {'id':1 ,'parentid' : 0},
+      2: {'id':2 ,'parentid' : 1},
+      3: {'id':3 ,'parentid' : 1},
+      4: {'id':4 ,'parentid' : 2},
+      5: {'id':5 ,'parentid' : 0},
+      6: {'id':6 ,'parentid' : 0},
+      7: {'id':7 ,'parentid' : 4},
+      8: {'id':8 ,'parentid' : 5},
+    };
+
+    var transformData = {};
+    treeData.forEach(i => transformData[i.id] = i);
+    console.log(findPath(transformData, 4));
+    // console.log(findPath(treeData1, 4));
+
+    // trackParent(treeData);
+    // console.log(findPath1(treeData, 4));
+
+    // var tree = unflatten1(treeData);
+    var tree = unflatten2(treeData);
     console.log(tree);
   </script>
 </body>

@@ -1,6 +1,7 @@
 
 ## util & tools
 
+- [元素定位库](http://github.hubspot.com/tether/)
 - [js-repaint-perfs](http://leeluolee.github.io/js-repaint-perfs/#)
 - [validator.js](https://github.com/chriso/validator.js)、 [URI.js](https://github.com/medialize/URI.js/)
 - [bounce.js](https://github.com/tictail/bounce.js): Create beautiful CSS3 powered animations in no time.
