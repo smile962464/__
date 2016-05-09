@@ -18,6 +18,21 @@
     const checked = ['0-0-0', '0-0-2', '0-0-1-0-0', '0-0-1-1', '0-0-1-2', '0-0-0-0'];
     const checkedKeys = [...checked];
 
+    let sel;
+    function findPath(selected, children, parent = { root: true }) {
+      children.forEach(item => {
+        item._parent = parent;
+        if (selected === item.key) {
+          sel = item;
+        }
+        if (item.children) {
+          findPath(selected, item.children, item);
+        }
+      });
+    }
+    findPath(checked[1], gData);
+    console.log(sel);
+
     function recursive(children, cb) {
       children.forEach(item => {
         cb(item);
