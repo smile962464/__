@@ -14,6 +14,9 @@
 
 撤销`git pull`：git reset --hard
 
+git remote add origin git@xxx.git        加入服务器
+git remote -v  列出现有的远程地址
+git remote set-url origin xxx 改变远程地址为xxx
 
 ### 回退恢复：
 你的修改就可能存在三块区域中，working tree、index或者commit之后的历史对象区域。
@@ -184,7 +187,6 @@ git config --global color.ui true
 touch xx                                 创建文件  
 git init                                 初始化
 
-git remote add origin git@xxx.git        加入服务器
 git pull origin master                  接收github仓库数据  
 
 git push -u origin master                第一次推送  
