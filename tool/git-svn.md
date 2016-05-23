@@ -40,14 +40,13 @@ git reset 057d    回退到某个版本
 --hard 本地的文件修改都被丢弃
 
 git reset --soft HEAD^    撤销commit，重新做
+git reset --hard 057d    回退到某个版本（本地的文件修改都被丢弃）  
 git reset --hard origin/master   将本地的状态回退到和远程的一样
 
-    $ git branch topic/wip     (1) 新建分支wip
-    $ git reset --hard HEAD~3  (2) 原分支上把最近三次提交丢弃
-    $ git checkout topic/wip   (3) 切换到wip分支，继续工作
+$ git branch topic/wip     (1) 新建分支wip
+$ git reset --hard HEAD~3  (2) 原分支上把最近三次提交丢弃
+$ git checkout topic/wip   (3) 切换到wip分支，继续工作
 
-
-#### git reset误操作恢复：  
 git reflog       生成某个串，例如98abc5a  
 git reset --hard 98abc5a  
 
@@ -63,6 +62,10 @@ git stash apply stash@{1}   恢复到某个stash版本
 
 
 ### rebase操作
+
+[指定rebase到某个commit](https://blog.yorkxin.org/posts/2011/07/29/git-rebase/)：  
+git rebase --onto <new base-commit> <current base-commit>
+
 http://shzhangji.com/blog/2014/12/23/use-git-rebase-to-clarify-history/
 
 git pull === git fetch + git merge
@@ -124,6 +127,7 @@ git merge origin/xx   远程上有xx分支，并且git fetch origin，执行此�
 git tag 0.0.1  打轻量标签  
 git tag -a 0.0.1 -m 'Release version 0.0.1'  打标签  
 git tag (-l)                列出全部的tag清單  
+git push origin v1.5
 git push --tags    推送所有标签到服务器  
 git push origin --tags    推送所有标签到服务器  
 
