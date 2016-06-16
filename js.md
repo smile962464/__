@@ -62,6 +62,16 @@
 - [日期和时间字符串](http://msdn.microsoft.com/zh-cn/library/ie/ff743760(v=vs.94).aspx)
 - [计算日期和时间](http://msdn.microsoft.com/zh-cn/library/ie/ee532932(v=vs.94).aspx)
 
+[safari 对时间格式支持的差异](http://stackoverflow.com/questions/4310953/invalid-date-in-safari)，
+例如：
+
+    new Date('2010-11-29') // Safari: Invalid Date
+    new Date('11-29-2010') // Safari: Invalid Date
+    new Date('2010/11/29') // 正确
+    new Date('11/29/2010') // 正确
+    new Date('2016-06-08T12:18:00+0800') // Safari: Invalid Date
+    new Date('2016-06-08T12:18:00+08:00') // 正确
+
 ### 分号问题
 - 只在行首字符是`+、-、[、(、/`这5种情况下，加前置分号即可。其他不用加分号。
 - [Semicolons in JavaScript are optional](http://mislav.uniqpath.com/2010/05/semicolons/)

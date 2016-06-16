@@ -3,24 +3,24 @@ import ReactDOM from 'react-dom'
 import LinkedStateMixin from 'react-addons-linked-state-mixin'
 
 var Input = React.createClass({
-  getInitialState: function () {
+  getInitialState () {
     return {
       val: this.props.value || ''
     }
   },
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     // this.setState({
     //   val: nextProps.value
     // });
   },
-  valChange: function (e) {
+  valChange(e) {
     var val = e.target.value;
     this.setState({
       val: val
     });
     this.props.onChange(val);
   },
-  render: function () {
+  render() {
     return <input type="text" className="form-control" required
                   value={this.state.val}
                   onChange={this.valChange} />

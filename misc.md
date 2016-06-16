@@ -14,6 +14,8 @@
 ## component
 https://github.com/STRML/react-grid-layout
 
+http://x-tag.github.io/
+
 - [front-end-application-frameworks-component-architectures](http://developer.telerik.com/featured/front-end-application-frameworks-component-architectures/)
 - [一个对前端模板技术的全面总结](http://www.html-js.com/article/2313)
 - [The State of the Componentised Web](http://www.futureinsights.com/home/the-state-of-the-componentised-web.html)
@@ -81,6 +83,9 @@ item由list的数据生成，由于immutable两者之后的state变化互不影�
 
 
 ## other
+
+Meteor：这个优秀的框架从妙不可言发展到目前这个状态真是让人很伤心，我都不确定它未来会带来什么，也不知道以后还会不会使用Meteor构建我的项目。
+
 智能：[brain](https://github.com/harthur/brain)、[convnetjs](https://github.com/karpathy/convnetjs)、[synaptic](https://github.com/cazala/synaptic)
 
 [tiny-binary-format](https://github.com/danprince/tiny-binary-format)

@@ -8,9 +8,6 @@ export default class Layout extends React.Component {
         <div className="Sidebar">
           {sidebar || <span>sidebar</span>}
         </div>
-        <div className="Content">
-          {content || <div>ct</div>}
-        </div>
       </div>
     )
   }
