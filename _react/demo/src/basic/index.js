@@ -22,10 +22,8 @@ const App = React.createClass({
       <Lifecycle />
       <h3>(Un)controlled Components</h3>
       <button onClick={this.cli}>switch</button>
-      <h3>一列固定数字的key</h3>
-      {[1,2].map((item, index) => {
-        return <Controlled key={index} value={this.state.now} />
-      })}
+      <h3>不变的key（可不设置）</h3>
+      <Controlled key="k" value={this.state.now} />
       <h3>每次都改变的key</h3>
       <Controlled key={this.state.now} value={this.state.now} />
     </div>);
