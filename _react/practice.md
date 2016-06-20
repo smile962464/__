@@ -1,4 +1,11 @@
 
+
+### [3 Reasons why I stopped using React.setState](https://medium.com/@mweststrate/3-reasons-why-i-stopped-using-react-setstate-ab73fc67a42e#.o2lwoysxh)
+- setState 是异步的
+- setState 引起不必要的 render
+- setState 不能覆盖所有的组件状态（像生命周期的钩子、timers、events ）
+
+
 ### 处理children
 需要遍历或修改children，要使用`React.Children.forEach / React.Children.map` 方法，而不要用`Array.isArray(children) / children.forEach`等方法。
 

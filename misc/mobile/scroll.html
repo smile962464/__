@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>scroll 事件</title>
+  <meta charset="utf-8" />
+  <meta name="apple-touch-fullscreen" content="yes" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+  <style>
+  </style>
+</head>
+<body style="height: 50000px">
+  <div id="log" style="position: fixed; top: 0; left: 0"></div>
+  <script>
+    var log = document.getElementById('log');
+    var count = 0;
+    window.addEventListener("scroll", function( event ) {
+      count++;
+      log.innerHTML = 'onscroll events: ' + count;
+    });
+  </script>
+</body>
+</html>
