@@ -10,14 +10,22 @@
   <style>
   </style>
 </head>
-<body style="height: 50000px">
+<body style="height: 5000px; -webkit-overflow-scrolling: touch;">
   <div id="log" style="position: fixed; top: 0; left: 0"></div>
+  <div id="log1" style="position: fixed; top: 0; right: 0"></div>
   <script>
     var log = document.getElementById('log');
     var count = 0;
     window.addEventListener("scroll", function( event ) {
       count++;
       log.innerHTML = 'onscroll events: ' + count;
+    });
+
+    var log1 = document.getElementById('log1');
+    var count1 = 0;
+    window.addEventListener("touchmove", function( event ) {
+      count1++;
+      log1.innerHTML = 'touchmove events: ' + count1;
     });
   </script>
 </body>
