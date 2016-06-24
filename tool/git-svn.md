@@ -43,6 +43,8 @@ git reset --soft HEAD^    撤销commit，重新做
 git reset --hard 057d    回退到某个版本（本地的文件修改都被丢弃）  
 git reset --hard origin/master   将本地的状态回退到和远程的一样
 
+git checkout HEAD~1 -- file     运行 git merge xx 后，想撤销其中某个文件的merge
+
 $ git branch topic/wip     (1) 新建分支wip
 $ git reset --hard HEAD~3  (2) 原分支上把最近三次提交丢弃
 $ git checkout topic/wip   (3) 切换到wip分支，继续工作
