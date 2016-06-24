@@ -23,7 +23,7 @@ export default React.createClass({
       Controlled span:<span>{this.state.value} - {this.props.value}</span> <br/>
       Controlled input: <input value={this.state.value} onChange={this.onChange} /> <br/>
       Controlled input(from props): <input value={this.props.value} onChange={this.onChange} /> <br/>
-      Uncontrolled input:<input defaultValue={this.state.value} /> <br/>
+      Uncontrolled input:<input defaultValue={this.state.value} ref="unInput" /> <br/>
       Uncontrolled input(from props):<input defaultValue={this.props.value} /> <br/>
     </div>);
   }
