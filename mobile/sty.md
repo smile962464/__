@@ -4,6 +4,7 @@
 - ios上scroll事件，只在scroll结束时触发（ios < 8），安卓会一直触发。
 - iOS < 8 pauses painting during scrolling.
 - 滚动过程中要「fixed标题栏」，在惯性滚动过程中不会触发scroll事件。
+- [iOS 与 惯性滚动](https://fe.ele.me/momentum-scrolling-on-ios/)
 
 iScroll：并没有监听`onscroll`事件。
 
