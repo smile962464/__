@@ -37,7 +37,7 @@
   .container {
     /*font-size: 14px;*/
     font-size: .875rem;
-    width: 80rem;
+    width: 20rem;
     button {
       font-size: .875rem;  /* Still use font-size: 14px*/
       padding: .5em 1em;
@@ -54,11 +54,13 @@
   </style>
 </head>
 <body>
-  <div class="container"></div>
+  <button>outer btn</button>
+  <div class="container">
+    <button>inner btn</button> <br />
 
-  <script src="http://zeptojs.com/zepto.js"></script>
-  <script>
-
-  </script>
+    可以在 html 标签上设置 font-size: 1px; 其他元素能 1:1 设置相应大小、
+    如 button 上设置 font-size: 10rem; 就等于 font-size: 10px;
+    但在 Chrome 上最终合成显示的最小的字号为 12px，所以小于此值会被放大显示为此值。
+  </div>
 </body>
 </html>
