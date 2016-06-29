@@ -1,4 +1,13 @@
 
+
+## AI
+[AI-Programmer](https://github.com/primaryobjects/AI-Programmer)、
+[Would-AI-be-able-to-write-code](https://www.quora.com/Would-AI-be-able-to-write-code)、
+[Intelligent code-completion? Is there AI to write code by learning?](http://stackoverflow.com/questions/710843/intelligent-code-completion-is-there-ai-to-write-code-by-learning)
+
+[brain](https://github.com/harthur/brain)、[convnetjs](https://github.com/karpathy/convnetjs)、[synaptic](https://github.com/cazala/synaptic)
+
+
 ## util & tools
 
 - [元素定位库](http://github.hubspot.com/tether/)
@@ -86,7 +95,6 @@ item由list的数据生成，由于immutable两者之后的state变化互不影�
 
 Meteor：这个优秀的框架从妙不可言发展到目前这个状态真是让人很伤心，我都不确定它未来会带来什么，也不知道以后还会不会使用Meteor构建我的项目。
 
-智能：[brain](https://github.com/harthur/brain)、[convnetjs](https://github.com/karpathy/convnetjs)、[synaptic](https://github.com/cazala/synaptic)
 
 [tiny-binary-format](https://github.com/danprince/tiny-binary-format)
 ------
