@@ -10,6 +10,12 @@
 		Object.defineProperty(obj, prop, descriptor)
     <script>
 		var o = {};
+
+		Object.defineProperty(o, 'key', {
+      get: function() { alert('not allowed access key!') },
+      configurable: true,
+    });
+
 		o.a = 1;
 		// 等同于 :
 		Object.defineProperty(o, "a", {
