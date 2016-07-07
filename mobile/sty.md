@@ -29,3 +29,11 @@ touch事件在手机浏览器中的穿透问题，并不是由冒泡引起的，
     -webkit-backface-visibility : hidden;
     -webkit-transform-style : preserve-3d;
     -webkit-transform : translate3d(0,0,0)；
+
+## 环境
+开启 Charles 代理，需要把其他代理软件关掉、像 ShadowSocks 要关掉、浏览器也不能有代理插件如 switchyomega 开着.
+
+### Simulator
+- command+v command+shift+v 粘贴
+- shift+command+H twice to simulate the double tap of home button
+- command + 3 缩小到50%大小
