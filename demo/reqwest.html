@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+</head>
+<body>
+
+  <!-- <script src="https://a.alipayobjects.com/jquery/jquery/1.11.1/jquery-debug.js"></script> -->
+  <script src="./reqwest.js"></script>
+  <script>
+  reqwest({
+    url: './json1.json'
+  , type: 'json'
+  , method: 'get'
+  , error: function (err) {
+      console.log(arguments);
+    }
+  , success: function (resp) {
+      console.log(arguments);
+    }
+  })
+  </script>
+</body>
+
+</html>
