@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+</head>
+<body>
+  <div id="01">
+    注意，querySelector 不能传入「纯数字」的 id/class 选择器！
+  </div>
+  <script src="https://a.alipayobjects.com/jquery/jquery/1.11.1/jquery-debug.js"></script>
+  <script>
+    var ele = document.getElementById('01');
+    var ele = document.querySelector('#01');
+    console.log(ele);
+  </script>
+</body>
+
+</html>
