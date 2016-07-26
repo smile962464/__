@@ -76,6 +76,10 @@ html特殊字符：[HTML特殊字符大全](http://www.qianduan.net/html-special
 
 
 # css
+
+All elements that are position:absolute; are automatically treated as display:block, 
+since that's the only logical display mode for absolute positioning.
+
 - [html5和css3动画排列人物头像演示](http://www.w2bc.com/Article/11916)
 - [Scalable and Modular Architecture for CSS](http://smacss.com/book/)
 - [Google HTML/CSS Style Guide](http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml)

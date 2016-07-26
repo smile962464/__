@@ -27,6 +27,7 @@ git remote set-url origin xxx 改变远程地址为xxx
 
 - git clean -df  Remove untracked directories in addition to untracked files.
 - git clean -f  删除untracked files（即远程仓库没有这个文件，新加的文件）
+- git clean -f -n
 
 #### index内的回滚 (commit之前)
 git reset

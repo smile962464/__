@@ -13,6 +13,9 @@ export default React.createClass({
     });
   },
   onChange(e) {
+    if (e.target.value === '1d') {
+      return;
+    }
     this.setState({
       value: e.target.value,
     });
