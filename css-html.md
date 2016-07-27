@@ -1,6 +1,9 @@
 
 # 基础
 
+英文连续字符不会被自动截断、不会换行、需要加`word-break: break-all;`，
+注意：下划线`_`和字母一起会被认为是连续的，但中划线`-`和字母一起不是连续的。
+
 [不能根据子元素class改变父元素class]( http://stackoverflow.com/questions/1014861/is-there-a-css-parent-selector)
 
 [`<head>`里能放什么？](https://github.com/joshbuchea/HEAD)
