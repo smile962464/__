@@ -26,6 +26,11 @@ module.exports = {
     ]
   },
 
+  resolve: {
+    modulesDirectories: ['node_modules', path.join(__dirname, '../node_modules')],
+    extensions: ['', '.web.js', '.js', '.json'],
+  },
+
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('shared.js'),
     new webpack.DefinePlugin({

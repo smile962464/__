@@ -1,0 +1,3 @@
+{
+ "plugins": [["babel-plugin-antd", { "style": "css", "libraryName": "antd-mobile" }]]
+}

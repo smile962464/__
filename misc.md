@@ -3,6 +3,7 @@
 [高性能无尽列表（元素可回收）](https://github.com/bvaughn/react-virtualized)
 
 ## AI
+[机器学习-入门](http://www.cnblogs.com/subconscious/p/4107357.html?spm=0.0.0.0.U5h3qC)、
 [AI-Programmer](https://github.com/primaryobjects/AI-Programmer)、
 [Would-AI-be-able-to-write-code](https://www.quora.com/Would-AI-be-able-to-write-code)、
 [Intelligent code-completion? Is there AI to write code by learning?](http://stackoverflow.com/questions/710843/intelligent-code-completion-is-there-ai-to-write-code-by-learning)
@@ -91,6 +92,11 @@ http://blog.h5jun.com/post/functional-how-far.html
 ```
 item由list的数据生成，由于immutable两者之后的state变化互不影响，但变化后两者数据状态需要同步。
 同步操作也是产生新的数据，似乎比较乱？
+
+
+## Go
+
+编程哲学的重塑是Go语言独树一帜的根本原因，其它语言仍难以摆脱OOP或函数式编程的烙印，只有Go完全放弃了这些，对编程范式重新思考，对热门的面向对象编程提供极度简约但却完备的支持。Go是互联网时代的C语言，不仅会制霸云计算，10年内将会制霸整个IT领域。 
 
 
 ## other
