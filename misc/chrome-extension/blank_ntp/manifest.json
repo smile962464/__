@@ -10,8 +10,10 @@
     "webRequest",
 		"webRequestBlocking",
 		"<all_urls>",
-		"tabs"
+		"tabs",
+    "history"
   ],
+  "browser_action": {},
   "content_security_policy": "script-src 'self' https://a.alipayobjects.com; object-src 'self'",
   "manifest_version": 2
 }
