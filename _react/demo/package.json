@@ -11,7 +11,7 @@
       [
         "antd",
         {
-          "style": true,
+          "style": "css",
           "libraryName": "antd-mobile"
         }
       ]
@@ -39,6 +39,7 @@
     "webpack-dev-middleware": "^1.2.0"
   },
   "dependencies": {
+    "antd": "~1.7.0",
     "antd-mobile": "~0.7.0"
   }
 }
