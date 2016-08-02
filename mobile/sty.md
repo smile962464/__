@@ -21,6 +21,18 @@ touch事件在手机浏览器中的穿透问题，并不是由冒泡引起的，
 [「像素」「渲染像素」以及「物理像素」](http://www.zhihu.com/question/27261444/answer/35898885)
 [rem 产生的小数像素问题](http://taobaofed.org/blog/2015/11/04/mobile-rem-problem/)
 
+物理像素 / 设备像素 = devicePixelRatio . retina 屏 = 2 (1px = 2 物理像素) 6plus = 3
+
+    console.log(window.devicePixelRatio) // devicePixelRatio
+    console.log(window.innerWidth) // device-width
+    console.log(document.documentElement.clientWidth) // viewport width
+
+- iPhone 6/6s : 标准模式屏宽375，放大模式屏宽320. (物理像素 750 * 1334. 2x)
+- iPhone6/6s Plus : 标准模式屏宽414，放大模式屏宽375. (物理像素 1080 * 1920. 3x)
+
+大部分移动设备默认的 viewport 都是980px，多数情况下要大于 device-width , 我们一般都要在移动端重置 viewport，让width=device-width , 这样可以做到按页面宽度100%充满屏幕，水平不出现滚动条.
+
+设计师按宽度750px（iPhone 6）做设计稿. 375pt下的设计效果适配到414pt和320pt偏差不会太大。假设以414pt为基准做出很优雅的设计，到320pt可能元素之间比例就不是那么回事了，比如图片和文字之间视觉比例可能失调。
 
 ## 其他
 
