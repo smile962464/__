@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Demo Flexbox 1</title>
+  <style>
+    .flex-container {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-flow: row wrap;
+      justify-content: space-around;
+    }
+    
+    .flex-item {
+      padding: 15px;
+      margin-top: 10px;
+      width: 200px;
+      height: 150px;
+      line-height: 150px;
+      background: tomato;
+      color: white;
+      font-size: 3em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <ul class="flex-container">
+    <li class="flex-item">
+      <div style="border:1px solid #ccc;height:100%">1</div>
+    </li>
+    <li class="flex-item">2</li>
+    <li class="flex-item">3</li>
+    <li class="flex-item">4</li>
+    <li class="flex-item">5</li>
+    <li class="flex-item">6</li>
+  </ul>
+  <!--
+    容器 display: flex; 后、其子元素的 float、clear、vertical-align 失效。
+    
+    设在容器上的其他属性：
+      flex-direction: (row) | column
+      flex-wrap: (nowrap) | wrap
+      flex-flow: <flex-direction> || <flex-wrap>
+      justify-content: flex-start | flex-end | center | space-between | space-around; // 项目在主轴上的对齐方式
+      align-items: flex-start | flex-end | center | baseline | stretch; // 项目在交叉轴上如何对齐
+      align-content: stretch | <justify-content>值 // 多根轴线的对齐方式
+
+      justify-content: space-around; // 每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍
+      align-items: stretch; // 如果项目未设置高度或设为auto，将占满整个容器的高度
+
+    设在容器里每个item上的属性：
+      order: 0 // 定义项目的排列顺序。数值越小，排列越靠前，默认为0
+      flex-grow: 0 // 定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大
+      flex-shrink: 1 // 定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小
+      flex-basis: auto (10px) // 在分配多余空间之前，项目占据的主轴空间，浏览器根据这个属性，计算主轴是否有多余空间
+      flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ] // 属性集合，后两个属性可选
+      align-self: auto，其他同 align-items 属性。// 允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性
+  -->
+</body>
+</html>
