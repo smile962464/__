@@ -11,7 +11,16 @@
 		"webRequestBlocking",
 		"<all_urls>",
 		"tabs",
+		"topSites",
     "history"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["http://www.qiushibaike.com/*"],
+      "js": ["util.js", "inject.js"],
+      "all_frames": true,
+      "run_at": "document_start"
+    }
   ],
   "browser_action": {},
   "content_security_policy": "script-src 'self' https://a.alipayobjects.com; object-src 'self'",

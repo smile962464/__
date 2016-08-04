@@ -35,12 +35,14 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
   // alert(tab.url)
 })
 
-chrome.tabs.create({"url": "http://google.com"});
+chrome.tabs.create({ "url": "http://google.com" });
+// 不能在扩展页面本身执行 script
+// ref: https://bugs.chromium.org/p/chromium/issues/detail?id=30756&can=2&start=0&num=100&q=&colspec=ID%20Pri%20M%20Stars%20ReleaseBlock%20Component%20Status%20Owner%20Summary%20OS%20Modified&groupby=&sort=
 chrome.tabs.executeScript({ code: 'alert(2)', allFrames: true }, function (params) {
   console.log(params)
 })
 
-content.js
+// content.js
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     console.log(request)
