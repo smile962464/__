@@ -1,21 +1,17 @@
-var fs = require('fs')
 var path = require('path')
 var webpack = require('webpack')
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   devtool: 'inline-source-map',
 
-  entry: fs.readdirSync(__dirname).reduce(function (entries, dir) {
-    if (fs.statSync(path.join(__dirname, dir)).isDirectory())
-      entries[dir] = path.join(__dirname, dir, 'index.js')
-    return entries
-  }, {}),
+  entry: [],
 
   output: {
-    path: __dirname + '/__build__',
+    path: __dirname + '/dist',
     filename: '[name].js',
     chunkFilename: '[id].chunk.js',
-    publicPath: '/__build__/'
+    publicPath: '/dist/'
   },
 
   module: {
@@ -24,8 +20,9 @@ module.exports = {
         test: /\.js$/, exclude: /node_modules/, loader: 'babel',
         query: { presets: ['es2015', 'react'] }
       },
-      { test: /\.css$/, loader: 'style!css' },
-      { test: /\.less$/, loader: 'style!css!less' }
+      { test: /\.less$/, loader: 'style!css!less' },
+      { test: /\.css$/, loader: 'style!css' }
+      // { test: /\.css$/, ExtractTextPlugin.extract("style-loader", "css-loader") }
     ]
   },
 
