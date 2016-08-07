@@ -12,11 +12,16 @@
 		"<all_urls>",
 		"tabs",
 		"topSites",
-    "history"
+    "history",
+    "webNavigation"
   ],
+  "background": {
+    "scripts": ["bg.js"],
+    "persistent": true
+  },
   "content_scripts": [
     {
-      "matches": ["http://www.qiushibaike.com/*"],
+      "matches": ["*://*/*"],
       "js": ["util.js", "inject.js"],
       "all_frames": true,
       "run_at": "document_start"

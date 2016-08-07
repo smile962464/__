@@ -36,6 +36,14 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 })
 
 chrome.tabs.create({ "url": "http://google.com" });
+chrome.tabs.onCreated.addListener(function (tab) { 
+  console.log(tab)
+})
+chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+  console.log(tab)
+})
+chrome.tabs.onActivated.addListener(function (tab) { alert('act'); console.log(tab, 'onActivated') })
+chrome.tabs.onHighlighted.addListener(function (tab) {  alert('hig'); console.log(tab, 'onHighlighted') })
 // 不能在扩展页面本身执行 script
 // ref: https://bugs.chromium.org/p/chromium/issues/detail?id=30756&can=2&start=0&num=100&q=&colspec=ID%20Pri%20M%20Stars%20ReleaseBlock%20Component%20Status%20Owner%20Summary%20OS%20Modified&groupby=&sort=
 chrome.tabs.executeScript({ code: 'alert(2)', allFrames: true }, function (params) {

@@ -9,8 +9,8 @@ import { Button } from 'antd-mobile';
 
 // import pc antd
 // import { ButtonPc } from 'antd';
-// import 'antd/lib/button/style/index.css';
-// import ButtonPc from 'antd/lib/button';
+import 'antd/lib/button/style/index.css';
+import ButtonPc from 'antd/lib/button';
 
 const App = React.createClass({
   render() {
@@ -18,9 +18,7 @@ const App = React.createClass({
     return (
       <div style={{ margin: 10 }}>
         <Button onClick={(e) => console.log(e) }>Start</Button> <br />
-        {/**
-          <ButtonPc onClick={(e) => console.log(e) }>Start</ButtonPc>
-         */}
+        <ButtonPc onClick={(e) => console.log(e) }>Start</ButtonPc>
       </div>
     );
   }

@@ -8,3 +8,6 @@
 ### build
 
     npm run build
+
+## webpack & babel
+[处理 css 和 less](https://webpack.github.io/docs/stylesheets.html)

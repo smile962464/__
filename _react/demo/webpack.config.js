@@ -1,29 +1,27 @@
 var path = require('path')
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+// multiple extract instances
+var extractCSS = new ExtractTextPlugin('[name].css', { allChunks: true });
+var extractLESS = new ExtractTextPlugin('[name].less', { allChunks: true });
 
 module.exports = {
-  devtool: 'inline-source-map',
+  // devtool: 'inline-source-map',
+  devtool: 'source-map',
 
   entry: [],
 
   output: {
-    path: __dirname + '/dist',
+    path: path.join(__dirname, '/dist'),
     filename: '[name].js',
     chunkFilename: '[id].chunk.js',
     publicPath: '/dist/'
   },
 
-  module: {
-    loaders: [
-      {
-        test: /\.js$/, exclude: /node_modules/, loader: 'babel',
-        query: { presets: ['es2015', 'react'] }
-      },
-      { test: /\.less$/, loader: 'style!css!less' },
-      { test: /\.css$/, loader: 'style!css' }
-      // { test: /\.css$/, ExtractTextPlugin.extract("style-loader", "css-loader") }
-    ]
+  externals: {
+    // Use external version of React
+    "react": "React",
+    "react-dom": "ReactDOM"
   },
 
   resolve: {
@@ -31,8 +29,37 @@ module.exports = {
     extensions: ['', '.web.js', '.js', '.json'],
   },
 
+  module: {
+    loaders: [
+      {
+        test: /\.js$/, exclude: /node_modules/, loader: 'babel',
+        query: {
+          plugins: [
+            "transform-runtime",
+            ["antd", { "style": "css", "libraryName": "antd-mobile" }]
+          ],
+          presets: ['es2015', 'react']
+        }
+      },
+      { test: /\.(jpg|png|svg)$/, loader: "url?limit=8192" }, //把不大于8kb的图片打包处理成Base64
+      // { test: /\.css$/, loader: 'style!css' }, // 把css处理成内联style，动态插入到页面
+      // { test: /\.less$/, loader: 'style!css!less' }, // loader 处理顺序：先less 后css 最后style
+      // less-loader requires less as peer dependency
+      { test: /\.less$/i, loader: extractLESS.extract('style', 'css!less') },
+      { test: /\.css$/i, loader: extractCSS.extract('style', 'css') }
+    ]
+  },
+
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('shared.js'),
+    // new webpack.optimize.CommonsChunkPlugin('shared.js'),
+    new webpack.optimize.CommonsChunkPlugin({
+      // minChunks: 2,
+      name: 'shared',
+      filename: 'shared.js'
+    }),
+    extractLESS,
+    extractCSS,
+    // new ExtractTextPlugin('[name].css', { allChunks: true }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
     })

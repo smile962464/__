@@ -24,10 +24,13 @@ function makeTpl(file) {
   return `<!doctype html>
   <html>
   <head>
-    <title></title>
+    <title>${file}</title>
+    <link rel="stylesheet" href="/dist/${file}.css">
   </head>
   <body>
     <div id="example"/>
+    <script src="https://as.alipayobjects.com/g/component/react/15.2.0/react.min.js"></script>
+    <script src="https://as.alipayobjects.com/g/component/react/15.2.0/react-dom.min.js"></script>
     <script src="/dist/shared.js"></script>
     <script src="/dist/${file}.js"></script>
   </body>
