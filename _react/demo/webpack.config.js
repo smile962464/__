@@ -2,8 +2,8 @@ var path = require('path')
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 // multiple extract instances
-var extractCSS = new ExtractTextPlugin('[name].css', { allChunks: true });
-var extractLESS = new ExtractTextPlugin('[name].less', { allChunks: true });
+// var extractCSS = new ExtractTextPlugin('[name].css', { allChunks: true });
+// var extractLESS = new ExtractTextPlugin('[name].less', { allChunks: true });
 
 module.exports = {
   // devtool: 'inline-source-map',
@@ -35,7 +35,9 @@ module.exports = {
         test: /\.js$/, exclude: /node_modules/, loader: 'babel',
         query: {
           plugins: [
-            "transform-runtime",
+            ["transform-runtime", {
+              polyfill: false,
+            }],
             ["antd", { "style": "css", "libraryName": "antd-mobile" }]
           ],
           presets: ['es2015', 'react']
@@ -45,8 +47,8 @@ module.exports = {
       // { test: /\.css$/, loader: 'style!css' }, // 把css处理成内联style，动态插入到页面
       // { test: /\.less$/, loader: 'style!css!less' }, // loader 处理顺序：先less 后css 最后style
       // less-loader requires less as peer dependency
-      { test: /\.less$/i, loader: extractLESS.extract('style', 'css!less') },
-      { test: /\.css$/i, loader: extractCSS.extract('style', 'css') }
+      { test: /\.less$/i, loader: ExtractTextPlugin.extract('style', 'css!less') },
+      { test: /\.css$/i, loader: ExtractTextPlugin.extract('style', 'css') }
     ]
   },
 
@@ -57,12 +59,7 @@ module.exports = {
       name: 'shared',
       filename: 'shared.js'
     }),
-    extractLESS,
-    extractCSS,
-    // new ExtractTextPlugin('[name].css', { allChunks: true }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
-    })
+    new ExtractTextPlugin('[name].css', { allChunks: true }),
   ]
 
 }
