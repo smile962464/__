@@ -26,9 +26,12 @@ touch事件在手机浏览器中的穿透问题，并不是由冒泡引起的，
     console.log(window.devicePixelRatio) // devicePixelRatio
     console.log(window.innerWidth) // device-width
     console.log(document.documentElement.clientWidth) // viewport width
+    console.log(Math.sqrt(Math.pow(640, 2) + Math.pow(960, 2)) / 3.5) // iphone 4 ppi
 
-- iPhone 6/6s : 标准模式屏宽375，放大模式屏宽320. (物理像素 750 * 1334. 2x)
-- iPhone6/6s Plus : 标准模式屏宽414，放大模式屏宽375. (物理像素 1080 * 1920. 3x)
+- iPhone 4/4s : 屏宽320. (物理像素 640 * 960. 2x. 对角线 3.5-inch. PPI 326)
+- iPhone 5/5s/5c : 屏宽320. (物理像素 640 * 1136. 2x. 对角线 4-inch)
+- iPhone 6/6s : 标准模式屏宽375，放大模式屏宽320. (物理像素 750 * 1334. 2x. 对角线 4.7-inch)
+- iPhone6/6s Plus : 标准模式屏宽414，放大模式屏宽375. (物理像素 1080 * 1920. 3x. 对角线 5.5-inch)
 
 大部分移动设备默认的 viewport 都是980px，多数情况下要大于 device-width , 我们一般都要在移动端重置 viewport，让width=device-width , 这样可以做到按页面宽度100%充满屏幕，水平不出现滚动条.
 
