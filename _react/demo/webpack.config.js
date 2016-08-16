@@ -39,7 +39,11 @@ module.exports = {
             ["transform-runtime", {
               polyfill: false,
             }],
-            ["antd", { "style": "css", "libraryName": "antd-mobile" }]
+            // ["antd", { "style": "css", "libraryName": "antd-mobile" }]
+            ["antd", [
+              { "style": "css", "libraryName": "antd" },
+              { "style": "css", "libraryName": "antd-mobile" }
+            ]]
           ],
           presets: [
             'es2015-loose',

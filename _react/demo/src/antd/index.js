@@ -8,9 +8,9 @@ import ReactDOM from 'react-dom';
 import { Button } from 'antd-mobile';
 
 // import pc antd
-// import { ButtonPc } from 'antd';
-import 'antd/lib/button/style/index.css';
-import ButtonPc from 'antd/lib/button';
+import { Button as ButtonPc } from 'antd';
+// import 'antd/lib/button/style/index.css';
+// import ButtonPc from 'antd/lib/button';
 
 const App = React.createClass({
   render() {
