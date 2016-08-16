@@ -2,24 +2,31 @@
  <head>
   <title>Blank New Tab</title>
   <style>
-    .container {
-      display: flex;
-      justify-content: space-around;
-      width: 780px;
+    body {
+      background-image: url(http://localhost:9999/res/Shapes.jpg);
+      background-size: cover;
     }
-    .ifr {
-      width: 375px; /* iPhone 6 */
-      height: 667px;
-      border: 1px solid #ccc;
+    .wrap {
+      position: relative;
+      display: inline-block; overflow: hidden;
+      width: 100px; height: 100px;
+    }
+    .btn {
+      position: absolute; top: 10px; left: 10px; z-index: 1;
+      border: none; outline: none; background: white;
+      height: 80px; width: 80px; border-radius: 40px;
     }
   </style>
+  <link rel="stylesheet" href="main.css">
  </head>
 <body>
-  <div class="container" id="main">
-    <iframe id="i" class="ifr"></iframe>
-    <iframe class="ifr" name="__spe" src="http://mobile.ant.design/kitchen-sink/"></iframe>
+  <div class="wrap" id="res">
+    <button class="btn" id="showIfr">show</button>
   </div>
-  <script src="./jquery.js"></script>
+  <!--<script src="https://a.alipayobjects.com/jquery/jquery/1.11.1/jquery-debug.js"></script>-->
+  <script src="jquery.js"></script>
+  <script src="velocity.min.js"></script>
+  <script src="vel.js"></script>
   <script src="main.js"></script>
  </body>
 </html>

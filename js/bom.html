@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>盒模型</title>
+  <style>
+    body {
+      border: 5px solid #ccc;
+      padding: 20px;
+    }
+    .main {
+      height: 2000px;
+    }
+    .s1 {
+      height: 400px;
+      overflow: auto;
+    }
+    .ss1 {
+      height: 700px;
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <div class="s1" id="s1">
+      <div class="ss1">mmmm</div>
+    </div>
+    <button id="b0">scroll to bottom</button>
+    <button id="b1">scroll to bottom1 - 20</button>
+  </div>
+  <script src="https://a.alipayobjects.com/jquery/jquery/1.11.1/jquery-debug.js"></script>
+  <script>
+    function getVal(ele) {
+      console.log(ele.scrollHeight, ele.clientHeight, ele.offsetHeight, ele.scrollTop, ele.clientTop)
+    }
+    getVal(document.body);
+    getVal(document.documentElement);
+    getVal(document.getElementById('s1'));
+    console.log(window.innerHeight)
+
+    $('#b0').on('click', function () {
+      document.body.scrollTop = document.body.scrollHeight - window.innerHeight;
+    })
+    $('#b1').on('click', function () {
+      window.scrollTo(0, document.body.scrollHeight - window.innerHeight - 20)
+    })
+  </script>
+</body>
+
+</html>

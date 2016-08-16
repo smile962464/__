@@ -1,0 +1,24 @@
+<style>
+  #ifr-wrap {
+    display: flex;
+    justify-content: space-around;
+    width: 780px;
+  }
+  .ifr {
+    width: 375px; /* iPhone 6 */
+    height: 667px;
+    border: 1px solid #ccc;
+  }
+</style>
+<div id="ifr-wrap">
+  <iframe class="ifr" id="i"></iframe>
+  <iframe class="ifr" name="__spe" src="http://mobile.ant.design/kitchen-sink/"></iframe>
+</div>
+<script>
+  var myObj = chrome.extension.getBackgroundPage().myObj;
+  setTimeout(() => {
+    var i = document.getElementById('i');
+    i.src = myObj.urls[myObj.getRandomInt(0, myObj.urls.length - 1)];
+    myObj.i = i;
+  }, 500)
+</script>
