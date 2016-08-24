@@ -30,6 +30,7 @@ module.exports = {
   },
 
   module: {
+    noParse: [/moment.js/],
     loaders: [
       {
         test: /\.js$/, exclude: /node_modules/, loader: 'babel',

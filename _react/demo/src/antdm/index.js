@@ -1,11 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// import 'antd-mobile/lib/button/style';
-// import Button from 'antd-mobile/lib/button';
-
-// import js and css modularly, parsed by babel-plugin-antd
-import { Button } from 'antd-mobile';
 // import Menu from 'antd-mobile/lib/menu'
 // import'antd-mobile/lib/menu/style'
 // import Grid from 'antd-mobile/lib/grid'
@@ -38,15 +33,29 @@ import { Button } from 'antd-mobile';
 // import 'antd/lib/button/style/index.css';
 // import ButtonPc from 'antd/lib/button';
 
+// import js and css modularly, parsed by babel-plugin-antd
+import { Button, Card } from 'antd-mobile';
+import Form from './Form';
+
 const App = React.createClass({
   render() {
     const items = [{id: '1'}, {id: 'header'}];
     return (
       <div style={{ margin: 10 }}>
-        <Button type="primary" onClick={(e) => console.log(e) }>Start</Button> <br />
-        {/**
-          <ButtonPc onClick={(e) => console.log(e) }>Start</ButtonPc>
-         */}
+        <Button data-seed="xyz" type="primary" onClick={(e) => console.log(e) }>Start</Button> <br />
+        {/** <ButtonPc onClick={(e) => console.log(e) }>Start</ButtonPc> */}
+        <Form />
+        <Card data-seed="xyz1">
+          <Card.Header
+            title="这是 title"
+            thumb="http://gravatar.com/avatar/e9c13fb979736b16033acbce4c710ca1.png?size=32"
+            extra={<span>this is extra</span>}
+          />
+          <Card.Body>
+            <div>这是卡片内容</div>
+          </Card.Body>
+          <Card.Footer content="这是卡尾" extra={<div>这是尾部介绍</div>} />
+        </Card> 
       </div>
     );
   }
