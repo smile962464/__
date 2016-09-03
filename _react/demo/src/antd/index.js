@@ -11,14 +11,21 @@ import { Button } from 'antd-mobile';
 import { Button as ButtonPc } from 'antd';
 // import 'antd/lib/button/style/index.css';
 // import ButtonPc from 'antd/lib/button';
+import table from './table';
 
 const App = React.createClass({
+  getInitialState() {
+    return {
+      table: false,
+    }
+  },
   render() {
     const items = [{id: '1'}, {id: 'header'}];
     return (
       <div style={{ margin: 10 }}>
-        <Button onClick={(e) => console.log(e) }>Start</Button> <br />
+        <Button onClick={(e) => this.setState({table: !this.state.table}) }>Start</Button> <br />
         <ButtonPc onClick={(e) => console.log(e) }>Start</ButtonPc>
+        {table(this.state.table)}
       </div>
     );
   }

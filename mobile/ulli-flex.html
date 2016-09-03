@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>demo</title>
+  <meta charset="utf-8" />
+  <meta name="apple-touch-fullscreen" content="yes" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+  <style>
+    .ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      /* 
+        设置 display: flex; ，在手机端 li 宽度不会撑起来，需要在子项上设置 flex: none;
+        可以设置 display: inline-flex; 
+      */
+      /*display: flex;*/
+      display: inline-flex;
+      overflow-y: scroll;
+      -webkit-overflow-scrolling: touch;
+    }
+    .ul li {
+      /*flex: none;*/
+      padding: 0;
+      margin-right: 100px;
+      background-color: red;
+    }
+    .ul li .fl {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+  <ul class="ul">
+    <li>
+      <div class="fl">sdfd</div>
+      <div>sdfd</div>
+    </li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+  </ul>
+
+  <script src="http://zeptojs.com/zepto.js"></script>
+  <script>
+
+  </script>
+</body>
+</html>
