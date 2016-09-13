@@ -1,24 +1,45 @@
 <style>
   #ifr-wrap {
-    display: flex;
-    justify-content: space-between;
-    width: 760px;
+    display: inline-flex;
   }
   .ifr {
     width: 375px; /* iPhone 6 */
     height: 667px;
-    border: 1px solid #ccc;
+    margin-right: 10px;
+  }
+  .extra {
+    margin: 60px 10px 0 10px;
+    width: 250px;
+  }
+  .list-group-item {
+    word-break: break-all;
   }
 </style>
 <div id="ifr-wrap">
-  <iframe class="ifr" id="i"></iframe>
-  <iframe class="ifr" src="http://mobile.ant.design/kitchen-sink/"></iframe>
+  <div class="list-group extra">
+    <a class="list-group-item">http://mobile.ant.design/kitchen-sink/</a>
+    <a class="list-group-item">http://m.toutiao.com/?channel=news_hot#channel=news_hot</a>
+    <a class="list-group-item">https://www.baidu.com/</a>
+  </div>
+  <!--
+    use sanbox can disable iframe doc do this:
+    ```
+    if (top.location.href != self.location.href)
+     top.location.href = self.location.href;
+    ```
+  -->
+  <iframe class="ifr" id="i" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
 </div>
 <script>
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
   var myObj = chrome.extension.getBackgroundPage().myObj;
-  setTimeout(() => {
-    var i = document.getElementById('i');
-    i.src = myObj.urls[myObj.getRandomInt(0, myObj.urls.length - 1)];
-    myObj.i = i;
-  }, 500)
+  var i = document.getElementById('i');
+  i.src = myObj.need_remove_ad_urls[getRandomInt(0, myObj.need_remove_ad_urls.length - 1)];
+  myObj.need_remove_ad_ifr = i;
+
+  $('.list-group-item').attr('href', '#').on('click', function () {
+    i.src = $(this).text()
+  })
 </script>

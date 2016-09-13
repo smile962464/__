@@ -16,7 +16,7 @@
     "webNavigation"
   ],
   "background": {
-    "scripts": ["ifr/ifr.js"],
+    "scripts": ["bg.js"],
     "persistent": true
   },
   "content_scripts": [
