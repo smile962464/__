@@ -34,7 +34,7 @@
     //合并数组  -- 类似concat功能、但concat返回值是一个新的数组。
     Array.prototype.push.apply(array1, array2);
     Array.prototype.unshift.apply(arr1, arr2)
-    console.log(array1);    
+    console.log(array1);
 
     //将 类数组的对象(如arguments、nodeLists)转换成 数组
     Array.prototype.slice.call(arguments);
@@ -44,15 +44,28 @@
 
     // 排序
     var arr = [3,324,5345,6546,134,5654,665];
-    arr.sort( function(a,b){ return a-b; } );  
+    arr.sort( function(a,b){ return a-b; } );
 
     // 乱序：让比较函数随机传回-1或1（效率不高）
     var arr=[1,2,3,4,5,6,7,8,9,10,22,33,55,77,88,99];
     arr.sort( function(){ return Math.random() > 0.5 ? -1 : 1; } );
 
-
   </pre>
 
+  <script>
+    // 检测 滚动停止
+    var delayedExec = function(after, fn) {
+      var timer;
+      return function() {
+        timer && clearTimeout(timer);
+        timer = setTimeout(fn, after);
+      };
+    };
+    var scrollStopper = delayedExec(500, function() {
+      console.log('stopped it');
+    });
+    // document.getElementById('box').addEventListener('scroll', scrollStopper);
+  </script>
 
   <script>
     function log(value) {
@@ -150,7 +163,7 @@
 
     // [function currying](http://en.wikipedia.org/wiki/Currying)
     // 参考对比：
-    // Function.prototype.bind  
+    // Function.prototype.bind
     var bind = function (fn, context) {
       var slice = Array.prototype.slice, args = slice.call(arguments, 2);
       return function () {
@@ -162,7 +175,7 @@
     }
     var argh = bind(handler, undefined, 5, 10);
 
-    // 
+    //
     var generateChars = function (length) {
         var chars = '';
         for (var i = 0; i < length; i++) {

@@ -16,13 +16,13 @@
     "webNavigation"
   ],
   "background": {
-    "scripts": ["bg.js"],
+    "scripts": ["ifr/ifr.js"],
     "persistent": true
   },
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["util.js", "inject.js"],
+      "js": ["inject/util.js", "inject/inject.js"],
       "all_frames": true,
       "run_at": "document_start"
     }

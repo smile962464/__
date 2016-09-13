@@ -10,7 +10,7 @@ window.addEventListener('message',function(e) {
   if (e.origin.indexOf('chrome-extension://kflngenhcdbcgiinadgedmfpkgpcgjkc') === 0 && 
   JSON.parse(e.data).data === 'rm_ad') {
     // 接收到来自扩展的命令
-    ce.getFileContent(chrome.extension.getURL('/inject.css'), function (content) {
+    ce.getFileContent(chrome.extension.getURL('inject/inject.css'), function (content) {
       ce.addStyle(content);
     })
   }

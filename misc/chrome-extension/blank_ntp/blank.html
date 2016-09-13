@@ -1,32 +1,35 @@
 <html>
  <head>
   <title>Blank New Tab</title>
-  <style>
-    body {
-      background-image: url(http://localhost:9999/res/Shapes.jpg);
-      background-size: cover;
-    }
-    .wrap {
-      position: relative;
-      display: inline-block; overflow: hidden;
-      width: 100px; height: 100px;
-    }
-    .btn {
-      position: absolute; top: 10px; left: 10px; z-index: 1;
-      border: none; outline: none; background: white;
-      height: 80px; width: 80px; border-radius: 40px;
-    }
-  </style>
+  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="main.css">
  </head>
 <body>
-  <div class="wrap" id="res">
-    <button class="btn" id="showIfr">show</button>
+  <div class="main">
+    <div class="ifr" id="res">
+      <button class="btn" id="showIfr">show</button>
+    </div>
+    <div class="wrap">
+      <div class="panel panel-default">
+        <div class="panel-heading">local ip： <a id="ip"></a></div>
+        <div class="panel-body" id="qrcode"></div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <a href="https://github.com/warmhug/__/tree/master/tool">
+            https://github.com/warmhug/__/tree/master/tool
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
   <!--<script src="https://a.alipayobjects.com/jquery/jquery/1.11.1/jquery-debug.js"></script>-->
-  <script src="jquery.js"></script>
-  <script src="velocity.min.js"></script>
-  <script src="vel.js"></script>
+  <script src="vendor/jquery.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.js"></script>
+  <script src="vendor/velocity.min.js"></script>
+  <script src="vendor/qrcode.js"></script>
+  <script src="ifr/ifr-page.js"></script>
+  <script src="ip.js"></script>
   <script src="main.js"></script>
  </body>
 </html>

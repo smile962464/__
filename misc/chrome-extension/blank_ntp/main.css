@@ -1,0 +1,19 @@
+body {
+  background-image: url(http://localhost:9999/res/Shapes.jpg);
+  background-size: cover;
+}
+.main {
+  display: flex;
+}
+
+/* iframe */
+.ifr {
+  position: relative;
+  display: inline-block; overflow: hidden;
+  width: 100px; height: 100px;
+}
+.btn {
+  position: absolute; top: 10px; left: 10px; z-index: 1;
+  border: none; outline: none; background: white;
+  height: 80px; width: 80px; border-radius: 40px;
+}

@@ -1,4 +1,19 @@
 
+// 设置 ua 为 iPhone ua
+chrome.webRequest.onBeforeSendHeaders.addListener(function (details) {
+  var headers = details.requestHeaders;
+  if (details.parentFrameId > -1) {
+    for (var i = 0, l = headers.length; i < l; ++i) {
+      if (headers[i].name == 'User-Agent') {
+        headers[i].value = 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1';
+      }
+    }
+  }
+  return { requestHeaders: headers };
+}, { urls: ["<all_urls>"] }, ['requestHeaders', 'blocking']);
+
+
+// page js
 var switched = false;
 var btnInit = {
   opacity: 1,
@@ -24,7 +39,7 @@ $('#showIfr').on('click', function () {
   if (switched) {
     $(this).html('hide');
     $.ajax({
-      url: "ifr.html",
+      url: "ifr/ifr.html",
       cache: true
     }).done(function(html) {
       res.append(html);

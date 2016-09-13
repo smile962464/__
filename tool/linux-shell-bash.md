@@ -94,7 +94,7 @@ chmod u+x test.sh    # 修改权限，脚本可执行
 ### lsof
 
     lsof -i:8087   查找出占用了某个端口的程序和其对应的PID
-    kill *pid*   杀掉进程
+    kill -9 *pid*  强制杀掉进程
 
 ### 软/硬连接
 连接有软连接和硬连接(hard link)之分的，软连接(symbolic link)又叫符号连接。符号连接相当于Windows下的快捷方式。不可以对文件夹建立硬连接，我们通常用的还是软连接比较多。
