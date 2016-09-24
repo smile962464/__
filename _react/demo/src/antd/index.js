@@ -1,9 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// import 'antd-mobile/lib/button/style';
-// import Button from 'antd-mobile/lib/button';
-
 // import js and css modularly, parsed by babel-plugin-antd
 import { Button } from 'antd-mobile';
 

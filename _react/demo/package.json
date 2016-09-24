@@ -10,6 +10,13 @@
   "babel": {
     "plugins": []
   },
+  "dependencies": {
+    "antd": "~1.7.0",
+    "antd-mobile": "~0.8.5",
+    "babel-runtime": "~6.11.6",
+    "moment": "^2.14.1",
+    "rc-form": "^0.17.2"
+  },
   "devDependencies": {
     "babel-core": "~6.11.4",
     "babel-loader": "~6.2.4",
@@ -35,12 +42,5 @@
     "url-loader": "~0.5.7",
     "webpack": "~1.13.1",
     "webpack-dev-middleware": "~1.6.1"
-  },
-  "dependencies": {
-    "antd": "~1.7.0",
-    "antd-mobile": "~1.0.0-alpha.0",
-    "babel-runtime": "~6.11.6",
-    "moment": "^2.14.1",
-    "rc-form": "^0.17.2"
   }
 }

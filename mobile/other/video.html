@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>demo</title>
+  <meta charset="utf-8" />
+  <meta name="apple-touch-fullscreen" content="yes" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+  <style>
+  </style>
+</head>
+<body>
+  https://www.zhihu.com/question/27472010
+  安卓 rom 的浏览器会劫持 video 标签，替换成同样大小的 native video ，怎么防止？只有 Chrome 浏览器不会
+  <div id="log"></div>
+  <script src="http://zeptojs.com/zepto.js"></script>
+  <script>
+    $('#log').html('<video src="./movie.mp4" controls></video>')
+  </script>
+</body>
+</html>

@@ -3,6 +3,10 @@ body {
   background-size: cover;
 }
 
+.list-group-item {
+  word-break: break-all;
+}
+
 .main {
   display: flex;
   justify-content: space-between;
