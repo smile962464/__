@@ -36,6 +36,7 @@ module.exports = {
         test: /\.js$/, exclude: /node_modules/, loader: 'babel',
         query: {
           plugins: [
+            // ["transform-react-inline-elements"],
             ["external-helpers"],
             ["transform-runtime", {
               polyfill: false,

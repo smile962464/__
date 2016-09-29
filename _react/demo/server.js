@@ -7,7 +7,16 @@ var directory = require('serve-index');
 var webpackDevMiddleware = require('webpack-dev-middleware')
 var webpack = require('webpack')
 var WebpackConfig = require('./webpack.config')
-WebpackConfig.entry = require('./scripts/getEntry');
+var ens = require('./scripts/getEntry');
+// WebpackConfig.entry = ens;
+
+// 给每个 entry 添加 babel-polyfill 支持
+for (var key in ens) {
+  if (ens.hasOwnProperty(key)) {
+    ens[key] = ['babel-polyfill', ens[key]];
+  }
+}
+WebpackConfig.entry = ens;
 
 var app = express()
 app.use(webpackDevMiddleware(webpack(WebpackConfig), {
@@ -24,7 +33,9 @@ function makeTpl(file) {
   return `<!doctype html>
   <html>
   <head>
+    <meta charset="utf-8">
     <title>${file}</title>
+    <script src="/viewport.js"></script>
     <link rel="stylesheet" href="/dist/${file}.css">
   </head>
   <body>
@@ -33,6 +44,14 @@ function makeTpl(file) {
     <script src="https://as.alipayobjects.com/g/component/react/15.2.0/react-dom.min.js"></script>
     <script src="/dist/shared.js"></script>
     <script src="/dist/${file}.js"></script>
+    <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+    <script>
+    if ('addEventListener' in document) {
+      window.addEventListener('load', function() {
+        FastClick.attach(document.body);
+      }, false);
+    }
+    </script>
   </body>
   </html>
   `
