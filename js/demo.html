@@ -5,10 +5,20 @@
   <title></title>
 </head>
 <body>
-
   <script src="https://a.alipayobjects.com/jquery/jquery/1.11.1/jquery-debug.js"></script>
   <script>
-
+    const whileTrue = func => {
+      while (func());
+    };
+    let count = 0;
+    whileTrue(() => {
+      console.log('eeee');
+      count++;
+      if (count > 5) {
+        return false;
+      }
+      return 1;
+    })
   </script>
 </body>
 

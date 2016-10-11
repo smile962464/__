@@ -11,7 +11,9 @@
   <script src="https://a.alipayobjects.com/jquery/jquery/1.11.1/jquery-debug.js"></script>
   <script>
     var ele = document.getElementById('01');
-    var ele = document.querySelector('#01');
+    // var ele = document.querySelector('#01');
+    ele.parentNode.removeChild(ele);
+    // 因为有 js 变量 ele 引用 dom 节点，所以仍在内存中 (只是没在html文档里)
     console.log(ele);
   </script>
 </body>

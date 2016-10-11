@@ -9,7 +9,10 @@
   <meta content="black" name="apple-mobile-web-app-status-bar-style" />
 </head>
 <body>
-  <div class="log" style="width: 2000px">测试 media 和 高清方案</div>
+  <div class="log" style="width: 2000px">
+    测试 media 和 高清方案 <br>
+    <a href="http://jinlong.github.io/2015/05/24/css-retina-hairlines/">Retina屏的移动设备如何实现真正1px的线？</a>
+  </div>
   <script>
     console.log(window.devicePixelRatio) // devicePixelRatio
     console.log(window.innerWidth) // device-width
@@ -38,7 +41,7 @@
     const _baseFontSize = 100;
     const _psdWidth = 750;
     let rate = 1;
-    document.documentElement.style.fontSize = 
+    document.documentElement.style.fontSize =
     `${_baseFontSize / _psdWidth * document.documentElement.clientWidth * rate}px`;
     document.body.style.fontSize = `${16 * 0.02}rem`;
   </script>

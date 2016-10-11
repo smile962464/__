@@ -4,18 +4,34 @@
 		phpinfo();
 	} else {
   $path = "uploads/";
-  $arr = array();
-  $fileExt = array();
+  $fileMArr = array();
+  $fileMFObj = new StdClass();
   foreach (glob($path."*") as $filename) {
-    array_push($arr, $filename);
-    array_push($fileExt, pathinfo($filename, PATHINFO_EXTENSION));
+    $fm = filemtime($filename);
+    $fileInfo = new StdClass();
+    $fileInfo->name = $filename;
+    $fileInfo->ext = pathinfo($filename, PATHINFO_EXTENSION);
+    $fileInfo->mtime = date("Y-m-d H:i:s", $fm);
+    $fileMFObj->$fm = $fileInfo;
+    array_push($fileMArr, $fm);
   }
+  arsort($fileMArr);
+  $filenameArr = array();
+  $fileExtArr = array();
+  $fileTimeArr = array();
+  foreach ($fileMArr as $value) {
+    array_push($filenameArr, $fileMFObj->$value->name);
+    array_push($fileExtArr, $fileMFObj->$value->ext);
+    array_push($fileTimeArr, $fileMFObj->$value->mtime);
+  }
+  // var_dump($fileMFObj);
   function toJsArray($arr) {
     return "[".'"' . implode('","', $arr).'"' ."]";
   }
   $js_data = "<script>
-    var files = ". toJsArray($arr) ."; \n
-    var fileExts = ". toJsArray($fileExt) .";
+    var filenameArr = ". toJsArray($filenameArr) ."; \n
+    var fileExtArr = ". toJsArray($fileExtArr) ."; \n
+    var fileTimeArr = ". toJsArray($fileTimeArr) .";
   </script>";
 ?>
 <!DOCTYPE html>
@@ -28,7 +44,8 @@
   <meta content="yes" name="apple-mobile-web-app-capable" />
   <meta content="black" name="apple-mobile-web-app-status-bar-style" />
   <style>
-    #mvideo { width: 100%; margin-top: 10px; }
+    #mvideo { width: 100%; margin-top: 10px; position: relative; }
+    #mvideo .st { position: absolute; top: 10px; left: 10px; z-index: 999; }
     #list { word-break: break-all; }
     #list a { display: inline-block; padding: 4px; }
     #list a.vs { background-color: bisque; }
@@ -47,8 +64,8 @@
 
 	<form action="upload.php" method="post" enctype="multipart/form-data">
     Select file to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload file" name="submit">
+    <input type="file" name="fileToUpload" id="fileToUpload" multiple="multiple" />
+    <input type="submit" value="Upload file" name="submit" />
 	</form>
   <div class="progress">
     <div class="bar"></div>
@@ -57,96 +74,72 @@
   <div id="status"></div>
   <script src="js/jquery-1.12.4.js"></script>
   <script src="js/jquery.form.js"></script>
-  <script>
-    (function() {
-      var bar = $('.bar');
-      var percent = $('.percent');
-      var status = $('#status');
-      $('form').ajaxForm({
-        beforeSend: function() {
-            status.empty();
-            var percentVal = '0%';
-            bar.width(percentVal)
-            percent.html(percentVal);
-        },
-        uploadProgress: function(event, position, total, percentComplete) {
-            var percentVal = percentComplete + '%';
-            bar.width(percentVal)
-            percent.html(percentVal);
-        },
-        success: function() {
-          console.log('success..');
-          var percentVal = '100%';
-          bar.width(percentVal)
-          percent.html(percentVal);
-          setTimeout(function () {
-            location.reload();
-          }, 1000);
-        },
-        complete: function(xhr) {
-          console.log('complete..');
-          status.html(xhr.responseText);
-        }
-      });
-    })();
-  </script>
+  <script src="js/upload.js"></script>
 
   <video id="mvideo"
     class="video-js vjs-default-skin vjs-big-play-centered"
     controls height="264">
   </video>
-
   <script src="http://vjs.zencdn.net/5.11.6/video.min.js"></script>
   <script src="http://cdn.sc.gl/videojs-hotkeys/latest/videojs.hotkeys.min.js"></script>
+  <script src="js/hammer.min.js"></script>
+  <!-- vr support
+  <script src="libs/three.min.js"></script>
+  <script src="libs/vr/vr.js"></script>
+  <script src="libs/vr/OculusRiftControls.js"></script>
+  <script src="libs/vr/OculusRiftEffect.js"></script>
+  <script src="libs/videojs.vr.js"></script>
+  -->
   <script>
     var player = videojs('mvideo', {
-      playbackRates: [0.5, 1, 1.5, 2],
+      playbackRates: [0.5, 1, 1.5, 2, 2.5, 3],
       controlBar: {
-        muteToggle: true,
+        muteToggle: false,
         progressControl: {
-          keepTooltipsInside: true
+          keepTooltipsInside: false
         }
       }
      }, function() {
       this.hotkeys();
       // this.play(); // if you don't trust autoplay for some reason
+      // this.vr({projection: 'Sphere'}); // initialize the plugin, 'Plane' projection by default
+    });
+
+    // 快进/快退 功能
+    var videoContainer = document.getElementById('mvideo');
+    function mkStatus(text) {
+      var st = document.createElement('div');
+      st.setAttribute('class', 'st');
+      st.innerHTML = text;
+      videoContainer.appendChild(st);
+      setTimeout(function () {
+        if (st.parentNode) {
+          st.parentNode.removeChild(st);
+        }
+      }, 1000);
+    }
+    var mc = new Hammer(videoContainer);
+    var seekStep = 5;
+    mc.on("swipeleft", function(ev) {
+      // console.log(ev);
+      var curTime = player.currentTime() - seekStep;
+      // The flash player tech will allow you to seek into negative
+      // numbers and break the seekbar, so try to prevent that.
+      if (player.currentTime() <= seekStep) {
+        curTime = 0;
+      }
+      player.currentTime(curTime);
+      mkStatus('快退 5 秒');
+    });
+    mc.on("swiperight", function(ev) {
+      // console.log(ev);
+      player.currentTime(player.currentTime() + seekStep);
+      mkStatus('快进 5 秒');
     });
   </script>
 
   <div id="list" style="padding: 10px; margin-top: 10px;"></div>
-  <script>
-    var ds = ['jpg', 'jpeg', 'JPG', 'JPEG', 'png', 'gif', 'txt'];
-    var vs = ['mp4'];
-    var res = '';
-    files.forEach(function (item, index) {
-      if (ds.indexOf(fileExts[index]) >= 0) {
-        res += '<div><a class="ds" href="' + item + '">' + item + '</a><b data-name="' + item + '">删除</b></div>';
-      } else if (vs.indexOf(fileExts[index]) >= 0) {
-        res += '<div><a class="vs" href="javascript:;">' + item + '</a><b data-name="' + item + '">删除</b></div>';
-      } else {
-        res += '<div><a class="ot" href="javascript:;">' + item + '</a><b data-name="' + item + '">删除</b></div>';
-      }
-    })
-    var list = $('#list').html(res);
-    list.find('a.vs').on('click', function() {
-      // $('#mvideo').attr('src', $(this).text());
-      player.src({ type: "video/mp4", src: $(this).text() });
-      player.play();
-    });
-    list.find('b').on('click', function() {
-      var fileName = $(this).attr('data-name').replace('uploads/', '');
-      if (window.confirm('确认是否删除 ' + fileName )) {
-        $.ajax({
-          url: '/delete.php',
-          type: 'DELETE',
-          data: JSON.stringify({fileName: fileName}),
-          success: function(result) {
-            location.reload();
-          }
-        });
-      }
-    });
-  </script>
+  <script src="js/list.js"></script>
 </body>
 </html>
 <?php
