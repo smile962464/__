@@ -2,39 +2,31 @@
  <head>
   <title>Blank New Tab</title>
   <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="main.css">
- </head>
-<body>
-  <div class="main">
-    <div class="s1" id="res">
-      <button class="btn" id="showIfr">show</button>
-    </div>
-    <div class="s2">
-      <div class="panel panel-default">
-        <div class="panel-heading">mobile： <a id="ip"></a></div>
-        <div class="panel-body" id="qrcode"></div>
-        <ul class="list-group">
-          <li class="list-group-item">
-            常用工具：
-            <a href="https://github.com/warmhug/__/tree/master/tool">
-              https://github.com/warmhug/__/tree/master/tool
-            </a>
-          </li>
-          <li class="list-group-item">
-            download 目录服务：
-            <a href="http://localhost:9999/">
-              http://localhost:9999/
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <!--<script src="https://a.alipayobjects.com/jquery/jquery/1.11.1/jquery-debug.js"></script>-->
+  <link rel="stylesheet/less" type="text/css" href="main.less" />
+  <script src="vendor/less.min.js"></script>
   <script src="vendor/jquery.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.js"></script>
   <script src="vendor/velocity.min.js"></script>
   <script src="vendor/qrcode.js"></script>
+ </head>
+<body>
+  <div class="main">
+    <button class="ifr-btn" id="showIfr">show</button>
+    <div class="s1" id="ifr-wrap"></div>
+    <div class="s2">
+      <div class="s2-main">
+        <div class="joke clearfix">
+          <div class="joke-main" id="jokeMain"></div>
+          <button type="button" class="btn btn-link" id="changeJoke">换一个</button>
+        </div>
+      </div>
+      <div class="bottom">
+        <a id="ip" data-container="body" data-toggle="popover" data-placement="top"
+        data-trigger="hover" data-html="true"></a>
+        <div id="qrcode" style="display: none;"></div>
+      </div>
+    </div>
+  </div>
   <script src="ifr/ifr-page.js"></script>
   <script src="ip.js"></script>
   <script src="main.js"></script>

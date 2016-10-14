@@ -40,8 +40,8 @@ function makeTpl(file) {
   </head>
   <body>
     <div id="example"/>
-    <script src="https://as.alipayobjects.com/g/component/react/15.2.0/react.min.js"></script>
-    <script src="https://as.alipayobjects.com/g/component/react/15.2.0/react-dom.min.js"></script>
+    <script src="https://as.alipayobjects.com/g/component/react/15.3.0/react.js"></script>
+    <script src="https://as.alipayobjects.com/g/component/react/15.3.0/react-dom.js"></script>
     <script src="/dist/shared.js"></script>
     <script src="/dist/${file}.js"></script>
     <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>

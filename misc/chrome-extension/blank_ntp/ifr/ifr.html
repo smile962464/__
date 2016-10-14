@@ -1,32 +1,13 @@
-<style>
-  #ifr-wrap {
-    display: inline-flex;
-  }
-  .ifr {
-    width: 375px; /* iPhone 6 */
-    height: 667px;
-    margin-right: 10px;
-  }
-  .extra {
-    margin: 60px 10px 0 10px;
-    width: 250px;
-  }
-</style>
-<div id="ifr-wrap">
-  <div class="list-group extra">
-    <a class="list-group-item">http://mobile.ant.design/kitchen-sink/</a>
-    <a class="list-group-item">http://m.toutiao.com/?channel=news_hot#channel=news_hot</a>
-    <a class="list-group-item">https://www.baidu.com/</a>
-  </div>
-  <!--
-    use sanbox can disable iframe doc do this:
-    ```
-    if (top.location.href != self.location.href)
-     top.location.href = self.location.href;
-    ```
-  -->
-  <iframe class="ifr" id="i" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
-</div>
+
+<select class="websites" id="select"><option value="">-- 选择网址 --</option></select>
+<!--
+  use sanbox can disable iframe doc do this:
+  ```
+  if (top.location.href != self.location.href)
+    top.location.href = self.location.href;
+  ```
+-->
+<iframe class="ifr" id="i" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
 <script>
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -36,7 +17,13 @@
   i.src = myObj.need_remove_ad_urls[getRandomInt(0, myObj.need_remove_ad_urls.length - 1)];
   myObj.need_remove_ad_ifr = i;
 
-  $('.list-group-item').attr('href', '#').on('click', function () {
-    i.src = $(this).text()
+  var sites = [
+    'http://mobile.ant.design/kitchen-sink/',
+    'http://m.toutiao.com/?channel=news_hot#channel=news_hot',
+    'https://www.baidu.com/'
+  ];
+  $('#select').append(sites.map(i => `<option value="${i}">${i}</option>`).join(''))
+  .on('change', function () {
+    i.src = $(this).val()
   })
 </script>

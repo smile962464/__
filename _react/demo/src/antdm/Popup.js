@@ -1,5 +1,13 @@
 import { Popup, List, Button, Icon } from 'antd-mobile';
 
+const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
+let wrapProps;
+if (isIPhone) {
+  wrapProps = {
+    onTouchStart: e => e.preventDefault(),
+  };
+}
+
 export default React.createClass({
   getInitialState() {
     return {
@@ -32,7 +40,7 @@ export default React.createClass({
           <Button type="primary" onClick={() => this.onClose('cancel')}>买入</Button>
         </li>
       </ul>
-    </div>, { animationType: 'slide-up' });
+    </div>, { animationType: 'slide-up', wrapProps: wrapProps });
   },
   onClose(sel) {
     this.setState({ sel });
