@@ -72,9 +72,9 @@
     <div class="percent">0%</div>
   </div>
   <div id="status"></div>
-  <script src="js/jquery-1.12.4.js"></script>
-  <script src="js/jquery.form.js"></script>
-  <script src="js/upload.js"></script>
+  <script src="assets/jquery-1.12.4.js"></script>
+  <script src="assets/jquery.form.js"></script>
+  <script src="assets/upload.js"></script>
 
   <video id="mvideo"
     class="video-js vjs-default-skin vjs-big-play-centered"
@@ -82,7 +82,9 @@
   </video>
   <script src="http://vjs.zencdn.net/5.11.6/video.min.js"></script>
   <script src="http://cdn.sc.gl/videojs-hotkeys/latest/videojs.hotkeys.min.js"></script>
-  <script src="js/hammer.min.js"></script>
+  <script src="assets/hammer.min.js"></script>
+  <link href="assets/videojs-dock.css" rel="stylesheet">
+  <script src="assets/videojs-dock.js"></script>
   <!-- vr support
   <script src="libs/three.min.js"></script>
   <script src="libs/vr/vr.js"></script>
@@ -101,6 +103,11 @@
       }
      }, function() {
       this.hotkeys();
+      // player.dock({
+      //   title: 'Bacon ipsum dolor amet ribeye',
+      //   description: 'des...'
+      // });
+      // player.shelf.addChild('playToggle');
       // this.play(); // if you don't trust autoplay for some reason
       // this.vr({projection: 'Sphere'}); // initialize the plugin, 'Plane' projection by default
     });
@@ -139,7 +146,10 @@
   </script>
 
   <div id="list" style="padding: 10px; margin-top: 10px;"></div>
-  <script src="js/list.js"></script>
+  <div id="pagination-container"></div>
+  <link href="assets/pagination.css" rel="stylesheet">
+  <script src="assets/pagination.js"></script>
+  <script src="assets/list.js"></script>
 </body>
 </html>
 <?php
