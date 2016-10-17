@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>ocr识别</title>
+</head>
+<body>
+  <script src='https://cdn.rawgit.com/naptha/tesseract.js/1.0.7/dist/tesseract.js'></script>
+  <script>
+    function recognizeFile(file){
+      Tesseract.recognize(file, {
+        lang: 'eng' // chi_sim
+      }).progress(function(packet){
+        console.info(packet)
+      }).then(function(data){
+        console.log(data)
+      })
+    }
+  </script>
+  <input type="file" onchange="recognizeFile(this.files[0])">
+</body>
+
+</html>
