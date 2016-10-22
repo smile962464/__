@@ -14,9 +14,10 @@ a {
   }
   /* iframe */
   .s1 {
-    display: inline-flex;
+    // display: inline-flex;
     flex-direction: column;
-    margin: 0 60px;
+    margin-left: 60px;
+    margin-right: 10px;
     .ifr {
       width: 375px; /* iPhone 6 */
       height: 630px;
@@ -25,28 +26,51 @@ a {
     .websites {
       margin: 5px 0;
       width: 97%;
+      -webkit-appearance: menulist-button;
+      height: 25px;
     }
   }
   .s2 {
     flex: 1;
     display: flex;
     justify-content: center;
-    margin-left: -160px;
     &-main {
       padding: 20px 0;
+      display: flex;
       .joke {
         position: relative;
         width: 600px;
+        padding: 10px;
         background-color: rgba(255,255,255,.8);
         > button {
           outline: none;
           position: absolute;
-          top: -1px;
-          right: -5px;
+          top: 1px;
+          right: 1px;
         }
         &-main {
           padding: 30px 10px 10px;
           font-size: 15px;
+        }
+        .size {
+          overflow: auto;
+        }
+        .small {
+          width: 380px;
+          height: 190px;
+          overflow: hidden;
+        }
+      }
+      .other {
+        margin-left: 10px;
+        width: 230px;
+        textarea {
+          width: 230px;
+          height: 120px;
+        }
+        .dqr {
+          padding: 10px;
+          background-color: #fff;
         }
       }
     }

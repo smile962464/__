@@ -1,5 +1,17 @@
 # react native
 
+### Simulator
+- command+v command+shift+v 粘贴
+- shift+command+H twice to simulate the double tap of home button
+- command + 3 缩小到50%大小
+
+安装本地程序：xcrun simctl install booted ~/Downloads/AlipayWallet.app
+
+### 性能：
+Image decoding can take more than a frame-worth of time. 
+This is one of the major source of frame drops on the web because decoding is done in the main thread. 
+In React Native, image decoding is done in a different thread.
+
 # native 
 
 Safari 由 WebKit 和 JavaScriptCore 组成。

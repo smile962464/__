@@ -24,12 +24,14 @@ $('#showIfr').on('click', function () {
       url: "ifr/ifr.html",
       cache: true
     }).done(function(html) {
-      ifrWrap.html(html);
+      ifrWrap.html(html).css('display', 'inline-flex');
       ifrWrap.velocity({ opacity: 1, width: $('#i').width() + 10 }, { duration: 500 })
     });
   } else {
     $(this).html('show');
-    ifrWrap.html('');
-    ifrWrap.velocity({ opacity: 0, width: 50 }, { duration: 500 })
+    ifrWrap.velocity({ opacity: 0, width: 50 }, { duration: 500, complete: function() {
+      // alert("Done animating!")
+      ifrWrap.html('').css('display', 'none');
+    }})
   }
 })

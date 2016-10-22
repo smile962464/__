@@ -1,5 +1,4 @@
 
-
 ### scroll 事件问题
 - ios上scroll事件，只在scroll结束时触发（ios < 8），安卓会一直触发。
 - iOS < 8 pauses painting during scrolling.
@@ -39,6 +38,8 @@ touch事件在手机浏览器中的穿透问题，并不是由冒泡引起的，
 
 ## 其他
 
+页面横向能拖动问题：注意哪里设置了 width 之和为 100% ，但没设置`box-sizing: border-box;`
+
 - transform闪动问题：
 
     -webkit-backface-visibility : hidden;
@@ -47,8 +48,3 @@ touch事件在手机浏览器中的穿透问题，并不是由冒泡引起的，
 
 ## 环境
 开启 Charles 代理，需要把其他代理软件关掉、像 ShadowSocks 要关掉、浏览器也不能有代理插件如 switchyomega 开着.
-
-### Simulator
-- command+v command+shift+v 粘贴
-- shift+command+H twice to simulate the double tap of home button
-- command + 3 缩小到50%大小
