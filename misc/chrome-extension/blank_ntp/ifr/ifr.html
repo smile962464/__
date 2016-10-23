@@ -18,9 +18,9 @@
   myObj.need_remove_ad_ifr = i;
 
   var sites = [
+    'http://warmhug.github.io/',
     'http://mobile.ant.design/kitchen-sink/',
-    'http://m.toutiao.com/?channel=news_hot#channel=news_hot',
-    'https://www.baidu.com/'
+    'http://m.toutiao.com/?channel=news_hot#channel=news_hot'
   ];
   $('#select').append(sites.map(i => `<option value="${i}">${i}</option>`).join(''))
   .on('change', function () {

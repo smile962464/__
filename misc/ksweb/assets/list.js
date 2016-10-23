@@ -4,16 +4,16 @@ var res = [];
 filenameArr.forEach(function (item, index) {
   if (ds.indexOf(fileExtArr[index]) >= 0) {
     res.push('<div><a class="ds" href="' + item + '">' + item + '</a>\
-    <i>' + fileTimeArr[index] + '<i>\
-    <b data-name="' + item + '">删除</b></div>');
+    <i>' + fileTimeArr[index] + '</i>\
+    <button data-name="' + item + '">删除</button></div>');
   } else if (vs.indexOf(fileExtArr[index]) >= 0) {
     res.push('<div><a class="vs" href="javascript:;">' + item + '</a>\
-    <i>' + fileTimeArr[index] + '<i>\
-    <b data-name="' + item + '">删除</b></div>');
+    <i>' + fileTimeArr[index] + '</i>\
+    <button data-name="' + item + '">删除</button></div>');
   } else {
     res.push('<div><a class="ot" href="javascript:;">' + item + '</a>\
-    <i>' + fileTimeArr[index] + '<i>\
-    <b data-name="' + item + '">删除</b></div>');
+    <i>' + fileTimeArr[index] + '</i>\
+    <button data-name="' + item + '">删除</button></div>');
   }
 })
 $('#pagination-container').pagination({
@@ -32,7 +32,7 @@ $('#list').delegate('a.vs', 'click', function () {
     description: 'des...'
   });
   player.play();
-}).delegate('b', 'click', function() {
+}).delegate('button', 'click', function() {
   var fileName = $(this).attr('data-name').replace('uploads/', '');
   if (window.confirm('确认是否删除 ' + fileName )) {
     $.ajax({
