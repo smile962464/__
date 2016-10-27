@@ -8,7 +8,7 @@ var probe = require('probe-image-size');
 var port = 9998;
 var jsonContentType = 'application/json; charset=utf-8';
 
-var imgExts = ['jpg', 'jpeg', 'gif', 'png'];
+var enumExts = ['jpg', 'jpeg', 'gif', 'png'];
 var local1 = '/Users/hua/Downloads/_/百度云同步盘/2008-now.txt';
 var local2 = '/Users/hua/Downloads/_/百度云同步盘/图片收集';
 
@@ -23,7 +23,7 @@ function handleJoke2(res) {
     var fileDir = item.path;
     var extname = path.extname(fileDir);
     var ext = extname && extname.substr(1);
-    if (ext && imgExts.indexOf(ext) > -1) {
+    if (ext && enumExts.indexOf(ext) > -1) {
       items.push({ url: 'http://localhost:' + (port - 1) + '/' + path.basename(fileDir),
         width: probe.sync(fs.readFileSync(fileDir)).width });
     }

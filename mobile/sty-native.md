@@ -1,5 +1,8 @@
 # react native
 
+### 组件
+ScrollView 只能在横向或纵向两者之一进行滚动：https://github.com/facebook/react-native/issues/2962
+
 ### Simulator
 - command+v command+shift+v 粘贴
 - shift+command+H twice to simulate the double tap of home button

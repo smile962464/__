@@ -53,6 +53,23 @@
   </pre>
 
   <script>
+    function normalizeStyle(style, newStyle = {}) {
+      if (Array.isArray(style)) {
+        style.forEach(i => {
+          if (Object.prototype.toString.call(i) === '[object Object]') {
+            newStyle = Object.assign(newStyle, i);
+          } else {
+            normalizeStyle(i, newStyle);
+          }
+        });
+      }
+    }
+    const ns = {};
+    normalizeStyle([{ a: 1, b: 2 }, [{ c: 1, a: 11 }, { d: 3 }], { e: 5 }], ns);
+    console.log(ns);
+  </script>
+
+  <script>
     // 检测 滚动停止
     var delayedExec = function(after, fn) {
       var timer;
