@@ -5,7 +5,8 @@
 - [ECMAScript compatibility table](http://kangax.github.io/compat-table/es6/)
 - [es6特性](http://www.cnblogs.com/Wayou/p/es6_new_features.html)
 
-[迭代器和生成器generators](http://se77en.cc/2014/01/20/iterators-and-generators-translation/)
+- [迭代器和生成器generators](http://se77en.cc/2014/01/20/iterators-and-generators-translation/)
+- [async await](https://developers.google.com/web/fundamentals/getting-started/primers/async-functions)
 
 ## es6-modules
 参考其他语言，如Python等模块设计。[es6-modules-final](http://www.2ality.com/2014/09/es6-modules-final.html)

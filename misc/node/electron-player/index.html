@@ -7,8 +7,9 @@
   <link href="http://localhost/__/misc/ksweb/assets/videojs-dock.css" rel="stylesheet">
   <style>
     html, body { height: 100%; overflow: hidden; }
-    #mvideo { width: 100%; height: 70%; margin-top: 10px; }
-    #playlist { width: 100%; height: 20%; overflow: auto; }
+    /* 16:9 ~= 1080:600 主流视频尺寸 */
+    #mvideo { width: 1080px; height: 600px; margin: 10px auto; }
+    #playlist { width: 100%; height: 80px; overflow: auto; }
     #playlist .item { background-color: #4a4a4a; color: #fff; padding: 10px; border-bottom: 1px solid #fff; }
     #playlist p { margin: 0; }
     #playlist p:first-child { margin-bottom: 10px; }
