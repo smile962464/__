@@ -20,6 +20,7 @@ export default React.createClass({
         <Button type="ghost" inline onClick={this.showModal}>
           Modal 弹出层
         </Button>
+        <Button type="warning" across>warning 通栏按钮</Button>
         <Modal
           title="这是 title"
           closable={true}

@@ -26,6 +26,7 @@
     nslookup [IP地址/域名]  # 查询一台机器的IP地址和其对应的域名
     mtr # 诊断路由节点问题，如丢包、网站访问慢、结合了"traceroute"和"ping"功能。下载地址 http://rudix.org/packages/mtr.html
     mtr -r [IP地址/域名]  # 以报告模式显示：从我的主机到目标主机经过的路由节点以及到各节点数据包的丢包率和ping命令的最短/最长时间和标准偏差。 
+    # mtr 详细：https://meiriyitie.com/2015/05/26/diagnosing-network-issues-with-mtr/
 
     w / who # 列出当前登录的所有用户
     whoami # 显示当前正进行操作的用户名
