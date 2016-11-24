@@ -26,6 +26,7 @@ git remote set-url origin xxx 改变远程地址为xxx
 - git checkout .
 
 - git clean -df  Remove untracked directories in addition to untracked files.
+- git clean -xdf 删除所有 .gitignore 里指定的文件或目录，包括新建文件、node_modules 等
 - git clean -f  删除untracked files（即远程仓库没有这个文件，新加的文件）
 - git clean -f -n
 

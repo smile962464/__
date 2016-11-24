@@ -16,7 +16,7 @@
       -webkit-flex-flow: row wrap;
       justify-content: space-around;
     }
-    
+
     .flex-item {
       padding: 15px;
       margin-top: 10px;
@@ -43,7 +43,7 @@
   </ul>
   <!--
     容器 display: flex; 后、其子元素的 float、clear、vertical-align 失效。
-    
+
     设在容器上的其他属性：
       flex-direction: (row) | column
       flex-wrap: (nowrap) | wrap
@@ -56,12 +56,13 @@
       align-items: stretch; // 如果项目未设置高度或设为auto，将占满整个容器的高度
 
     设在容器里每个item上的属性：
-      order: 0 // 定义项目的排列顺序。数值越小，排列越靠前，默认为0
-      flex-grow: 0 // 定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大
-      flex-shrink: 1 // 定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小
-      flex-basis: auto (10px) // 在分配多余空间之前，项目占据的主轴空间，浏览器根据这个属性，计算主轴是否有多余空间
-      flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ] // 属性集合，后两个属性可选
       align-self: auto，其他同 align-items 属性。// 允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性
+      order: 0(default) // 项目的排列顺序。数值越小，排列越靠前
+      flex-grow: 0(default) // 项目的放大比例，默认存在剩余空间，也不放大
+      flex-shrink: 1(default) // 项目的缩小比例，如果空间不足，该项目将缩小
+      flex-basis: auto // 在分配多余空间之前，项目占据的主轴空间，浏览器根据这个属性，计算主轴是否有多余空间
+      flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ] // 后两个属性可选
+      flex: auto (1 1 auto) | none (0 0 auto) | initial (0 1 auto)
   -->
 </body>
 </html>
