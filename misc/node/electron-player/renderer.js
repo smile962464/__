@@ -14,15 +14,14 @@ fs.readdir(localPath, function (err, files) {
     var extname = path.extname(fileDir);
     var ext = extname && extname.substr(1);
     if (ext && enumExts.indexOf(ext) > -1) {
-      const url =
       items.push({
         info: {
           title: fileDir,
-          description: 'des...'
+          description: ''
         },
         source: {
           src: 'http://localhost:9999/' + path.basename(fileDir),
-          type: 'video/' + ext
+          type: 'video/' + (ext === 'mkv' ? 'webm' : ext)
         }
       });
     }
@@ -31,9 +30,8 @@ fs.readdir(localPath, function (err, files) {
 })
 
 function mkVideo() {
-  console.log(items, window)
   var player = videojs('mvideo', {
-    playbackRates: [0.5, 1, 1.5, 2, 2.5, 3, 3.5],
+    playbackRates: [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 5, 6],
     controlBar: {
       muteToggle: true,
       progressControl: {
