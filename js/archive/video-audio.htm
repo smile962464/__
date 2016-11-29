@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Using media events to add a progress bar to an audio player</title>
+  <title>video-audio</title>
+  <meta charset="utf-8" />
+  <meta name="apple-touch-fullscreen" content="yes" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" />
   <style id="inlinecss" type="text/css">
     #canvas {
       margin-top:10px;
@@ -179,6 +184,13 @@
     需要找到 Chromium 的源码 third_party\ffmpeg 模块，重新配置和编译 FFmpeg
 
     */
+  </script>
+  https://www.zhihu.com/question/27472010
+  安卓 rom 的浏览器会劫持 video 标签，替换成同样大小的 native video ，怎么防止？只有 Chrome 浏览器不会
+  <div id="log"></div>
+  <script src="http://zeptojs.com/zepto.js"></script>
+  <script>
+    $('#log').html('<video src="./movie.mp4" controls></video>')
   </script>
 </body>
 </html>

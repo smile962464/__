@@ -15,6 +15,11 @@ touch事件在手机浏览器中的穿透问题，并不是由冒泡引起的，
 
 通过设置e.preventDefault()，阻止浏览器默认事件可以解决。对于浮层，可以用绑定click事件。使用Fastclick处理click事件（[Fastclick如何解决穿透事件](http://www.cnblogs.com/yexiaochai/p/3442220.html)）。
 
+### Touch 事件兼容问题
+- 在 Android 上 Touchmove只触发一次，解决：阻止默认事件，在start或move时，执行一次 e.preventDefault() 
+- 在 Android 上 页面滚动时，PageX/Y 并不包含滚动，需附加 scrollLeft/Top 修正
+- 在 Android 上 在 a 标签上，move后不触发 touchend 事件，a 标签的 href 属性从`javascript:void(0)`改为`javascript:;`
+
 
 ### 屏幕尺寸
 [「像素」「渲染像素」以及「物理像素」](http://www.zhihu.com/question/27261444/answer/35898885)

@@ -1,7 +1,7 @@
 
 
 getLocalIPs(function (ips) { // <!-- ips is an array of local IP addresses.
-  localIP = 'http://' + ips[0] + '/inner/__/mobile/';
+  localIP = 'http://' + ips[0] + '/__/mobile/';
   $('#ip').html(localIP).attr('href', localIP);
   new QRCode(document.getElementById("qrcode"), {
     text: localIP,

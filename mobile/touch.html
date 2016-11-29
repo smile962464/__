@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>demo</title>
+  <meta charset="utf-8" />
+  <meta name="apple-touch-fullscreen" content="yes" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+  <script src="http://zeptojs.com/zepto.js"></script>
+  <style>
+    .root {
+      border: 1px solid #ccc; margin: 10px; height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root" class="root"></div>
+  <script>
+    function cb(txt) {
+      document.getElementById('root').innerHTML = txt;
+    }
+    window.addEventListener('touchstart', function() { cb('touchstart') });
+    window.addEventListener('touchmove', function() { cb('touchmove') });
+    window.addEventListener('touchend', function() { cb('touchend') });
+    window.addEventListener('touchcancel', function() { cb('touchcancel') });
+  </script>
+</body>
+</html>
