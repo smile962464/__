@@ -11,7 +11,7 @@
     "plugins": []
   },
   "dependencies": {
-    "antd": "~1.7.0",
+    "antd": "~2.5.0",
     "antd-mobile": "~0.9.10",
     "babel-runtime": "~6.11.6",
     "moment": "^2.14.1",

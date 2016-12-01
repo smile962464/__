@@ -9,6 +9,7 @@ import { Button as ButtonPc } from 'antd';
 // import 'antd/lib/button/style/index.css';
 // import ButtonPc from 'antd/lib/button';
 import table from './table';
+import Misc from './misc';
 
 const App = React.createClass({
   getInitialState() {
@@ -18,13 +19,13 @@ const App = React.createClass({
   },
   render() {
     const items = [{id: '1'}, {id: 'header'}];
-    return (
-      <div style={{ margin: 10 }}>
-        <Button onClick={(e) => this.setState({table: !this.state.table}) }>Start</Button> <br />
-        <ButtonPc onClick={(e) => console.log(e) }>Start</ButtonPc>
-        {table(this.state.table)}
-      </div>
-    );
+    return (<div style={{ margin: 10 }}>
+      <Button onClick={(e) => this.setState({table: !this.state.table}) }>Start</Button> <br />
+      <ButtonPc onClick={(e) => console.log(e)}>Start</ButtonPc>
+
+      <Misc />
+      {table(this.state.table)}
+    </div>);
   }
 })
 
