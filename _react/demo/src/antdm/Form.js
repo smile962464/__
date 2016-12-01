@@ -1,4 +1,4 @@
-import { DatePicker, List } from 'antd-mobile';
+import { DatePicker, List, SearchBar } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import moment from 'moment'; // moment.min ~= 48kb
 import enUs from 'antd-mobile/lib/date-picker/locale/en_US';
@@ -8,6 +8,7 @@ let Test = React.createClass({
   render() {
     const { getFieldProps } = this.props.form;
     return (<div>
+      <SearchBar placeholder="搜索" />
       <List renderHeader={() => <b>选择时间</b>}>
         <DatePicker
           className="am-date-picker"
