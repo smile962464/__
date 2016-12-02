@@ -1,4 +1,4 @@
-import { DatePicker, List, SearchBar, Steps } from 'antd-mobile';
+import { DatePicker, List } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import moment from 'moment'; // moment.min ~= 48kb
 import enUs from 'antd-mobile/lib/date-picker/locale/en_US';
@@ -8,12 +8,6 @@ let Test = React.createClass({
   render() {
     const { getFieldProps } = this.props.form;
     return (<div>
-      <Steps direction="horizontal">
-        <Steps.Step title="现在" description="立即买入" />
-        <Steps.Step title="11月3日" description="买入成功" />
-        <Steps.Step title="11月4日" description="收益到账" />
-      </Steps>
-      <SearchBar placeholder="搜索" />
       <List renderHeader={() => <b>选择时间</b>}>
         <DatePicker
           className="am-date-picker"
@@ -33,18 +27,6 @@ let Test = React.createClass({
           maxDate={this.timeMaxDate || (this.timeMaxDate = moment('22:00', 'HH:mm'))}
         >
           <List.Item arrow="horizontal">时间</List.Item>
-        </DatePicker>
-        <DatePicker
-          mode="datetime"
-          format={val => val.format('YYYY-MM-DD + HH:mm')}
-          okText="Ok"
-          dismissText="Cancel"
-          locale={enUs}
-          {...getFieldProps('customformat', {
-            initialValue: now,
-          })}
-        >
-          <List.Item arrow="horizontal">datetime(en_US)</List.Item>
         </DatePicker>
       </List>
     </div>);

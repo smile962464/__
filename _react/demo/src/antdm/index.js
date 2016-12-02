@@ -6,8 +6,7 @@ import ReactDOM from 'react-dom';
 // import 'antd-mobile/lib/list-view/style/index.css';
 // import ListView from 'antd-mobile/lib/list-view';
 
-// import js and css modularly, parsed by babel-plugin-antd
-import NavBar from './NavBar.js';
+import Misc from './Misc';
 import Carousel from './Carousel.js';
 import Form from './Form';
 import RefreshControl from './RefreshControl';
@@ -21,9 +20,9 @@ const App = React.createClass({
     const items = [{id: '1'}, {id: 'header'}];
     return (<div className="container" id="container">
       <div className="body">
-        <NavBar />
+        <Misc />
         <Carousel />
-        <Modal /> <Popup /><hr />
+        <Modal /> <Popup />
         <Form /> <hr />
         <RefreshControl /> <hr />
       </div>

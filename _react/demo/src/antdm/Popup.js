@@ -48,7 +48,7 @@ export default React.createClass({
   },
   render() {
     return (<div style={{ padding: '15px' }}>
-      <Button type="ghost" onClick={this.onClick}>Popup 弹出层</Button>
+      <Button type="ghost" size="small" onClick={this.onClick}>Popup 弹出层</Button>
     </div>);
   },
 });

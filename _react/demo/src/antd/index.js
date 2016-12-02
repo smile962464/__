@@ -9,7 +9,7 @@ import { Button as ButtonPc } from 'antd';
 // import 'antd/lib/button/style/index.css';
 // import ButtonPc from 'antd/lib/button';
 import table from './table';
-import Misc from './misc';
+import Misc from './Misc';
 
 const App = React.createClass({
   getInitialState() {
