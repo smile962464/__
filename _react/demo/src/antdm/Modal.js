@@ -1,4 +1,4 @@
-import { Modal, Button } from 'antd-mobile';
+import { Modal, Button, SearchBar } from 'antd-mobile';
 
 export default React.createClass({
   getInitialState() {
@@ -26,6 +26,9 @@ export default React.createClass({
           onClose={this.onClose}
           visible={this.state.visible}
         >
+          <div>
+            <SearchBar placeholder="搜索" />
+          </div>
           <div style={{ marginTop: 500, padding: 20 }}>
             <input type="text" style={{ border: '1px solid #ccc' }} />
           </div>

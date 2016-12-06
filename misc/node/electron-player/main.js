@@ -2,7 +2,7 @@ const {app, BrowserWindow} = require('electron');
 let mainWindow
 
 function createWindow () {
-  mainWindow = new BrowserWindow({width: 1100, height: 760})
+  mainWindow = new BrowserWindow({width: 1100, height: 700})
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${__dirname}/index.html`)
   // Open the DevTools.

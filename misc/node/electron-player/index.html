@@ -9,8 +9,11 @@
     html, body { height: 100%; overflow: hidden; }
     /* 16:9 ~= 1080:600 主流视频尺寸 */
     #mvideo { width: 1080px; height: 600px; margin: 10px auto; }
-    #playlist { width: 100%; height: 80px; overflow: auto; }
-    #playlist .item { background-color: #4a4a4a; color: #fff; padding: 10px; border-bottom: 1px solid #fff; }
+    .list-container { position: absolute; top: 30px; right: 20px; z-index: 999; color: white; }
+    .list-container > span { cursor: pointer; }
+    .list-container a { text-align: right; }
+    #playlist { width: 100%; max-height: 600px; overflow: auto; }
+    #playlist .item { background-color: rgba(99,99,99,.5); padding: 10px; border-bottom: 1px solid #fff; }
     #playlist p { margin: 0; }
     #playlist p:first-child { margin-bottom: 10px; }
     #playlist .playing { background-color: #6b6b56; }
@@ -21,7 +24,10 @@
     class="video-js vjs-default-skin vjs-big-play-centered"
     controls>
   </video>
-  <div id="playlist"></div>
+  <div class="list-container">
+    <span data-toggle="collapse" href="#playlist">显示/隐藏播放列表</span>
+    <div class="collapse" id="playlist"></div>
+  </div>
   <script src="http://vjs.zencdn.net/5.11.6/video.min.js"></script>
   <script src="http://localhost/__/misc/ksweb/assets/videojs-dock.js"></script>
   <script src="assets/videojs.hotkeys.min.js"></script>
@@ -31,4 +37,6 @@
   // You can also require other files to run in this process
   require('./renderer.js')
 </script>
+<link rel="stylesheet" href="http://localhost/__/misc/chrome-extension/blank_ntp/vendor/bootstrap/css/bootstrap.css">
+<script src="http://localhost/__/misc/chrome-extension/blank_ntp/vendor/bootstrap/js/bootstrap.js"></script>
 </html>

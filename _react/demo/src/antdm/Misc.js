@@ -7,9 +7,10 @@ export default class Misc extends React.Component{
   render() {
     return (<div>
       <NavBar
-        leftContent="返回" mode="dark"
+        leftContent="返回" mode="light"
         onLeftClick={() => alert('onLeftClick') }
         rightContent={[
+          <Icon key="0" type="retweet" />,
           <Icon key="1" type="search" />,
           <Button key="2" type="primary" inline onClick={(e) => alert(e.toString()) }>Start</Button>
         ]}
