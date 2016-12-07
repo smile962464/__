@@ -4,31 +4,31 @@
   <meta charset="UTF-8" />
   <title></title>
   <script src="./viewport.js"></script>
-  <link rel="stylesheet" href="./antd-mobile.css">
+  <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/antd-mobile@0.9.11/dist/antd-mobile.css">
 </head>
 <body>
   <div id="root"></div>
-  <script src="https://as.alipayobjects.com/g/component/react/15.3.2/react.js"></script>
-  <script src="https://as.alipayobjects.com/g/component/react/15.3.2/react-dom.js"></script>
-  <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js"></script>
-  <script src="./antd-mobile.js"></script>
+  <script src="//cdn.bootcss.com/react/15.4.1/react.js"></script>
+  <script src="//cdn.bootcss.com/react/15.4.1/react-dom.js"></script>
+  <script src="https://unpkg.com/antd-mobile@0.9.11/dist/antd-mobile.js"></script>
   <script type="text/jsx">
     console.log(window['antd-mobile'])
-    const Button = window['antd-mobile'].Button;
+    const SearchBar = window['antd-mobile'].SearchBar;
     const App = React.createClass({
       render() {
-        return <Button loading>button</Button>
+        return <SearchBar placeholder="pp" />
       }
     });
     ReactDOM.render(<App />, document.getElementById('root'));
   </script>
   <script>
-  if ('addEventListener' in document) {
-    window.addEventListener('load', function() {
-      FastClick.attach(document.body);
-    }, false);
-  }
+    if ('addEventListener' in document) {
+      window.addEventListener('load', function() {
+        FastClick.attach(document.body);
+      }, false);
+    }
   </script>
 </body>
 
