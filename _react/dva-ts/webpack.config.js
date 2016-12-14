@@ -10,6 +10,11 @@ module.exports = function(webpackConfig, env) {
     webpackConfig.babel.plugins.push('dva-hmr');
   } else {
     webpackConfig.babel.plugins.push('dev-expression');
+    webpackConfig.externals = {
+      // Use external version of React
+      "react": "React",
+      "react-dom": "ReactDOM"
+    };
   }
 
   // Don't extract common.js and common.css
