@@ -17,6 +17,9 @@ tnpm view <pkgname> versions
 
 node module version example: 1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.2 < 1.0.0-beta.11 < 1.0.0-rc.1 < 1.0.0
 
+peerDependencies: 
+[npm2-npm3](https://codingwithspike.wordpress.com/2016/01/21/dealing-with-the-deprecation-of-peerdependencies-in-npm-3/)
+
 #### npm link
 cd ~/projects/proj1  # go into the dir of your main project
 npm link ../proj2     # link the dir of your dependency

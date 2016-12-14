@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>demo</title>
+  <meta charset="utf-8" />
+  <!--<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />-->
+  <script src="./hd.js"></script>
+</head>
+<body>
+  <div id="ua" style="font-size:36px;"></div>
+  <button id="btn" style="width:200px;height:150px;font-size:36px;border:1px solid #ccc;">点我</button>
+  <div id="log"></div>
+  <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+  <script>
+    /**
+     https://github.com/ftlabs/fastclick
+
+     设置 `<meta name="viewport" content="width=device-width, initial-scale=1">` 后，
+     Chrome 32+ on Android 和 iOS 10
+     都不会再有 300ms 延迟，可以不使用 fastclick
+    */
+
+    if ('addEventListener' in document) {
+      window.addEventListener('load', function() {
+
+        var logId = 0;
+        var tsTime;
+        document.getElementById('btn').addEventListener('touchstart', function() {
+          tsTime = new Date().getTime();
+          // console.log(tsTime)
+        })
+        document.getElementById('btn').addEventListener('click', function() {
+          // console.log(new Date().getTime())
+          document.getElementById('log').innerHTML =
+            logId++ + ' 点击延迟：' + (new Date().getTime() - tsTime);
+        })
+
+        FastClick.attach(document.body);
+      }, false);
+    }
+  </script>
+  <script>
+    document.getElementById('ua').innerHTML = navigator.userAgent;
+  </script>
+</body>
+</html>

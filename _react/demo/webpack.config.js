@@ -22,8 +22,9 @@ var babelQuery = {
     ]]
   ],
   presets: [
-    'es2015-loose',
-    // 'es2015',
+    // 'es2015-loose',
+    'es2015',
+    'stage-0',
     'react'
   ]
 };

@@ -18,6 +18,8 @@ git remote add origin git@xxx.git        加入服务器
 git remote -v  列出现有的远程地址
 git remote set-url origin xxx 改变远程地址为xxx
 
+git mv --force myfile MyFile  # Mac 下文件名大小写不敏感，这样改文件名
+
 ### 回退恢复：
 你的修改就可能存在三块区域中，working tree、index或者commit之后的历史对象区域。
 
@@ -103,6 +105,7 @@ git submodule update
 ### log
 git log
 git log -p -2 显示最近的两次更新
+git log --stat 显示文件更改的统计结果
 
 git diff [version1] [version2]  查看版本差异
 
@@ -211,15 +214,6 @@ git add -A              加入new delete modify过的文件
 git commit -m "xxx"     提交  
 git commit -a           将modify过的文件提交，自动打开编辑器  
 git commit -am "xxx"   将modify过的文件提交并注释，不必再用git add  
-
-
-## 其他问题
-
-由于Mac下文件名大小写不敏感，造成git下如果改了名字，譬如小写改大些，推送到linux服务器的时候会没有效果，Github上的也是小写。 所以，如果在mac上改文件名，需要用下面的命令
-
-    $ git mv --force myfile MyFile
-
-加入ignore的文件或目录已存在，先清空cache： git rm -r --cached node_modules
 
 
 
