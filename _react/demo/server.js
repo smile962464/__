@@ -35,7 +35,8 @@ function makeTpl(file) {
   <head>
     <meta charset="utf-8">
     <title>${file}</title>
-    <script src="/viewport.js"></script>
+    <!-- 高清方案脚本 -->
+    <script src="https://os.alipayobjects.com/rmsportal/lvEQQbNgHsIxVfXLkmuX.js"></script>
     <link rel="stylesheet" href="/dist/${file}.css">
   </head>
   <body>

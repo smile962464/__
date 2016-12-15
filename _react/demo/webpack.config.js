@@ -42,24 +42,11 @@ module.exports = {
     publicPath: '/dist/'
   },
 
-  externals: {
-    // Use external version of React
-    "react": "React",
-    "react-dom": "ReactDOM"
-  },
-
   resolve: {
     modulesDirectories: ['node_modules', path.join(__dirname, '../node_modules')],
     extensions: ['', '.web.js', '.js', '.json'],
   },
-  postcss: [
-    autoprefixer({
-      browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4'],
-    }),
-    pxtorem({ rootValue: 100, propWhiteList: [] })
-  ],
   babel: babelQuery,
-
   module: {
     noParse: [/moment.js/],
     loaders: [
@@ -71,6 +58,17 @@ module.exports = {
       { test: /\.less$/i, loader: ExtractTextPlugin.extract('style', 'css!postcss!less') },
       { test: /\.css$/i, loader: ExtractTextPlugin.extract('style', 'css!postcss') }
     ]
+  },
+  postcss: [
+    autoprefixer({
+      browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4'],
+    }),
+    pxtorem({ rootValue: 100, propWhiteList: [] })
+  ],
+  externals: {
+    // Use external version of React
+    "react": "React",
+    "react-dom": "ReactDOM"
   },
 
   plugins: [

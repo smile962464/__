@@ -8,8 +8,8 @@ export interface HelloProps {
 export class TsExample extends React.Component<HelloProps, {}> {
   render() {
     return (<div>
-      <h1>Hello this is {this.props.compiler} + antd-mobile demo!</h1>
-      <Button>Start</Button>
+      <h1>This is {this.props.compiler} + antd-mobile demo!</h1>
+      <Button loading>Start</Button>
     </div>);
   }
 }
