@@ -12,8 +12,6 @@
 - git pull -p
 - git fetch -p (git fetch origin --prune) remove all your local branches which are remotely deleted.
 
-撤销`git pull`：git reset --hard
-
 git remote add origin git@xxx.git        加入服务器
 git remote -v  列出现有的远程地址
 git remote set-url origin xxx 改变远程地址为xxx
@@ -22,6 +20,8 @@ git mv --force myfile MyFile  # Mac 下文件名大小写不敏感，这样改�
 
 ### 回退恢复：
 你的修改就可能存在三块区域中，working tree、index或者commit之后的历史对象区域。
+
+撤销`git pull`：git reset --hard
 
 #### working tree (add之前)
 - use "git checkout -- <file>..." to discard changes in working directory

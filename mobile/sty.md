@@ -1,4 +1,12 @@
 
+### 兼容性问题
+
+```html
+<label><input type="checkbox" />点击我 input 能被选中</label>
+<label><input type="checkbox" /><span>点击我 input 不能被选中，因为有 span 包括</span></label>
+此问题出现在包括 iOS 10 在内的大多数手机系统里；另外部分手机会出现点击选中延迟感严重的问题
+```
+
 ### scroll 事件问题
 - ios上scroll事件，只在scroll结束时触发（ios < 8），安卓会一直触发。
 - iOS < 8 pauses painting during scrolling.
@@ -6,7 +14,6 @@
 - [iOS 与 惯性滚动](https://fe.ele.me/momentum-scrolling-on-ios/)
 
 iScroll：并没有监听`onscroll`事件。
-
 
 ### Touch事件穿透问题研究
 click事件在手机浏览器中的触发顺序：touchstart -> touchmove -> touchend -> click
