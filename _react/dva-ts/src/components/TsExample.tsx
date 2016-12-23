@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button } from 'antd-mobile';
+import { Button, SearchBar } from 'antd-mobile';
 
 export interface HelloProps {
   compiler: string;
@@ -10,6 +10,7 @@ export class TsExample extends React.Component<HelloProps, {}> {
     return (<div>
       <h1>Hello this is {this.props.compiler} + antd-mobile demo!</h1>
       <Button>Start</Button>
+      <SearchBar />
     </div>);
   }
 }
