@@ -10,19 +10,42 @@
   </script>
   <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/antd-mobile@0.9.11/dist/antd-mobile.css">
+  <link rel="stylesheet" href="https://unpkg.com/antd-mobile@1.0.0-alpha.38/dist/antd-mobile.css">
 </head>
 <body>
   <div id="root"></div>
-  <script src="//cdn.bootcss.com/react/15.4.1/react.js"></script>
-  <script src="//cdn.bootcss.com/react/15.4.1/react-dom.js"></script>
-  <script src="https://unpkg.com/antd-mobile@0.9.11/dist/antd-mobile.js"></script>
+  <script src="//cdn.bootcss.com/react/15.4.1/react.min.js"></script>
+  <script src="//cdn.bootcss.com/react/15.4.1/react-dom.min.js"></script>
+  <script src="https://unpkg.com/antd-mobile@1.0.0-alpha.38/dist/antd-mobile.js"></script>
+  <script src="./data.js"></script>
   <script type="text/jsx">
     console.log(window['antd-mobile'])
     const SearchBar = window['antd-mobile'].SearchBar;
+    const Picker = window['antd-mobile'].Picker;
+    const List = window['antd-mobile'].List;
+    const CheckboxItem = window['antd-mobile'].Checkbox.CheckboxItem;
     const App = React.createClass({
+      getInitialState() {
+        return {
+          pickerValue: [],
+        };
+      },
       render() {
-        return <SearchBar placeholder="pp" />
+        return <div>
+          <SearchBar placeholder="pp" />
+          <List>
+            <CheckboxItem onChange={(e) => {console.log('checkbox', e);}}>CheckboxItem</CheckboxItem>
+            <Picker
+              data={window.data.picker}
+              title="选择地区"
+              extra="请选择(可选)"
+              value={this.state.pickerValue}
+              onChange={(v) => this.setState({ pickerValue: v })}
+            >
+              <List.Item arrow="horizontal">省市区选择</List.Item>
+            </Picker>
+          </List>
+        </div>
       }
     });
     ReactDOM.render(<App />, document.getElementById('root'));

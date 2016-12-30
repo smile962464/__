@@ -1,4 +1,4 @@
-import { Popup, List, Button, Icon } from 'antd-mobile';
+import { Popup, List, Button, Icon, Checkbox } from 'antd-mobile';
 
 const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
 let wrapProps;
@@ -18,7 +18,7 @@ export default React.createClass({
     Popup.show(<div>
       <List renderHeader={() => (
         <div style={{ position: 'relative' }}>
-          委托买入
+          委托买入 <Checkbox onChange={() => console.log('ccc')}>Checkbox</Checkbox>
           <span
             style={{
               position: 'absolute', right: 3, top: -5,
@@ -33,6 +33,7 @@ export default React.createClass({
         <List.Item>股票代码</List.Item>
         <List.Item>买入价格</List.Item>
         <List.Item>买入数量</List.Item>
+        <Checkbox.CheckboxItem onChange={() => console.log('ccc')}>Checkbox</Checkbox.CheckboxItem>
       </List>
       <ul style={{ padding: '0.18rem 0.3rem' }}>
         <li>投资说明投资说明...</li>

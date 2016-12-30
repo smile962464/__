@@ -1,9 +1,11 @@
-import { Picker, DatePicker, List } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import moment from 'moment'; // moment.min ~= 48kb
+import { district } from 'antd-mobile-demo-data';
+
+import { Picker, DatePicker, List, Checkbox } from 'antd-mobile';
 import enUs from 'antd-mobile/lib/date-picker/locale/en_US';
 
-import district from './district';
+const CheckboxItem = Checkbox.CheckboxItem;
 
 // 如果不是使用 List.Item 作为 children
 const CustomChildren = (props) => {
@@ -32,6 +34,9 @@ let Test = React.createClass({
     const { pickerValue, dpValue } = this.state;
     return (<div className="form">
       <List renderHeader={() => <b>选择时间</b>}>
+        <CheckboxItem onChange={(e) => console.log('checkbox', e)}>
+          CheckboxItem
+        </CheckboxItem>
         <Picker extra="请选择(可选)" data={district} title="选择地区" {...getFieldProps('district', {
           initialValue: ['340000', '340800', '340824'],
         })}

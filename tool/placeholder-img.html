@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+  <script src="http://cdn.bootcss.com/placeholder.js/3.1.0/placeholder.js"></script>
+</head>
+<body>
+  <a href="https://github.com/hustcc/placeholder.js">https://github.com/hustcc/placeholder.js</a><hr />
+  <form>
+    size: <input id="size" value="375x200" />
+    text: <input id="text" value="text" />
+    bgcolor: <input id="bgcolor" value="#ccc" /> (#0D8FDB #39DBAC #F8591A)
+  </form>
+  <img id="img" src="" />
+  <script>
+    var opts = {
+      size: '375x200',
+      bgcolor: '#ccc',
+      color: 'white',
+      text: 'text',
+      fstyle:'oblique',
+      fweight: 'normal',
+      fsize:'30',
+      ffamily: 'consolas'
+    };
+    function create() {
+      document.getElementById('img').setAttribute('src', placeholder.getData(opts));
+    }
+    create();
+    ['text', 'bgcolor'].forEach(function(i) {
+      document.getElementById(i).addEventListener('input', function() {
+        opts[i] = this.value;
+        create();
+      });
+    });
+  </script>
+</body>
+</html>

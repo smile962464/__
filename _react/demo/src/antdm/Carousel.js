@@ -1,39 +1,26 @@
-import { Carousel, Flex } from 'antd-mobile';
+import { Carousel } from 'antd-mobile';
 
-export default class My extends React.Component{
+export default class My extends React.Component {
   render() {
-    const settings = {
-      dots: true,
-      autoplay: true,
-      infinite: true,
-      selectedIndex: 2,
-      beforeChange: (from, to) => {
-        console.log(`slide from ${from} to ${to}`);
+    const data = [
+      {
+        img: 'http://img.fancyedu.com/sys/ic/operation/1482377088291_banner1.png',
+        link: 'lessonDetail'
       },
-      afterChange: (index) => {
-        console.log('slide to', index);
+      {
+        img: 'http://img.fancyedu.com/sys/ic/operation/1482377088291_banner1.png',
+        link: 'lessonDetail'
       },
-    };
+      {
+        img: 'http://img.fancyedu.com/sys/ic/operation/1482377088291_banner1.png',
+        link: 'lessonDetail'
+      }
+    ];
     return (
-      <Carousel {...settings}>
-        <Flex
-          justify="center"
-          style={{ height: 360 }}
-        >
-          <h3>Carousel 1</h3>
-        </Flex>
-        <Flex
-          justify="center"
-          style={{ height: 360 }}
-        >
-          <h3>Carousel 2</h3>
-        </Flex>
-        <Flex
-          justify="center"
-          style={{ height: 360 }}
-        >
-          <h3>Carousel 3</h3>
-        </Flex>
+      <Carousel dots infinite selectedIndex={1} className="xxx" style={{ backgroundColor: 'blue', margin: 10 }}>
+        {data.map((d, i) => {
+          return <a href={d.link} key={i}><img style={{ verticalAlign: 'top' }} src={d.img}/></a>;
+        })}
       </Carousel>
     );
   }
