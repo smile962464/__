@@ -17,8 +17,7 @@ var babelQuery = {
     // ["import", { "style": "css", "libraryName": "antd-mobile" }]
     ["import", [
       { "style": "css", "libraryName": "antd" },
-      // true 使用 less , 而不是编译后的 css
-      { "style": true, "libraryName": "antd-mobile" }
+      { "style": "css", "libraryName": "antd-mobile" }
     ]]
   ],
   presets: [
