@@ -8,7 +8,6 @@ var webpackDevMiddleware = require('webpack-dev-middleware')
 var webpack = require('webpack')
 var WebpackConfig = require('./webpack.config')
 var ens = require('./scripts/getEntry');
-// WebpackConfig.entry = ens;
 
 // 给每个 entry 添加 babel-polyfill 支持
 for (var key in ens) {
@@ -63,7 +62,6 @@ var _dir = path.join(__dirname, './src');
 fs.readdirSync(_dir).forEach(function (file) {
   var st = fs.statSync(path.join(_dir, file))
   if (st.isDirectory()) {
-    // app.use(rewrite('/' + file + '/*', '/' + file + '/index.html'))
     app.get('/' + file, function(req, res) {
       res.send(makeTpl(file))
     })

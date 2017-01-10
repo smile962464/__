@@ -1,36 +1,24 @@
 var path = require('path')
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-// multiple extract instances
-// var extractCSS = new ExtractTextPlugin('[name].css', { allChunks: true });
-// var extractLESS = new ExtractTextPlugin('[name].less', { allChunks: true });
-
 var autoprefixer = require('autoprefixer');
 var pxtorem = require('postcss-pxtorem');
 
 var babelQuery = {
   plugins: [
-    // ["transform-react-inline-elements"],
     ["external-helpers"],
     ["babel-plugin-transform-runtime", { polyfill: false }],
     ["transform-runtime", { polyfill: false }],
-    // ["import", { "style": "css", "libraryName": "antd-mobile" }]
     ["import", [
       { "style": "css", "libraryName": "antd" },
       { "style": "css", "libraryName": "antd-mobile" }
     ]]
   ],
-  presets: [
-    // 'es2015-loose',
-    'es2015',
-    'stage-0',
-    'react'
-  ]
+  presets: ['es2015', 'stage-0', 'react']
 };
 
 module.exports = {
-  // devtool: 'inline-source-map',
-  devtool: 'source-map',
+  devtool: 'source-map', // or 'inline-source-map'
 
   entry: [],
 
@@ -65,7 +53,6 @@ module.exports = {
     pxtorem({ rootValue: 100, propWhiteList: [] })
   ],
   externals: {
-    // Use external version of React
     "react": "React",
     "react-dom": "ReactDOM"
   },
