@@ -27,6 +27,7 @@ module.exports = {
       {
         test: /\.js$/, exclude: /node_modules/, loader: 'babel',
         query: {
+          presets: ['es2015', 'stage-0', 'react'],
           plugins: [
             ["external-helpers"],
             ["babel-plugin-transform-runtime", { polyfill: false }],
@@ -35,8 +36,7 @@ module.exports = {
               { "style": "css", "libraryName": "antd" },
               { "style": "css", "libraryName": "antd-mobile" }
             ]]
-          ],
-          presets: ['es2015', 'stage-0', 'react']
+          ]
         }
       },
       { test: /\.(jpg|png|svg)$/, loader: "url?limit=8192" }, //把不大于8kb的图片打包处理成Base64
