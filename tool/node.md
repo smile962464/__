@@ -1,30 +1,37 @@
 
 ### npm命令：
+> 地址：https://docs.npmjs.com/cli/install  
+> npm help install
 
+```
 npm install tnpm -g --registry="http://registry.npm.alibaba-inc.com"
 
-- npm init -f
-- npm install/i xx -g (-f)
-- npm i --save-dev xx
-- npm rm/uninstall xx -g
+npm init [-f]  # 用 -f 不弹出选项框、直接生成默认文件
+npm install / i <pkg> [-g | -S|--save| -D|--save-dev ]
+npm uninstall / rm <pkg> [-g | -S|--save| -D|--save-dev ]
 
-- npm root/prefix -g  -- 全局安装包位置。
-- npm help install/cache
-- npm cache clean [模块名]
+npm view <pkg> version(s)  # 查看模块的版本
+npm ls [-g]  # 查看当前安装模块的版本
 
-tnpm info <pkgname>
-tnpm view <pkgname> versions
+npm repo / bugs / docs [<pkgname>]  # 浏览器自动打开提交 repo / bug / docs 的地址
+npm bin [-g]  # 可执行文件位置
+npm root/prefix [-g]  # 全局安装包位置
+ls `npm root -g`  # 列出全局安装的模块列表
+
+npm owner add <user> [<@scope>/]<pkg>
+npm owner ls [<@scope>/]<pkg>
+npm outdated  # 包是否过时
+npm cache clean [<pkgname>]
+
+npm link
+cd ~/projects/proj1  # go into the dir of your main project
+npm link ../proj2     # link the dir of your dependency
+```
 
 node module version example: 1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.2 < 1.0.0-beta.11 < 1.0.0-rc.1 < 1.0.0
 
 peerDependencies: 
 [npm2-npm3](https://codingwithspike.wordpress.com/2016/01/21/dealing-with-the-deprecation-of-peerdependencies-in-npm-3/)
-
-#### npm link
-cd ~/projects/proj1  # go into the dir of your main project
-npm link ../proj2     # link the dir of your dependency
-
-> proj1 and proj2 are siblings
 
 ### nvm管理多个node版本
 - 手动安装：`git clone git@gitlab.alibaba-inc.com:node/nvm.git ~/.nvm`
