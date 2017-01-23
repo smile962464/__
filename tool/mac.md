@@ -1,5 +1,7 @@
 # mac
 
+[macOS Sierra 安装 opencv 最简单方法](http://www.pyimagesearch.com/2016/12/19/install-opencv-3-on-macos-with-homebrew-the-easy-way/) 
+
 在桌面生成软连接（快捷方式）：
 
     ln -s /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app ~/Desktop

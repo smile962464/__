@@ -1,37 +1,54 @@
 
 
-### 常用命令
+### 常用
+> man 查看命令帮助文档。 例如：使用 man ascii 来查看 ASCII 表。
 
-    man 查看命令帮助文档。 例如：使用 man ascii 来查看 ASCII 表。
+```
+# 命令行快捷键
 
-    lsof -i:8087   # 查找出占用了某个端口的程序和其对应的PID
-    kill -9 *pid*  # 强制杀掉进程
-    chmod u+x test.sh    # 修改权限，脚本可执行
-    
-    mv ./filename ./filename  # 移动文件/目录，重命名文件
-    echo textsss > ./mm.txt  # 覆盖文件原内容并重新输入内容，若文件不存在则创建文件
-    echo textsss >> ./mm.txt  # 向文件追加内容，原内容将保存
+ctrl+c 退出某进程（不是command键）
+Ctrl+r 查找输入过的命令
+cammand+k / ctrl + l / clear  #清屏
+删除前一个单词：crtl + w
+移动到所在行首：ctrl + a
+移动到所在行尾：ctrl + e
+清除光标到行首的内容：ctrl + u
+清除光标到行尾的内容：ctrl + k
+移动到所在单词的词首：esc + b
+移动到所在单词的词尾：esc + f
 
-    cat [-n] filename  # 由第一行开始显示档案内容, n 显示行号
-    more filename # 一页一页的显示档案内容. less 与 more 类似，而且可以往前翻页
-    history 10 # 列出最近执行过10条的命令，默认放在 .bash_history 文件中，默认保存1000条(可以修改)
-    history | more # 逐屏列出所有的历史记录，!99 执行历史清单中的第99条命令
+# 命令
 
-    head filename 只看头几行(默认10行)
-    head -n 20 ~/.bashrc 显示头二十行！
-    tail filename 只看尾巴几行(默认10行) 
-    tail -n 5 ~/.bashrc 只显示最后面五行
+lsof -i:8087   # 查找出占用了某个端口的程序和其对应的PID
+kill -9 *pid*  # 强制杀掉进程
+chmod u+x test.sh    # 修改权限，脚本可执行
 
-    dig [IP地址/域名] +short  # 查询DNS包括NS记录，A记录，MX记录等相关信息的工具
-    nslookup [IP地址/域名]  # 查询一台机器的IP地址和其对应的域名
-    mtr # 诊断路由节点问题，如丢包、网站访问慢、结合了"traceroute"和"ping"功能。下载地址 http://rudix.org/packages/mtr.html
-    mtr -r [IP地址/域名]  # 以报告模式显示：从我的主机到目标主机经过的路由节点以及到各节点数据包的丢包率和ping命令的最短/最长时间和标准偏差。 
-    # mtr 详细：https://meiriyitie.com/2015/05/26/diagnosing-network-issues-with-mtr/
+mv ./filename ./filename  # 移动文件/目录，重命名文件
+echo textsss > ./mm.txt  # 覆盖文件原内容并重新输入内容，若文件不存在则创建文件
+echo textsss >> ./mm.txt  # 向文件追加内容，原内容将保存
 
-    w / who # 列出当前登录的所有用户
-    whoami # 显示当前正进行操作的用户名
-    tty # 显示终端或伪终端的名称
-    last # 查看系统最后登录
+cat [-n] filename  # 由第一行开始显示档案内容, n 显示行号
+more filename # 一页一页的显示档案内容. less 与 more 类似，而且可以往前翻页
+history 10 # 列出最近执行过10条的命令，默认放在 .bash_history 文件中，默认保存1000条(可以修改)
+history | more # 逐屏列出所有的历史记录，!99 执行历史清单中的第99条命令
+
+head filename 只看头几行(默认10行)
+head -n 20 ~/.bashrc 显示头二十行！
+tail filename 只看尾巴几行(默认10行) 
+tail -n 5 ~/.bashrc 只显示最后面五行
+
+dig [IP地址/域名] +short  # 查询DNS包括NS记录，A记录，MX记录等相关信息的工具
+nslookup [IP地址/域名]  # 查询一台机器的IP地址和其对应的域名
+mtr # 诊断路由节点问题，如丢包、网站访问慢、结合了"traceroute"和"ping"功能。下载地址 http://rudix.org/packages/mtr.html
+mtr -r [IP地址/域名]  # 以报告模式显示：从我的主机到目标主机经过的路由节点以及到各节点数据包的丢包率和ping命令的最短/最长时间和标准偏差。 
+# mtr 详细：https://meiriyitie.com/2015/05/26/diagnosing-network-issues-with-mtr/
+
+w / who # 列出当前登录的所有用户
+whoami # 显示当前正进行操作的用户名
+tty # 显示终端或伪终端的名称
+last # 查看系统最后登录
+alias # 查看系统里别名
+```
 
 ### curl
 jsonp： curl https://api.github.com?callback=foo
@@ -152,14 +169,6 @@ Linux分为内核版、发行版。比较常用的发行版有 redhat、ubuntu �
 shell是一个命令行解释器。shell是壳，linux是内核。shell把用户敲进去的命令、翻译为linux内核能识别的语言。
 linux下有些命令是shell自带的，有些命令是别人写好装进来的(如ls)，用 whereis ls 来区别。
 
-- alias 查看系统里别名
-- ctrl+c 退出某进程（不是command键）
-- Ctrl+r 查找输入过的命令
-- clear / cammand+k -- 清屏
-- Ctrl+a 跳到行首
-- Ctrl+e 跳到行尾
-- Ctrl+u 删除光标位置以前的字符
-- Ctrl+k 删除光标位置以后的字符
 
 输出重定向：>  >>  &>  &>>  2>&1
 正确输出和错误输出同时保存：  
