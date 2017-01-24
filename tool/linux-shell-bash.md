@@ -48,6 +48,8 @@ whoami # 显示当前正进行操作的用户名
 tty # 显示终端或伪终端的名称
 last # 查看系统最后登录
 alias # 查看系统里别名
+date # 显示系统的当前日期和时间
+say hello world  # 说话
 ```
 
 ### curl
