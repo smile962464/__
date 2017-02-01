@@ -99,6 +99,16 @@
       ele.innerHTML += '<br /><br />' + args.join(' ');
     }
 
+    // generate current date string  e.g. 20170101
+    function genDateStr() {
+      var date = new Date();
+      var mday = date.getDate();
+      var month = date.getMonth() + 1;
+      month = month < 10 ? '0' + month : month;
+      mday = mday < 10 ? '0' + mday : mday;
+      return '' + date.getFullYear() + month + mday;
+    }
+
     // 获取url的查询参数如 '?a=1&b=2'
     $.urlParam = function(name) {
       var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);

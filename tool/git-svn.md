@@ -1,16 +1,17 @@
 
 # git
 
-工作区(working tree)，暂存区（index）
+> git-tips: https://github.com/git-tips/tips
 
+```sh
 如果你需要将自己开发分支上的某个 commit 快速提供给其他人用，但该分支上的其他 commit 不想 push：
 
-- git checkout develop 切换到 dev 分支，也可以新建个 feature 分支
-- git cherry-pick 62ecb3 将目标 commit pick 到 develop 上
-- cherry-pick 一般用于将 bugfix commit pick 到不同版本上。
+git checkout develop 切换到 dev 分支，也可以新建个 feature 分支
+git cherry-pick 62ecb3 将目标 commit pick 到 develop 上
+cherry-pick 一般用于将 bugfix commit pick 到不同版本上。
 
-- git pull -p
-- git fetch -p (git fetch origin --prune) remove all your local branches which are remotely deleted.
+git pull -p
+git fetch -p (git fetch origin --prune) remove all your local branches which are remotely deleted.
 
 git remote add origin git@xxx.git        加入服务器
 git remote -v  列出现有的远程地址
@@ -19,18 +20,15 @@ git remote set-url origin xxx 改变远程地址为xxx
 git mv --force myfile MyFile  # Mac 下文件名大小写不敏感，这样改文件名
 
 ### 回退恢复：
-你的修改就可能存在三块区域中，working tree、index或者commit之后的历史对象区域。
-
-撤销`git pull`：git reset --hard
 
 #### working tree (add之前)
-- use "git checkout -- <file>..." to discard changes in working directory
-- git checkout .
+use "git checkout -- <file>..." to discard changes in working directory
+git checkout .
 
-- git clean -df  Remove untracked directories in addition to untracked files.
-- git clean -xdf 删除所有 .gitignore 里指定的文件或目录，包括新建文件、node_modules 等
-- git clean -f  删除untracked files（即远程仓库没有这个文件，新加的文件）
-- git clean -f -n
+git clean -df  Remove untracked directories in addition to untracked files.
+git clean -xdf 删除所有 .gitignore 里指定的文件或目录，包括新建文件、node_modules 等
+git clean -f  删除untracked files（即远程仓库没有这个文件，新加的文件）
+git clean -f -n
 
 #### index内的回滚 (commit之前)
 git reset
@@ -40,8 +38,8 @@ git reset HEAD^ a.py    回退a.py这个文件的版本到上一个版本
 git reset 057d    回退到某个版本  
 
 #### commit之后的回滚
---soft 不修改本地文件
---hard 本地的文件修改都被丢弃
+git reset --soft 不修改本地文件
+git reset --hard 本地的文件修改都被丢弃
 
 git reset --soft HEAD^    撤销commit，重新做
 git reset --hard 057d    回退到某个版本（本地的文件修改都被丢弃）  
@@ -56,36 +54,13 @@ $ git checkout topic/wip   (3) 切换到wip分支，继续工作
 git reflog       生成某个串，例如98abc5a  
 git reset --hard 98abc5a  
 
-
-### 暂存未提交的修改
-使用git stash保存当前的工作现场，那么就可以切换到其他分支进行工作，
-或者在当前分支上完成其他紧急的工作，比如修订一个bug测试提交
-
-git stash                   隐藏未提交的修改  
-git stash pop               恢复上次未提交的修改  
-git stash list              列出各个stash版本  
-git stash apply stash@{1}   恢复到某个stash版本  
-
-
-### rebase操作
-
-[指定rebase到某个commit](https://blog.yorkxin.org/posts/2011/07/29/git-rebase/)：  
-git rebase --onto <new base-commit> <current base-commit>
-
-http://shzhangji.com/blog/2014/12/23/use-git-rebase-to-clarify-history/
-
-git pull === git fetch + git merge
-git pull --rebase === git fetch + git rebase
-
-- 开发分支rebase主分支：git pull --rebase origin master
-- git rebase --continue
-- git rebase --abort
-- git rebase -i  重写历史
-- 回滚一个 rebasing：使用 git reflog 查看 git 操作历史，然后强制 reset head。
-
+git stash                   # 暂存未提交的修改
+git stash pop               # 恢复上次未提交的修改  
+git stash list              # 列出各个 stash 版本  
+git stash apply stash@{1}   # 恢复到某个stash版本
+git stash clear / drop <stash@{n}>     # 清除所有或某个stash版本
 
 ### submodule
-[详解](http://www.kafeitu.me/git/2012/03/27/git-submodule.html)
 
 #### 初始化
 git submodule add git@mygithost:billboard lib/billboard
@@ -95,9 +70,9 @@ git submodule update
 #### 操作
 带有submodule的某个仓库里，其中自己的分支 branch1 合并来自其他分支 branch2 的修改，
 发现两个分支的 submodule 的 HEAD 引用不同：
-  - 要使用 branch1（自己原本的），不进行操作
-  - 要使用 branch2 分支的 submodule，运行：`git submodule update`
-  - 如果这两个分支的submodule 引用可能都不是最新、最稳定的；进入submodule目录，运行`git push origin master`拉取submodule稳定版本。
+  要使用 branch1（自己原本的），不进行操作
+  要使用 branch2 分支的 submodule，运行：`git submodule update`
+  如果这两个分支的submodule 引用可能都不是最新、最稳定的；进入submodule目录，运行`git push origin master`拉取submodule稳定版本。
 然后`git add [submodule path]`，再推送上去
 
 [submodules增删改](https://chrisjean.com/git-submodules-adding-using-removing-and-updating/)
@@ -108,6 +83,8 @@ git log -p -2 显示最近的两次更新
 git log --stat 显示文件更改的统计结果
 
 git diff [version1] [version2]  查看版本差异
+gitk              查看仓库的各类信息的gui  
+gitk --all
 
 ### 分支
 git branch    列出分支清单（分支前的 * 字符：表示当前所在的分支）  
@@ -144,7 +121,7 @@ git push origin :refs/tags/0.0.1   删除远程标签
 git checkout tag_name  检出标签
 
 ### fork & pull request
-- [pull request](http://www.worldhello.net/gotgithub/04-work-with-others/010-fork-and-pull.html)
+[pull request](http://www.worldhello.net/gotgithub/04-work-with-others/010-fork-and-pull.html)
 
 1、点击github上要fork的仓库的fork按钮，本地repo会有一份拷贝  
 2、clone一份到本地：git clone git@github.com:[your_username]/xxx.git  
@@ -164,20 +141,13 @@ git checkout tag_name  检出标签
     git merge upstream/master
 
 
-### 查看状态：
-ls                      查看本地文件  
-git status
-git config                      配置个人信息  
-gitk                       查看仓库的各类信息的gui  
-gitk --all
-
-
-
-生成ssh key: ssh-keygen -t rsa -C "your_email@youremail.com"
-
 ### 配置：
+git config                # 配置个人信息  
 git config --global alias.st status
 git config --global color.ui true
+git config --global core.ignorecase false  # Make git case sensitive
+
+生成ssh key: ssh-keygen -t rsa -C "your_email@youremail.com"
 
 #### .gitconfig 文件内容示例
 
@@ -193,20 +163,24 @@ git config --global color.ui true
     [push]
       default = simple
 
+### rebase操作
+
+git rebase --onto <new base-commit> <current base-commit>
+
+开发分支rebase主分支：
+git pull --rebase origin master
+git rebase --continue
+git rebase --abort
+git rebase -i  重写历史
 
 ### 存取操作：
-touch xx                                 创建文件  
-git init                                 初始化
 
-git pull origin master                  接收github仓库数据  
+git pull origin master              # 接收github仓库数据  
+git pull === git fetch + git merge
+git pull --rebase === git fetch + git rebase
 
-git push -u origin master                第一次推送  
+git push -u origin master           # 第一次推送  
 git push
-
-git pull
-git fetch origin    同步远程服务器上的数据到本地  
-git fetch xx        获取服务器上的xx分支
-
 
 ### 提交上传：
 git add .               加入新文件  
@@ -215,7 +189,7 @@ git commit -m "xxx"     提交
 git commit -a           将modify过的文件提交，自动打开编辑器  
 git commit -am "xxx"   将modify过的文件提交并注释，不必再用git add  
 
-
+```
 
 
 # git实践
