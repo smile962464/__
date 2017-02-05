@@ -3,6 +3,12 @@
 [高性能无尽列表（元素可回收）](https://github.com/bvaughn/react-virtualized)
 
 ## AI
+
+计算机视觉：  
+李飞飞 [TED: How we teach computers to understand pictures](https://www.youtube.com/watch?v=40riCqvRoMs) /
+[ImageNet](http://image-net.org/) / [斯坦福 vision lab](http://vision.stanford.edu/)
+
+
 [机器学习-入门](http://www.cnblogs.com/subconscious/p/4107357.html?spm=0.0.0.0.U5h3qC)、
 [AI-Programmer](https://github.com/primaryobjects/AI-Programmer)、
 [Would-AI-be-able-to-write-code](https://www.quora.com/Would-AI-be-able-to-write-code)、

@@ -4,6 +4,14 @@
 sips -Z 640 *.jpg   # 批量修改图片的 宽或高 为指定值，保持原来宽高比例
 sips -z height width [file]   # 修改宽和高为指定值
 
+command+shift+3(4)  # 截图保存成文件
+control+command+shift+3(4)  # 截图只是保存在剪贴板里，不保存文件
+defaults read com.apple.screencapture  # 查看系统截图设置
+defaults write com.apple.screencapture type jpg  # 将系统截屏后图片保存为 jpg 格式
+defaults write com.apple.screencapture location ~/Downloads/  # 将系统截屏后图片保存为 jpg 格式
+defaults delete com.apple.screencapture name  # 撤销修改截图名
+http://apple.stackexchange.com/questions/102452/can-i-undo-changes-made-via-defaults-write
+
 pmset noidle  # 阻止电脑睡眠
 
 # 在桌面生成软连接（快捷方式）
@@ -40,6 +48,8 @@ androidfiletransfer、ParagonNTFS、Readiris-Corporate-ESD (ocr识别)
 - 编程：JD-Gui、idea、atom、sublime、MacDown、zsh、Dash、Gas Mask、charles、[cdto-在ITerm里打开当前Finder路径](https://github.com/jbtule/cdto)、Sequel-pro
 - 交互视觉：Axure、ps、Visual_Paradigm、ICOFormat
 - 系统：[导出 .scpt 文件成 mac app](http://apple.stackexchange.com/questions/8299/how-do-i-make-an-applescript-file-into-a-mac-app)；QuickLook-plugin：QLMarkdown.qlgenerator、QLStephen.qlgenerator、QuickLookJSON.qlgenerator
+
+vs code 自动识别并转换 gbk 文件编码插件：changeEncode 
 
 ### shadowsocks
 
