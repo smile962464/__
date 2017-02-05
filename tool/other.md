@@ -1,36 +1,4 @@
 
-# 常用CDN地址
-
-[cdnjs](https://cdnjs.com/libraries/)、
-[staticfile - cdn](http://www.staticfile.org/)
-
-[jQuery各版本](https://code.jquery.com)、
-[jquery-1.11.1](https://code.jquery.com/jquery-1.11.1.js)、
-[jquery-google-cdn](http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js)
-
-[jquery](https://a.alipayobjects.com/jquery/jquery/1.11.1/jquery-debug.js)
-
-[seajs](https://a.alipayobjects.com/seajs/seajs/2.2.0/sea-debug.js)
-
-[es5shim-html5shiv](https://a.alipayobjects.com/??es5-shim/4.0.5/es5-shim.js,es5-shim/4.0.5/es5-sham.js,html5shiv/3.7.2/src/html5shiv.js)
-
-[angular各版本](https://code.angularjs.org/)
-
-
-# makefile
-
-build:
-	@spm build
-
-deploy:
-	@rm -rf ../../sea-modules/examples/lucky
-	@mkdir  ../../sea-modules/examples/lucky
-	@mkdir  ../../sea-modules/examples/lucky/1.0.0
-	@cp     dist/*.* ../../sea-modules/examples/lucky/1.0.0
-	@echo
-	@echo   " deploy to seajs-modules/examples/lucky/1.0.0"
-	@echo
-
 
 
 # less

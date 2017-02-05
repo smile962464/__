@@ -1,5 +1,27 @@
 
 
+## AI
+
+计算机视觉：  
+李飞飞 [TED: How we teach computers to understand pictures](https://www.youtube.com/watch?v=40riCqvRoMs) /
+[ImageNet](http://image-net.org/) / [斯坦福 vision lab](http://vision.stanford.edu/)
+
+
+[机器学习-入门](http://www.cnblogs.com/subconscious/p/4107357.html?spm=0.0.0.0.U5h3qC)、
+[AI-Programmer](https://github.com/primaryobjects/AI-Programmer)、
+[Would-AI-be-able-to-write-code](https://www.quora.com/Would-AI-be-able-to-write-code)、
+[Intelligent code-completion? Is there AI to write code by learning?](http://stackoverflow.com/questions/710843/intelligent-code-completion-is-there-ai-to-write-code-by-learning)
+
+[brain](https://github.com/harthur/brain)、[convnetjs](https://github.com/karpathy/convnetjs)、[synaptic](https://github.com/cazala/synaptic)
+
+
+## Go
+
+编程哲学的重塑是Go语言独树一帜的根本原因，其它语言仍难以摆脱OOP或函数式编程的烙印，只有Go完全放弃了这些，
+对编程范式重新思考，对热门的面向对象编程提供极度简约但却完备的支持。
+Go是互联网时代的C语言，不仅会制霸云计算，10年内将会制霸整个IT领域。 
+
+
 ## API 设计
 [Apollo Data Stack](http://docs.apollostack.com/)、
 [How to build a GraphQL server](https://medium.com/apollo-stack/tutorial-building-a-graphql-server-cddaa023c035#.gdvn0fb8v)
