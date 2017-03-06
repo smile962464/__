@@ -39,7 +39,11 @@ module.exports = {
           ]
         }
       },
-      { test: /\.(jpg|png|svg)$/, loader: "url?limit=8192" }, //把不大于8kb的图片打包处理成Base64
+      { test: /\.(jpg|png)$/, loader: "url?limit=8192" }, //把不大于8kb的图片打包处理成Base64
+      { test: /\.(svg)$/i, loader: 'svg-sprite', include: [
+        require.resolve('antd-mobile').replace(/warn\.js$/, ''),  // 1. 属于 antd-mobile 内置 svg 文件
+        // path.resolve(__dirname, 'src/my-project-svg-foler'),  // 自己私人的 svg 存放目录
+      ]},
       // { test: /\.css$/, loader: 'style!css' }, // 把css处理成内联style，动态插入到页面
       // { test: /\.less$/, loader: 'style!css!less' }, // loader 处理顺序：先less 后css 最后style
       // less-loader requires less as peer dependency

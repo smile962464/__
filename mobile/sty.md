@@ -1,4 +1,19 @@
 
+## 环境/调试
+开启 Charles 代理，需要把其他代理软件关掉、像 ShadowSocks 要关掉、浏览器也不能有代理插件如 switchyomega 开着.
+
+https://github.com/ant-design/ant-design-mobile/issues/614
+
+[Weinre](https://people.apache.org/~pmuellr/weinre/docs/latest/Home.html)
+
+```sh
+npm install -g weinre
+
+ipconfig getifaddr en0  # 获取本机 IP 地址
+weinre --boundHost IP  # 执行后、打开地址 IP:8080
+在要调试的页面插入 Target Script ，电脑打开 debug client user interface 地址、即可看到要调试的页面。
+```
+
 ### 兼容性问题
 
 ```html
@@ -66,5 +81,3 @@ css3 transform移走、requestAnimationFrame移走等，
     -webkit-transform-style : preserve-3d;
     -webkit-transform : translate3d(0,0,0)；
 
-## 环境
-开启 Charles 代理，需要把其他代理软件关掉、像 ShadowSocks 要关掉、浏览器也不能有代理插件如 switchyomega 开着.

@@ -1,6 +1,13 @@
 
+React.js does not need to have knowledge about what exactly changed. 
+All it needs to know is whether the state changed at all or not.
 
-### [3 Reasons why I stopped using React.setState](https://medium.com/@mweststrate/3-reasons-why-i-stopped-using-react-setstate-ab73fc67a42e#.o2lwoysxh)
+While immutability does not provide easier answers to a what exactly changed problem, 
+it provides a great answer to the is it changed at all or not question. 
+
+
+[3 Reasons why I stopped using React.setState](https://medium.com/@mweststrate/3-reasons-why-i-stopped-using-react-setstate-ab73fc67a42e#.o2lwoysxh)
+
 - setState 是异步的
 - setState 引起不必要的 render
 - setState 不能覆盖所有的组件状态（像生命周期的钩子、timers、events ）

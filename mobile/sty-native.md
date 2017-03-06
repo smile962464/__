@@ -10,6 +10,9 @@ ScrollView 只能在横向或纵向两者之一进行滚动：https://github.com
 
 安装本地程序：xcrun simctl install booted ~/Downloads/AlipayWallet.app
 
+- ios: cmd+d 打开菜单, cmd+r 刷新
+- Android: cmd+m 打开菜单, rr 刷新
+
 ### 性能：
 Image decoding can take more than a frame-worth of time. 
 This is one of the major source of frame drops on the web because decoding is done in the main thread. 

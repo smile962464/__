@@ -143,6 +143,8 @@ find命令是根据文件的属性进行查找，如文件名，文件大小，�
 
 vim是vi的增强版本。相比vi添加了显示颜色等功能。
 
+![vim 键盘图](https://zos.alipayobjects.com/rmsportal/MOPJrAnojdFvAToZkESi.gif)
+
 ### 编辑模式
     
     输入 i 再输入其他字符。 按 esc 退出，切回命令模式

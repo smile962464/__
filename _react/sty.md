@@ -110,7 +110,7 @@ All application state should live in the store, while components occasionally ho
 #### 生命周期
 不管页面有多少个component标签实例，它里边的生命周期函数
 
-- getDefaultProps() 只会运行一次？
+- getDefaultProps() 只会运行一次
 - getInitialState()、componentDidMount() 有几个实例，就运行几次
     - 例如嵌套元素`<ele> <ele> </ele> </ele>`，从里到外依次执行componentDidMount
 - render() 当state被改变，就会运行，但不一定更改相应的实际dom

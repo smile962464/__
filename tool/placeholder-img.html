@@ -6,7 +6,9 @@
   <script src="http://cdn.bootcss.com/placeholder.js/3.1.0/placeholder.js"></script>
 </head>
 <body>
-  <a href="https://github.com/hustcc/placeholder.js">https://github.com/hustcc/placeholder.js</a><hr />
+  <a href="https://github.com/hustcc/placeholder.js" style="margin-right: 20px;">源码</a>
+  <a href="https://rmsportal.alipay.com/" target="_blank">蜻蜓（新标签打开）</a>
+  <hr />
   <form>
     size: <input id="size" value="375x200" />
     text: <input id="text" value="text" />
@@ -28,7 +30,7 @@
       document.getElementById('img').setAttribute('src', placeholder.getData(opts));
     }
     create();
-    ['text', 'bgcolor'].forEach(function(i) {
+    ['size', 'text', 'bgcolor'].forEach(function(i) {
       document.getElementById(i).addEventListener('input', function() {
         opts[i] = this.value;
         create();

@@ -5,42 +5,31 @@
   <title>Demo Flexbox 1</title>
   <style>
     .flex-container {
-      padding: 0;
-      margin: 0;
-      list-style: none;
-      display: -webkit-box;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
       display: flex;
-      -webkit-flex-flow: row wrap;
-      justify-content: space-around;
+      justify-content: space-around; /* 注意 此设置 对实际能显示出的元素数量影响 */
     }
 
     .flex-item {
-      padding: 15px;
-      margin-top: 10px;
+      flex-shrink: 0; /* 注意 flex 设置对实际宽度的影响 */
       width: 200px;
-      height: 150px;
-      line-height: 150px;
+      padding: 15px;
       background: tomato;
       color: white;
       font-size: 3em;
-      text-align: center;
     }
   </style>
 </head>
 <body>
-  <ul class="flex-container">
-    <li class="flex-item">
+  <div class="flex-container">
+    <div class="flex-item">
       <div style="border:1px solid #ccc;height:100%">1</div>
-    </li>
-    <li class="flex-item">2</li>
-    <li class="flex-item">3</li>
-    <li class="flex-item">4</li>
-    <li class="flex-item">5</li>
-    <li class="flex-item">6</li>
-  </ul>
+    </div>
+    <div class="flex-item">2</div>
+    <div class="flex-item">3</div>
+    <div class="flex-item">4</div>
+    <div class="flex-item">5</div>
+    <div class="flex-item">6</div>
+  </div>
   <!--
     容器 display: flex; 后、其子元素的 float、clear、vertical-align 失效。
 

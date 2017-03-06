@@ -27,6 +27,10 @@ killall Dock
 
 ## 各种
 
+mac 磁盘空间变得越来越少，有些软件有内存泄露问题：
+查看`/private/var/vm`下 swapfile 文件多少（不能删除）.
+关闭重启电脑
+
 mac的`控制台.app`能查看所有应用的log，方便启动错误时分析
 
 mac 自带的 ftp 功能，对 Android 系统文件是只读的，不能写入，使用 第三方 ftp 客户端可以写入。
@@ -41,15 +45,17 @@ Idea 一直在`scanning files to index`解决办法：把`node_module`目录设�
 
 ## 常用软件
 
-- 影音娱乐：Movist、MPlayerX(加速有问题)、vlc(不太方便)
-- 工具类：licecap、XtraFinder、Alfred、AppCleaner、ShadowsocksX、BetterZip、iStat-Menus、
+- 影音娱乐: Movist、MPlayerX(加速有问题)、vlc(不太方便)
+- 工具类: licecap、XtraFinder、Alfred、AppCleaner、ShadowsocksX、BetterZip、iStat-Menus、
 [Parallels-Desktop-11.1.2-for-macOS-Sierra](http://www.waitsun.com/parallels-desktop-11-1-2.html)、
 androidfiletransfer、ParagonNTFS、Readiris-Corporate-ESD (ocr识别)
-- 编程：JD-Gui、idea、atom、sublime、MacDown、zsh、Dash、Gas Mask、charles、[cdto-在ITerm里打开当前Finder路径](https://github.com/jbtule/cdto)、Sequel-pro
-- 交互视觉：Axure、ps、Visual_Paradigm、ICOFormat
-- 系统：[导出 .scpt 文件成 mac app](http://apple.stackexchange.com/questions/8299/how-do-i-make-an-applescript-file-into-a-mac-app)；QuickLook-plugin：QLMarkdown.qlgenerator、QLStephen.qlgenerator、QuickLookJSON.qlgenerator
-
+- 编程: JD-Gui、idea、atom、sublime、MacDown、zsh、Dash、Gas Mask、charles、[cdto-在ITerm里打开当前Finder路径](https://github.com/jbtule/cdto)、Sequel-pro
+- 交互视觉: Axure、ps、Visual_Paradigm、ICOFormat
+- 系统: [导出 .scpt 文件成 mac app](http://apple.stackexchange.com/questions/8299/how-do-i-make-an-applescript-file-into-a-mac-app)；QuickLook-plugin：QLMarkdown.qlgenerator、QLStephen.qlgenerator、QuickLookJSON.qlgenerator
+- OmniDiskSweeper 磁盘占用分析工具，[使用帮助](http://newping.cn/322)
 vs code 自动识别并转换 gbk 文件编码插件：changeEncode 
+
+安装 [git-open](https://github.com/paulirish/git-open) 自动打开 git 远程仓库地址
 
 ### shadowsocks
 

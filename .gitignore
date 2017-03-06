@@ -21,3 +21,8 @@ npm-debug.log
 .module-cache
 .*.sw*
 dist
+
+# https://github.com/github/gitignore/blob/master/CMake.gitignore
+CMakeCache.txt
+CMakeFiles
+cmake-build-debug

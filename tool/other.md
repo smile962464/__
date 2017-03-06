@@ -72,9 +72,6 @@
 
 使用 * 或 _ 包裹文本产生strong效果：__strong__ **strong**
 
-@(示例笔记本)[马克飞象|帮助|Markdown]
-
-
 #### 表格
 | Item      |    Value | Qty  |
 | :-------- | --------:| :--: |
@@ -82,36 +79,43 @@
 | Phone     |   12 USD |  12  |
 | Pipe      |    1 USD | 234  |
 
-
-#### 代码块
-
-``` js
-function aa{
-    var b = 'xx';
-}
-```
-
-- out list
-    - inner list
-
-        ```html
-        <p>inner list code</p>
-        <b></b>
-        ```
 ### html details
 
 <details>
   <summary>Is this production ready?</summary>
   Next.js has been powering `https://zeit.co` since its inception.
-
-  We’re ecstatic about both the developer experience and end-user performance
 </details>
 <details>
   <summary>Is this production ready?</summary>
   Next.js has been powering `https://zeit.co` since its inception.
-
-  We’re ecstatic about both the developer experience and end-user performance
 </details>
+
+
+
+```sh
+#! /bin/sh
+
+node -v
+npm -v
+ping -c 5 taobao.com
+
+echo "进行 xx 操作 \n\r" \
+&& cd ~/my/work/project/xx \
+&& spm build && spm deploy \
+
+echo "进行 xx 操作 \n\r" \
+&& cd ~/my/work/daily/project \
+&& svn st  \
+
+echo "登陆服务器，进行 ccupdate 操作" \
+# 对引号进行转义
+expect -c "spawn ssh admin@partnerprod.d4366aqcn.xx.net
+expect \"password:\"
+send \"password22\r\"
+send \"cd ccbin && ./ccupdate.sh \n\"
+interact "
+
+```
 
 
  # dos命令
