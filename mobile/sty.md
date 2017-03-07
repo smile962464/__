@@ -1,4 +1,6 @@
 
+[在做 iOS 和 Android 的 HTML5 开发时，你都掉到过哪些坑里？](https://www.zhihu.com/question/34556725)
+
 ## 环境/调试
 开启 Charles 代理，需要把其他代理软件关掉、像 ShadowSocks 要关掉、浏览器也不能有代理插件如 switchyomega 开着.
 
@@ -30,23 +32,28 @@ weinre --boundHost IP  # 执行后、打开地址 IP:8080
 
 iScroll：并没有监听`onscroll`事件。
 
-### Touch事件穿透问题研究
+### Touch事件穿透问题 (Ghost Clicks)
 click事件在手机浏览器中的触发顺序：touchstart -> touchmove -> touchend -> click
 
-touch事件在手机浏览器中的穿透问题，并不是由冒泡引起的，而是由于click事件延迟触发导致，
-所以通过阻止事件冒泡的方式解决穿透问题是不可行的。
-我们在使用touch事件时，需要注意，如果绑定 touch 事件的 dom 元素在被点击触发后会隐藏、
-css3 transform移走、requestAnimationFrame移走等，
-而“隐藏、移走”后，它底下同一位置正好有一个 dom 元素绑定了click的事件、
-或者有浏览器认为可以被点击有交互反应的dom元素（举例：如 input type=text 被点击有交互反应是获得焦点并弹起虚拟键盘），
+浏览器在 touchend 之后会等待约 300ms 判断用户不是双击（double tap）行为，则触发 click 事件。
+通过设置 meta 标签，禁止页面缩放，部分新浏览器不再需要等待 300ms，可以直接用 click 事件。
+
+如果绑定 touch 事件的 dom 元素在被点击触发后会隐藏、css3 transform移走、requestAnimationFrame移走等，
+而“隐藏、移走”后，它底下同一位置正好有一个 dom 元素绑定了 click 事件、
+或者有浏览器认为可以被点击有交互反应的dom元素（如 input 被点击有交互反应是获得焦点并弹起虚拟键盘），
 则会出现“点透”现象。
 
-通过设置 e.preventDefault()，阻止浏览器默认事件可以解决。
-对于浮层，可以用绑定click事件。
-使用Fastclick处理click事件（[Fastclick如何解决穿透事件](http://www.cnblogs.com/yexiaochai/p/3442220.html)）。
+touch事件在手机浏览器中的穿透问题，并不是由冒泡引起的，而是由于click事件延迟触发导致，
+所以通过阻止事件冒泡的方式解决穿透问题是不可行的。（iOS 系统通过在 touchend 事件里设置`e.preventDefault()`
+阻止浏览器默认事件可以解决，Android 不可行）
+
+最好使用 Fastclick 处理 click 事件，能同时解决 300ms 延迟和点击穿透问题（[Fastclick如何解决穿透事件](http://www.cnblogs.com/yexiaochai/p/3442220.html)）。
+
+> Fastclick 通过在 touchend 触发时，自己创建一个 click 事件并手动触发，替代了用户的 click 事件。
+
 
 ### Touch 事件兼容问题
-- 在 Android 上 Touchmove只触发一次，解决：阻止默认事件，在start或move时，执行一次 e.preventDefault() 
+- 在 Android 上 Touchmove 只触发一次，解决：阻止默认事件，在start或move时，执行一次 e.preventDefault() 
 - 在 Android 上 页面滚动时，PageX/Y 并不包含滚动，需附加 scrollLeft/Top 修正
 - 在 Android 上 在 a 标签上，move后不触发 touchend 事件，a 标签的 href 属性从`javascript:void(0)`改为`javascript:;`
 

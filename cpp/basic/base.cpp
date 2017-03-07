@@ -5,7 +5,8 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
+using namespace std;  // 不建议这么写 http://stackoverflow.com/questions/1452721/why-is-using-namespace-std-considered-bad-practice
+//using std::cout;  // 建议做法
 
 #define NEWLINE '\n'
 #define LENGTH 10  // 使用 #define 预处理器定义常量

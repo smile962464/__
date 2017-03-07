@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>demo</title>
+  <meta charset="utf-8" />
+  <meta name="apple-touch-fullscreen" content="yes" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+  <script src="http://zeptojs.com/zepto.js"></script>
+</head>
+<body>
+  <div id="root" style="border: 1px solid #ccc; margin: 10px; height: 50px;"></div>
+  <div id="d" style=" width: 100px; height: 100px; border: 1px solid black;"></div>
+  <div id="d2" style=" width: 100px; height: 100px; border: 1px solid  orange;"></div>
+  <script>
+    function cb(txt) {
+      document.getElementById('root').innerHTML = txt;
+    }
+    window.addEventListener('touchstart', function () {
+      cb('touchstart')
+    });
+    window.addEventListener('touchmove', function () {
+      cb('touchmove')
+    });
+    window.addEventListener('touchend', function () {
+      cb('touchend')
+    });
+    window.addEventListener('touchcancel', function () {
+      cb('touchcancel')
+    });
+
+    var startTime, t = false, m = false;
+
+    var log = function (msg) {
+      var div = $('<div></div>');
+      div.html((new Date().getTime()) + ': ' + (new Date().getTime() - startTime) + ': ' + msg)
+      $('body').append(div);
+    };
+    var touchStart = function () {
+      log('start');
+      startTime = new Date().getTime();
+      t = true;
+      log('touchStart');
+    };
+    var touchEnd = function () {
+      t = false;
+      log('touchEnd');
+    };
+    var touchMove = function (e) {
+      e.preventDefault();
+      if (!t) return false;
+      log('touchMove');
+    };
+
+    var mouseDown = function (e) {
+      e.preventDefault();
+      startTime = startTime || new Date().getTime();
+      m = true;
+      log('mouseDown');
+    };
+    var mouseClick = function () {
+      log('mouseClick');
+    };
+    var mouseUp = function () {
+      m = false;
+      log('mouseUp');
+    };
+    var mouseMove = function (e) {
+      e.preventDefault();
+      if (!m) return;
+      log('mousemove');
+    };
+
+    var d = $('#d');
+    var dd = $('#d2');
+    d.bind('touchstart', touchStart);
+    d.bind('touchend', touchEnd);
+    d.bind('touchmove', touchMove);
+
+    dd.bind('mousedown', mouseDown);
+    dd.bind('click', mouseClick);
+    dd.bind('mouseup', mouseUp);
+    dd.bind('mousemove', mouseMove);
+
+  </script>
+</body>
+</html>

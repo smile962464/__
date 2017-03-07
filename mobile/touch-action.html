@@ -10,6 +10,8 @@
   <style>
     .log {
       height: 1000px;
+      -ms-touch-action: manipulation;
+      /* touch-action: manipulation; */
       touch-action: none;
       -webkit-user-select: none;
       -webkit-user-drag: none;
@@ -20,6 +22,8 @@
 <body>
   <div class="log">
     can not drag, because `touch-action: none;`
+
+    IE 11+ 可以用 touch-action: manipulation; 属性来阻止元素的双击缩放。
   </div>
 </body>
 </html>
