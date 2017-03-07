@@ -36,7 +36,7 @@ iScroll：并没有监听`onscroll`事件。
 click事件在手机浏览器中的触发顺序：touchstart -> touchmove -> touchend -> click
 
 浏览器在 touchend 之后会等待约 300ms 判断用户不是双击（double tap）行为，则触发 click 事件。
-通过设置 meta 标签，禁止页面缩放，部分新浏览器不再需要等待 300ms，可以直接用 click 事件。
+通过设置 meta 标签，禁止页面缩放，新浏览器不再需要等待 300ms（ref: https://webkit.org/blog/5610/more-responsive-tapping-on-ios/）。
 
 如果绑定 touch 事件的 dom 元素在被点击触发后会隐藏、css3 transform移走、requestAnimationFrame移走等，
 而“隐藏、移走”后，它底下同一位置正好有一个 dom 元素绑定了 click 事件、
