@@ -54,7 +54,8 @@
     .bar { background-color: #B4F5B4; width:0%; height:20px; border-radius: 3px; }
     .percent { position:absolute; display:inline-block; top:3px; left:48%; }
   </style>
-  <link href="http://vjs.zencdn.net/5.11.6/video-js.css" rel="stylesheet">
+  <!-- 5.11.6/video-js.css -->
+  <link href="https://os.alipayobjects.com/rmsportal/XNpVOAMlFTypViDwBexF.css" rel="stylesheet">
   <?php
   echo $js_data;
   ?>
@@ -80,8 +81,10 @@
     class="video-js vjs-default-skin vjs-big-play-centered"
     controls height="264">
   </video>
-  <script src="http://vjs.zencdn.net/5.11.6/video.min.js"></script>
-  <script src="http://cdn.sc.gl/videojs-hotkeys/latest/videojs.hotkeys.min.js"></script>
+  <!-- 5.11.6/video.min.js -->
+  <script src="https://os.alipayobjects.com/rmsportal/tKjaoxQxIehvljvpwkLo.js"></script>
+  <!-- videojs.hotkeys.min.js -->
+  <script src="https://os.alipayobjects.com/rmsportal/ggQzhojOhUGULmwqXFKA.js"></script>
   <script src="assets/hammer.min.js"></script>
   <link href="assets/videojs-dock.css" rel="stylesheet">
   <script src="assets/videojs-dock.js"></script>
