@@ -26,3 +26,10 @@ dist
 CMakeCache.txt
 CMakeFiles
 cmake-build-debug
+
+# Eclipse for c++
+.metadata
+.settings
+.cproject
+.project
+Debug

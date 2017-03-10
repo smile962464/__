@@ -4,22 +4,21 @@
 
 #include <iostream>
 #include <string>
-
 using namespace std;  // 不建议这么写 http://stackoverflow.com/questions/1452721/why-is-using-namespace-std-considered-bad-practice
 //using std::cout;  // 建议做法
 
 #define NEWLINE '\n'
 #define LENGTH 10  // 使用 #define 预处理器定义常量
 const int WIDTH = 5; // 使用 const 前缀声明指定类型的常量
-
-
-// 全局变量声明. 在所有函数外部定义的变量，称为全局变量
-int g;
-
-// 函数声明
-int func();
+int g; // 全局变量声明. 在所有函数外部定义的变量，称为全局变量
+int func(); // 函数声明
 
 int main() {
+    // 局部变量声明 并定义 并初始化
+    int d = 3, f = 5;
+    char x;
+    // 变量初始化
+    x = 'A';
 
     cout << "基本的内置类型：bool / char / int / float / double / void / wchar_t" << endl;
     cout << "类型修饰符：signed / unsigned / short / long" << endl;
@@ -60,12 +59,6 @@ int main() {
     // 枚举类型
     enum color { red, green, blue } c;
     cout << c << endl;
-
-    // 变量声明并定义 并 初始化
-    int d = 3, f = 5;
-    char x;
-    // 变量初始化
-    x = 'A';
 
     // 函数调用
     int fn = func();

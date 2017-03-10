@@ -6,7 +6,6 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "cls/Sales.h"
 
 using std::cout;
 using std::endl;
@@ -25,8 +24,7 @@ int main() {
     cout << "较小整数：" << min(n1, n2) << endl;
 
     vector<int> ivec;
-    vector<Sales> sales;
-    vector<vector<string>> file; // 该向量的元素是 vector 对象
+    vector<vector<string> > file; // 该向量的元素是 vector 对象
 
     return 0;
 }
