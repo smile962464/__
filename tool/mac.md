@@ -45,17 +45,22 @@ Idea 一直在`scanning files to index`解决办法：把`node_module`目录设�
 
 ## 常用软件
 
-- 影音娱乐: Movist、MPlayerX(加速有问题)、vlc(不太方便)
-- 工具类: licecap、XtraFinder、Alfred、AppCleaner、ShadowsocksX、BetterZip、iStat-Menus、
-[Parallels-Desktop-11.1.2-for-macOS-Sierra](http://www.waitsun.com/parallels-desktop-11-1-2.html)、
-androidfiletransfer、ParagonNTFS、Readiris-Corporate-ESD (ocr识别)
-- 编程: JD-Gui、idea、atom、sublime、MacDown、zsh、Dash、Gas Mask、charles、[cdto-在ITerm里打开当前Finder路径](https://github.com/jbtule/cdto)、Sequel-pro
-- 交互视觉: Axure、ps、Visual_Paradigm、ICOFormat
-- 系统: [导出 .scpt 文件成 mac app](http://apple.stackexchange.com/questions/8299/how-do-i-make-an-applescript-file-into-a-mac-app)；QuickLook-plugin：QLMarkdown.qlgenerator、QLStephen.qlgenerator、QuickLookJSON.qlgenerator
-- OmniDiskSweeper 磁盘占用分析工具，[使用帮助](http://newping.cn/322)
+- 必备: Dash / Movist / MacDown / marp / Gas Mask / charles / licecap or kap / XtraFinder / Alfred / AppCleaner / iStat-Menus / androidfiletransfer / meld / Cakebrew / pyCharm / virtualbox / genymotion
+/ mindnode lite
+
+- 其他: Unarchiver / airdroid / Media-Info / vlc(不太方便) / Axure / Visual_Paradigm / ICOFormat / ParagonNTFS / Readiris-Corporate-ESD (ocr识别) / JD-Gui / Sequel-pro
+
+QuickLook-plugin: QLMarkdown.qlgenerator / QLStephen.qlgenerator / QuickLookJSON.qlgenerator
+
+OmniDiskSweeper 磁盘占用分析工具，[使用帮助](http://newping.cn/322)
+
 vs code 自动识别并转换 gbk 文件编码插件：changeEncode 
 
+iTerm / zsh / [cdto-在ITerm里打开当前Finder路径](https://github.com/jbtule/cdto)
+
 安装 [git-open](https://github.com/paulirish/git-open) 自动打开 git 远程仓库地址
+
+[Parallels-Desktop-11.1.2-for-macOS-Sierra](http://www.waitsun.com/parallels-desktop-11-1-2.html)
 
 ### shadowsocks
 
@@ -72,8 +77,8 @@ shadowsocks代理模式分为「自动代理模式(pac模式)」和「全局模�
 
 - 标题栏显示完整路径：安装 [custom-title](https://atom.io/packages/custom-title)，设置 `<%= fileName %><% if (projectPath) { %> - <%= filePath %> <% } %>`
 - [Sublime-Style-Column-Selection](https://atom.io/packages/Sublime-Style-Column-Selection)
-- [atom-beautify](https://atom.io/packages/atom-beautify)、[highlight-selected](https://atom.io/packages/highlight-selected)、[open-in-browser](https://atom.io/packages/open-in-browser)
-- japanese-wrap、line-length-break、indent-guide-improved
+- [atom-beautify](https://atom.io/packages/atom-beautify) / [highlight-selected](https://atom.io/packages/highlight-selected) / [open-in-browser](https://atom.io/packages/open-in-browser)
+- japanese-wrap / line-length-break / indent-guide-improved
 - [插件project-ring](https://github.com/vellerefond/project-ring)：
 `Make The Current Project The Default At StartUp`
 
