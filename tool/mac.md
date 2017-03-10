@@ -45,8 +45,7 @@ Idea 一直在`scanning files to index`解决办法：把`node_module`目录设�
 
 ## 常用软件
 
-- 必备: Dash / Movist / MacDown / marp / Gas Mask / charles / licecap or kap / XtraFinder / Alfred / AppCleaner / iStat-Menus / androidfiletransfer / meld / Cakebrew / pyCharm / virtualbox / genymotion
-/ mindnode lite
+- 必备: Dash / Movist / MacDown / snip / sip / marp / Gas Mask / charles / licecap or kap / XtraFinder / Alfred / AppCleaner / iStat-Menus / androidfiletransfer / meld / Cakebrew / pyCharm / virtualbox / genymotion / xcode / mindnode lite
 
 - 其他: Unarchiver / airdroid / Media-Info / vlc(不太方便) / Axure / Visual_Paradigm / ICOFormat / ParagonNTFS / Readiris-Corporate-ESD (ocr识别) / JD-Gui / Sequel-pro
 
@@ -54,13 +53,45 @@ QuickLook-plugin: QLMarkdown.qlgenerator / QLStephen.qlgenerator / QuickLookJSON
 
 OmniDiskSweeper 磁盘占用分析工具，[使用帮助](http://newping.cn/322)
 
-vs code 自动识别并转换 gbk 文件编码插件：changeEncode 
-
-iTerm / zsh / [cdto-在ITerm里打开当前Finder路径](https://github.com/jbtule/cdto)
+iTerm / zsh / oh-my-zsh / [cdto-在ITerm里打开当前Finder路径](https://github.com/jbtule/cdto)
 
 安装 [git-open](https://github.com/paulirish/git-open) 自动打开 git 远程仓库地址
 
 [Parallels-Desktop-11.1.2-for-macOS-Sierra](http://www.waitsun.com/parallels-desktop-11-1-2.html)
+
+### vs code
+
+```js
+// 设置
+{
+  "editor.fontSize": 13,
+  "editor.tabSize": 2,
+  "editor.dragAndDrop": true,
+  "files.exclude": {
+    "**/.idea": true
+  },
+  "editor.scrollBeyondLastLine": false,
+  "editor.formatOnType": true,
+  "editor.renderIndentGuides": true,
+  "terminal.external.osxExec": "iTerm.app",
+  "editor.renderWhitespace": "boundary",
+  "editor.tabCompletion": true,
+  "typescript.check.tscVersion": false,
+  "files.associations": {
+    "*.wxml": "xml",
+    "*.wxss": "css",
+    "*.acss": "css"
+  },
+  "workbench.iconTheme": "vs-seti"
+}
+// 快捷键
+[
+  { "key": "cmd+d",   "command": "editor.action.copyLinesDownAction" }
+]
+// 扩展
+beautify / Indent 4-to-2 / JSON Tools / Path Intellisense / react-beautify / C/C++
+changeEncode / GBKtoUTF8 / Active File In Status Bar / EditorConfig for Visual Studio Code
+```
 
 ### shadowsocks
 
