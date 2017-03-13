@@ -9,8 +9,8 @@ var port = 9998;
 var jsonContentType = 'application/json; charset=utf-8';
 
 var enumExts = ['jpg', 'jpeg', 'gif', 'png'];
-var local1 = '/Users/hua/Downloads/_/百度云同步盘/2008-now.txt';
-var local2 = '/Users/hua/Downloads/_/百度云同步盘/图片收集';
+var local1 = '/Users/hua/Downloads/_/chrome-extension/2008-now.txt';
+var local2 = '/Users/hua/Library/Mobile Documents/com~apple~CloudDocs/图片收集';
 
 function handleJoke1(res) {
   var content = fs.readFileSync(local1).toString().split('\n\n');

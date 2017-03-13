@@ -135,6 +135,7 @@ Mac 系统自带了 Zsh，用`zsh --version`命令查看，iTerm2 和系统 term
 
 查看某个命令文件所在的路径：比如`which java`，结果如果是`/usr/bin/..`，说明是软连接、再运行 ls -l `which java` 即可。
 
+
 ## [homebrew](https://brew.sh/) - macOS 不可或缺的套件管理器
 
 ```sh
@@ -191,8 +192,8 @@ sudo vi /etc/apache2/httpd.conf  # 编辑 Apche 的配置文件
 改变 localhost 目录指向：
 
 #DocumentRoot "/Library/WebServer/Documents"
-DocumentRoot "/Users/hua/my"
-<Directory "/Users/hua/my">
+DocumentRoot "/Users/hua/inner"
+<Directory "/Users/hua/inner">
     Options Indexes FollowSymLinks MultiViews
     MultiviewsMatch Any
     AllowOverride None
@@ -210,6 +211,8 @@ Listen 9999
     DocumentRoot "/Users/hua/Downloads"
     ServerName me.com
 </VirtualHost>
+
+> 如果出现 403 You dont have permission to access 错误，修改目录权限 everyone 为“只读”，再重启 Apache
 
 访问：
 http://localhost/
