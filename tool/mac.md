@@ -60,6 +60,9 @@ OmniDiskSweeper 磁盘占用分析工具，[使用帮助](http://newping.cn/322)
 
 安装 [git-open](https://github.com/paulirish/git-open) 自动打开 git 远程仓库地址
 
+iCloud 目录多出了“Keynote / Pages ...“等空目录，是为了引导你安装相应软件，安装完之后、可以在
+”系统偏好设置 -> iCloud -> iCloud Drive -> 选项“里去掉勾选相应项目，文件夹里的空目录自动会消失。
+
 - [Parallels-Desktop-11.1.2-for-macOS-Sierra](http://www.waitsun.com/parallels-desktop-11-1-2.html)
 - https://www.slant.co/topics/526/~best-window-manager-for-mac
 
