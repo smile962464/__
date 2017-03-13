@@ -14,9 +14,21 @@ Ctrl + Alt + B 跳转到方法实现处
 ```
 
 ## 环境
-- 安装 [JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) 、 [Android SDK 和 Android Studio](https://developer.android.com/studio/index.html) 。添加环境变量：`export ANDROID_HOME=/../android-sdk` 至 `~/.bashrc` 或 `~/.zshrc` 。
-    - [解决](http://blog.kuoruan.com/24.html) Android SDK Manager 下载慢无法更新：
-    - 在使用 Android SDK Manager 的时候，主要会连接到两个地址 dl.google.com 和 dl-ssl.google.com 两个地址都是无法正常访问的.
+首先安装 [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+(mac jdk6 [地址](https://support.apple.com/kb/DL1572?locale=zh_CN))
+
+> 安装 JDK 后，如何确认 mac java 安装路径，并设置`JAVA_HOME`环境变量：http://chessman-126-com.iteye.com/blog/2162466 
+> 根据苹果的官方说明，Mac OS X 10.5 及以后的版本应该使用 /usr/libexec/java_home 命令来确定 JAVA_HOME 
+
+安装 [Android Studio 和 Android SDK](https://developer.android.com/studio/index.html)
+(安装好 studio 后会提示安装 sdk， Google 已不直接让单独安装 sdk 了！！)
+
+Android NDK 下载：https://developer.android.com/ndk/downloads/index.html
+
+添加环境变量：`export ANDROID_HOME=/../android-sdk` 至 `~/.bashrc` 或 `~/.zshrc` 。
+
+[解决](http://blog.kuoruan.com/24.html) Android SDK Manager 下载慢无法更新：
+在使用 Android SDK Manager 的时候，主要会连接到两个地址 dl.google.com 和 dl-ssl.google.com 两个地址都是无法正常访问的.
 
 方法一：
 
@@ -38,6 +50,7 @@ Ctrl + Alt + B 跳转到方法实现处
     的 status 从 "Not installed" 变为 "Installed" , 导入成功。(注意有些目录比较大、很占空间)
 
 #### 打开 Android emulator (Android AVD Manager): 
+
 如果未设置环境变量, 到 <ANDROID_SDK_root>/tools 目录, 双击 android, 如果设置了Android环境变量, 命令行运行`android`会打开 
 "Android SDK Manager"。再在菜单中选择 Tools -> Manage AVDs (或命令行运行`android avd`), 
 打开 "Android Virtual Device (AVD) Manager" 会看到虚拟机列表。

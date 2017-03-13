@@ -1,4 +1,4 @@
-# mac
+# mac (macOS Sierra 10.12)
 
 ```sh
 sips -Z 640 *.jpg   # 批量修改图片的 宽或高 为指定值，保持原来宽高比例
@@ -13,6 +13,7 @@ defaults delete com.apple.screencapture name  # 撤销修改截图名
 http://apple.stackexchange.com/questions/102452/can-i-undo-changes-made-via-defaults-write
 
 pmset noidle  # 阻止电脑睡眠
+同时按住shift、control、电源键，关闭显示器
 
 # 在桌面生成软连接（快捷方式）
 ln -s /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app ~/Desktop
@@ -23,13 +24,13 @@ ln -s /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app ~/De
 defaults write com.apple.dock persistent-others -array-add '{ "tile-data" = { "list-type" = 1; }; "tile-type" = "recents-tile"; }'
 killall Dock
 
+拖动 app 到 finder 工具栏方法：拖着 app 到 finder 工具栏时，按下`cmd + alt`
+
 ```
 
 ## 各种
 
-mac 磁盘空间变得越来越少，有些软件有内存泄露问题：
-查看`/private/var/vm`下 swapfile 文件多少（不能删除）.
-关闭重启电脑
+mac 磁盘空间变得越来越少，有些软件有内存泄露问题：查看`/private/var/vm`下 swapfile 文件多少（不能删除）, 关闭重启电脑
 
 mac的`控制台.app`能查看所有应用的log，方便启动错误时分析
 
@@ -45,7 +46,11 @@ Idea 一直在`scanning files to index`解决办法：把`node_module`目录设�
 
 ## 常用软件
 
-- 必备: Dash / Movist / MacDown / snip / sip / marp / Gas Mask / charles / licecap or kap / XtraFinder / Alfred / AppCleaner / iStat-Menus / androidfiletransfer / meld / Cakebrew / pyCharm / virtualbox / genymotion / xcode / mindnode lite
+- 必备: HandBrake / Movist / Dash / MacDown marp / snip jietu(qq) licecap kap / Color Note / Gas Mask / charles / XtraFinder / Alfred / AppCleaner / iStat-Menus / OnyX / Spectacle / FileZilla / androidfiletransfer / meld / Cakebrew / pyCharm / virtualbox / genymotion / xcode / mindnode lite
+
+> 「xxx.app已损坏,打不开.你应该将它移到废纸篓」，并非你安装的软件已损坏，而是Mac系统的安全设置问题，
+> 因为这些应用都是破解或者汉化的（例如 Movist 破解版）, 解决方法就是临时改变Mac系统安全设置。
+> macOS 10.12 “安全性与隐私”里去掉了允许安装”任何来源“的软件设置，可以在终端里运行`sudo spctl --master-disable`打开
 
 - 其他: Unarchiver / airdroid / Media-Info / vlc(不太方便) / Axure / Visual_Paradigm / ICOFormat / ParagonNTFS / Readiris-Corporate-ESD (ocr识别) / JD-Gui / Sequel-pro
 
@@ -53,11 +58,10 @@ QuickLook-plugin: QLMarkdown.qlgenerator / QLStephen.qlgenerator / QuickLookJSON
 
 OmniDiskSweeper 磁盘占用分析工具，[使用帮助](http://newping.cn/322)
 
-iTerm / zsh / oh-my-zsh / [cdto-在ITerm里打开当前Finder路径](https://github.com/jbtule/cdto)
-
 安装 [git-open](https://github.com/paulirish/git-open) 自动打开 git 远程仓库地址
 
-[Parallels-Desktop-11.1.2-for-macOS-Sierra](http://www.waitsun.com/parallels-desktop-11-1-2.html)
+- [Parallels-Desktop-11.1.2-for-macOS-Sierra](http://www.waitsun.com/parallels-desktop-11-1-2.html)
+- https://www.slant.co/topics/526/~best-window-manager-for-mac
 
 ### vs code
 
@@ -114,11 +118,26 @@ shadowsocks代理模式分为「自动代理模式(pac模式)」和「全局模�
 `Make The Current Project The Default At StartUp`
 
 
-## homebrew
+## iTerm2 / oh-my-zsh
+
+Mac 系统自带了 Zsh，用`zsh --version`命令查看，iTerm2 和系统 terminal 使用`/bin/bash`作为default shell,
+可以直接运行`chsh -s /bin/zsh`修改系统默认 shell 为 zsh 。也可以单独修改 iTerm2 在
+`Preferences -> Profiles -> Default -> General -> Command`里修改为`/bin/zsh`。
+
+之后安装 [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)，它有众多的 Plugins 和 Themes ,
+例如 [git Plugin](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git) 有许多方便操作的 git 命令别名。
+
+运行`setopt auto_pushd`，这样通过 cd 切换目录时，zsh 会自动将前一个目录加到栈里。
+
+再运行`brew install autojump`安装 autojump, 好了可以用`j –s`看你的历史路径库。
+
+[cdto-在ITerm里打开当前Finder路径](https://github.com/jbtule/cdto)
+
+查看某个命令文件所在的路径：比如`which java`，结果如果是`/usr/bin/..`，说明是软连接、再运行 ls -l `which java` 即可。
+
+## [homebrew](https://brew.sh/) - macOS 不可或缺的套件管理器
 
 ```sh
-brew install autojump
-
 # homebrew 国内源
 $ cd /usr/local && git remote set-url origin https://git.coding.net/homebrew/homebrew.git
 $ cd $home && brew update
