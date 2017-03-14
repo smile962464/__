@@ -221,6 +221,10 @@ Listen 9999
 http://localhost/
 http://localhost:9999/
 
+有些 API 比如 html5 getUserMedia，必须要在 https 环境下生效，参考配置如下：
+http://www.jianshu.com/p/bd016015efe7
+http://www.cnblogs.com/y500/p/3596473.html
+本目录`./other/apache`内`__http`为原始文件，`__https`为相应文件的 https 修改，方便直接替换。(ssl 证书另外自行生成)
 ```
 
 ## nginx

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+  <link rel="stylesheet" href="./app.css">
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>Web dictaphone (Run on Chrome with https server, not support Safari)</h1>
+    </header>
+    <section class="main-controls">
+      <canvas class="visualizer"></canvas>
+      <div id="buttons">
+        <button class="record">Record</button>
+        <button class="stop" disabled="">Stop</button>
+      </div>
+    </section>
+    <section class="sound-clips">
+      <!-- This is left here as a helper for testing the style of the clips
+        If you want to edit their appearance without having to record clips,
+        uncomment this and reload the page. Remember to comment it again when done!
+        <article class="clip">
+          <audio controls></audio>
+          <p>Sample clip name</p>
+          <button class="delete">Delete</button>
+        </article>
+      -->
+    </section>
+  </div>
+  <script src="./getUserMedia.js"></script>
+</body>
+</html>
