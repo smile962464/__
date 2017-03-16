@@ -12,6 +12,7 @@ var record = document.querySelector('.record');
 var stop = document.querySelector('.stop');
 var soundClips = document.querySelector('.sound-clips');
 var canvas = document.querySelector('.visualizer');
+var timeDisplay = document.querySelector('#time');
 
 // disable stop button while not recording
 
@@ -32,11 +33,29 @@ if (navigator.getUserMedia) {
 
   var onSuccess = function(stream) {
     var mediaRecorder = new MediaRecorder(stream);
+    var recordseconds = 0;
+    var counter;
+    function toHHMMSS(sec_num) {
+      var hours   = Math.floor(sec_num / 3600);
+      var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+      var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+      if (hours   < 10) {hours   = "0"+hours;}
+      if (minutes < 10) {minutes = "0"+minutes;}
+      if (seconds < 10) {seconds = "0"+seconds;}
+      return hours+':'+minutes+':'+seconds;
+    }
+    var displayTime = t => timeDisplay.innerHTML = toHHMMSS(recordseconds);
+    displayTime(recordseconds);
 
     visualize(stream);
 
     record.onclick = function() {
       mediaRecorder.start();
+      counter = setInterval(function timer() {
+        displayTime(++recordseconds);
+      }, 1000);
+
       console.log(mediaRecorder.state);
       console.log("recorder started");
       record.style.background = "red";
@@ -47,6 +66,10 @@ if (navigator.getUserMedia) {
 
     stop.onclick = function() {
       mediaRecorder.stop();
+      clearInterval(counter);
+      recordseconds = 0;
+      displayTime(recordseconds);
+
       console.log(mediaRecorder.state);
       console.log("recorder stopped");
       record.style.background = "";
@@ -66,7 +89,7 @@ if (navigator.getUserMedia) {
       var clipLabel = document.createElement('p');
       var audio = document.createElement('audio');
       var deleteButton = document.createElement('button');
-     
+
       clipContainer.classList.add('clip');
       audio.setAttribute('controls', '');
       deleteButton.textContent = 'Delete';
@@ -130,7 +153,7 @@ function visualize(stream) {
 
   source.connect(analyser);
   //analyser.connect(audioCtx.destination);
-  
+
   WIDTH = canvas.width
   HEIGHT = canvas.height;
 
@@ -155,7 +178,7 @@ function visualize(stream) {
 
 
     for(var i = 0; i < bufferLength; i++) {
- 
+
       var v = dataArray[i] / 128.0;
       var y = v * HEIGHT/2;
 

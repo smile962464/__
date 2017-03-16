@@ -63,8 +63,15 @@ OmniDiskSweeper 磁盘占用分析工具，[使用帮助](http://newping.cn/322)
 iCloud 目录多出了“Keynote / Pages ...“等空目录，是为了引导你安装相应软件，安装完之后、可以在
 ”系统偏好设置 -> iCloud -> iCloud Drive -> 选项“里去掉勾选相应项目，文件夹里的空目录自动会消失。
 
-- [Parallels-Desktop-11.1.2-for-macOS-Sierra](http://www.waitsun.com/parallels-desktop-11-1-2.html)
+虚拟机用 Virtualbox + win xp（注意：win-XP 要下载官方正版、不能是国内处理过的 ghost 版本），
+虚拟机里的 win 键盘是用的 ctrl 键：https://forums.virtualbox.org/viewtopic.php?f=8&t=63567&hilit=keyboard  
+(xp 下载地址: http://pcriver.com/operating-systems/windows-xp-professional-iso-download/)  
+注意：当 virtualBox 运行时，Android 官方安装的虚拟机、开不起来！  
+虚拟机里查看 ip 地址可以看到，例如 10.0.2.2 可访问 host 主机的 localhost ，
+Genymotion android emulator 相应ip为 10.0.3.2。 
+
 - https://www.slant.co/topics/526/~best-window-manager-for-mac
+- http://apple.stackexchange.com/questions/144388/always-open-the-finder-in-new-tab
 
 ### vs code
 

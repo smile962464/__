@@ -28,15 +28,17 @@ app.use(webpackDevMiddleware(webpack(WebpackConfig), {
 var fs = require('fs')
 var path = require('path')
 
-function makeTpl(file) {
+function makeTpl(file, isMobile) {
   return `<!doctype html>
   <html>
   <head>
     <meta charset="utf-8">
     <title>${file}</title>
-    <!-- 高清方案脚本 -->
+    ${isMobile ?
+    `<!-- 高清方案脚本 -->
     <script src="https://os.alipayobjects.com/rmsportal/lvEQQbNgHsIxVfXLkmuX.js"></script>
-    <link rel="stylesheet" href="/dist/${file}.css">
+    <link rel="stylesheet" href="/dist/${file}.css">`
+    : ''}
   </head>
   <body>
     <div id="example"/>
@@ -63,7 +65,7 @@ fs.readdirSync(_dir).forEach(function (file) {
   var st = fs.statSync(path.join(_dir, file))
   if (st.isDirectory()) {
     app.get('/' + file, function(req, res) {
-      res.send(makeTpl(file))
+      file === 'antdm' ? res.send(makeTpl(file, true)) : res.send(makeTpl(file));
     })
   }
 })
