@@ -70,11 +70,16 @@ and you should be using HTTP caching to reduce the size of assets.
 
 ## dom 优化
 
+dom 对象是很庞大的（上边有很多属性），其创建的开销比较大，已有的 dom 对象上做更新开销并不大，
+众多框架都在围绕此做优化，比如用`key`是否变化来判断对 dom 的操作是 “更新” 还是 “销毁重建”。
+
 dom批量更新：dom操作如，1.删除一个元素，2.增加一个元素，3.在增加的元素上改变一个属性。
 如果用 dom-api 一步步操作，会导致中间多次的 repaints 和 reflows，这是比较低效耗性能的。
 如果放到「虚拟dom」上操作，会把这三个过程最终的结果，一次更新到实际dom树上，只用操作一次实际dom。
 
 react virtual-dom 里一次digest中的diff只需一次，但是会随着ui的复杂度，性能损耗严重，virtual-dom与原dom的对应也更难(如果angular的脏检查的性能取决与watcher的数量，那react则是取决与ui规模)。 virtual-dom的内部结构变化是不可预知的
+
+[真实 DOM 和 react 虚 dom 讨论](http://www.zhihu.com/question/31809713)
 
 [React Virtual DOM vs Incremental DOM vs Ember’s Glimmer: Fight](https://auth0.com/blog/2015/11/20/face-off-virtual-dom-vs-incremental-dom-vs-glimmer/)
 
@@ -276,7 +281,6 @@ html特殊字符：[HTML特殊字符大全](http://www.qianduan.net/html-special
 # other
 
 
-
 ## 组件设计
 
 - [javascript组件化](http://purplebamboo.github.io/2015/03/16/javascript-component/)
@@ -292,7 +296,6 @@ html特殊字符：[HTML特殊字符大全](http://www.qianduan.net/html-special
 
 - [Backbone View 之间通信的三种方式](http://www.geekplux.com/2015/07/04/communicating-between-views-in-backbone.html)
 - [如何实现一个mvvm组件](http://shepherdwind.com/2014/05/17/how-to-reliaze-mvvm--bidi/)
-- [框架性能关注点](http://www.zhihu.com/question/31809713/answer/53544875)
 
 ### 设计原则：
 - 职责清晰
