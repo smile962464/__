@@ -1,4 +1,7 @@
 
+# 各种
+
+[正向代理与反向代理有什么区别](http://mp.weixin.qq.com/s/ikrI3rmSYs83wdSWqq2QIg)
 
 ## AI
 
@@ -13,7 +16,8 @@
 
 [brain](https://github.com/harthur/brain)、
 [convnetjs](https://github.com/karpathy/convnetjs)、
-[synaptic](https://github.com/cazala/synaptic)
+[synaptic](https://github.com/cazala/synaptic)、
+[Pure Javascript OCR](https://github.com/naptha/tesseract.js)
 
 [如何让机器学习得更快——深度学习并行训练算法浅析](http://www.infoq.com/cn/presentations/how-to-make-the-machine-learn-faster)
 

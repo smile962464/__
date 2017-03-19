@@ -15,9 +15,6 @@ http://apple.stackexchange.com/questions/102452/can-i-undo-changes-made-via-defa
 pmset noidle  # 阻止电脑睡眠
 同时按住shift、control、电源键，关闭显示器
 
-# 在桌面生成软连接（快捷方式）
-ln -s /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app ~/Desktop
-
 单词自动补全：在内置的文本编辑器里，输入几个字母后，点击 Escape 键，OS X 就会提示多个单词。
 
 # dock 上增加最近打开程序的选项：
@@ -25,6 +22,11 @@ defaults write com.apple.dock persistent-others -array-add '{ "tile-data" = { "l
 killall Dock
 
 拖动 app 到 finder 工具栏方法：拖着 app 到 finder 工具栏时，按下`cmd + alt`
+
+# 在桌面生成软连接（快捷方式）
+ln -s /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app ~/Desktop
+# 加入到 zsh/bash 中
+alias simulator='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
 
 ```
 
@@ -46,7 +48,7 @@ Idea 一直在`scanning files to index`解决办法：把`node_module`目录设�
 
 ## 常用软件
 
-- 必备: HandBrake / Movist / Dash / MacDown marp / snip jietu(qq) licecap kap / Color Note / Gas Mask / charles / XtraFinder / Alfred / AppCleaner / iStat-Menus / OnyX / Spectacle / FileZilla / androidfiletransfer / meld / Cakebrew / pyCharm / virtualbox / genymotion / xcode / mindnode lite
+- 必备: HandBrake / Movist / Dash / MacDown Marp / snip jietu(qq) licecap kap Skitch XnConvert gifify / Color Note / Gas Mask / charles / XtraFinder / Alfred / AppCleaner / iStat-Menus / OnyX / Spectacle / FileZilla / androidfiletransfer / meld / Cakebrew / pyCharm / virtualbox / genymotion / xcode / mindnode lite
 
 > 「xxx.app已损坏,打不开.你应该将它移到废纸篓」，并非你安装的软件已损坏，而是Mac系统的安全设置问题，
 > 因为这些应用都是破解或者汉化的（例如 Movist 破解版）, 解决方法就是临时改变Mac系统安全设置。
