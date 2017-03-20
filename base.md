@@ -3,29 +3,10 @@
 
 [正向代理与反向代理有什么区别](http://mp.weixin.qq.com/s/ikrI3rmSYs83wdSWqq2QIg)
 
-## AI
-
-计算机视觉：  
-李飞飞 [TED: How we teach computers to understand pictures](https://www.youtube.com/watch?v=40riCqvRoMs) /
-[ImageNet](http://image-net.org/) / [斯坦福 vision lab](http://vision.stanford.edu/)
-
-[机器学习-入门](http://www.cnblogs.com/subconscious/p/4107357.html?spm=0.0.0.0.U5h3qC)、
-[AI-Programmer](https://github.com/primaryobjects/AI-Programmer)、
-[Would-AI-be-able-to-write-code](https://www.quora.com/Would-AI-be-able-to-write-code)、
-[Intelligent code-completion? Is there AI to write code by learning?](http://stackoverflow.com/questions/710843/intelligent-code-completion-is-there-ai-to-write-code-by-learning)
-
-[brain](https://github.com/harthur/brain)、
-[convnetjs](https://github.com/karpathy/convnetjs)、
-[synaptic](https://github.com/cazala/synaptic)、
-[Pure Javascript OCR](https://github.com/naptha/tesseract.js)
-
-[如何让机器学习得更快——深度学习并行训练算法浅析](http://www.infoq.com/cn/presentations/how-to-make-the-machine-learn-faster)
-
 
 ## iOS
 
 添加 APP 图标时，2x 3x 的图标大小「不能一样」，否则会一直报错：The app icon set named “AppIcon” did not have any applicable content
-
 
 
 ## Go
