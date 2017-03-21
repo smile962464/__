@@ -35,6 +35,6 @@ brew linkapps python3
 which python  # right: /usr/local/bin/python  not: /usr/bin/python
 which python3 # right: /usr/local/bin/python3 not: /usr/bin/python3
 
-sudo easy_install pip
+# sudo easy_install pip  # brew install python 时默认已经安装了？
 sudo pip install virtualenv virtualenvwrapper  # 虚拟环境工具
 ```
