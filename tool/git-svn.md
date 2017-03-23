@@ -38,11 +38,10 @@ git reset HEAD^ a.py    回退a.py这个文件的版本到上一个版本
 git reset 057d    回退到某个版本  
 
 #### commit之后的回滚
-git reset --soft 不修改本地文件
-git reset --hard 本地的文件修改都被丢弃
+git reset [--soft 不修改本地文件 | --hard 本地的文件修改都被丢弃]
 
-git reset --soft HEAD^    撤销commit，重新做
-git reset --hard 057d    回退到某个版本（本地的文件修改都被丢弃）  
+git reset --soft HEAD^   撤销commit，重新做
+git reset --hard 057d    回退到某个版本，注意：本地的文件修改都被丢弃
 git reset --hard origin/master   将本地的状态回退到和远程的一样
 
 git checkout HEAD~1 -- file     运行 git merge xx 后，想撤销其中某个文件的merge

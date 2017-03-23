@@ -122,7 +122,10 @@ shadowsocks代理模式分为「自动代理模式(pac模式)」和「全局模�
 所以一般都使用PAC模式，并且[配合SwitchyOmega](http://www.jianshu.com/p/a6eecc4f66e6) 方便添加/删除特定网址到 pac 文件中。
 「自动代理模式」和「全局模式」切换时，系统的「偏好设置－网络－高级－代理」里会跟着切换。
 
-让 terminal 走代理（如curl）：使用 proxychains4。
+让 terminal 走代理（如curl）：使用 proxychains4 (需要 csrutil disable 关闭 sip)。
+在 zshrc 里设置`alias proxy="proxychains4 -q"`，`brew install wget`安装 wget ，
+即可使用如`proxy wget http://xxx.pdf`下载一些被墙的资源
+
 
 ### atom
 
@@ -155,15 +158,13 @@ Mac 系统自带了 Zsh，用`zsh --version`命令查看，iTerm2 和系统 term
 ## [homebrew](https://brew.sh/) - macOS 不可或缺的套件管理器
 
 ```sh
+brew help
+brew list / brew info <package name>
+
 # homebrew 国内源
 $ cd /usr/local && git remote set-url origin https://git.coding.net/homebrew/homebrew.git
 $ cd $home && brew update
 
-# 更新时报错：
-cd $(brew --prefix)  或 cd /usr/local
-git fetch origin
-git reset --hard origin/master
-git clean -f
 ```
 
 ### homebrew-cask

@@ -1,19 +1,23 @@
 
 [在做 iOS 和 Android 的 HTML5 开发时，你都掉到过哪些坑里？](https://www.zhihu.com/question/34556725)
 
-## 环境/调试
+### 环境/调试
+
 开启 Charles 代理，需要把其他代理软件关掉、像 ShadowSocks 要关掉、浏览器也不能有代理插件如 switchyomega 开着.
 
 https://github.com/ant-design/ant-design-mobile/issues/614
 
-[Weinre](https://people.apache.org/~pmuellr/weinre/docs/latest/Home.html)
-
 ```sh
+# [Weinre](https://people.apache.org/~pmuellr/weinre/docs/latest/Home.html)
 npm install -g weinre
 
 ipconfig getifaddr en0  # 获取本机 IP 地址
 weinre --boundHost IP  # 执行后、打开地址 IP:8080
 在要调试的页面插入 Target Script ，电脑打开 debug client user interface 地址、即可看到要调试的页面。
+
+# [jsconsole](https://jsconsole.com/)
+# 如果页面 JS 报错，一般情况下也能在 JSConsole 中进行定位。
+
 ```
 
 ### 兼容性问题

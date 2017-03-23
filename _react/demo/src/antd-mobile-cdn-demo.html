@@ -17,16 +17,19 @@
   </script>
   <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/antd-mobile@1.0.0/dist/antd-mobile.css">
+  <link rel="stylesheet" href="https://unpkg.com/antd-mobile/dist/antd-mobile.min.css">
 </head>
 <body>
   <div id="root"></div>
   <script src="//cdn.bootcss.com/react/15.4.1/react.min.js"></script>
   <script src="//cdn.bootcss.com/react/15.4.1/react-dom.min.js"></script>
-  <script src="https://unpkg.com/antd-mobile@1.0.0/dist/antd-mobile.js"></script>
+  <script src="https://unpkg.com/antd-mobile/dist/antd-mobile.min.js"></script>
   <script src="./data.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
   <script type="text/jsx">
     console.log(window['antd-mobile'])
+    const Button = window['antd-mobile'].Button;
+    const Popup = window['antd-mobile'].Popup;
     const SearchBar = window['antd-mobile'].SearchBar;
     const Picker = window['antd-mobile'].Picker;
     const List = window['antd-mobile'].List;
@@ -42,7 +45,7 @@
         return <div>
           <NoticeBar mode="link">国庆期间余额宝收益和转出到账时间</NoticeBar>
           <SearchBar placeholder="pp" />
-          <List>
+          <List style={{ marginBottom: 200 }}>
             <CheckboxItem onChange={(e) => {console.log('checkbox', e);}}>CheckboxItem</CheckboxItem>
             <Picker
               data={window.data.picker}
@@ -53,6 +56,14 @@
             >
               <List.Item arrow="horizontal">省市区选择</List.Item>
             </Picker>
+          </List>
+          <Button onClick={() => {
+            Popup.show(<div>注意下方，滑到最下面一个item了</div>, { animationType: 'slide-down' });
+          }}>点我弹出Popup</Button>
+          <List style={{height: document.documentElement.clientHight}}>
+            {_.map(new Array(200), (i, index) => (
+            <List.Item key={index}>我是第{index}个item</List.Item>
+            ))}
           </List>
         </div>
       }
