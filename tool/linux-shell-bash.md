@@ -3,19 +3,18 @@
 ### 常用
 > man 查看命令帮助文档。 例如：使用 man ascii 来查看 ASCII 表。
 
-```
+```sh
 # 命令行快捷键
 
-ctrl+c 退出某进程（不是command键）
-Ctrl+r 查找输入过的命令
-cammand+k / ctrl + l / clear  #清屏
-删除前一个单词：crtl + w
-移动到所在行首：ctrl + a
-移动到所在行尾：ctrl + e
-清除光标到行首的内容：ctrl + u
-清除光标到行尾的内容：ctrl + k
-移动到所在单词的词首：esc + b
-移动到所在单词的词尾：esc + f
+crtl + w 删除前一个单词
+ctrl + a / e 移动到所在 行首 / 行尾
+ctrl + c 退出某进程（不是command键）
+Ctrl + r 查找输入过的命令
+cammand + k / ctrl + l / clear  #清屏
+ctrl + u / k  清除光标到 行首 / 行尾 的内容
+
+esc + b / f 移动到所在单词的 词首 / 词尾 
+(为了方便，设置 iterm > Profiles > Keys 里的 ⌥→ / ⌥← Action 为 Send Escape sequence ，b / f )
 
 # 命令
 
@@ -32,10 +31,8 @@ more filename # 一页一页的显示档案内容. less 与 more 类似，而且
 history 10 # 列出最近执行过10条的命令，默认放在 .bash_history 文件中，默认保存1000条(可以修改)
 history | more # 逐屏列出所有的历史记录，!99 执行历史清单中的第99条命令
 
-head filename 只看头几行(默认10行)
-head -n 20 ~/.bashrc 显示头二十行！
-tail filename 只看尾巴几行(默认10行) 
-tail -n 5 ~/.bashrc 只显示最后面五行
+head/tail filename 只看 头/尾 几行(默认10行)
+head/tail -n 20 ~/.bashrc 显示头二十行！
 
 dig [IP地址/域名] +short  # 查询DNS包括NS记录，A记录，MX记录等相关信息的工具
 nslookup [IP地址/域名]  # 查询一台机器的IP地址和其对应的域名
@@ -43,14 +40,33 @@ mtr # 诊断路由节点问题，如丢包、网站访问慢、结合了"tracero
 mtr -r [IP地址/域名]  # 以报告模式显示：从我的主机到目标主机经过的路由节点以及到各节点数据包的丢包率和ping命令的最短/最长时间和标准偏差。 
 # mtr 详细：https://meiriyitie.com/2015/05/26/diagnosing-network-issues-with-mtr/
 
+alias # 查看系统里别名
 w / who # 列出当前登录的所有用户
 whoami # 显示当前正进行操作的用户名
 tty # 显示终端或伪终端的名称
 last # 查看系统最后登录
-alias # 查看系统里别名
 date # 显示系统的当前日期和时间
 say hello world  # 说话
 ```
+
+### 软/硬连接
+连接有软连接和硬连接(hard link)之分的，软连接(symbolic link)又叫符号连接。
+符号连接相当于Windows下的快捷方式。不可以对文件夹建立硬连接，我们通常用的还是软连接比较多。
+（注意：软连接和mac上的制作替身不同）
+
+格式：ln [option] source_file dist_file/dist_dir
+
+```sh
+#若权限不足加 sudo
+ln -s source_file dist        # 建立软连接
+ln -s ../source/*.bar .        # 建立软连接，在当前目录
+
+ln source_file dist           # 建立硬连接
+rm -rf symbolic_name    # 注意不是rm -rf symbolic_name/
+```
+
+软连接可以 跨文件系统，硬连接不可以。软连接可以对一个不存在的文件名进行连接。软连接可以对目录进行连接。
+硬链接下修改源文件或者连接文件任何一个的时候，其他的文件都会做同步的修改。
 
 ### curl
 jsonp： curl https://api.github.com?callback=foo
@@ -100,19 +116,6 @@ find命令是根据文件的属性进行查找，如文件名，文件大小，�
     find / -size -1000k 　　#查找出小于1000KB的文件
 
     find . -name '*.DS_Store' -type f -delete  删除某目录及子目录下的 .DS_Store 文件
-
-### 软/硬连接
-连接有软连接和硬连接(hard link)之分的，软连接(symbolic link)又叫符号连接。符号连接相当于Windows下的快捷方式。不可以对文件夹建立硬连接，我们通常用的还是软连接比较多。
-（注意：软连接和mac上的制作替身不同）
-
-格式：ln [option] source_file dist_file （source_file是待建立链接文件的文件，dist_file是新创建的链接文件
-
-    #若权限不足加 sudo
-    ln -s source dist        # 建立软连接
-    ln source dist           # 建立硬连接
-    rm -rf symbolic_name    # 注意不是rm -rf symbolic_name/
-
-软连接可以 跨文件系统，硬连接不可以。软连接可以对一个不存在的文件名进行连接。软连接可以对目录进行连接。硬链接下修改源文件或者连接文件任何一个的时候，其他的文件都会做同步的修改。
 
 ## 环境变量操作
 - echo $PATH  -- 查看PATH环境变量
