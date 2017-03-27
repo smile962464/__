@@ -32,6 +32,9 @@ alias simulator='open /Applications/Xcode.app/Contents/Developer/Applications/Si
 
 ## 各种
 
+在启动系统登录后、添加自动打开的程序：System Preferences > Users & Groups > Login items
+点击"+"、找到自己写的可执行 bash 文件，加入即可。
+
 重启，开机按住Command + R，以 Recovery 分区启动，命令行输入
 `csrutil enable --without debug`关闭调试模式，`csrutil disable`关闭 Enforce System Integrity Protection. [Mac sip安全机制介绍](https://support.apple.com/en-us/HT204899) / [csrutil status](https://developer.apple.com/library/content/documentation/Security/Conceptual/System_Integrity_Protection_Guide/ConfiguringSystemIntegrityProtection/ConfiguringSystemIntegrityProtection.html#//apple_ref/doc/uid/TP40016462-CH5-SW1)
 
