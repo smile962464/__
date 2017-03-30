@@ -12,6 +12,8 @@
 
 # 资料
 
+https://github.com/superscriptjs/superscript
+
 计算机视觉：  
 李飞飞 [TED: How we teach computers to understand pictures](https://www.youtube.com/watch?v=40riCqvRoMs) /
 [ImageNet](http://image-net.org/) / [斯坦福 vision lab](http://vision.stanford.edu/)

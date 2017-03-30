@@ -29,8 +29,6 @@ module.exports = {
         query: {
           presets: ['es2015', 'stage-0', 'react'],
           plugins: [
-            ["external-helpers"],
-            ["babel-plugin-transform-runtime", { polyfill: false }],
             ["transform-runtime", { polyfill: false }],
             ["import", [
               { "style": "css", "libraryName": "antd" },
