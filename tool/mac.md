@@ -83,62 +83,27 @@ Genymotion android emulator 相应ip为 10.0.3.2。
 - https://www.slant.co/topics/526/~best-window-manager-for-mac
 - http://apple.stackexchange.com/questions/144388/always-open-the-finder-in-new-tab
 
-### vs code
 
-```js
-// 设置
-{
-  "editor.fontSize": 13,
-  "editor.tabSize": 2,
-  "editor.dragAndDrop": true,
-  "files.exclude": {
-    "**/.idea": true
-  },
-  "editor.scrollBeyondLastLine": false,
-  "editor.formatOnType": true,
-  "editor.renderIndentGuides": true,
-  "terminal.external.osxExec": "iTerm.app",
-  "editor.renderWhitespace": "boundary",
-  "editor.tabCompletion": true,
-  "typescript.check.tscVersion": false,
-  "files.associations": {
-    "*.wxml": "xml",
-    "*.wxss": "css",
-    "*.acss": "css"
-  },
-  "workbench.iconTheme": "vs-seti"
-}
-// 快捷键
-[
-  { "key": "cmd+d",   "command": "editor.action.copyLinesDownAction" }
-]
-// 扩展
-beautify / Indent 4-to-2 / JSON Tools / Path Intellisense / react-beautify / C/C++
-changeEncode / GBKtoUTF8 / Active File In Status Bar / EditorConfig for Visual Studio Code
+## 软/硬连接
+
+连接有软连接和硬连接(hard link)之分的，软连接(symbolic link)又叫符号连接。
+符号连接相当于Windows下的快捷方式。不可以对文件夹建立硬连接，我们通常用的还是软连接比较多。
+（注意：软连接和mac上的制作替身不同）
+
+```sh
+# 格式
+ln [option] source_file dist_file/dist_dir
+
+#若权限不足加 sudo
+ln -s source_file dist        # 建立软连接
+ln -s ../source/*.bar .        # 建立软连接，在当前目录
+
+ln source_file dist           # 建立硬连接
+rm -rf symbolic_name    # 注意不是rm -rf symbolic_name/
 ```
 
-### shadowsocks
-
-> shadowsocks使用的是sockets5代理，一般情况下只有浏览器支持，电脑上的其他软件很多不支持(可以配合proxifier做支持)。
-
-shadowsocks代理模式分为「自动代理模式(pac模式)」和「全局模式」，
-全局模式「并不是所有的电脑上的app都走代理」而只是所有浏览器访问的网站都走代理(包括国内外所有网站)。
-所以一般都使用PAC模式，并且[配合SwitchyOmega](http://www.jianshu.com/p/a6eecc4f66e6) 方便添加/删除特定网址到 pac 文件中。
-「自动代理模式」和「全局模式」切换时，系统的「偏好设置－网络－高级－代理」里会跟着切换。
-
-让 terminal 走代理（如curl）：使用 proxychains4 (需要 csrutil disable 关闭 sip)。
-在 zshrc 里设置`alias proxy="proxychains4 -q"`，`brew install wget`安装 wget ，
-即可使用如`proxy wget http://xxx.pdf`下载一些被墙的资源
-
-
-### atom
-
-- 标题栏显示完整路径：安装 [custom-title](https://atom.io/packages/custom-title)，设置 `<%= fileName %><% if (projectPath) { %> - <%= filePath %> <% } %>`
-- [Sublime-Style-Column-Selection](https://atom.io/packages/Sublime-Style-Column-Selection)
-- [atom-beautify](https://atom.io/packages/atom-beautify) / [highlight-selected](https://atom.io/packages/highlight-selected) / [open-in-browser](https://atom.io/packages/open-in-browser)
-- japanese-wrap / line-length-break / indent-guide-improved
-- [插件project-ring](https://github.com/vellerefond/project-ring)：
-`Make The Current Project The Default At StartUp`
+软连接可以 跨文件系统，硬连接不可以。软连接可以对一个不存在的文件名进行连接。软连接可以对目录进行连接。
+硬链接下修改源文件或者连接文件任何一个的时候，其他的文件都会做同步的修改。
 
 
 ## iTerm2 / oh-my-zsh
@@ -196,6 +161,119 @@ homebrew-cask 和Homebrew 的区别：
 Homebrew 安装的是源文件包, 下载源文件、编译、安装，比如安装wget, gnupg, mutt等。
 homebrew-cask 安装的是二进制软件包, 比如QQ，Chrome，evernote等。
 homebrew-cask 安装软件时自动创建软连接到 Application 目录，这样在 Launchpad 中也能查看到安装的软件，方便启动软件。
+
+
+## vim
+
+vim 是 vi 的增强版本。相比vi添加了显示颜色等功能。
+![vim 键盘图](https://zos.alipayobjects.com/rmsportal/MOPJrAnojdFvAToZkESi.gif)
+
+```sh
+# 编辑模式
+输入 i 再输入其他字符。 按 esc 退出，切回命令模式
+
+# 命令模式
+按：h j k space键 导航方向
+ctrl-f  上翻一页
+ctrl-b  下翻一页
+^     跳至行首
+$     跳至行尾
+gg    跳至文件的第一行 
+G     到文件的最后一行
+
+tail -n10 path/filename 查看文件最后10行
+
+:w   保存
+:wq  :x  shift zz 保存修改并退出
+:q!  强制退出，放弃修改
+
+u     撤销  
+ctrl+r   重做（撤销一个撤销）
+.     重复上一个编辑命令
+>>     将当前行右移一个单位
+<<     将当前行左移一个单位(一个tab符)
+==     自动缩进当前行
+
+/pattern     向后搜索字符串pattern  n继续搜索下一个  shift+n
+?pattern     向前搜索字符串pattern  #继续搜索上一个
+:s/vivian/sky/ 替换当前行第一个 vivian 为 sky
+:s/vivian/sky/g 替换当前行所有 vivian 为 sky
+:%s/source_pattern/target_pattern/g  全局替换
+
+复制 粘贴（如果粘贴外部内容，在i模式下，直接cmd+v）
+dd 删除光标所在行， dw 删除一个字(word) ，D 删除到行末
+x 删除当前字符，  X 删除前一个字符
+yy 复制一行，此命令前可跟数字，标识复制多行，如6yy，表示从当前行开始复制6行
+yw 复制一个字 ， y$ 复制到行末
+p 粘贴内容到当前行的下面 ，P 粘贴内容到当前行的上面
+
+# visual模式
+
+按 v 进入可视模式；移动光标键选定内容！w选择单词，y复制(或gy)，p粘贴，x删除，d删除后边
+
+[vi编辑器使用color-scheme](http://alvinalexander.com/linux/vi-vim-editor-color-scheme-colorscheme)
+cd /usr/share/vim/vim72/colors
+ls -- 找出需要的color名字
+然后 in a vi editor session 输入 :colo delek
+```
+
+
+## shadowsocks
+
+> shadowsocks使用的是sockets5代理，一般情况下只有浏览器支持，电脑上的其他软件很多不支持(可以配合proxifier做支持)。
+
+shadowsocks代理模式分为「自动代理模式(pac模式)」和「全局模式」，
+全局模式「并不是所有的电脑上的app都走代理」而只是所有浏览器访问的网站都走代理(包括国内外所有网站)。
+所以一般都使用PAC模式，并且[配合SwitchyOmega](http://www.jianshu.com/p/a6eecc4f66e6) 方便添加/删除特定网址到 pac 文件中。
+「自动代理模式」和「全局模式」切换时，系统的「偏好设置－网络－高级－代理」里会跟着切换。
+
+让 terminal 走代理（如curl）：使用 proxychains4 (需要 csrutil disable 关闭 sip)。
+在 zshrc 里设置`alias proxy="proxychains4 -q"`，`brew install wget`安装 wget ，
+即可使用如`proxy wget http://xxx.pdf`下载一些被墙的资源
+
+
+## vs code
+
+```js
+// 设置
+{
+  "editor.fontSize": 13,
+  "editor.tabSize": 2,
+  "editor.dragAndDrop": true,
+  "files.exclude": {
+    "**/.idea": true
+  },
+  "editor.scrollBeyondLastLine": false,
+  "editor.formatOnType": true,
+  "editor.renderIndentGuides": true,
+  "terminal.external.osxExec": "iTerm.app",
+  "editor.renderWhitespace": "boundary",
+  "editor.tabCompletion": true,
+  "typescript.check.tscVersion": false,
+  "files.associations": {
+    "*.wxml": "xml",
+    "*.wxss": "css",
+    "*.acss": "css"
+  },
+  "workbench.iconTheme": "vs-seti"
+}
+// 快捷键
+[
+  { "key": "cmd+d",   "command": "editor.action.copyLinesDownAction" }
+]
+// 扩展
+beautify / Indent 4-to-2 / JSON Tools / Path Intellisense / react-beautify / C/C++
+changeEncode / GBKtoUTF8 / Active File In Status Bar / EditorConfig for Visual Studio Code
+```
+
+## atom
+
+- 标题栏显示完整路径：安装 [custom-title](https://atom.io/packages/custom-title)，设置 `<%= fileName %><% if (projectPath) { %> - <%= filePath %> <% } %>`
+- [Sublime-Style-Column-Selection](https://atom.io/packages/Sublime-Style-Column-Selection)
+- [atom-beautify](https://atom.io/packages/atom-beautify) / [highlight-selected](https://atom.io/packages/highlight-selected) / [open-in-browser](https://atom.io/packages/open-in-browser)
+- japanese-wrap / line-length-break / indent-guide-improved
+- [插件project-ring](https://github.com/vellerefond/project-ring)：
+`Make The Current Project The Default At StartUp`
 
 
 ## Apache
