@@ -125,6 +125,11 @@ Linux分为内核版、发行版。比较常用的发行版有 redhat、ubuntu �
 shell是一个命令行解释器。shell是壳，kernel 是内核。shell把用户敲进去的命令、翻译为 linux 内核能识别的语言。
 linux下有些命令是shell自带的，有些命令是别人写好装进来的(如ls)，用 whereis ls 来区别。
 
+- sh : Bourne Shell 的缩写，可以说是目前所有 Shell 的祖先。
+- bash : Bourne Again Shell 的缩写，是 sh 的一个进阶版本。
+
+bash 是目前大多数 Linux 发行版和苹果的 Mac OS X 操作系统的默认 Shell。需要重点学习！
+
 ```sh
 echo $PATH  # 查看PATH环境变量
 echo $SHELL
