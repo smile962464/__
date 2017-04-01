@@ -111,6 +111,13 @@ find / -size -1000k 　　#查找出小于1000KB的文件
 find . -name '*.DS_Store' -type f -delete   # 删除某目录及子目录下的 .DS_Store 文件
 ```
 
+### 其他常用命令
+
+```sh
+top  # 统计进程状态，和 Mac 的 活动监视器 功能类似
+brew install htop  # top 高级版，支持鼠标点击、方向键切换
+```
+
 # linux学习
 
 Unix遵循的原则是KISS（Keep it simple, stupid）。do one thing and do it well。
