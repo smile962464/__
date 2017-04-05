@@ -23,6 +23,9 @@ npm-debug.log
 dist
 *.pem
 
+# c / c++
+*.out
+
 # https://github.com/github/gitignore/blob/master/CMake.gitignore
 CMakeCache.txt
 CMakeFiles

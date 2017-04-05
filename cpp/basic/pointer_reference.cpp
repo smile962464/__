@@ -34,6 +34,32 @@ int main() {
     rr = &ii; // r 引用了一个指针，因此给 r 赋值 &i 就是令 p 指向 i
     *rr = 0; // 解引用 r 得到 i，也就是 p 指向的对象，将 i 的值改为 0
 
+    double arr[5] = {22.1, 32.2, 23.4, 45.2, 37.4};
+    double *pt = arr;  // pt points to arr[0]
+    ++pt;  // pt points to arr[1]
+    double x = *++pt;  // to arr[2]
+    // ++*pt;  // arr[2] + 1
+    // (*pt)++;  //
+    x = *pt++;  // 后缀运算符++的优先级高于*，因此用于 pt，而不是 *pt，对指针递增
+
+    // 错误用法，重要！
+    // long *fellow;
+    // *fellow = 223323;  // 223323 存在哪里不确定，fellow 指向的地址可能并不是要存放 223323 的地方
+
+    ing age = 39;
+    int *pd = &age;  // *pd = 41 is a valid operation
+    const int *pt = pd;  // *pt = 42 is an invalid operation
+
+    int sloth = 3;
+    const int *ps = &sloth;  // a pointer to const int , ps 可以改为指向其他地址
+    int *const finger = &sloth;  // a const pointer to int , finger 只能指向 sloth，但可以用 finger 修改 sloth 的值
+
+    double trouble = 2.0E30;
+    const double *const stick = &trouble;  // 指向 const 对象的 const 指针， stick 和 *stick 都是 const
+
+    // 二维数组和指针
+    ar2[r][c] == *(*(ar2 + r) + c)  // same
+
     // 引用
     int    i;
     double d;
