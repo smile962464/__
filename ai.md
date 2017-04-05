@@ -12,11 +12,8 @@
 
 # 资料
 
-https://github.com/superscriptjs/superscript
-
-计算机视觉：  
-李飞飞 [TED: How we teach computers to understand pictures](https://www.youtube.com/watch?v=40riCqvRoMs) /
-[ImageNet](http://image-net.org/) / [斯坦福 vision lab](http://vision.stanford.edu/)
+- [全世界最简单的机器学习入门指南](https://zhuanlan.zhihu.com/p/24339995)
+- 计算机视觉：李飞飞 [TED: How we teach computers to understand pictures](https://www.youtube.com/watch?v=40riCqvRoMs) / [ImageNet](http://image-net.org/) / [斯坦福 vision lab](http://vision.stanford.edu/)
 
 [机器学习-入门](http://www.cnblogs.com/subconscious/p/4107357.html?spm=0.0.0.0.U5h3qC)、
 [AI-Programmer](https://github.com/primaryobjects/AI-Programmer)、
@@ -30,6 +27,7 @@ https://github.com/superscriptjs/superscript
 
 [如何让机器学习得更快——深度学习并行训练算法浅析](http://www.infoq.com/cn/presentations/how-to-make-the-machine-learn-faster)
 
+https://github.com/superscriptjs/superscript
 
 
 # 《数据挖掘导论》
