@@ -1,5 +1,5 @@
-# react native
 
+# react native
 ### 组件
 ScrollView 只能在横向或纵向两者之一进行滚动：https://github.com/facebook/react-native/issues/2962
 
@@ -17,6 +17,13 @@ ScrollView 只能在横向或纵向两者之一进行滚动：https://github.com
 Image decoding can take more than a frame-worth of time. 
 This is one of the major source of frame drops on the web because decoding is done in the main thread. 
 In React Native, image decoding is done in a different thread.
+
+
+# hybrid app 
+
+[Apache Cordova - 前身是 PhoneGap](https://cordova.apache.org/) 是移动 hybrid 开发方式先驱，
+其他公司内部部署的 bridge 等，大都效仿于它。
+
 
 # native 
 
@@ -36,3 +43,4 @@ iOS 或 android 上能够运行的JavaScript 引擎有4个： JavaScriptCore, Sp
 
 Chrome for iOS 使用 UIWebView 由于 UIWebView 的能力限制，它只能使用移动版 Safari 的渲染层，JavaScriptCore(without JIT)（而不是V8）和单进程模式。
 Android Browser 使用 V8. 
+

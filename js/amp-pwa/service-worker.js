@@ -1,6 +1,6 @@
 importScripts('./cache-polyfill.js');
 
-var CACHE_VERSION = 'app-v1';
+var CACHE_VERSION = 'app-v11';
 var CACHE_FILES = [
     '/',
     'images/bg.png',
@@ -8,7 +8,6 @@ var CACHE_FILES = [
     // 'css/styles.css',
     'https://fonts.googleapis.com/css?family=Roboto:100'
 ];
-console.log('xxx')
 
 self.addEventListener('install', function (event) {
     event.waitUntil(

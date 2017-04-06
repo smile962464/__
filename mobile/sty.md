@@ -88,9 +88,9 @@ Android 上小于 1px 的边线会被显示为 0px ，iOS8 之后支持 0.5px �
 
 页面横向能拖动问题：注意哪里设置了 width 之和为 100% ，但没设置`box-sizing: border-box;`
 
-- transform闪动问题：
-
-    -webkit-backface-visibility : hidden;
-    -webkit-transform-style : preserve-3d;
-    -webkit-transform : translate3d(0,0,0)；
-
+```js
+// transform闪动问题：
+-webkit-backface-visibility : hidden;
+-webkit-transform-style : preserve-3d;
+-webkit-transform : translate3d(0,0,0)；
+```

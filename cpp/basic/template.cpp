@@ -18,6 +18,15 @@ T min(T x, T y) {
     return (x < y) ? x : y;
 }
 
+template <class T>
+void Swap(T &, T &);  // template prototype
+
+// 显式具体化(explicit specialization)  template 后跟 <>
+template <> void Swap<job>(job &j1, job &j2);
+template <> void Swap(job &j1, job &j2);
+// 显式实例化(explicit instantiation)  template 后不跟 <>
+template void Swap<int>(int, int);
+
 int main() {
     int n1 = 2, n2 = 10;
     double d1 = 1.5, d2 = 5.6;

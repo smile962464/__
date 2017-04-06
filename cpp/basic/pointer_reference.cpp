@@ -58,9 +58,18 @@ int main() {
     const double *const stick = &trouble;  // 指向 const 对象的 const 指针， stick 和 *stick 都是 const
 
     // 二维数组和指针
-    ar2[r][c] == *(*(ar2 + r) + c)  // same
+    // ar2[r][c] == *(*(ar2 + r) + c)  // same
 
     // 引用
+    int rats;
+    // 必须在声明引用变量时 进行初始化
+    int &rodents = rats; // 同 int * const pr = &rats; 引用更接近 const 指针
+
+    int *pt = &rats;
+    int &rodents = *pt; // 使 rodents 指向 rats
+    int bunnies = 50;
+    pt = &bunnies;  // 改变 pt 的指向，不影响 rodents 引用
+
     int    i;
     double d;
     int &r = i;
