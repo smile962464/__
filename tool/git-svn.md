@@ -1,4 +1,11 @@
 
+# github
+
+- 搜索 issue 方法：https://help.github.com/articles/searching-issues/
+    - 搜索“某repo”里有“某个评论者”参与的包含的“某个词”的 issue： https://github.com/search?utf8=%E2%9C%93&q=xxxx+commenter%3Awarmhug+repo%3Aant-design%2Fant-design-mobile&type=Issues
+    - 搜索“某user”里有“某个评论者”参与的包含的“某个词”的 issue： https://github.com/search?utf8=%E2%9C%93&q=xxxx+commenter%3Awarmhug+user%3Aant-design&type=Issues
+    - 搜索“某人”创建的在“body”里包含“某个词”的 issue： https://github.com/search?utf8=%E2%9C%93&q=xx+in%3Abody+author%3Awarmhug&type=Issues
+
 # git
 
 > git-tips: https://github.com/git-tips/tips
