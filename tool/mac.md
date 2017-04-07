@@ -1,7 +1,7 @@
 # mac (macOS Sierra 10.12)
 
 ```sh
-sips -Z 640 *.jpg   # 批量修改图片的 宽或高 为指定值，保持原来宽高比例
+sips -Z 640 *.jpg   # 批量修改图片的 宽或高 为指定值(最大值变为 640)，保持原来宽高比例
 sips -z height width [file]   # 修改宽和高为指定值
 
 command+shift+3(4)  # 截图保存成文件

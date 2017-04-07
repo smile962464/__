@@ -136,6 +136,7 @@ linux下有些命令是shell自带的，有些命令是别人写好装进来的(
 - bash : Bourne Again Shell 的缩写，是 sh 的一个进阶版本。
 
 bash 是目前大多数 Linux 发行版和苹果的 Mac OS X 操作系统的默认 Shell。需要重点学习！
+[bash-guide](https://github.com/Idnan/bash-guide)
 
 ```sh
 echo $PATH  # 查看PATH环境变量

@@ -1,6 +1,16 @@
 #include <iostream>
 
 int main() {
+  // 使用 new 来为 内置类型 分配动态内存
+  int *pi = new int(6);  // *pi set to 6
+  double *pd = new double(99.99);  // *pd set to 99.99
+  int *ar = new int[4]{2, 4, 6, 7};  // C++11
+
+  // new delete 的实质
+  int *pi = new int; // 会被转换为 int *pi = new(sizeof(int));
+  int *pa = new int[40]; // 会被转换为 int *pa = new(40 * sizeof(int));
+  delete pi;             // 会被转换为 delete(pi);
+
   // c++11 中新增了 基于范围的for循环，便于操作数组或容器类
   double prices[5] = {4.99, 10.99, 6.87, 7.99};
   for (double x : prices) {
