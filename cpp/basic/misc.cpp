@@ -11,6 +11,12 @@ int main() {
   int *pa = new int[40]; // 会被转换为 int *pa = new(40 * sizeof(int));
   delete pi;             // 会被转换为 delete(pi);
 
+  const Stock land = Stock("xx");
+  land.show();  // 编译器将拒绝执行此行，因为 show() 代码无法确保调用对象 land 不被修改
+  // show 方法所使用的对象是由方法调用隐式提供的，所以需要一种新语法，保证函数不会修改调用对象
+  void show() const;  // promises not to change invoking object
+  void Stock::show() const;  // promises not to change invoking object
+
   // c++11 中新增了 基于范围的for循环，便于操作数组或容器类
   double prices[5] = {4.99, 10.99, 6.87, 7.99};
   for (double x : prices) {

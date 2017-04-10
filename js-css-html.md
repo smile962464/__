@@ -26,6 +26,8 @@
 
 # 性能
 
+[WePY 在小程序性能调优上做出的探究](https://www.madcoder.cn/wepy-performance-research.html)
+
 使用 innerHTML 把一大块元素替换掉，因为销毁的元素比较多、绑定着事件，会导致 GC 压力大。
 再插入新元素，再重新绑定事件。整体性能耗费比较大。
 

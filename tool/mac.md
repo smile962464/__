@@ -1,20 +1,29 @@
 # mac (macOS Sierra 10.12)
 
 ```sh
+# Chrome 快捷键: 
+Command + Alt + →/←  # 选择 上/下 一个标签
+Command + L  # 光标定位到地址栏
+输入 搜索词 并按 Alt + Enter 键  # 并在 新标签页中 搜索
+输入网站名称并按 Control + Enter 键  # 为网站名称添加 www. 和 .com，并在当前标签页中打开该网站
+
+# 批量设置图片大小
 sips -Z 640 *.jpg   # 批量修改图片的 宽或高 为指定值(最大值变为 640)，保持原来宽高比例
 sips -z height width [file]   # 修改宽和高为指定值
 
-command+shift+3(4)  # 截图保存成文件
-control+command+shift+3(4)  # 截图只是保存在剪贴板里，不保存文件
+# 系统截图
+command + shift + 3(4)  # 截图保存成文件
+control + command + shift + 3(4)  # 截图只是保存在剪贴板里，不保存文件
+
 defaults read com.apple.screencapture  # 查看系统截图设置
 defaults write com.apple.screencapture type jpg  # 将系统截屏后图片保存为 jpg 格式
 defaults write com.apple.screencapture location ~/Downloads/  # 将系统截屏后图片保存为 jpg 格式
 defaults delete com.apple.screencapture name  # 撤销修改截图名
 http://apple.stackexchange.com/questions/102452/can-i-undo-changes-made-via-defaults-write
 
-pmset noidle  # 阻止电脑睡眠
-同时按住shift、control、电源键，关闭显示器
+pmset noidle  # 阻止电脑睡眠。 同时按住 shift、control、电源键，关闭显示器
 
+Command + h  # 隐藏程序
 单词自动补全：在内置的文本编辑器里，输入几个字母后，点击 Escape 键，OS X 就会提示多个单词。
 
 # dock 上增加最近打开程序的选项：
@@ -291,6 +300,8 @@ sudo vi /etc/apache2/httpd.conf  # 编辑 Apche 的配置文件
 改变 localhost 目录指向：
 
 #DocumentRoot "/Library/WebServer/Documents"
+# 在 index template 里插入自定义 meta. http://httpd.apache.org/docs/2.4/mod/mod_autoindex.html
+IndexHeadInsert "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />"
 DocumentRoot "/Users/hua/inner"
 <Directory "/Users/hua/inner">
     Options Indexes FollowSymLinks MultiViews
