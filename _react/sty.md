@@ -17,9 +17,6 @@ The former is Passive programming, while the latter is Reactive programming
 - render 和 reactive 反复迭代即得到一个用户应该看到并可以操作的用户界面。
 
 
-## react native
-[介绍](https://www.youtube.com/watch?v=KVZ-P-ZI6W4)、[深入介绍](https://www.youtube.com/watch?v=7rDsRXj9-cU)
-
 ## redux
 - [UI state应该放到哪里？](https://github.com/rackt/redux/issues/595)
 - [解读 redux 的设计思路与用法](http://div.io/topic/1309)
@@ -33,6 +30,8 @@ saga里触发（yield put）`POST_SUCCESS`/`POST_FAILURE` action，
 
 
 ## flux
+不同的 component 维护许多各自不同 state ，导致数据碎片化，flux 模式利用顶层 store 能解决这个问题
+
 [本质：(state, action) => state](https://speakerdeck.com/jmorrell/jsconf-uy-flux-those-who-forget-the-past-dot-dot-dot)
 
 - Stores hold data, and signal when something has changed
@@ -58,62 +57,74 @@ In Flux, Store is the only place in your whole app that has privilege to mutate 
 
 [Smart and Dumb Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
 
-### flux中的Ajax放到什么地方
-- 官方推荐单独放到utils模块下，被某个action调用，并且Ajax返回结果触发新的action，store里不出现。（见flux-chat）
-- 另一种是在store里的某个方法发送Ajax；也在store里注册Ajax返回的回调函数，并直接调用`Dispatcher.dispatch()`。
-
 
 ## react
-- [React](http://facebook.github.io/react/index.html)
-- [react-starter-kit](https://github.com/kriasoft/react-starter-kit)
-- [react-components](http://react-components.com/)
-- [react-bootstrap](http://react-bootstrap.github.io/components.html)
 
-### 怎么划分组件、怎么确定state
-[怎么划分组件](http://facebook.github.io/react/docs/thinking-in-react.html#step-1-break-the-ui-into-a-component-hierarchy)
+注意：一些命令式 API 比如`Popup.show(<Component />)`的使用限制：
+假如 A 组件的 click 方法里 调用了 Popup.show() ，最后会需要使用类似（此处故意加 res）
+`const res = ReactDOM.render(<Component />， new_Mount_Node)`，
+这会在新的 new_Mount_Node 根节点渲染 Component 组件，这与调用者 A 组件 所在的 mount 根节点 不是同一个。
+如果 A 组件所在组件树上有 新的数据，要更新 Component ，此时需要重新调用 Popup.show() 方法、即需要重新执行上述 ReactDOM.render 代码来进行更新。
+但是 Popup.show() 方法调用时会有入场动画等，更新数据时不再需要显示动画，可以考虑加上 Popup.update() 方法，
+也需要重新调用 ReactDOM.render ，如果动画是做在 Component 组件里边，同样还会有动画，无法解决。
+那是否能通过 ReactDOM.render 的返回值 res 来获取到 Component 手动调用什么方法进行更新呢？没方法能做到。
+最终解决办法：hack 方式、在更新数据时去掉动画。
+-- 总结，对于这种命令式 API , 最好是只传入简单字符串，如果传入复杂组件，组件自己维护状态、跟调用者的状态关系尽量少。
 
-how do you know what should be its own component? Just use the same techniques for deciding if you should create a new function or object. One such technique is the single responsibility principle, that is, a component should ideally only do one thing. If it ends up growing it should be decomposed into smaller subcomponents.
+----
 
-[怎么确定state](http://facebook.github.io/react/docs/thinking-in-react.html#step-3-identify-the-minimal-but-complete-representation-of-ui-state)
+[React](http://facebook.github.io/react/index.html) / [react-starter-kit](https://github.com/kriasoft/react-starter-kit) / [react-bootstrap](http://react-bootstrap.github.io/components.html)
 
-To build your app correctly you first need to think of the minimal set of mutable state that your app needs.
-例如：有一个todo-list的数组是组件的state，不用再有list.length这样的state。
+(single responsibility principle) a component should ideally only do one thing. If it ends up growing it should be decomposed into smaller subcomponents.
 
-### UI state and application state
-[todo-input的state](http://facebook.github.io/flux/docs/todo-list.html#content)
+何时该用`props`、何时该用`state`: To build your app correctly you first need to think of the minimal set of mutable state that your app needs. 例如：有一个todo-list的数组是组件的state，不用再有list.length这样的state。
 
-All application state should live in the store, while components occasionally hold on to UI state. Ideally, React components preserve as little state as possible.
+a component cannot mutate its props — they are always consistent with what its owner sets them to.
 
-### 知识点
-
-[暴露组件函数-嵌套组件常用](http://facebook.github.io/react/tips/expose-component-functions.html)
-
-- 何时该用`props`、何时该用`state`
-    - a component cannot mutate its props — they are always consistent with what its owner sets them to.
-- 子组件更新父组件状态：The parent is the source of truth, so the child needs to tell the parent to change its state. Pass a callback from the parent to the child, and have the child call it.
-    - 子组件则可以通过事件冒泡或是传递一个回调的方式来对父组件做出反馈。
+- 子组件更新父组件状态：
+    - The parent is the source of truth, so the child needs to tell the parent to change its state. Pass a callback from the parent to the child, and have the child call it.
     - 子组件并不能任意地改写父组件的状态，无论是触发事件还是调用回调，最终父组件发生了什么还是由父组件自身来决定的，这就保证了子组件对父组件的解耦，从而使得子组件可移植/复用。
-- 两个component里如果都要用到相同的一个方法，这个方法该放到哪个component？一些公共方法函数，该放到哪里？
-- 不同的component维护许多各自不同state，导致数据碎片化，flux模式利用顶层store能解决这个问题？
+- 父组件更新子组件：一般只能通过向子组件传递改变后的 props
 
-- [Dynamic Children - Why the Keys are Important](http://blog.arkency.com/2014/10/react-dot-js-and-dynamic-children-why-the-keys-are-important/)
+[Dynamic Children - Why the Keys are Important](http://blog.arkency.com/2014/10/react-dot-js-and-dynamic-children-why-the-keys-are-important/)
 
-    http://facebook.github.io/react/docs/component-specs.html#updating-shouldcomponentupdate
-    一：有助于提高性能。
-    二：间接解决了一个问题，如下描述：
-    当列表里有`<input />`，input的onChange事件回调里有改变state，会让input被重新render，导致input的焦点丢失。
-    怎么解决呢？
-     - 可以利用shouldComponentUpdate，在input输入内容时，虽然改变了state，但不用再重新render
-     - 也可以把onChange事件，改为onBlur事件，即blur后再改变state、再render
-
-
-#### 生命周期
-不管页面有多少个component标签实例，它里边的生命周期函数
+生命周期：
 
 - getDefaultProps() 只会运行一次
 - getInitialState()、componentDidMount() 有几个实例，就运行几次
     - 例如嵌套元素`<ele> <ele> </ele> </ele>`，从里到外依次执行componentDidMount
 - render() 当state被改变，就会运行，但不一定更改相应的实际dom
 - componentWillReceiveProps() 当props被改变时运行。
-    - 场景：父组件的某个事件需要触发子组件某个state的改变，子组件的state与其props有关：
-    - 父组件想改变子组件，一般只能通过向子组件传递改变后的props，这时会触发子组件上的此函数，在此函数里改变state
+
+
+[3 Reasons why I stopped using React.setState](https://medium.com/@mweststrate/3-reasons-why-i-stopped-using-react-setstate-ab73fc67a42e#.o2lwoysxh)
+
+- setState 是异步的
+- setState 引起不必要的 render
+- setState 不能覆盖所有的组件状态（像生命周期的钩子、timers、events ）
+
+
+### diff 处理
+
+- React.js does not need to have knowledge about what exactly changed. 
+All it needs to know is whether the state changed at all or not.
+- While immutability does not provide easier answers to a what exactly changed problem, 
+it provides a great answer to the is it changed at all or not question. 
+
+
+### 处理children
+
+需要遍历或修改 children，要使用`React.Children.forEach / React.Children.map` 方法，
+而不要用`Array.isArray(children) / children.forEach`等方法。
+`React.Children.xx`方法里有类似递归调用（详细跟踪React源码里的`traverseAllChildrenImpl`方法）、
+能自动解析类似这样的children：
+
+```html
+<List.Body>
+  <List.Item>收银员</List.Item>
+  {[1, 2, 3].map((i, index) => (<List.Item key={index}>运营</List.Item>))}
+</List.Body>
+```
+
+而自己写的`Array.isArray`等如果不递归解析、就会把上段代码解析错误。
+

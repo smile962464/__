@@ -1,5 +1,7 @@
 
 # react native
+[介绍](https://www.youtube.com/watch?v=KVZ-P-ZI6W4)、[深入介绍](https://www.youtube.com/watch?v=7rDsRXj9-cU)
+
 ### 组件
 ScrollView 只能在横向或纵向两者之一进行滚动：https://github.com/facebook/react-native/issues/2962
 
