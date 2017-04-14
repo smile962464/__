@@ -8,6 +8,10 @@ Android NDK向前但不向后兼容，利用NDK针对android-17生成的so文件
 
 浏览器内核区别：手机系统官方浏览器、Chrome、UC、QQ、android控件里的webview、自己开发的APP里引用的 Webview，内核都不一样。
 
+### 资源
+- [广泛使用的开源二维码扫描代码 zxing](https://github.com/zxing/zxing)
+
+
 # Java
 
 
