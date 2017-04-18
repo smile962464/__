@@ -64,6 +64,8 @@
     - using 声明：`using std::cout`，using 编译指令：`using namespace std`，首选在局部作用域内使用 using 声明。
     - 使用在已命名的名称空间中声明的变量，而不是使用外部全局变量或静态全局变量。
 
+何时使用引用参数：
+![何时使用引用参数](https://zos.alipayobjects.com/rmsportal/CpddxowZkhtkSoOVasEN.jpg)
 
 如何选择智能指针：要使用多个指向同一个对象的指针，应选择 shared_ptr；反之使用 unique_ptr。
 

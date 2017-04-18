@@ -23,6 +23,11 @@
 - [Javascript-WYSIWYG-editors](https://github.com/cheeaun/mooeditable/wiki/Javascript-WYSIWYG-editors)
 - [materialpalette](http://www.materialpalette.com/)
 - [bootstrap-material-design](http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html)
+- Mobile 设计、UI 库：
+- https://www.google.com/design/spec/material-design/introduction.html 、 https://github.com/google/material-design-lite
+- https://github.com/weui/weui  、 http://weui.github.io/weui/
+- http://ionicframework.com/ 、 http://framework7.io/ 、 http://goratchet.com/
+
 
 # 性能
 
@@ -449,6 +454,7 @@ The server-side code mainly does model manipulation and notifications, and so ha
 
 
 ## API 设计
+
 [Apollo Data Stack](http://docs.apollostack.com/)、
 [How to build a GraphQL server](https://medium.com/apollo-stack/tutorial-building-a-graphql-server-cddaa023c035#.gdvn0fb8v)
 
@@ -461,6 +467,9 @@ There are some important differences between the two though:
 - Network usage. GraphQL was originally designed for operating Facebook's news feed on low end devices on even lower end networks, so it goes to great lengths to allow you to declare everything you need in a single network request in order to minimize latency. Falcor, on the other hand, often performs multiple round trips to collect additional data. This is really just a tradeoff between the simplicity of the system and the control of the network. For Netflix, they also deal with very low end devices (e.g. Roku stick) but the assumption is the network will be good enough to stream video.
 
 ### [Falcor](http://netflix.github.io/falcor/)
+
+不同于传统REST API，它只提供唯一的一个端点。有了它，开发者不再需要向不同的服务器端点请求不同的数据，而是向同一个端点请求不同的模型数据。服务器端可以识别请求参数，并由Falcor Router调用恰当的router函数。也就是说，Falcor提供了一个更加直观的API，就是开发者的数据模型。这可以确保服务器永远不会返回不必要的模型数据，节省了带宽。Falcor客户端还可以使用缓存数据为连续的请求提供服务，减少服务器响应时间。
+
 - [Demand driven architecture（CQRS/Falcor）](http://www.javacodegeeks.com/2015/10/transcending-rest-and-rpc.html)
 - rpc优却点：低延迟，数据量小；不可缓存(手动管理)，紧耦合
 - rest优却点：可缓存，松耦合；高延迟，数据量大

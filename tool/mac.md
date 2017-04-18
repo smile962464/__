@@ -92,6 +92,12 @@ Genymotion android emulator 相应ip为 10.0.3.2。
 - https://www.slant.co/topics/526/~best-window-manager-for-mac
 - http://apple.stackexchange.com/questions/144388/always-open-the-finder-in-new-tab
 
+[Enounce MySpeed](http://www.enounce.com/myspeed-mac-download-trial): 
+是一个能很方便地【加减速网页中 flash 播放速度】的工具(也包括加速html5视频)，但注意其【卸载方式】比较麻烦，
+[需要下载专门的 RemoveMySpeed 卸载工具](http://www.enounce.com/faqs-myspeed#uninstall)，
+警告：如果不按这个方式卸载，Safari 浏览器将打不开任何网页、会弹出报错“此网页出现问题，已重新载入”，同样
+底层使用 Safari 的 App Store 也打开会变成一片空白！
+
 
 ## 软/硬连接
 
