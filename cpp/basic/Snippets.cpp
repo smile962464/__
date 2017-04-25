@@ -65,8 +65,7 @@ int innerFunc() { return 5; }
 /*
 void foo::Foo::innerFunc() {
     label1:
-    int continuation = 0xCD
-                       + 0xFD + 0xBAADF00D + 0xDEADBEEF;
+    int continuation = 0xCD + 0xFD + 0xBAADF00D;
     auto la = [](int i1, int i2) -> bool mutable {
         label2:
         return i1 < i2;
