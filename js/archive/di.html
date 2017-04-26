@@ -7,15 +7,12 @@
 <body>
 <script>
   // from  https://github.com/krasimir/blog-posts/tree/master/2014/JavaScriptDependencyInjection
-
-
   var Service = function() {
     return { name: 'Service' };
   }
   var Router = function() {
       return { name: 'Router' };
   }
-
 
   var injector = {
     dependencies: {},

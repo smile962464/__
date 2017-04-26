@@ -5,7 +5,6 @@
   <title>custom_event</title>
 </head>
 <body>
-
   <div id="test" style="width:100px; height:100px; border:1px solid #ccc"></div>
   <div>本文探讨自定义事件的利用价值，详细看源码注释</div>
   <a href="http://stackoverflow.com/questions/9417121/is-there-any-way-of-passing-additional-data-via-custom-events">链接</a>
@@ -31,13 +30,10 @@
     // 触发事件
     dispatchEvent(custom);
     dispatchEvent(custom1);
-
   </script>
 
   <script>
-
     // http://www.sitepoint.com/javascript-custom-events/
-
     var custom2 = document.createEvent("HTMLEvents");
     custom2.initEvent("customEvent1", true, true);
     custom2.data = "Some data...111111";

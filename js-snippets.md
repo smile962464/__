@@ -46,6 +46,44 @@ arr.sort( function(){ return Math.random() > 0.5 ? -1 : 1; } );
 ```
 
 ```js
+// 删除数组元素
+var arr = [{done: false, val:1}, {done: true, val:2}, {done: true, val:3}, {done: false, val:4}];
+
+// 方法一：正向查找，删除后 index 减一
+// 注意：由于数组长度会变化，不能用 len = arr.length 存下最初数组长度 ！！
+for (var i = 0; i < arr.length; i++) {
+  var o = arr[i];
+  if (o.done) {
+    // 删除一个元素，而 i 仍递增，如果不减一，会跨过一个元素
+    arr.splice(i--, 1);
+  }
+}
+console.log(arr);
+
+// 方法二：倒序查找删除
+var i = arr.length;
+while (i--) {
+  if (arr[i].done) {
+    arr.splice(i, 1);
+  }
+}
+console.log(arr);
+
+// forEach 过程删除元素
+var nums = [0, 1, 2, 3, 1, 4, 5, 6];
+nums.forEach((i, index, arr) => {
+  // console.log(i, index);
+  if (i === 1) {
+    // nums[index] = false;
+    // arr.splice(index, 1) // 删除数组中一个，相当于 index + 1
+    // nums.splice(index, 1) // 删除数组中一个，相当于 index + 1
+    // console.log(i);
+  }
+});
+// console.log(nums);
+```
+
+```js
 // 数组去重
 // 性能最好
 var uniqueArray = function(arr) {
@@ -165,9 +203,17 @@ var handler = function (x, y) {
 var argh = bind(handler, undefined, 5, 10);
 ```
 
+```js
+var arr = [{ completed: 2, id: 0 }];
+var reducer = arr.reduce(function(maxId, todo) {
+  return Math.max(todo.id, maxId)
+}, -1)
+console.log(reducer);
+```
+
 ## browser & dom
 
-```js
+```html
 <a href="javascript:;">阻止 a 标签默认事件</a>
 <a href="javascript:void(0);">阻止 a 标签默认事件 IE6</a>
 ```
@@ -186,6 +232,68 @@ function loger() {
   ele.style.cssText = "position:fixed;z-index:99999;left:0;top:0;background:rgba(0,0,0,.5);color:#fff;padding:5px";
   ele.innerHTML += '<br /><br />' + args.join(' ');
 }
+```
+
+```js
+// navigator.userAgent  2015-12-02
+var ua = {
+  edge: "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240",
+  IE11: "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; rv:11.0) like Gecko",
+  IE10: "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0; SLCC2; .NET CLR 2.0.50727)",
+  IE9: "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727)",
+  IE8: "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET4.0C; .NET4.0E)",
+  chrome_win: "Mozilla/5.0 (Windows NT 5.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36",
+  chrome_mac: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2578.3 Safari/537.36",
+};
+// 检测浏览器
+function browser(ua) {
+  var tem;
+  var M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+  if (/trident/i.test(M[1])) {
+    tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+    return 'IE '+(tem[1] || '');
+  }
+  if (M[1]=== 'Chrome') {
+    tem= ua.match(/\b(OPR|Edge)\/(\d+)/);
+    if(tem!= null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
+  }
+  M = M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+  if ((tem = ua.match(/version\/(\d+)/i))!= null) {
+    M.splice(1, 1, tem[1]);
+  }
+  return M.join(' ');
+}
+// 只检测移动浏览器
+var browser = (function (ua) {
+  var device = '', version = '', android, ipad, iphone;
+  (android = ua.match(/(Android)\s+([\d.]+)/)) && (device = 'android') && (version = android[2]) ||
+  (ipad = ua.match(/(iPad).*OS\s([\d_]+)/)) && (device = 'ipad') && (version = ipad[2].replace(/_/g, '.')) ||
+  (iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/)) && (device = 'iphone') && (version = iphone[2].replace(/_/g, '.'));
+  return {
+    device: device,
+    version: version.split('.'),
+    mainVer: version.replace(/^(\d\.\d).*$/, '$1')
+  };
+})(navigator.userAgent);
+//log(browser.device);
+//log(browser.version);
+//log(browser.mainVer);
+```
+
+```js
+// 横竖屏状态检测
+var supportsOrientationChange = "onorientationchange" in window,
+    orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+window.addEventListener(orientationEvent, function () {
+  switch (window.orientation) {
+    case 0:
+      alert('竖屏');
+      break;
+    case 90:
+    case -90:
+      alert('横屏');
+  }
+});
 ```
 
 ```js
