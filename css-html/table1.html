@@ -1,60 +1,61 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title>display-table</title>
-    <style>
-    body,ul,li,p{ margin:0; padding:0;}
-    body{ width: 100%; }
-    a{
-        text-decoration: none;
-        display: inline-block;
-        width: 100%;
-    }
-    .main {
-        width: 320px;
-        margin: 10px auto;
-        padding: 0 3%;
-        background: #eee;
-        min-height: 500px;
-    }
-    .view {
-        width:100%;
-        display:table;
-        font-size: 0;
-    }
-    .view li{
-        display: inline-block;
-        width: 50%;
-        background: #ccc;
-        vertical-align: top;
-    }
-    .view-name a {
-        /*margin-left: 2%;*/
-        margin-left: 10px;
-    }
-    p{
-        margin-bottom: 5px;
-        font-size: 14px;
-    }
-    .img{
-        max-height: 150px;
-        overflow: hidden;
-    }    
-    img{
-        width: 100%;
-        vertical-align: top;
-    }
-    .omit{
-        text-overflow: ellipsis;
-        white-space: nowrap; 
-        overflow: hidden;        
-    }
-    </style>
-    
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>display-table</title>
+  <style>
+  body,ul,li,p{ margin:0; padding:0;}
+  body{ width: 100%; }
+  a{
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+  }
+  .main {
+    width: 320px;
+    margin: 10px auto;
+    padding: 0 3%;
+    background: #eee;
+    min-height: 500px;
+  }
+  .view {
+    width:100%;
+    display:table;
+    font-size: 0;
+  }
+  .view li{
+    display: inline-block;
+    width: 50%;
+    background: #ccc;
+    vertical-align: top;
+  }
+  .view-name a {
+    /*margin-left: 2%;*/
+    margin-left: 10px;
+  }
+  p{
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+  .img{
+    max-height: 150px;
+    overflow: hidden;
+  }
+  img{
+    width: 100%;
+    vertical-align: top;
+  }
+  .omit{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  </style>
+
 </head>
 <body>
-<!-- 
+<!--
 
 问题：
 例如ul设置display:table，li内有p标签设置 white-space:nowrap ，
@@ -66,35 +67,35 @@ ul设置table-layout: fixed; 或 white-space不要设置； 或 不要出现中�
 
 还有个与此相似的问题：http://www.w3help.org/zh-cn/causes/RT5004
  -->
-    <div class="main">
-        <div class="wrap">
-            <ul class="view" style="table-layout: fixed;">
-                <li class="view-type">
-                    <a href="">
-                        <p class="img"><img src="http://dummyimage.com/400x600/000/fff" /></p>
-                        <p class="omit">tsdfsd</p>
-                    </a>
-                </li>
-                <li class="view-name">
-                    <a href="">
-                        <p class="img"><img src="http://dummyimage.com/400x500/000/fff" /></p>
-                        <p class="omit">okko夏季男士休闲鞋男鞋反绒透气皮鞋板鞋英伦流行韩版潮流单鞋子</p>
-                    </a>
-                </li>
-                <li class="view-type">
-                    <a href="">
-                        <p class="img"><img src="http://dummyimage.com/400x600/000/fff" /></p>
-                        <p class="omit">tefsdfew</p>
-                    </a>
-                </li>
-                <li class="view-name">
-                    <a href="">
-                        <p class="img"><img src="http://dummyimage.com/400x500/000/fff" /></p>
-                        <p class="omit">tefsdfew</p>
-                    </a>
-                </li>                 
-            </ul>            
-        </div>
+  <div class="main">
+    <div class="wrap">
+      <ul class="view" style="table-layout: fixed;">
+        <li class="view-type">
+          <a href="">
+            <p class="img"><img src="http://dummyimage.com/400x600/000/fff" /></p>
+            <p class="omit">tsdfsd</p>
+          </a>
+        </li>
+        <li class="view-name">
+          <a href="">
+            <p class="img"><img src="http://dummyimage.com/400x500/000/fff" /></p>
+            <p class="omit">okko夏季男士休闲鞋男鞋反绒透气皮鞋板鞋英伦流行韩版潮流单鞋子</p>
+          </a>
+        </li>
+        <li class="view-type">
+          <a href="">
+            <p class="img"><img src="http://dummyimage.com/400x600/000/fff" /></p>
+            <p class="omit">tefsdfew</p>
+          </a>
+        </li>
+        <li class="view-name">
+          <a href="">
+            <p class="img"><img src="http://dummyimage.com/400x500/000/fff" /></p>
+            <p class="omit">tefsdfew</p>
+          </a>
+        </li>
+      </ul>
     </div>
+  </div>
 </body>
 </html>
