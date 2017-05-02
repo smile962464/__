@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+  <title>获取用车资格</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="step-wrap">
+  <div class="step" id="step1">
+    <div class="header">
+      <div class="setp-auto">
+        <div class="line">
+          <p class="ok"><span></span></p>
+          <p class="no"><span></span></p>
+          <p class="no"><span></span></p>
+        </div>
+        <ul class="setp-ul">
+          <li class="ok">
+            <p class="circle"></p>
+            <p>手机验证</p>
+          </li>
+          <li class="ing">
+            <p class="circle"></p>
+            <p>押金交纳</p>
+          </li>
+          <li class="no" id="renZ">
+            <p class="circle"></p>
+            <p>实名认证</p>
+          </li>
+          <li class="success-no">
+            <p class="circle"></p>
+            <p>立即用车</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="body">
+      <div class="real-name" id="foregift-text">
+        <h2>押金<b>（可退）<i class="freeWalk"></i></b><span>99元</span></h2>
+        <p>为确保合规用车，需缴纳押金</p>
+        <p>可随时退回付款账户</p>
+      </div>
+      <div class="pay-box">
+        <div class="zhifubao" id="zhifubao">
+          <label>
+            <span class="zhi-icon"></span>
+            支付宝支付
+            <input name="pay" type="radio" checked="" value="" id="zfb-pay"/>
+          </label>
+        </div>
+        <div class="wechat" id="weixin">
+          <label>
+            <span class="wechat-icon"></span>
+            微信支付
+            <input name="pay" type="radio" value="" id="wx-pay"/>
+          </label>
+        </div>
+      </div>
+      <button class="zm-btn" id="zm-btn"></button>
+      <button class="button" id="pay-btn">押金充值</button>
+    </div>
+    <p id="passBtn" class="pass-btn">我是学生/教职工，去<span>认证</span></p>
+    <div class="dialog" id="successDialog">
+      <div class="pay-success"><span class="icon"></span>充值成功</div>
+    </div>
+    <div class="zm-dialog">
+      <div class="zm-con">
+        <span class="zm-close"></span>
+        <p class="zm-icon"></p>
+        <h2 class="zm-title"></h2>
+        <p class="zm-text"></p>
+        <!--<button class="zm-button">好的</button>-->
+      </div>
+    </div>
+  </div>
+  <div class="step" id="step2">
+    <div class="passWrap">
+      <div id="passIdBtn" class="pass-btn" >
+        <p>I don't have a Chinese ID</p>
+        <p>护照、军官证<span>认证</span></p>
+      </div>
+    </div>
+    <div class="mainWrap">
+      <div class="header">
+        <div class="setp-auto">
+          <div class="line">
+            <p class="ok"><span></span></p>
+            <p class="ok"><span></span></p>
+            <p class="no"><span></span></p>
+          </div>
+          <ul class="setp-ul">
+            <li class="ok">
+              <p class="circle"></p>
+              <p>手机验证</p>
+            </li>
+            <li class="ok">
+              <p class="circle"></p>
+              <p>押金交纳</p>
+            </li>
+            <li class="ing">
+              <p class="circle"></p>
+              <p>实名认证</p>
+            </li>
+            <li class="success-no">
+              <p class="circle"></p>
+              <p>立即用车</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="nanning-students" id="nn-entrance">我是学生／教职工，去认证 >></div>
+      <div class="body">
+        <div class="real-name">
+          <h2>实名认证</h2>
+          <p>我们将根据实名信息，为您购买《用车保险》</p>
+        </div>
+        <div class="info-box">
+          <div class="info-item">
+            <input id="nameInput" type="text" name="" placeholder="姓名" />
+          </div>
+          <div class="info-item">
+            <input id="numberInput" type="text" name="" placeholder="身份证号" />
+          </div>
+        </div>
+        <button id="idBtn" class="disabled" disabled>去认证</button>
+      </div>
+    </div>
+  </div>
+  <div class="step" id="step3" style="display: none;">
+    <div class="header">
+      <div class="setp-auto" id="head3">
+        <div class="line">
+          <p class="ok"><span></span></p>
+          <p class="ok"><span></span></p>
+          <p class="ok"><span></span></p>
+        </div>
+        <ul class="setp-ul">
+          <li class="ok">
+            <p class="circle"></p>
+            <p>手机验证</p>
+          </li>
+          <li class="ok" id="yajin">
+            <p class="circle"></p>
+            <p>押金交纳</p>
+          </li>
+          <li class="ok">
+            <p class="circle"></p>
+            <p>实名认证</p>
+          </li>
+          <li class="success-ok">
+            <p class="circle"></p>
+            <p>立即用车</p>
+          </li>
+        </ul>
+      </div>
+      <div class="setp-auto " id="head4">
+        <div class="line2">
+          <p class="ok"><span></span></p>
+          <p class="ok"><span></span></p>
+        </div>
+        <ul class="setp-ul2">
+          <li class="ok">
+            <p class="circle"></p>
+            <p>手机验证</p>
+          </li>
+          <li class="ok">
+            <p class="circle"></p>
+            <p>实名认证</p>
+          </li>
+          <li class="success-ok">
+            <p class="circle"></p>
+            <p>立即用车</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="body">
+      <p class="hint" id="success-hint">
+        <span class="success-icon"></span>
+        <span class="success-text">认证完成</span>
+      </p>
+      <div class="prompt succ-prompt">
+        <p>恭喜您获得免费骑行3天的机会</p>
+        <span class="prompt-hint">Congratulations you can ride for free for three days</span>
+      </div>
+      <button class="button" id="pass">立即用车</button>
+    </div>
+  </div>
+  <div id="step4" style="display:block;">
+    <div class="header">
+      <div class="setp-auto" id="head1">
+        <div class="line">
+          <p class="ok"><span></span></p>
+          <p class="ok"><span></span></p>
+          <p class="no"><span></span></p>
+        </div>
+        <ul class="setp-ul">
+          <li class="ok">
+            <p class="circle"></p>
+            <p>手机验证</p>
+          </li>
+          <li class="no" id="foregift">
+            <p class="circle"></p>
+            <p>押金交纳</p>
+          </li>
+          <li class="ing">
+            <p class="circle"></p>
+            <p>实名认证</p>
+          </li>
+          <li class="success-no">
+            <p class="circle"></p>
+            <p>立即用车</p>
+          </li>
+        </ul>
+      </div>
+      <div class="setp-auto " id="head2">
+        <div class="line2">
+          <p class="ok"><span></span></p>
+          <p class="no"><span></span></p>
+        </div>
+        <ul class="setp-ul2">
+          <li class="ok">
+            <p class="circle"></p>
+            <p>手机验证</p>
+          </li>
+          <li class="ing">
+            <p class="circle"></p>
+            <p>实名认证</p>
+          </li>
+          <li class="success-no">
+            <p class="circle"></p>
+            <p>立即用车</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="body">
+      <div class="real-name">
+        <h2>学生／教职工认证</h2>
+        <p>我们将根据实名信息，为您购买《用车保险》</p>
+      </div>
+      <div class="info-box">
+        <div class="info-item">
+          <input type="text" id="user-name" placeholder="姓名" />
+        </div>
+        <div class="info-item">
+          <input type="text" id="user-school" placeholder="所在学校" readonly=true />
+        </div>
+        <div class="info-item">
+          <input type="text" id="user-stuid" placeholder="学号/教职工编号" />
+        </div>
+      </div>
+       <div class="file-wrap">
+        <div class="input-file-wrap">
+          <div class="cross"></div>
+          <div class="pic-hint">上传学生证或教职工证件正面照片</div>
+          <div class="localImg" id="localImg"></div>
+          <input type="file" name="file" class="upload" id="upload" />
+        </div>
+       </div>
+       <button id="submit" class="disabled" disabled>认证</button>
+    </div>
+    <div class="school-list" id="list-school">
+      <input type="text" name="school-list" id="searchSchool" placeholder="选择学校" />
+      <div class="school-list-wrap">
+        <ul id="listSchoolBox"></ul>
+      </div>
+    </div>
+  </div>
+  <div id="step5" style="display:block;">
+    <div class="header">
+      <div class="setp-auto">
+        <div class="line">
+          <p class="ok"><span></span></p>
+          <p class="ok"><span></span></p>
+          <p class="no"><span></span></p>
+        </div>
+        <ul class="setp-ul">
+          <li class="ok">
+            <p class="circle"></p>
+            <p>手机验证</p>
+          </li>
+          <li class="ok">
+            <p class="circle"></p>
+            <p>押金交纳</p>
+          </li>
+          <li class="ing">
+            <p class="circle"></p>
+            <p>实名认证</p>
+          </li>
+          <li class="success-no">
+            <p class="circle"></p>
+            <p>立即用车</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="body">
+      <div class="real-name">
+        <h2>特殊证件认证</h2>
+        <p style="color: #000">Credentials Certificate</p>
+        <p>我们将根据实名信息，为您购买《用车保险》</p>
+        <p>In order to buy you insurance, we need you to authenticate yourself</p>
+      </div>
+      <div class="info-box">
+        <div class="info-item">
+          <input type="text" id="per-name" placeholder="姓名（Name）" maxlength="50" />
+        </div>
+        <div class="info-item">
+          <input type="text" id="per-id" placeholder="证件号（ID number）" maxlength="50" />
+        </div>
+        <div class="info-item">
+          <input type="text" id="nationality" placeholder="国籍（Nationality）" maxlength="50" />
+        </div>
+      </div>
+      <div class="file-wrap">
+        <div class="file-box">
+          <div class="input-file-wrap">
+            <div class="cross"></div>
+            <div class="pic-hint">证件正面照<p>A photo of your credentials</p></div>
+            <div id="pic-card1" class="localImg"></div>
+            <input type="file" name="file" id="upload1" class="upload" />
+          </div>
+        </div>
+        <div class="file-box">
+          <div class="input-file-wrap">
+            <div class="cross"></div>
+            <div class="pic-hint">手持证件照<p>A photo of you holding credentials</p></div>
+            <div id="pic-card2" class="localImg"></div>
+            <input type="file" name="file" id="upload2" class="upload" />
+          </div>
+        </div>
+      </div>
+      <button id="submitTnfo" class="disabled" disabled>认证</button>
+    </div>
+  </div>
+  <div id="step6" style="display:block">
+    <div class="body">
+      <p class="wallet-hint">
+        <span class="wallet-icon"></span>
+        <span class="wallet-text">您是学生用户，不需要交纳押金呢～</span>
+      </p>
+      <button class="button" id="backWallet">返回</button>
+    </div>
+  </div>
+  <div class="dialog" id="tip">
+    <div class="tip">资料提交中～请稍后～</div>
+  </div>
+</div>
+</body>
+</html>

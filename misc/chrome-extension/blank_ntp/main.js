@@ -13,7 +13,9 @@ function randomItem(arr) {
     if (!(remainder && remainder.length)) {
       remainder = original.slice();
     }
-    return remainder.splice(Math.random() * remainder.length | 0, 1)[0];
+    var res = remainder.splice(Math.random() * remainder.length | 0, 1)[0];
+    console.log(res)
+    return  typeof res === 'string' ? res.trim().replace(/(\r\n|\n|\r)/gm, '<br />') : res;
   };
 }
 

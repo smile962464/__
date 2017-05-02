@@ -4,6 +4,12 @@ var fs = require('fs-extra');
 var path = require('path');
 var static = require('node-static');
 var probe = require('probe-image-size');
+var through2 = require('through2')
+
+var excludeDirFilter = through2.obj(function (item, enc, next) {
+  if (!item.stats.isDirectory()) this.push(item)
+  next()
+})
 
 var port = 9998;
 var jsonContentType = 'application/json; charset=utf-8';
@@ -19,7 +25,18 @@ function handleJoke1(res) {
 }
 function handleJoke2(res) {
   var items = [];
+  var dirName;
+  // fs.walk(local2).pipe(excludeDirFilter).on('data', function (item) {
   fs.walk(local2).on('data', function (item) {
+    // console.log(item.stats.isDirectory(), item.path)
+    // 过滤掉 子目录 内容
+    if (item.stats.isDirectory() && item.path !== local2) {
+      dirName = item.path;
+      // console.log(item.path)
+    }
+    if (item.path.indexOf(dirName) === 0) {
+      return;
+    }
     var fileDir = item.path;
     var extname = path.extname(fileDir);
     var ext = extname && extname.substr(1);
@@ -28,6 +45,7 @@ function handleJoke2(res) {
         width: probe.sync(fs.readFileSync(fileDir)).width });
     }
   }).on('end', function () {
+    // console.log(items)
     if (items.length) {
       res.writeHead(200, {'Content-Type': jsonContentType});
       res.end(JSON.stringify(items));
