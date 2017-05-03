@@ -1,47 +1,42 @@
 
-
-
 # less
 
-## Parent Selectors ：&
-
-    .button {
-      &-ok {
-        background-image: url("ok.png");
-      }
-      &-cancel {
-        background-image: url("cancel.png");
-      }
+```less
+// Parent Selectors ：&
+.button {
+  &-ok {
+    background-image: url("ok.png");
+  }
+  &-cancel {
+    background-image: url("cancel.png");
+  }
+}
+.grand {
+  .parent {
+    & > & {
+      color: red;
     }
-
-    .grand {
-      .parent {
-        & > & {
-          color: red;
-        }
-        & & {
-          color: green;
-        }
-        && {
-          color: blue;
-        }
-        &, &ish {
-          color: cyan;
-        }
-      }
+    & & {
+      color: green;
     }
-
-## Loops
-
-    .loop(@counter) when (@counter > 0) {
-      .loop((@counter - 1));    // next iteration
-      width: (10px * @counter); // code for each iteration
+    && {
+      color: blue;
     }
-
-    div {
-      .loop(5); // launch the loop
+    &, &ish {
+      color: cyan;
     }
+  }
+}
 
+// Loops
+.loop(@counter) when (@counter > 0) {
+  .loop((@counter - 1));    // next iteration
+  width: (10px * @counter); // code for each iteration
+}
+div {
+  .loop(5); // launch the loop
+}
+```
 
 
 # markdown 语法
@@ -52,10 +47,7 @@
 
 行末加两个或多个空格才是真正的换行 br 标签。空一行（两个回车）分段生成 p 标签
 
-使用“>”作为段落前缀来标识引用文字段落。这其实是 email 中标记引用文字的标准方式：
-
-> 引用的内容
-> 这个记号直接借鉴的邮件标准
+> 引用的内容. 这个记号直接借鉴的邮件标准
 
 使用“*”“+”“-”来表示无序列表；使用数字加“.”表示有序列表。如：
 
@@ -77,7 +69,6 @@
 | :-------- | --------:| :--: |
 | Computer  | 1600 USD |  5   |
 | Phone     |   12 USD |  12  |
-| Pipe      |    1 USD | 234  |
 
 ### html details
 
@@ -89,7 +80,6 @@
   <summary>Is this production ready?</summary>
   Next.js has been powering `https://zeit.co` since its inception.
 </details>
-
 
 
 ```sh
@@ -118,87 +108,53 @@ interact "
 ```
 
 
- # dos命令
+# dos
 
- 命令帮助 /? 例如：md /? ，for /?
+`.bat`是dos下的批处理文件。`.cmd`是nt内核命令行环境的另一种批处理文件。
 
- 访问： cd a\b\c    cd ..
+cmd 里操作技巧：
 
- 读取文件：type [drive:][path]filename
+- 鼠标选择需要复制的部分，右键选中则会自动复制。
+- 拖拽文件 到命令提示符中，完整的文件路径也就输入了。
 
- 创建文件：
- echo ...... > A.txt     重定向输出，此时创建文本文件A.txt;
- echo ...... >> A.txt     向A.txt文件中追加信息.....;
+```sh
+命令帮助 /? 例如：md /? ，for /?
+常用命令: dir / copy
 
- 删除文件：del [C:][path]filename.ext  采用通配符 del *.txt
+# 读取文件：
+type [drive:][path]filename
 
- 创建目录：mkdir/md a\b\c
- 删除目录：rmdir/rd /q/s a (/q静默模式，不提示是否删除，可以不要)
+# 创建文件：
+echo ... > A.txt    # 重定向输出，此时创建文本文件A.txt;
+echo ... >> A.txt   # 向A.txt文件中追加信息...
 
- ### bat文件（拷贝一下内容存为bat文件）
+# 删除文件：
+del [C:][path]filename.ext  
+del *.txt # 采用通配符
 
- 		@echo off
- 		ping www.taobao.com
- 		ipconfig
- 		pause & exit
+# 创建 删除 目录
+mkdir/md a\b\c  
+rmdir/rd /q/s a (/q静默模式，不提示是否删除，可以不要)
 
- ### chcp命令
+@echo off
+ping www.taobao.com
+ipconfig
+pause & exit
 
- - chcp 65001  就是换成UTF-8代码页，然后选择"属性"->"字体"，将字体修改为True Type字体"Lucida Console"  
- - chcp 936 可以换回默认的GBK  
- - chcp 437 是美国英语
+# chcp命令
+chcp 65001  # 换成UTF-8代码页
+chcp 936 # 可以换回默认的GBK
 
+# 环境变量
+set  # 查看当前可用的所有环境变量（=系统变量+用户变量）
+set PATH  # 查看某个环境变量，如PATH
+set xxx=aa  # 添加环境变量，如xxx=aa
+set PATH=%PATH%;d:\xxx  # 在某个环境变量（如PATH）后添加新的值（如d:\xxx）
 
- ## 知识点：
-
- .bat是dos下的批处理文件  
- .cmd是nt内核命令行环境的另一种批处理文件
-
- 命令提示符，使用技巧：
-
- 1、复制粘贴
- 在命令提示符中，是无法使用Ctrl+C和Ctrl+V的快捷键来完成复制粘贴操作的。
- 要复制的话，需要用鼠标选择需要复制的部分，右键选中则会自动复制。
-
- 3. 快速输入文件路径　　 　　
- 拖拽文件到命令提示符中，完整的文件路径也就输入了。　　
-
-
- 设置环境变量有两种方式：
- 第一种是在命令提示符运行窗口中设置；
- 第二种是通过单击“我的电脑→属性→高级”标签的“环境变量”按钮设置。
-
- 区别：  
- 第一种设置环境变量的方式只对当前运行窗口有效，关闭运行窗口后，设置就不起作用了，
- 而第二种设置环境变量的方式则是永久有效。
-
-
- 命令行中查看、设置 环境变量：
-
- 	查看当前可用的所有环境变量（=系统变量+用户变量）
- 	set
-
- 	查看某个环境变量，如PATH
- 	set PATH
-
- 	添加环境变量，如xxx=aa
- 	set xxx=aa
-
- 	将环境变量（如xxx）的值置为空
- 	set xxx=
-
- 	在某个环境变量（如PATH）后添加新的值（如d:\xxx）
- 	set PATH=%PATH%;d:\xxx
-
- 外部命令，就是一个dos下的应用程序，以EXE或com方式存在的（BAT也可以存在，不过BAT是批处理，最终还是指向exe或com可执行文件）。
- 内部命令是包含在command.com里的，而command.com文件是系统开机后就加载的（必须加载的）shell，比如我们最常用的dir命令、copy命令等。
-
- %0代指批处理文件自身  
- %~d0 是指批处理所在的盘符  
- %~dp0 是盘符加路径  
-
- cd %~dp0 就是进入批处理所在目录了
-
- 在DOS中，有两个环境变量可以跟当前路径有关，一个是%cd%, 一个是%~dp0。  
- 1、%cd% 可以用在批处理文件中，也可以用在命令行中，其内容为命令的执行路径或批处理文件的执行路径。测试：cmd输入：echo %cd%
- 2、%~dp0只可以用在批处理文件中，它是由它所在的批处理文件的目录位置决定的。
+# 有两个环境变量可以跟当前路径有关，一个是%cd%, 一个是%~dp0
+echo %cd%  # %cd% 可用在 批处理文件中 或 命令行中，其内容为命令的执行路径或批处理文件的执行路径
+%0  # 代指批处理文件自身  
+%~d0   # 是指批处理所在的盘符  
+%~dp0   # 是盘符加路径，只可以用在批处理文件中，由它所在的批处理文件的目录位置决定
+cd %~dp0  # 进入批处理所在目录
+```

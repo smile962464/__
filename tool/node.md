@@ -1,9 +1,11 @@
 
-### npm命令：
-> 地址：https://docs.npmjs.com/cli/install  
-> npm help install
 
-```
+node module version example:  
+`1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.2 < 1.0.0-beta.11 < 1.0.0-rc.1 < 1.0.0`
+
+```sh
+npm help install  # 地址：https://docs.npmjs.com/cli/install
+
 npm install tnpm -g --registry="http://registry.npm.alibaba-inc.com"
 
 npm init [-f]  # 用 -f 不弹出选项框、直接生成默认文件
@@ -29,9 +31,17 @@ npm dist-tag add <pkg>@<version>  # 指定某个版本作为 dist 版本，默�
 npm link
 cd ~/projects/proj1  # go into the dir of your main project
 npm link ../proj2     # link the dir of your dependency
-```
 
-node module version example: 1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.2 < 1.0.0-beta.11 < 1.0.0-rc.1 < 1.0.0
+# 设置process变量
+export NODE_ENV="PRODUCTION"
+
+node hello.js &  # 后台运行程序
+ps -ef | grep node  # 找到进程对应的ID
+kill 3747(进程id)  # 杀掉后台进程
+
+# 自动安装某npm包的shell命令：
+node -e "$(curl -fsSL https://a.alipayobjects.com/u/localhost/js/201406/2u6LQfOLhF.js)"
+```
 
 peerDependencies: 
 [npm2-npm3](https://codingwithspike.wordpress.com/2016/01/21/dealing-with-the-deprecation-of-peerdependencies-in-npm-3/)
@@ -39,21 +49,6 @@ peerDependencies:
 ### nvm管理多个node版本
 - 手动安装：`git clone git@gitlab.alibaba-inc.com:node/nvm.git ~/.nvm`
 - 然后：`cd ~/.nvm`、`source nvm.sh`、`nvm ls`、`nvm install 0.11.12`
-
-### 各种
-
-    设置process变量：export NODE_ENV="PRODUCTION"
-
-    自动安装某npm包的shell命令：
-    node -e "$(curl -fsSL https://a.alipayobjects.com/u/localhost/js/201406/2u6LQfOLhF.js)"
-
-    后台运行程序：node hello.js &
-    需关闭时，通过 ps-ef 命令找到进程对应的ID，使用kill命令手动关闭该进程，如：
-    ps -ef | grep node
-    kill 3747(进程id)
-
-
-# node
 
 ### node 适合场景：
 - 创业公司很合适，尤其当创始人之一是熟悉前端的同学的话，用Node实现Web系统很合适。
@@ -71,28 +66,29 @@ And because a node.js instance is single-threaded, it is also important that cod
 
 ### module.exports 和 exports
 
-    exports.beep = function (n) { return n }
-    exports.boop = 555
-    module.exports.beep = function (n) { return n }
-    module.exports.boop = 555
+```js
+exports.beep = function (n) { return n }
+exports.boop = 555
+module.exports.beep = function (n) { return n }
+module.exports.boop = 555
 
-    // 只导出一个函数或对象
-    module.exports = function (n) { return n * 1000 }
-    module.exports = { a: 1, b: 2 }
-    // 不能这么写，原因见原理
-    exports = xxx
+// 只导出一个函数或对象
+module.exports = function (n) { return n * 1000 }
+module.exports = { a: 1, b: 2 }
+// 不能这么写，原因见原理
+exports = xxx
 
-    // 原理： how modules work in the background:
-    var module = {
-      exports: {}
-    };
-    (function(module, exports) {
-      // 错误、不工作。因为 exports 只是个初始时指向 module.exports 对象的变量，给它设置新值后它就指向了新地方，
-      // 而并没有改变 module.exports 这个初始时指向的对象。
-      exports = function (n) { return n * 1000 };
-    }(module, module.exports));
-    console.log(module.exports); // it's still an empty object 
-
+// 原理： how modules work in the background:
+var module = {
+  exports: {}
+};
+(function(module, exports) {
+  // 错误、不工作。因为 exports 只是个初始时指向 module.exports 对象的变量，给它设置新值后它就指向了新地方，
+  // 而并没有改变 module.exports 这个初始时指向的对象。
+  exports = function (n) { return n * 1000 };
+}(module, module.exports));
+console.log(module.exports); // it's still an empty object 
+```
 
 ### REPL
 > repl是read-eval-print-loop，能像Chrome控制台一样运行js语句。命令行输入 node 就运行了repl。
@@ -101,8 +97,8 @@ And because a node.js instance is single-threaded, it is also important that cod
 - 可换行输入多行语句，可复制粘贴，支持上下方向键、tab键自动补全
 - 支持保存为文件等其他命令
 
-
 ## node核心库
+
 - node全局对象：global、process、buffer等
 - socket 和 stream 模块
 - EventEmitter 对象及事件
@@ -112,9 +108,7 @@ And because a node.js instance is single-threaded, it is also important that cod
 HTTP增加了技术复杂性，是因为它需要支持「分块传输编码」。分块传输编码可以在响应数据未完全生成时进行数据传输，此时还无法确定响应信息的具体大小。如果分块中所包含信息的长度为0，则表示响应信息的结束。
 
 ## 控制流、异步模式
-### 解决node callback hell问题
-- 使用async.js模块
-- 使用generator yield
+- 使用 async.js 模块，使用 generator yield 解决 callback hell 问题
 
 ## 代理（proxy）
 代理是一种路由请求方式，将不同源的请求通过同一个服务器处理，原因可能有很多：缓存、安全，甚至是故意模糊请求的来源。有转发代理、反向代理等。
@@ -131,13 +125,10 @@ REST表示表述性状态转移（Representational State Transfer）。RESTful�
 ### 一般的应用程序 转换为 MVC应用程序：
 MVC是一个流行的软件架构。可以从Ruby on Rails获得许多有关MVC的基本设计原则，将其引入并支持node的MVC设计。Express已经采用了路由的概念（Rails的基本原则），还需要分离的模型：视图和控制器。接下来，创建controllers、model、views目录等，将现有的每个路由的方法调用转换为单独的函数然后导出，等操作。MVC架构使得代码看起来干净又简单，并且扩展性更好。
 
-可以使用curl替代浏览器来测试express应用程序：
-`curl --request GET/DELETE http://xxx`、`curl --request POST/PUT http://xxx --data 'key=val&key1=val1'`
-
 ## 数据与数据库
 说到数据时，会想到关系型数据库及NoSql数据库，在NoSql分类中，有一种基于键值对（key/value pairs）的结构化数据类型，它通常被存储在内存中以支持快速访问。三种最流行的基于内存键值对的存储系统是：Memcached，Cassandra和Redis。
 
-QPS、RT、CPU性能监控
+QPS、RT、CPU 性能监控
 
 ### what is #!/usr/bin/env node?
 

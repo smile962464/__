@@ -345,12 +345,7 @@ git commit -m "test: remove only"                <- 表明是修复测试用例�
 
 
 
-
-
-
 # svn 常用操作
-
-----------
 
 > `svn checkout xxx`切换分支后、但目录里有上个分支的空文件夹？因为里边有`.DS_Store`文件未被删除，需要将其删除。
 
@@ -430,7 +425,5 @@ http://svn.alibaba-inc.com/repos/ali_cn/olps/trading/branches/2010082
     $ ls sandwich.*
     sandwich.txt
     当你恢复一个冲突的文件时，不需要再运行svn resolved
-
-
 
 [svn忽略文件/文件夹](http://huanyue.iteye.com/blog/750108)
