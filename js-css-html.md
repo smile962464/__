@@ -28,6 +28,8 @@
 - https://github.com/weui/weui  、 http://weui.github.io/weui/
 - http://ionicframework.com/ 、 http://framework7.io/ 、 http://goratchet.com/
 
+- [微软 Edge 浏览器特性 demo](https://github.com/MicrosoftEdge/Demos)
+
 
 # 性能
 
@@ -48,6 +50,7 @@
 - [Memory Analysis 101](https://developer.chrome.com/devtools/docs/memory-analysis-101)
 - [Secrets of the Browser Developer Tools](http://www.83rdstasis.net/devtoolsecrets/slides/london-web/#1)
 - [使用Chrome DevTools的Timeline和Profiles提高Web应用程序的性能](http://www.oschina.net/translate/performance-optimisation-with-timeline-profiles?cmp)
+- [js-repaint-perfs](http://mathieuancelin.github.io/js-repaint-perfs/)
 
 Garbage collection is a form of memory management.
 
@@ -148,12 +151,14 @@ react virtual-dom 里一次digest中的diff只需一次，但是会随着ui的�
 - [计算日期和时间](http://msdn.microsoft.com/zh-cn/library/ie/ee532932(v=vs.94).aspx)
 - [safari 对时间格式支持的差异](http://stackoverflow.com/questions/4310953/invalid-date-in-safari)
 
-    new Date('2010-11-29') // Safari: Invalid Date
-    new Date('11-29-2010') // Safari: Invalid Date
-    new Date('2010/11/29') // 正确
-    new Date('11/29/2010') // 正确
-    new Date('2016-06-08T12:18:00+0800') // Safari: Invalid Date
-    new Date('2016-06-08T12:18:00+08:00') // 正确
+```js
+new Date('2010-11-29') // Safari: Invalid Date
+new Date('11-29-2010') // Safari: Invalid Date
+new Date('2010/11/29') // 正确
+new Date('11/29/2010') // 正确
+new Date('2016-06-08T12:18:00+0800') // Safari: Invalid Date
+new Date('2016-06-08T12:18:00+08:00') // 正确
+```
 
 - 只在行首字符是`+、-、[、(、/`这5种情况下，加前置分号即可，其他不用加分号。
 - [Semicolons in JavaScript are optional](http://mislav.uniqpath.com/2010/05/semicolons/)
@@ -188,6 +193,7 @@ since that's the only logical display mode for absolute positioning.
 - [css3generator](http://css3generator.com/)
 - [综合](http://demo.doyoe.com/#inline-block-space)：Web前端实验室用于存放CSS探索之旅的实验和测试用例(Demos and Examples)
 - [media type与media query](http://www.qianduan.net/media-type-and-media-query.html)
+- [CSS Compatibility and IE](https://msdn.microsoft.com/library/cc351024(VS.85).aspx)
 
 ## 组织css
 - [BEM命名方式](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/)
@@ -579,17 +585,17 @@ item由list的数据生成，由于immutable两者之后的state变化互不影�
         - 直接的post提交的数据按照`key1=val1&key2=val2`的方式进行编码，key 和 val 都进行了 URL 转码
         - ajax post提交时， **data 需要用`$.param()`处理成字符串** ，如果某个key对应的val为json，先JSON.stringify(val)，angular下使用angular.toJson能过滤掉$$hashkey。
 
-            ```
-            如下：注意 $.param 的使用
-            $http({
-                method: 'POST',
-                url: 'xx.json',
-                data: $.param(submitData),  // pass in data as strings
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
-            }).success(function (data, status, headers, config) {
-                console.log(data);
-            })
-            ```
+```js
+// 如下：注意 $.param 的使用
+$http({
+    method: 'POST',
+    url: 'xx.json',
+    data: $.param(submitData),  // pass in data as strings
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
+}).success(function (data, status, headers, config) {
+    console.log(data);
+})
+```
 
     - 设置：multipart/form-data ，使用表单上传文件时，必须让 form 的 enctype 等于这个值
     - 设置：application/json ，发送消息为序列化后的 JSON 字符串，AngularJS 中的 Ajax 功能，默认就是提交 JSON 字符串
@@ -600,28 +606,30 @@ item由list的数据生成，由于immutable两者之后的state变化互不影�
 
 FormData 配合 xhr2 能很方便的处理form表单！[介绍](https://developer.mozilla.org/zh-CN/docs/Web/Guide/Using_FormData_Objects)，示例如下：
 
-    //在已有的<form>元素上初始化FormData对象
-    var fd = new FormData(document.getElementById("myForm"));
+```js
+//在已有的<form>元素上初始化FormData对象
+var fd = new FormData(document.getElementById("myForm"));
 
-    //生成一个 空的formData对象
-    var fd = new FormData();
+//生成一个 空的formData对象
+var fd = new FormData();
 
-    //添加 key val(string类型，其他类型自动会被转为string)；
-    fd.append("CustomField", "This is some extra data");
-    //添加 file文件
-    fd.append("fileName", fileInputElement.files[0]);
-    //添加 blob对象
-    var oFileBody = "<a id="a"><b id="b">hey!</b></a>"; // Blob对象包含的文件内容
-    fd.append("blobKey", new Blob([oFileBody], { type: "text/xml"}));
+//添加 key val(string类型，其他类型自动会被转为string)；
+fd.append("CustomField", "This is some extra data");
+//添加 file文件
+fd.append("fileName", fileInputElement.files[0]);
+//添加 blob对象
+var oFileBody = "<a id="a"><b id="b">hey!</b></a>"; // Blob对象包含的文件内容
+fd.append("blobKey", new Blob([oFileBody], { type: "text/xml"}));
 
-    //jQuery发送请求
-    $.ajax({
-      url: "stash.php",
-      type: "POST",
-      data: fd,
-      processData: false,  // 告诉jQuery不要去处理发送的数据
-      contentType: false   // 告诉jQuery不要去设置Content-Type请求头
-    });
+//jQuery发送请求
+$.ajax({
+  url: "stash.php",
+  type: "POST",
+  data: fd,
+  processData: false,  // 告诉jQuery不要去处理发送的数据
+  contentType: false   // 告诉jQuery不要去设置Content-Type请求头
+});
+```
 
 > 要注意其append的字段中有些需要encodeURIComponent、但有些不需要。
 
@@ -647,10 +655,12 @@ When CSRF protection is enabled, all non-GET requests to the Sails server must b
 [ jQuery Ajax post提交的csrf token处理 ](https://gist.github.com/alanhamlett/6316427)  
 [ jQuery Ajax post提交的csrf token处理1 ](https://coderwall.com/p/cxwg_g)
 
-     $.ajaxSetup({
-            headers: { "X-CSRFToken": getCookie("csrftoken") }
-      });
-     // 注意：可能需要对Cookie做 encodeURIComponent 处理
+```js
+$.ajaxSetup({
+  headers: { "X-CSRFToken": getCookie("csrftoken") }
+});
+// 注意：可能需要对Cookie做 encodeURIComponent 处理
+```
 
 [ angular csrf token ](http://stackoverflow.com/questions/18156452/django-csrf-token-angularjs)
 
@@ -719,25 +729,28 @@ When CSRF protection is enabled, all non-GET requests to the Sails server must b
 #### 示例：
 a.com/index.html中的代码：
 
-    <iframe id="ifr" src="b.com/index.html"></iframe>
-    <script>
-        var ifr = document.getElementById('ifr');
-        var targetOrigin = 'http://b.com';  // 若写成'http://b.com/c/proxy.html'效果一样
-                                            // 若写成'http://c.com'就不会执行postMessage了
-        ifr.contentWindow.postMessage('I was there!', targetOrigin);
-    </script>
+```html
+<iframe id="ifr" src="b.com/index.html"></iframe>
+<script>
+    var ifr = document.getElementById('ifr');
+    var targetOrigin = 'http://b.com';  // 若写成'http://b.com/c/proxy.html'效果一样
+                                        // 若写成'http://c.com'就不会执行postMessage了
+    ifr.contentWindow.postMessage('I was there!', targetOrigin);
+</script>
+```
 
 b.com/index.html中的代码：
 
-    window.addEventListener('message', function(event){
-        // 通过origin属性判断消息来源地址
-        if (event.origin == 'http://a.com') {
-            alert(event.data);    // 弹出"I was there!"
-            alert(event.source);  // 对a.com、index.html中window对象的引用
-                                  // 但由于同源策略，这里event.source不可以访问window对象
-        }
-    }, false);
-
+```js
+window.addEventListener('message', function(event){
+    // 通过origin属性判断消息来源地址
+    if (event.origin == 'http://a.com') {
+        alert(event.data);    // 弹出"I was there!"
+        alert(event.source);  // 对a.com、index.html中window对象的引用
+                              // 但由于同源策略，这里event.source不可以访问window对象
+    }
+}, false);
+```
 
 ## WebSocket
 传统的Web产品通常使用JSONP或者AJAX这样的方式与服务端通信，但在单页Web应用中，有很大一部分采用WebSocket这样的实时通讯方式。

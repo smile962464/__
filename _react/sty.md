@@ -110,7 +110,7 @@ a component cannot mutate its props — they are always consistent with what its
 All it needs to know is whether the state changed at all or not.
 - While immutability does not provide easier answers to a what exactly changed problem, 
 it provides a great answer to the is it changed at all or not question. 
-
+- [虚拟DOM Diff算法解析](http://www.infoq.com/cn/articles/react-dom-diff)
 
 ### 处理children
 

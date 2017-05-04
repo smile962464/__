@@ -23,9 +23,9 @@
   // 函数体内采用递归算法，所以左树和右树要用yield*遍历
   function* inorder(t) {
     if (t) {
-    yield* inorder(t.left);
-    yield t.label;
-    yield* inorder(t.right);
+      yield* inorder(t.left);
+      yield t.label;
+      yield* inorder(t.right);
     }
   }
 

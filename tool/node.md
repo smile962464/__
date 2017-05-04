@@ -109,6 +109,7 @@ HTTP增加了技术复杂性，是因为它需要支持「分块传输编码」�
 
 ## 控制流、异步模式
 - 使用 async.js 模块，使用 generator yield 解决 callback hell 问题
+- [co](https://github.com/tj/co) / [co 常见使用场景](https://cnodejs.org/topic/53d230358ed6f4002b3a89e7)
 
 ## 代理（proxy）
 代理是一种路由请求方式，将不同源的请求通过同一个服务器处理，原因可能有很多：缓存、安全，甚至是故意模糊请求的来源。有转发代理、反向代理等。
