@@ -72,11 +72,11 @@ adb -s emulator-5554 shell input text 'my%stext'
 #### Idea / Android Studio 常用快捷键：
 
 ```sh
-ctrl + j/q  显示文档
-cmd + click  跳到调用
-Ctrl + Option + H  显示方法调用栈
-opt + enter 排错
-Ctrl + Alt + B 跳转到方法实现处
+ctrl + j/q   # 显示文档
+cmd + click  # 跳到调用
+Ctrl + Option + H   # 显示方法调用栈
+opt + enter   # 排错
+Ctrl + Alt + B   # 跳转到方法实现处
 ```
 
 ## Java / Android 环境安装

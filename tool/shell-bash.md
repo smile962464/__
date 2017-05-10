@@ -118,7 +118,7 @@ top  # 统计进程状态，和 Mac 的 活动监视器 功能类似
 brew install htop  # top 高级版，支持鼠标点击、方向键切换
 ```
 
-# linux学习
+# linux 学习
 
 Unix遵循的原则是KISS（Keep it simple, stupid）。do one thing and do it well。
 
@@ -194,3 +194,80 @@ $? $$ $!   # 预定义变量
 挂载就是把目录和盘符连接在一起的过程。挂载命令：mount 。
 .tar.gz格式是先打包为.tar格式，再压缩为.gz格式。
 
+### 应用示例
+
+```sh
+#! /bin/sh
+
+node -v
+npm -v
+ping -c 5 taobao.com
+
+echo "进行 xx 操作 \n\r" \
+&& cd ~/my/work/project/xx \
+&& spm build && spm deploy \
+
+echo "进行 xx 操作 \n\r" \
+&& cd ~/my/work/daily/project \
+&& svn st  \
+
+echo "登陆服务器，进行 ccupdate 操作" \
+# 对引号进行转义
+expect -c "spawn ssh admin@partnerprod.d4366aqcn.xx.net
+expect \"password:\"
+send \"password22\r\"
+send \"cd ccbin && ./ccupdate.sh \n\"
+interact "
+```
+
+
+# Windows Dos
+
+`.bat`是 dos 下的批处理文件。`.cmd`是nt内核命令行环境的另一种批处理文件。
+
+cmd 里操作技巧：
+
+- 鼠标选择需要复制的部分，右键选中则会自动复制。
+- 拖拽文件 到命令提示符中，完整的文件路径也就输入了。
+
+```sh
+命令帮助 /? 例如：md /? ，for /?
+常用命令: dir / copy
+
+# 读取文件：
+type [drive:][path]filename
+
+# 创建文件：
+echo ... > A.txt    # 重定向输出，此时创建文本文件A.txt;
+echo ... >> A.txt   # 向A.txt文件中追加信息...
+
+# 删除文件：
+del [C:][path]filename.ext  
+del *.txt # 采用通配符
+
+# 创建 删除 目录
+mkdir/md a\b\c  
+rmdir/rd /q/s a (/q静默模式，不提示是否删除，可以不要)
+
+@echo off
+ping www.taobao.com
+ipconfig
+pause & exit
+
+# chcp命令
+chcp 65001  # 换成UTF-8代码页
+chcp 936 # 可以换回默认的GBK
+
+# 环境变量
+set  # 查看当前可用的所有环境变量（=系统变量+用户变量）
+set PATH  # 查看某个环境变量，如PATH
+set xxx=aa  # 添加环境变量，如xxx=aa
+set PATH=%PATH%;d:\xxx  # 在某个环境变量（如PATH）后添加新的值（如d:\xxx）
+
+# 有两个环境变量可以跟当前路径有关，一个是%cd%, 一个是%~dp0
+echo %cd%  # %cd% 可用在 批处理文件中 或 命令行中，其内容为命令的执行路径或批处理文件的执行路径
+%0  # 代指批处理文件自身  
+%~d0   # 是指批处理所在的盘符  
+%~dp0   # 是盘符加路径，只可以用在批处理文件中，由它所在的批处理文件的目录位置决定
+cd %~dp0  # 进入批处理所在目录
+```

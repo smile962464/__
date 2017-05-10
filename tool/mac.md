@@ -291,6 +291,36 @@ changeEncode / GBKtoUTF8 / Active File In Status Bar / EditorConfig for Visual S
 `Make The Current Project The Default At StartUp`
 
 
+## markdown 语法
+
+- 标题 ( h1~h6 ) 格式为使用相应个数的 “#” 作前缀
+- 行末加两个或多个空格才是真正的换行 br 标签。
+- 空一行（两个回车）分段生成 p 标签
+- 引用 ">" 记号直接借鉴邮件标准
+- 使用 “-” “+” “*” 开头、来表示无序列表，使用 数字 + “.” 开头表示有序列表
+- 使用 * 或 _ 包裹文本产生 strong 效果：__strong__ **strong**
+
+- 使用 [test](http://example.net "optional title") 来标记普通链接。
+- 使用 ![img](https://zos.alipayobjects.com/rmsportal/lcLKYXUWPbqkavfJbMGx.png "optional title") 来标记图片。可以使用相对路径。
+
+#### 表格
+| Item      |    Value | Qty  |
+| :-------- | --------:| :--: |
+| Computer  | 1600 USD |  5   |
+| Phone     |   12 USD |  12  |
+
+#### 可折叠内容
+
+<details>
+  <summary>Is this production ready?</summary>
+  Next.js has been powering `https://zeit.co` since its inception.
+</details>
+<details>
+  <summary>Is this production ready?</summary>
+  Next.js has been powering `https://zeit.co` since its inception.
+</details>
+
+
 ## Apache
 
 [Get Apache, MySQL, PHP and phpMyAdmin working on OSX](https://coolestguidesontheplanet.com/get-apache-mysql-php-phpmyadmin-working-osx-10-10-yosemite/) 、

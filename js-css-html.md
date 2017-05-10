@@ -185,8 +185,10 @@ new Date('2016-06-08T12:18:00+08:00') // 正确
 
 [不能根据子元素class改变父元素class]( http://stackoverflow.com/questions/1014861/is-there-a-css-parent-selector)
 
-All elements that are position:absolute; are automatically treated as display:block, 
+All elements that are `position: absolute;` are automatically treated as `display: block`, 
 since that's the only logical display mode for absolute positioning.
+
+less 语法：Parent Selectors & ; Loops.
 
 - [html5和css3动画排列人物头像演示](http://www.w2bc.com/Article/11916)
 - [Scalable and Modular Architecture for CSS](http://smacss.com/book/)
