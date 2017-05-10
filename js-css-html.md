@@ -101,6 +101,7 @@ react virtual-dom 里一次digest中的diff只需一次，但是会随着ui的�
 - [ECMAScript compatibility table](http://kangax.github.io/compat-table/es6/)
 - [迭代器和生成器generators](http://se77en.cc/2014/01/20/iterators-and-generators-translation/)
 - [async await](https://developers.google.com/web/fundamentals/getting-started/primers/async-functions)
+- [es-modules 详解](https://jakearchibald.com/2017/es-modules-in-browsers/)
 
 ### es6-modules
 参考其他语言，如Python等模块设计。[es6-modules-final](http://www.2ality.com/2014/09/es6-modules-final.html)

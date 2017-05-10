@@ -1,10 +1,47 @@
 
+# native 
+
+Safari 由 WebKit 和 JavaScriptCore 组成。
+WebKit是个渲染引擎，简单来说负责页面的布局，绘制以及层的合成，
+javascript 引擎是 JavaScriptCore (JSC) 它包括了2部分：解释器和简单方法JIT, 解释器即解释执行 js 文件；
+JIT在java虚拟机中应用比较多，针对执行较多次的热点方法进行编译为本地方法，执行效率更高，JSC中的JIT同理。
+
+iOS 或 android 上能够运行的JavaScript 引擎有4个： JavaScriptCore, SpiderMonkey, V8 and Rhino. 支持程度见表：
+
+|      | iOS      |    Android | 
+| ---- | :-------- | --------:|
+| JavaScriptCore | Interpreter only  |  Interpreter and JIT |
+| SpiderMonkey  |  Interpreter only  |  Interpreter and JIT |
+| V8  |  JIT only for jailbroken devices  |  JIT |
+| Rhino  |  Unsupported  |  Interpreter |
+
+Chrome for iOS 使用 UIWebView 由于 UIWebView 的能力限制，它只能使用移动版 Safari 的渲染层，JavaScriptCore(without JIT)（而不是V8）和单进程模式。
+Android Browser 使用 V8. 
+
+### iOS
+添加 APP 图标时，2x 3x 的图标大小「不能一样」，否则会一直报错：The app icon set named “AppIcon” did not have any applicable content
+
+
+# hybrid app 
+
+[Apache Cordova - 前身是 PhoneGap](https://cordova.apache.org/) 是移动 hybrid 开发方式先驱，
+其他公司内部部署的 bridge 等，大都效仿于它。
+
+# react native
+[介绍](https://www.youtube.com/watch?v=KVZ-P-ZI6W4)、[深入介绍](https://www.youtube.com/watch?v=7rDsRXj9-cU)
+
+Image decoding can take more than a frame-worth of time. 
+This is one of the major source of frame drops on the web because decoding is done in the main thread. 
+In React Native, image decoding is done in a different thread.
+
+
+# H5
+
 [在做 iOS 和 Android 的 HTML5 开发时，你都掉到过哪些坑里？](https://www.zhihu.com/question/34556725)
 
 ### 环境/调试
 
 开启 Charles 代理，需要把其他代理软件关掉、像 ShadowSocks 要关掉、浏览器也不能有代理插件如 switchyomega 开着.
-
 https://github.com/ant-design/ant-design-mobile/issues/614
 
 ```sh
@@ -17,7 +54,6 @@ weinre --boundHost IP  # 执行后、打开地址 IP:8080
 
 # [jsconsole](https://jsconsole.com/)
 # 如果页面 JS 报错，一般情况下也能在 JSConsole 中进行定位。
-
 ```
 
 ### 兼容性问题
@@ -68,10 +104,12 @@ touch事件在手机浏览器中的穿透问题，并不是由冒泡引起的，
 
 物理像素 / 设备像素 = devicePixelRatio . retina 屏 = 2 (1px = 2 物理像素) 6plus = 3
 
-    console.log(window.devicePixelRatio) // devicePixelRatio
-    console.log(window.innerWidth) // device-width
-    console.log(document.documentElement.clientWidth) // viewport width
-    console.log(Math.sqrt(Math.pow(640, 2) + Math.pow(960, 2)) / 3.5) // iphone 4 ppi
+```js
+console.log(window.devicePixelRatio) // devicePixelRatio
+console.log(window.innerWidth) // device-width
+console.log(document.documentElement.clientWidth) // viewport width
+console.log(Math.sqrt(Math.pow(640, 2) + Math.pow(960, 2)) / 3.5) // iphone 4 ppi
+```
 
 - iPhone 4/4s : 屏宽320. (物理像素 640 * 960. 2x. 对角线 3.5-inch. PPI 326)
 - iPhone 5/5s/5c : 屏宽320. (物理像素 640 * 1136. 2x. 对角线 4-inch)
@@ -100,8 +138,8 @@ Android 上小于 1px 的边线会被显示为 0px ，iOS8 之后支持 0.5px �
 
 页面横向能拖动问题：注意哪里设置了 width 之和为 100% ，但没设置`box-sizing: border-box;`
 
-```js
-// transform闪动问题：
+```css
+/* transform闪动问题：*/
 -webkit-backface-visibility : hidden;
 -webkit-transform-style : preserve-3d;
 -webkit-transform : translate3d(0,0,0)；

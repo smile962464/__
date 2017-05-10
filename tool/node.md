@@ -28,7 +28,7 @@ npm cache clean [<pkgname>]
 npm dist-tag ls [<pkg>]  # 查看 pkg 的发布版本
 npm dist-tag add <pkg>@<version>  # 指定某个版本作为 dist 版本，默认安装
 
-npm link
+# npm link
 cd ~/projects/proj1  # go into the dir of your main project
 npm link ../proj2     # link the dir of your dependency
 
