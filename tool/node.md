@@ -29,8 +29,12 @@ npm dist-tag ls [<pkg>]  # 查看 pkg 的发布版本
 npm dist-tag add <pkg>@<version>  # 指定某个版本作为 dist 版本，默认安装
 
 # npm link
-cd ~/projects/proj1  # go into the dir of your main project
-npm link ../proj2     # link the dir of your dependency
+cd ~/projects/proj  # go into the dir of your main project
+npm i
+npm link ../tool     # link the dir of your dependency
+## 注意: 
+## tool 项目脚本里 避免有依赖全局的命令出现 如 execSync('rimraf dist') 这样会 link 报错
+## tool 项目的依赖在 link 时会自动被安装，不用手动运行 npm i 命令
 
 # 设置process变量
 export NODE_ENV="PRODUCTION"

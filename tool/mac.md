@@ -65,7 +65,7 @@ Idea 一直在`scanning files to index`解决办法：把`node_module`目录设�
 
 ## 常用软件
 
-- 必备: HandBrake / Movist / Dash / MacDown Marp / snip jietu(qq) licecap kap Skitch XnConvert gifify / Color Note / Gas Mask / charles / XtraFinder / Alfred / AppCleaner / iStat-Menus / OnyX / Spectacle / FileZilla / androidfiletransfer / meld / Cakebrew / pyCharm / virtualbox / genymotion / xcode / mindnode lite
+- 必备: HandBrake / Movist / Dash / MacDown Marp / snip jietu(qq) licecap kap Skitch XnConvert gifify / Color Note / Gas Mask / charles / XtraFinder / Alfred / AppCleaner / iStat-Menus / OnyX / Spectacle / FileZilla / androidfiletransfer / meld / Cakebrew / pyCharm / virtualbox / genymotion / xcode / mindnode lite / Disk Drill
 
 > 「xxx.app已损坏,打不开.你应该将它移到废纸篓」，并非你安装的软件已损坏，而是Mac系统的安全设置问题，
 > 因为这些应用都是破解或者汉化的（例如 Movist 破解版）, 解决方法就是临时改变Mac系统安全设置。
