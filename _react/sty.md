@@ -77,7 +77,8 @@ In Flux, Store is the only place in your whole app that has privilege to mutate 
 
 (single responsibility principle) a component should ideally only do one thing. If it ends up growing it should be decomposed into smaller subcomponents.
 
-何时该用`props`、何时该用`state`: To build your app correctly you first need to think of the minimal set of mutable state that your app needs. 例如：有一个todo-list的数组是组件的state，不用再有list.length这样的state。
+何时该用`props`、何时该用`state`: 
+To build your app correctly you first need to think of the minimal set of mutable state that your app needs. 例如：有一个todo-list的数组是组件的state，不用再有list.length这样的state。
 
 a component cannot mutate its props — they are always consistent with what its owner sets them to.
 
@@ -86,9 +87,9 @@ a component cannot mutate its props — they are always consistent with what its
     - 子组件并不能任意地改写父组件的状态，无论是触发事件还是调用回调，最终父组件发生了什么还是由父组件自身来决定的，这就保证了子组件对父组件的解耦，从而使得子组件可移植/复用。
 - 父组件更新子组件：一般只能通过向子组件传递改变后的 props
 
-[Dynamic Children - Why the Keys are Important](http://blog.arkency.com/2014/10/react-dot-js-and-dynamic-children-why-the-keys-are-important/)
+[higher-order-components](https://facebook.github.io/react/docs/higher-order-components.html)
 
-生命周期：
+### 生命周期
 
 - getDefaultProps() 只会运行一次
 - getInitialState()、componentDidMount() 有几个实例，就运行几次
@@ -96,13 +97,11 @@ a component cannot mutate its props — they are always consistent with what its
 - render() 当state被改变，就会运行，但不一定更改相应的实际dom
 - componentWillReceiveProps() 当props被改变时运行。
 
-
 [3 Reasons why I stopped using React.setState](https://medium.com/@mweststrate/3-reasons-why-i-stopped-using-react-setstate-ab73fc67a42e#.o2lwoysxh)
 
 - setState 是异步的
 - setState 引起不必要的 render
 - setState 不能覆盖所有的组件状态（像生命周期的钩子、timers、events ）
-
 
 ### diff 处理
 
@@ -111,6 +110,12 @@ All it needs to know is whether the state changed at all or not.
 - While immutability does not provide easier answers to a what exactly changed problem, 
 it provides a great answer to the is it changed at all or not question. 
 - [虚拟DOM Diff算法解析](http://www.infoq.com/cn/articles/react-dom-diff)
+
+### key
+
+- [Dynamic Children - Why the Keys are Important](http://blog.arkency.com/2014/10/react-dot-js-and-dynamic-children-why-the-keys-are-important/)
+- 不能在组件内通过 props 获取 key 或 ref。
+- React.Children.map 会修改 key, 而 this.props.children.map 不会，参考 demo 示例
 
 ### 处理children
 

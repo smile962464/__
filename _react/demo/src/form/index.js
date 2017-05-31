@@ -8,10 +8,8 @@ const App = React.createClass({
   render() {
     return (
       <div>
-        <h2>textarea</h2>
-        <textarea name="description" defaultValue="This is a description." />
         <h2>demo1</h2>
-        <FormInput list={['1', '2', '3']} />
+        <FormInput />
         <h2>demo2</h2>
         <TwoWayForm></TwoWayForm>
       </div>

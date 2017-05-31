@@ -38,7 +38,7 @@ function makeTpl(file, isMobile) {
     `<!-- 高清方案脚本 -->
     <script src="https://os.alipayobjects.com/rmsportal/lvEQQbNgHsIxVfXLkmuX.js"></script>
     <link rel="stylesheet" href="/dist/${file}.css">`
-    : ''}
+    : '<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, user-scalable=0, width=device-width"/>'}
   </head>
   <body>
     <div id="example"/>

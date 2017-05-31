@@ -1,26 +1,28 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
 
-import { Button, Group } from './callback';
-import { Parent } from './children';
+import { Button, Group } from './ParentChildren';
+import { WrapButton, WrapGroup } from './Wrap';
 
 const App = React.createClass({
   render() {
     return (<div>
       <h3>buttonGroup - button</h3>
-      <Group ref="buttonGroup">
-        <Button key={1} name="Component A"/>
-        <Button key={2} name="Component B"/>
-        <Button key={3} name="Component C"/>
+      <Group>
+        <Button key={1} id={1} name="Component A"/>
+        <Button key={2} id={2} name="Component B"/>
+        <Button key={3} id={3} name="Component C"/>
       </Group>
-      <h3>test React.Children methods</h3>
-      <Parent>
-        <div key={1}>
-          2 <br />
-          <span>1</span> <br />
-          <span>11</span>
-        </div>
-      </Parent>
+
+      <br/>
+      <Group>
+        {[1, 2, 3].map(i => <Button key={i} id={i} name={`Component ${i}`} />)}
+      </Group>
+
+      <br />
+      <WrapGroup>
+        {[11, 22, 33].map(i => <WrapButton key={i} id={i} name1={`Component ${i}`} />)}
+      </WrapGroup>
     </div>);
   }
 })

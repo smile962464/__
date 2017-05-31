@@ -114,17 +114,14 @@ git merge --no-ff xx  不执行"快进式合并"（fast-farward merge）
 git merge origin/xx   远程上有xx分支，并且git fetch origin，执行此命令，将合并此分支  
 
 ### 操作tag
-git tag 0.0.1  打轻量标签  
-git tag -a 0.0.1 -m 'Release version 0.0.1'  打标签  
-git tag (-l)                列出全部的tag清單  
+git tag 0.0.1   # 打轻量标签  
+git tag -a 0.0.1 -m 'Release version 0.0.1'  # 打标签
+git tag [-l]               # 列出全部的tag清單
 git push origin v1.5
-git push --tags    推送所有标签到服务器  
-git push origin --tags    推送所有标签到服务器  
-
-git tag -d 0.0.1   删除本地标签  
-git push origin :refs/tags/0.0.1   删除远程标签
-
-git checkout tag_name  检出标签
+git push [origin] --tags    # 推送所有标签到服务器  
+git tag -d 0.0.1   # 删除本地标签  
+git push origin :refs/tags/0.0.1   # 删除远程标签
+git checkout tag_name  # 检出标签
 
 ### fork & pull request
 [pull request](http://www.worldhello.net/gotgithub/04-work-with-others/010-fork-and-pull.html)

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 // require('./index.less');
 
-import Lifecycle from './Lifecycle';
 import Controlled from './un-controlled';
 
 const App = React.createClass({
@@ -19,8 +18,6 @@ const App = React.createClass({
   },
   render() {
     return (<div>
-      <h3>Lifecycle</h3>
-      <Lifecycle />
       <h3>(Un)controlled Components</h3>
       <button onClick={this.cli}>switch</button>
       <h3>不变的key（可不设置）</h3>

@@ -9,9 +9,7 @@ var Input = React.createClass({
     }
   },
   componentWillReceiveProps(nextProps) {
-    // this.setState({
-    //   val: nextProps.value
-    // });
+    // this.setState({ val: nextProps.value });
   },
   valChange(e) {
     var val = e.target.value;
@@ -21,11 +19,11 @@ var Input = React.createClass({
     this.props.onChange(val);
   },
   render() {
-    return <input type="text" className="form-control" required
-                  value={this.state.val}
-                  onChange={this.valChange} />
+    return <input value={this.state.val} onChange={this.valChange} />
   }
 });
+
+const list = ['1', '2', '3'];
 
 var Form = React.createClass({
   mixins: [LinkedStateMixin],
@@ -34,28 +32,14 @@ var Form = React.createClass({
       val: 'init'
     }
   },
-  cli: function (index) {
-    this.setState({
-      val: this.props.list[index]
-    })
+  cli(index) {
+    this.setState({ val: list[index] })
   },
-  change: function (val) {
-    console.log( val );
-    this.setState({
-      val: val
-    })
-  },
-  render: function () {
+  render() {
     return (
-      <div className="form-horizontal" role="form">
-        {this.props.list.map(function (item, index) {
-          return <button key={index} onClick={this.cli.bind(this, index)}>{item}</button>
-        }, this)}
+      <div>
+        {list.map((item, index) => <button key={index} onClick={() => this.cli(index)}>{item}</button>)}
          -- 点击这些按钮
-        <br />
-        <Input key={Date.now()} value={this.state.val} onChange={this.change} />输入焦点消失
-        <br />
-        <Input value={this.state.val} onChange={this.change} />
         <br />
         <input valueLink={this.linkState('val')} />
         <br />
@@ -64,6 +48,4 @@ var Form = React.createClass({
     )
   }
 });
-
-
 export default Form;
