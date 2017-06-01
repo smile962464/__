@@ -65,12 +65,13 @@ Idea 一直在`scanning files to index`解决办法：把`node_module`目录设�
 
 ## 常用软件
 
-- 必备: HandBrake / Movist / Dash / MacDown / Marp / snip jietu(qq) licecap kap Skitch XnConvert gifify / Color Note / Gas Mask / charles / XtraFinder / Alfred / AppCleaner / iStat-Menus / OnyX / Spectacle / FileZilla / androidfiletransfer / meld / Cakebrew / pyCharm / virtualbox / genymotion / xcode / mindnode lite / Disk Drill
+- 必备: HandBrake / Movist / Dash / MacDown / Marp / snip jietu(qq) / licecap kap / Skitch gifify / Color Note / Gas Mask / charles / XtraFinder / Alfred / AppCleaner / iStat-Menus / OnyX / Spectacle / FileZilla / androidfiletransfer / meld / Cakebrew / pyCharm / virtualbox / genymotion / xcode / mindnode lite / Disk Drill
 
 > 「xxx.app已损坏,打不开.你应该将它移到废纸篓」，并非你安装的软件已损坏，而是Mac系统的安全设置问题，
 > 因为这些应用都是破解或者汉化的（例如 Movist 破解版）, 解决方法就是临时改变Mac系统安全设置。
 > macOS 10.12 “安全性与隐私”里去掉了允许安装”任何来源“的软件设置，可以在终端里运行`sudo spctl --master-disable`打开
 
+- XnConvert: 免费任务式图像处理软件，替代 photoshop 简单功能，比 Mac 预览工具更强。
 - 其他: Unarchiver / airdroid / Media-Info / vlc(不太方便) / Axure / Visual_Paradigm / ICOFormat / ParagonNTFS / Readiris-Corporate-ESD (ocr识别) / JD-Gui / Sequel-pro
 
 QuickLook-plugin: QLMarkdown.qlgenerator / QLStephen.qlgenerator / QuickLookJSON.qlgenerator

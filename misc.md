@@ -34,6 +34,54 @@ Hadoop 是设计用来处理大量数据和运算的，所以如果只有少量�
 
 
 
+# 函数式编程
+
+- [函数式编程](http://coolshell.cn/articles/10822.html)
+- [函数式编程有哪些优点？](http://www.nowamagic.net/academy/detail/1220540)
+- [函数式编程扫盲篇](http://www.cnblogs.com/kym/archive/2011/03/07/1976519.html)
+- [函数式编程初探](http://www.ruanyifeng.com/blog/2012/04/functional_programming.html)
+- [introduction-functional-javascript](http://www.sitepoint.com/introduction-functional-javascript/)
+- [Functional Programming in Javascript === Garbage](http://awardwinningfjords.com/2014/04/21/functional-programming-in-javascript-equals-garbage.html)
+    - javascript不适合函数式编程？
+
+对象是面向对象的第一型，那么函数式编程也是一样，函数是函数式编程的第一型。
+
+在纯粹函数式程式语言中，你不是像命令式语言那样命令电脑「要做什么」，而是通过用函数来描述出问题「是什么」。
+递回在 Haskell 中非常重要。命令式语言要求你提供求解的步骤，Haskell 则倾向于让你提供问题的描述。
+这便是 Haskell 没有 while 或 for 循环的原因，递回是我们的替代方案。
+
+在面向对象编程中，我们把对象传来传去，那在函数式编程中，我们要做的是把函数传来传去，我们把他叫做 **高阶函数**
+
+在函数式编程中，函数是基本单位，是第一型，他几乎被用作一切，包括最简单的计算，甚至连变量都被计算所取代。
+在函数式编程中，变量只是一个名称，而不是一个存储单元，这是函数式编程与传统的命令式编程最典型的不同之处。
+
+
+### Persistent data structure
+
+- [Immutability in JavaScript](http://www.sitepoint.com/immutability-javascript/)
+- [Persistent_data_structure](https://en.wikipedia.org/wiki/Persistent_data_structure)
+
+> fb出品的[immutable-js](http://facebook.github.io/immutable-js/)提供了Immutable的List, Stack, Map等数据结构，
+为了实现不可变性，最直接的做法可能是直接拷贝对象，但因为效率太低不可行，而是利用了structural sharing，
+这样就可以最小化的拷贝对象的一部分。拷贝的是哪一部分呢？如图：
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Purely_functional_tree_after.svg/876px-Purely_functional_tree_after.svg.png)，这样嵌套的深层对象，只需拷贝f、g、d这一个链，其他的结构共享，这样创建了一个新对象，
+就达到了immutable的目的，而且效率和内存占用都比较合理。但注意一个问题[Circular references](https://github.com/facebook/immutable-js/issues/259)，这个问题在Haskell等语言中在语言层面被解决了，
+但在js中似乎难以解决。[详解视频](https://www.youtube.com/watch?v=I7IdS-PbEgI)
+
+> Structural sharing is a powerful concept, and is what enables Clojure persistent data structures to achieve O(log n) performance on operations that would otherwise require full O(n) copies of a data structure.  It turns out that you can also achieve effective structural sharing of mutable data structures if they are structurally immutable. Effectively you get opportunity to realise the same O(log n) performance for operations that produce mutable views.
+
+应用实例：
+```html
+<list>
+  <item></item>
+  <item></item>
+</list>
+```
+item由list的数据生成，由于immutable两者之后的state变化互不影响，但变化后两者数据状态需要同步。
+同步操作也是产生新的数据，似乎比较乱？
+
+
+
 # 架构
 
 [微服务架构的几种模式](http://microservices.io/patterns/index.html)
@@ -87,7 +135,58 @@ C/S架构：本地安装、不跨平台，像QQ等客户端程序。采用长连
 而且更简单。至于后来的wcf, wpf, wf，那更是直接把微软送入了地狱。
 
 
+## API 设计
+
+[Apollo Data Stack](http://docs.apollostack.com/)、
+[How to build a GraphQL server](https://medium.com/apollo-stack/tutorial-building-a-graphql-server-cddaa023c035#.gdvn0fb8v)
+
+[Swagger 及 API 管理](https://www.linkedin.com/pulse/swagger-%E5%8F%8A-api-%E7%AE%A1%E7%90%86%E7%AE%80%E4%BB%8B-minglei-tu)
+
+There are some important differences between the two though:
+
+- Falcor returns Observables, GraphQL just values. For how Netflix wanted to use Falcor, this makes a lot of sense for them. They make multiple requests and present data as it's ready, but it also means that the client developer has to work with the Observables directly. GraphQL is a request/response model, and returns back JSON, which is trivially easy to then use. Relay adds back in some of the dynamicism that Falcor presents while maintaining only using plain values.
+- Type system. GraphQL is defined in terms of a type system, and that's allowed us to built lots of interesting tools like GraphiQL, code generators, error detection, etc. Falcor is much more dynamic, which is valuable in its own right but limits the ability to do this kind of thing.
+- Network usage. GraphQL was originally designed for operating Facebook's news feed on low end devices on even lower end networks, so it goes to great lengths to allow you to declare everything you need in a single network request in order to minimize latency. Falcor, on the other hand, often performs multiple round trips to collect additional data. This is really just a tradeoff between the simplicity of the system and the control of the network. For Netflix, they also deal with very low end devices (e.g. Roku stick) but the assumption is the network will be good enough to stream video.
+
+### [Falcor](http://netflix.github.io/falcor/)
+
+不同于传统REST API，它只提供唯一的一个端点。有了它，开发者不再需要向不同的服务器端点请求不同的数据，而是向同一个端点请求不同的模型数据。服务器端可以识别请求参数，并由Falcor Router调用恰当的router函数。也就是说，Falcor提供了一个更加直观的API，就是开发者的数据模型。这可以确保服务器永远不会返回不必要的模型数据，节省了带宽。Falcor客户端还可以使用缓存数据为连续的请求提供服务，减少服务器响应时间。
+
+- [Demand driven architecture（CQRS/Falcor）](http://www.javacodegeeks.com/2015/10/transcending-rest-and-rpc.html)
+- rpc优却点：低延迟，数据量小；不可缓存(手动管理)，紧耦合
+- rest优却点：可缓存，松耦合；高延迟，数据量大
+- 两者结合:
+    - one model everywhere
+    - The data is the API
+- You can convert any JSON object into a JSON Graph in two steps:
+    - Move all objects to a unique location within the JSON object
+    - Replace all other occurrences of the object with a Reference to that object’s unique location
+
+- 他希望编写优雅、易读的代码。在用户界面上查找和修改数据要直观，最好是开发者只需要考虑自己的数据模型，而不用关心可用的API端点。
+- 他希望可以消除由传统REST API所导致的不必要的请求和响应开销。
+- 他还希望用一种更好的方法取代难以维护和改进的传统REST API。
+
+### [GraphQL](https://github.com/facebook/graphql)
+GraphQL is Facebook's [graph API](https://developers.facebook.com/docs/graph-api)
+（[How to get lots of data from the Facebook Graph API with just one request - Optimizing request queries to the Facebook Graph API](https://www.sammyk.me/optimizing-request-queries-to-the-facebook-graph-api)）。
+[基于 GraphQL 的产品](https://www.reindex.io/)。
+
+- [GraphQL is the King. Long Live the King!](https://medium.com/@scbarrus/graphql-is-the-king-long-live-the-king-r-i-p-rest-cf04ce38f6c#.avmpteg2j)
+- [Introducing Relay and GraphQL译](http://segmentfault.com/a/1190000002570887)
+- [文档](http://graphql.org/docs/getting-started/)、
+[graphql-js](https://github.com/graphql/graphql-js)
+- [From REST to GraphQL](https://blog.jacobwgillespie.com/from-rest-to-graphql-b4e95e94c26b#.e3re515s5)
+- [From REST to GraphQL-](https://news.ycombinator.com/item?id=10365555)
+
+GraphQL is essentially the one [API Gateway](http://microservices.io/patterns/apigateway.html) to rule them all. And then you add Relay on top of it to build up the exact query you want.
+
+- GraphQL Returns Only the Data You Request. 请求什么返回什么
+- GraphQL Returns Data in the Same Shape You Requested It. 返回的数据结构和请求结构一致
+- GraphQL Sends a Single Request to the API and Returns a Single Response. 把同时发出的多个请求合并为一个，返回一个请求结果集合，并自动拆分到不同的组件里
+
+
 ## rest
+
 - [介绍-入门](http://www.cnblogs.com/artech/p/restful-web-api-02.html)
 - [RESTful API 设计指南](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)
 - [理解本真的REST架构风格](http://www.infoq.com/cn/articles/understanding-restful-style)、[如何设计好的RESTful API？](http://www.infoq.com/cn/articles/how-to-design-a-good-restful-api)
@@ -97,15 +196,19 @@ C/S架构：本地安装、不跨平台，像QQ等客户端程序。采用长连
 - [Google/Facebook/GitHub等设计对比](http://blog.octo.com/en/design-a-rest-api/)
 - [jsonapi](http://jsonapi.org/format/) - [jsonapi中文](http://jsonapi.org.cn/format/)
 
-[来自于PayPal的RESTful API标准](https://segmentfault.com/a/1190000005924733)
-
+[来自于PayPal的RESTful API标准](https://segmentfault.com/a/1190000005924733) / 
 [Microsoft/api-guidelines](https://github.com/Microsoft/api-guidelines/blob/master/Guidelines.md)
+
+[What does “state transfer” in Representational State Transfer (REST) refer to?](https://stackoverflow.com/questions/4603653/what-does-state-transfer-in-representational-state-transfer-rest-refer-to)
 
 总结：
 
+通过url来设计系统的结构。根据REST，每个url都代表一个resource，而整个系统就是由这些resource组成的。因此，如果url是设计良好的，那么系统的结构就也应该是设计良好的。REST允许我们通过url设计系统，就像Test Driven Development允许我们使用testcase设计class接口一样。使用REST的关键是如何抽象资源，抽象得越精确，对REST的应用就越好。
+
 - 使用名词而不是动词，使用名词的复数形式。（一些非CRUD操作如login/logout，可以用动词，方便理解）
-- Get方法和查询参数不应该改变资源状态
+- Get方法和查询参数不应该改变资源状态。GET PUT和DELETE方法是幂等方法。
 - 假如资源连接到其它资源，则使用子资源形式`GET /cars/711/drivers/4`，但cars和drivers可以是并列的资源。
+- 有一种url形式，它对应到程序中的继承关系：`/products/books`，也可以`/books`单独作为顶层接口。
 - 为集合提供过滤、排序、字段选择以及分页
     - 过滤：为所有字段或者查询语句提供独立的查询参数：`GET /cars?color=red Returns a list of red cars`
     - 排序：允许跨越多字段的正序或者倒序排列：`GET /cars?sort=-manufactorer,+model`
@@ -124,24 +227,18 @@ C/S架构：本地安装、不跨平台，像QQ等客户端程序。采用长连
     - 422 – 不可指定的请求体 – 只有服务器不能处理实体时使用，比如图像不能被格式化，或者重要字段丢失。
     - 500 – Internal Server Error – 标准服务端错误，API开发人员应该尽量避开这种错误
 
-资源、子资源、相关资源，都能通过「links」关联，达到从一个资源找到相关资源(links列出URL)，或者直接embedded相关资源。
+- 无状态通信（Stateless）：通信的会话状态（Session State）应该全部由客户端负责维护。应该注意区别应用的状态和连接协议的状态。HTTP连接是无状态的（也就是不记录每个连接的信息），而REST传输会包含应用的所有状态信息。通讯本身的无状态性可以让不同的服务器的处理一系列请求中的不同请求，提高服务器的扩展性。
+- 充分利用好HTTP缓存是RESTful API可伸缩性的根本。HTTP协议是一个分层的架构，从两端的user agent到origin server之间，可以插入很多中间组件。而在整个HTTP通信链条的很多位置，都可以设置缓存。HTTP协议内建有很好的缓存机制，可以分成过期模型和验证模型两套缓存机制。
 
-根据[richardson模型](http://martinfowler.com/articles/richardsonMaturityModel.html), REST架构的成熟度有3个等级:
+#### 根据[richardson模型](http://martinfowler.com/articles/richardsonMaturityModel.html), REST架构的成熟度有3个等级:
 
 - Level 0 POX (这个就不算REST了)
-- Level 1 Resources
-- Level 2 Http verbs
-- Level 3 Hypermedia Controls
+- Level 1 Resources:  解决了Level 0 接口的问题, 使得各种资源有了自己相应的URI,虽然仍然是POX的交互方式, 但是每一个接口都更加紧凑和内聚, 相应的容易维护起来.
+- Level 2 Http verbs:  这一级别使用http verbs来对各种资源进行crud操作, 使得应用程序的接口更加的统一, 语义更加明确.
+- Level 3 Hypermedia Controls: 
+    - RESTful的架构本意是"在符合架构原理的前提下，理解和评估以网络为基础的应用软件的架构设计，得到一个功能强、性能好、适宜通信的架构。" 这个世界上规模最大的, 耦合度最低, 最稳定的, 性能最好的分布式网络应用是什么? 就是WEB本身. 规模,稳定,性能都不用说了. 为什么说耦合度低呢? 想一想每个人上网的经历, 你几乎不需要任何培训就可以上一个新的网络购物平台挑选商品,用信用卡付款,邮寄到自己家里.把网站的程序想像成一个状态机, 用户在一系列状态转换中完成自己的目标. 这中间的每一步, 应用程序都告诉你当前的状态和可能的下一步操作, 最终引导用户从挑选商品,挑选更多商品,到支付页面,到输入信用卡信息,最终完成付费,到达状态机的终点.这种 service discoverablility 和 self-documenting 就是 level 3 想解决的问题 在这里面, 告诉用户当前状态以及各种下一步操作的东西, 比如链接, 按钮等等, 就是Hypermedia Controls. Hypermedia Controls 就是这个状态机的引擎. Level 3 的REST架构就是希望能够统一这一类的 Hypermedia Controls, 赋予他们标准的, 高度可扩展的标准语义及表现形式, 使得甚至无人工干预的机器与机器间的通用交互协议边的可能. 比如你可以告诉一个通用的购物客户端, "给我买个最便宜的xbox", 客户端自动连上google进行搜索, 自动在前10个购物网站进行搜索, 进行价格排序, 然后自动挑选最便宜的网站, 进行一系列操作最终完成用信用卡付费, 填写个人收件地址然后邮寄. 这些都依赖于Hypermedia Controls带来的这种 service discoverablility 和 self-documenting。
 
-- Level 1 Resources 这一级别主要解决了Level 0 接口的问题, 使得各种资源有了自己相应的URI,
-  虽然仍然是POX的交互方式, 但是每一个接口都更加紧凑和内聚, 相应的容易维护起来.
-- Level 2 Http verbs 这一级别使用http verbs来对各种资源进行crud操作, 使得应用程序的接口更加的统一, 语义更加明确.
-- Level 3 RESTful的架构本意是"在符合架构原理的前提下，理解和评估以网络为基础的应用软件的架构设计，得到一个功能强、性能好、适宜通信的架构。"
-这个世界上规模最大的, 耦合度最低, 最稳定的, 性能最好的分布式网络应用是什么? 就是WEB本身. 规模,稳定,性能都不用说了.
-为什么说耦合度低呢? 想一想每个人上网的经历, 你几乎不需要任何培训就可以上一个新的网络购物平台挑选商品,用信用卡付款,邮寄到自己家里.
-把网站的程序想像成一个状态机, 用户在一系列状态转换中完成自己的目标. 这中间的每一步, 应用程序都告诉你当前的状态和可能的下一步操作, 最终引导用户从挑选商品,挑选更多商品,到支付页面,到输入信用卡信息,最终完成付费,到达状态机的终点.
-这种service discoverablility和self-documenting就是level 3想解决的问题 在这里面, 告诉用户当前状态以及各种下一步操作的东西, 比如链接, 按钮等等, 就是Hypermedia Controls. Hypermedia Controls 就是这个状态机的引擎.
-Level 3的REST架构就是希望能够统一这一类的Hypermedia Controls, 赋予他们标准的, 高度可扩展的标准语义及表现形式, 使得甚至无人工干预的机器与机器间的通用交互协议边的可能. 比如你可以告诉一个通用的购物客户端, "给我买个最便宜的xbox", 客户端自动连上google进行搜索, 自动在前10个购物网站进行搜索, 进行价格排序, 然后自动挑选最便宜的网站, 进行一系列操作最终完成用信用卡付费, 填写个人收件地址然后邮寄. 这些都依赖于Hypermedia Controls带来的这种service discoverablility和self-documenting。
+资源、子资源、相关资源，都能通过「links」关联，达到从一个资源找到相关资源(links列出URL)，或者直接 embedded 相关资源。
 
 ### 业务实例
 > 其他：[github](http://api.github.com/)、[instagram](https://instagram.com/developer/)、
