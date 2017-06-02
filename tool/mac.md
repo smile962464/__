@@ -1,19 +1,38 @@
 # mac (macOS Sierra 10.12)
 
-```sh
-# Chrome 快捷键: 
-Command + Alt + →/←  # 选择 上/下 一个标签
-Command + L  # 光标定位到地址栏
-输入 搜索词 并按 Alt + Enter 键  # 并在 新标签页中 搜索
-输入网站名称并按 Control + Enter 键  # 为网站名称添加 www. 和 .com，并在当前标签页中打开该网站
+## 软件
 
+> 「xxx.app已损坏,打不开.你应该将它移到废纸篓」，并非你安装的软件已损坏，而是Mac系统的安全设置问题，
+> 因为这些应用都是破解或者汉化的（例如 Movist 破解版）, 解决方法就是临时改变Mac系统安全设置。
+> macOS 10.12 “安全性与隐私”里去掉了允许安装”任何来源“的软件设置，可以在终端里运行`sudo spctl --master-disable`打开
+
+- HandBrake / Movist / Dash / MacDown / Marp / Color Note / Gas Mask / charles / iStat-Menus / Spectacle / FileZilla / androidfiletransfer / meld / Cakebrew / pyCharm / mindnode lite / Unarchiver / airdroid / Media-Info / Axure / Visual_Paradigm / ParagonNTFS / Readiris-Corporate-ESD (ocr识别) / JD-Gui / Sequel-pro
+
+- 系统: AppCleaner / [OmniDiskSweeper](http://newping.cn/322) / Disk Drill / OnyX
+- 效率: [git-open](https://github.com/paulirish/git-open) 自动打开 git 远程仓库地址
+    - QuickLook-plugin: QLMarkdown.qlgenerator / QLStephen.qlgenerator / QuickLookJSON.qlgenerator
+
+- 截图、gif录屏: lightshot (Apowersoft截屏王 snip jietu(qq) Skitch) / kap (licecap gifify)
+- XnConvert: 免费任务式图像处理软件，替代 photoshop 简单功能，比 Mac 预览工具更强。
+
+```sh
+# 系统截图
+command + shift + 3(4)  # 截图保存成文件
+control + command + shift + 3(4)  # 截图只是保存在剪贴板里，不保存文件
 # 批量设置图片大小
 sips -Z 640 *.jpg   # 批量修改图片的 宽或高 为指定值(最大值变为 640)，保持原来宽高比例
 sips -z height width [file]   # 修改宽和高为指定值
 
-# 系统截图
-command + shift + 3(4)  # 截图保存成文件
-control + command + shift + 3(4)  # 截图只是保存在剪贴板里，不保存文件
+## Chrome
+Command + L  # 光标定位到地址栏，输入搜索词 并按 Alt + Enter 键在 新标签页中
+Command + 1/2/3  # 跳到相应标签
+Command + Alt + →/←  # 选择 上/下 一个标签
+```
+
+## 各种
+
+```sh
+拖动 app 到 finder 工具栏方法：拖着 app 到 finder 工具栏时，按下`cmd + alt`
 
 defaults read com.apple.screencapture  # 查看系统截图设置
 defaults write com.apple.screencapture type jpg  # 将系统截屏后图片保存为 jpg 格式
@@ -22,7 +41,6 @@ defaults delete com.apple.screencapture name  # 撤销修改截图名
 http://apple.stackexchange.com/questions/102452/can-i-undo-changes-made-via-defaults-write
 
 pmset noidle  # 阻止电脑睡眠。 同时按住 shift、control、电源键，关闭显示器
-
 Command + h  # 隐藏程序
 单词自动补全：在内置的文本编辑器里，输入几个字母后，点击 Escape 键，OS X 就会提示多个单词。
 
@@ -30,67 +48,33 @@ Command + h  # 隐藏程序
 defaults write com.apple.dock persistent-others -array-add '{ "tile-data" = { "list-type" = 1; }; "tile-type" = "recents-tile"; }'
 killall Dock
 
-拖动 app 到 finder 工具栏方法：拖着 app 到 finder 工具栏时，按下`cmd + alt`
-
 # 在桌面生成软连接（快捷方式）
 ln -s /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app ~/Desktop
 # 加入到 zsh/bash 中
 alias simulator='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
-
 ```
-
-## 各种
-
-在启动系统登录后、添加自动打开的程序：System Preferences > Users & Groups > Login items
-点击"+"、找到自己写的可执行 bash 文件，加入即可。
-
-重启，开机按住Command + R，以 Recovery 分区启动，命令行输入
-`csrutil enable --without debug`关闭调试模式，`csrutil disable`关闭 Enforce System Integrity Protection. [Mac sip安全机制介绍](https://support.apple.com/en-us/HT204899) / [csrutil status](https://developer.apple.com/library/content/documentation/Security/Conceptual/System_Integrity_Protection_Guide/ConfiguringSystemIntegrityProtection/ConfiguringSystemIntegrityProtection.html#//apple_ref/doc/uid/TP40016462-CH5-SW1)
-
-mac 磁盘空间变得越来越少，有些软件有内存泄露问题：查看`/private/var/vm`下 swapfile 文件多少（不能删除）, 关闭重启电脑
-
-微信客户端收藏的图片位置：~/Library/Containers/com.tencent.xinWeChat/Data/Library/Application\ Support/
-
-mac的`控制台.app`能查看所有应用的log，方便启动错误时分析
-
-mac 自带的 ftp 功能，对 Android 系统文件是只读的，不能写入，使用 第三方 ftp 客户端可以写入。
-
-jdk6 在 mac 上的缺失：oracle官网从 jdk1.7 开始才有 Mac 版的安装包，需要从其他途径安装jdk1.6，
-从苹果提供的[地址](https://support.apple.com/kb/DL1572?locale=zh_CN)安装。（一般，升级系统后需要重新安装）
-
-mysql 启动错误：  
-启动 `系统偏好设置 -> MySQL` 时，提示`is not owned by the mysql or _mysql user`。解决：`sudo chown -R  _mysql:wheel  /usr/local/mysql/data`
-
-Idea 一直在`scanning files to index`解决办法：把`node_module`目录设置为`Excluded`。
-
-## 常用软件
-
-- 必备: HandBrake / Movist / Dash / MacDown / Marp / snip jietu(qq) / licecap kap / Skitch gifify / Color Note / Gas Mask / charles / XtraFinder / Alfred / AppCleaner / iStat-Menus / OnyX / Spectacle / FileZilla / androidfiletransfer / meld / Cakebrew / pyCharm / virtualbox / genymotion / xcode / mindnode lite / Disk Drill
-
-> 「xxx.app已损坏,打不开.你应该将它移到废纸篓」，并非你安装的软件已损坏，而是Mac系统的安全设置问题，
-> 因为这些应用都是破解或者汉化的（例如 Movist 破解版）, 解决方法就是临时改变Mac系统安全设置。
-> macOS 10.12 “安全性与隐私”里去掉了允许安装”任何来源“的软件设置，可以在终端里运行`sudo spctl --master-disable`打开
-
-- XnConvert: 免费任务式图像处理软件，替代 photoshop 简单功能，比 Mac 预览工具更强。
-- 其他: Unarchiver / airdroid / Media-Info / vlc(不太方便) / Axure / Visual_Paradigm / ICOFormat / ParagonNTFS / Readiris-Corporate-ESD (ocr识别) / JD-Gui / Sequel-pro
-
-QuickLook-plugin: QLMarkdown.qlgenerator / QLStephen.qlgenerator / QuickLookJSON.qlgenerator
-
-OmniDiskSweeper 磁盘占用分析工具，[使用帮助](http://newping.cn/322)
-
-安装 [git-open](https://github.com/paulirish/git-open) 自动打开 git 远程仓库地址
 
 iCloud 目录多出了“Keynote / Pages ...“等空目录，是为了引导你安装相应软件，安装完之后、可以在
 ”系统偏好设置 -> iCloud -> iCloud Drive -> 选项“里去掉勾选相应项目，文件夹里的空目录自动会消失。
 
-- https://www.slant.co/topics/526/~best-window-manager-for-mac
-- http://apple.stackexchange.com/questions/144388/always-open-the-finder-in-new-tab
+在启动系统登录后、添加自动打开的程序：System Preferences > Users & Groups > Login items
+点击"+"、找到自己写的可执行 bash 文件，加入即可。
+
+重启，开机按住`Command + R`，以 Recovery 分区启动，命令行输入
+`csrutil enable --without debug`关闭调试模式，`csrutil disable`关闭 Enforce System Integrity Protection. [Mac sip安全机制介绍](https://support.apple.com/en-us/HT204899) / [csrutil status](https://developer.apple.com/library/content/documentation/Security/Conceptual/System_Integrity_Protection_Guide/ConfiguringSystemIntegrityProtection/ConfiguringSystemIntegrityProtection.html#//apple_ref/doc/uid/TP40016462-CH5-SW1)
+
+mac 磁盘空间变得越来越少，有些软件有内存泄露问题：查看`/private/var/vm`下 swapfile 文件多少（不能删除）, 关闭重启电脑
+
+微信客户端收藏的图片位置：`~/Library/Containers/com.tencent.xinWeChat/Data/Library/Application\ Support/`
+
+mac 自带的 ftp 功能，对 Android 系统文件是只读的，不能写入，使用 第三方 ftp 客户端可以写入。
 
 [Enounce MySpeed](http://www.enounce.com/myspeed-mac-download-trial): 
 是一个能很方便地【加减速网页中 flash 播放速度】的工具(也包括加速html5视频)，但注意其【卸载方式】比较麻烦，
 [需要下载专门的 RemoveMySpeed 卸载工具](http://www.enounce.com/faqs-myspeed#uninstall)，
 警告：如果不按这个方式卸载，Safari 浏览器将打不开任何网页、会弹出报错“此网页出现问题，已重新载入”，同样
 底层使用 Safari 的 App Store 也打开会变成一片空白！
+
 
 ## 虚拟机
 

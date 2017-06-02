@@ -69,7 +69,7 @@ adb -s emulator-5554 shell input text 'my%stext'
 # 对这些字符 ( ) < > | ; & * \ ~ " ' 加上反斜杠 \ 转义, 空格用 %s 转义
 ```
 
-#### Idea / Android Studio 常用快捷键：
+#### Idea / Android Studio
 
 ```sh
 ctrl + j/q   # 显示文档
@@ -79,10 +79,12 @@ opt + enter   # 排错
 Ctrl + Alt + B   # 跳转到方法实现处
 ```
 
+Idea 一直在`scanning files to index`解决办法：把`node_module`目录设置为`Excluded`。
+
 ## Java / Android 环境安装
 
 首先安装 [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-(mac jdk6 [地址](https://support.apple.com/kb/DL1572?locale=zh_CN))
+(oracle官网从 jdk1.7 开始才有 Mac 版的安装包，单独的[jdk6 地址](https://support.apple.com/kb/DL1572?locale=zh_CN))
 
 > 安装 JDK 后，如何确认 mac java 安装路径，并设置`JAVA_HOME`环境变量：http://chessman-126-com.iteye.com/blog/2162466 
 > 根据苹果的官方说明，Mac OS X 10.5 及以后的版本应该使用 /usr/libexec/java_home 命令来确定 JAVA_HOME 
@@ -114,7 +116,6 @@ maven依赖找不到
 - 若不行，再把maven安装目录（xx/apache-maven-3.3.3/conf）下的 settings.xml 替换为与用户目录下 settings.xml 一致。
 - 若还不行，删掉用户目录（~/.m2/repository）下已下载的所有依赖，在项目目录下`mvn install -DskipTests`重新安装。
 
-
 ## Eclipse
 
 遇到问题，先在项目目录`mvn clean`，再点击eclipse菜单里project菜单项下的`clean...`。
@@ -128,3 +129,11 @@ eclipse 配置 jre：preferences --> Java --> Installed JREs --> search .
 
 eclipse 不能读取到环境变量`System.out.print(System.getenv("JAVA_HOME"))`返回null，需要从 terminal 中打开
 `open /Applications/eclipse/Eclipse.app`。[更多](http://stackoverflow.com/questions/603785/environment-variables-in-mac-os-x?lq=1)
+
+
+## mysql 启动错误：
+
+启动 `系统偏好设置 -> MySQL` 时，提示`is not owned by the mysql or _mysql user`。
+解决：`sudo chown -R  _mysql:wheel  /usr/local/mysql/data`
+
+
