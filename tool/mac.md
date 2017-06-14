@@ -244,23 +244,25 @@ shadowsocks代理模式分为「自动代理模式(pac模式)」和「全局模�
   "editor.fontSize": 13,
   "editor.tabSize": 2,
   "editor.dragAndDrop": true,
-  "files.exclude": {
-    "**/.idea": true
-  },
   "editor.scrollBeyondLastLine": false,
   "editor.formatOnType": true,
   "editor.renderIndentGuides": true,
-  "terminal.external.osxExec": "iTerm.app",
   "editor.renderWhitespace": "boundary",
   "editor.tabCompletion": true,
-  "typescript.check.tscVersion": false,
+  "editor.wordWrap": "on",
+  "window.title": "${activeEditorLong}",
+  "files.exclude": {
+    "**/.idea": true
+  },
   "files.associations": {
     "*.wxml": "xml",
     "*.wxss": "css",
     "*.acss": "css"
   },
+  "terminal.external.osxExec": "iTerm.app",
+  "typescript.check.tscVersion": false,
   "workbench.iconTheme": "vs-seti",
-  "editor.wordWrap": "on"
+  "emmet.useNewEmmet": true
 }
 // 快捷键
 [

@@ -6,6 +6,7 @@
 
 ## amp
 - https://www.ampproject.org/
+- [How AMP achieves its speed - Google I/O 2016](https://www.youtube.com/watch?v=cfekj564rs0)
 
 ## pwa
 - https://developers.google.com/web/progressive-web-apps/

@@ -1,83 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+  <meta charset="utf-8" />
+  <title></title>
 </head>
 <body>
-    <script>
-      "use strict";
-        /**
-         *
-         */
+  <script>
+    "use strict";
+    /**
+     *
+     */
 
-        function timeout() {
-            setTimeout(function () {
-                alert('1')
-            }, 1000);
-            return 'xx'
-        }
+    function timeout() {
+      setTimeout(function () {
+        alert('1')
+      }, 1000);
+      return 'xx'
+    }
 
-        function * foo( input ) {
-            //var res = yield input;
-            yield timeout();
+    function * foo( input ) {
+      //var res = yield input;
+      yield timeout();
 
-            var x = yield 2;
-            yield x*x;
+      var x = yield 2;
+      yield x*x;
 
-            alert( 'now exec' );
-            var res = yield ++input;
-            console.log('res is ', res);
-        }
-        var g = foo(10);
-        console.log( Object.prototype.toString.call(g) );
-        console.log( g.next() ); //
-        console.log( g.next() ); //
-        console.log( g.next() ); //
-        console.log( g.next() ); //
-        console.log( g.next(20) ); //
+      alert( 'now exec' );
+      var res = yield ++input;
+      console.log('res is ', res);
+    }
+    var g = foo(10);
+    console.log( Object.prototype.toString.call(g) );
+    console.log( g.next() ); //
+    console.log( g.next() ); //
+    console.log( g.next() ); //
+    console.log( g.next() ); //
+    console.log( g.next(20) ); //
 
-        // for of
-        function *foo() {
-          yield 1;
-          yield 2;
-          yield 3;
-          yield 4;
-          yield 5;
-          // return 6;
-        }
-        for (let v of foo()) {
-          console.log(v);
-        }
+    // for of
+    function *foo() {
+      yield 1;
+      yield 2;
+      yield 3;
+      yield 4;
+      yield 5;
+      // return 6;
+    }
+    for (let v of foo()) {
+      console.log(v);
+    }
 
-        // 斐波那契
-        function* fibonacci() {
-          let [prev, curr] = [0, 1];
-          for (;;) {
-            [prev, curr] = [curr, prev + curr];
-            yield curr;
-          }
-        }
-        for (let n of fibonacci()) {
-          if (n > 1000) break;
-          console.log(n);
-        }
+    // 斐波那契
+    function* fibonacci() {
+      let [prev, curr] = [0, 1];
+      for (;;) {
+      [prev, curr] = [curr, prev + curr];
+      yield curr;
+      }
+    }
+    for (let n of fibonacci()) {
+      if (n > 1000) break;
+      console.log(n);
+    }
 
 
-        function* iterTree(tree) {
-          if (Array.isArray(tree)) {
-            for(let i=0; i < tree.length; i++) {
-              yield* iterTree(tree[i]);
-            }
-          } else {
-            yield tree;
-          }
-        }
-        const tree = [ 'a', ['b', 'c'], ['d', 'e'] ];
-        for(let x of iterTree(tree)) {
-          console.log(x);
-        }
+    function* iterTree(tree) {
+      if (Array.isArray(tree)) {
+      for(let i=0; i < tree.length; i++) {
+        yield* iterTree(tree[i]);
+      }
+      } else {
+      yield tree;
+      }
+    }
+    const tree = [ 'a', ['b', 'c'], ['d', 'e'] ];
+    for(let x of iterTree(tree)) {
+      console.log(x);
+    }
 
-    </script>
+  </script>
 </body>
 </html>

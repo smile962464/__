@@ -147,43 +147,6 @@ var generateChars = function (length) {
 }
 ```
 
-## 时间类
-
-```js
-// 今天凌晨零点：
-var now = Date.now();
-// var now = +new Date();
-console.log(new Date(now.getFullYear(), now.getMonth(), now.getDate()))
-// 一年后：
-console.log(new Date(new Date().setYear(new Date().getFullYear() + 1)))
-```
-
-```js
-// 秒数转换为时间形式
-function toHHMMSS(sec_num) {
-  var hours   = Math.floor(sec_num / 3600);
-  var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
-  var seconds = sec_num - (hours * 3600) - (minutes * 60);
-
-  if (hours   < 10) {hours   = "0"+hours;}
-  if (minutes < 10) {minutes = "0"+minutes;}
-  if (seconds < 10) {seconds = "0"+seconds;}
-  return hours+':'+minutes+':'+seconds;
-}
-console.log(toHHMMSS(100));
-```
-
-```js
-// generate current date string  e.g. 20170101
-function genDateStr() {
-  var date = new Date();
-  var mday = date.getDate();
-  var month = date.getMonth() + 1;
-  month = month < 10 ? '0' + month : month;
-  mday = mday < 10 ? '0' + mday : mday;
-  return '' + date.getFullYear() + month + mday;
-}
-```
 
 ## 函数类
 

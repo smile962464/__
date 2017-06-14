@@ -35,7 +35,8 @@
 
 # 性能
 
-[WePY 在小程序性能调优上做出的探究](https://www.madcoder.cn/wepy-performance-research.html)
+- [WebView性能、体验分析与优化](http://tech.meituan.com/WebViewPerf.html)
+- [WePY 在小程序性能调优上做出的探究](https://www.madcoder.cn/wepy-performance-research.html)
 
 使用 innerHTML 把一大块元素替换掉，因为销毁的元素比较多、绑定着事件，会导致 GC 压力大。
 再插入新元素，再重新绑定事件。整体性能耗费比较大。
@@ -68,11 +69,10 @@ and it generally knows best when things should be cleaned up.
 全局变量不会被垃圾回收，除非页面刷新、跳转或关闭。
 函数作用域里的变量，在函数执行完毕、函数退出、没有引用时会被清理掉。
 删除dom对象时，及时解除事件监听。
-Don’t write enormous functions, as they are more difficult to optimize
+Don’t write enormous functions, as they are more difficult to optimize 
 Don’t load from uninitialized or deleted elements.
 
-It’s never a good idea to mix values of different types (e.g. numbers, strings, undefined or true/false) 
-in the same array (i.e. var arr = [1, “1”, undefined, true, “true”])
+It’s never a good idea to mix values of different types (e.g. numbers, strings, undefined or true/false) in the same array (i.e. `var arr = [1, “1”, undefined, true, “true”]`)
 
 be aware that although JavaScript engines continue to get faster, the next real bottleneck is the DOM. 
 Reflows and repaints are just as important to minimize, 
@@ -149,19 +149,6 @@ react virtual-dom 里一次digest中的diff只需一次，但是会随着ui的�
 
 - [void 和 undefined](http://shapeshed.com/the-void-of-undefined-in-javascript/)
 - [DOM的attribute和property](http://www.noahlu.com/blog/javascript-note/dom-attribute-property/)
-
-- [日期和时间字符串](http://msdn.microsoft.com/zh-cn/library/ie/ff743760(v=vs.94).aspx)
-- [计算日期和时间](http://msdn.microsoft.com/zh-cn/library/ie/ee532932(v=vs.94).aspx)
-- [safari 对时间格式支持的差异](http://stackoverflow.com/questions/4310953/invalid-date-in-safari)
-
-```js
-new Date('2010-11-29') // Safari: Invalid Date
-new Date('11-29-2010') // Safari: Invalid Date
-new Date('2010/11/29') // 正确
-new Date('11/29/2010') // 正确
-new Date('2016-06-08T12:18:00+0800') // Safari: Invalid Date
-new Date('2016-06-08T12:18:00+08:00') // 正确
-```
 
 - 只在行首字符是`+、-、[、(、/`这5种情况下，加前置分号即可，其他不用加分号。
 - [Semicolons in JavaScript are optional](http://mislav.uniqpath.com/2010/05/semicolons/)
