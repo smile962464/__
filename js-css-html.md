@@ -128,26 +128,16 @@ react virtual-dom 里一次digest中的diff只需一次，但是会随着ui的�
 - [静态资源版本更新与缓存](http://www.infoq.com/cn/articles/front-end-engineering-and-performance-optimization-part1)
 - [使用JavaScript实现“真·函数式编程”](http://jimliu.net/2015/10/21/real-functional-programming-in-javascript-1/)
 
-- 使用`void 0`代替`undefined`、`console.log(void 0 === undefined)`
-- 覆盖 Object.toString() 显示对象具体信息，用以调试
 - 页面有使用`window.opener.xx()`之类、因为opener可以为任何域，所以存在`跨域`错误。利用`try..catch`捕获
-- 模拟三目运算符(ternary operator)：`condition && (answer if true) || (answer if false)`
 
 - call 比 apply 性能好！[参考](http://jsperf.com/apply-vs-call-vs-invoke)。（angular1.0.6：2848行；backbone1.0.0：200行）
 - js对象引用操作dom对象后，需要设置为null或delete掉，避免内存泄露
 
-- `eval()`、`window.eval`、`new Function`
-    - 第一个不会被GC回收，后两个可以被GC回收。
-    - 每次使用他们时都会调用脚本引擎将源代码转换成可执行代码；因此尽量避免使用。
+- `eval()`、`window.eval`、`new Function` 第一个不会被GC回收，后两个可以被GC回收。每次使用他们时都会调用脚本引擎将源代码转换成可执行代码；因此尽量避免使用。
 
 - 不声明中间变量的值交换: `var a=1,b=2;a=[b,b=a][0];`
 - `console.count('被执行的次数：')`
 
-- [匿名函数的多种调用方式](http://www.cnblogs.com/snandy/archive/2011/02/28/1966664.html)
-- [立即调用的函数表达式](http://www.cnblogs.com/TomXu/archive/2011/12/31/2289423.html)
-- [ECMA-262-3 in detail. Chapter 5. Functions](http://dmitrysoshnikov.com/ecmascript/chapter-5-functions/)
-
-- [void 和 undefined](http://shapeshed.com/the-void-of-undefined-in-javascript/)
 - [DOM的attribute和property](http://www.noahlu.com/blog/javascript-note/dom-attribute-property/)
 
 - 只在行首字符是`+、-、[、(、/`这5种情况下，加前置分号即可，其他不用加分号。

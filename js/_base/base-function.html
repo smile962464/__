@@ -14,13 +14,16 @@ js引擎不是一行行执行，而是一段段（不同Script标签为不同段
 函数每次调用时都会产生一个子作用域，退出函数时，这个子作用域消失，下次调用相同函数时，又是另一个子作用域了。
 在运行的函数内再调用另外的函数时，又产生另一个作用域，随着函数调用的深入，就形成“作用域链”，
 递归调用时，作用域链会变得很长。
+
+- [匿名函数的多种调用方式](http://www.cnblogs.com/snandy/archive/2011/02/28/1966664.html)
+- [立即调用的函数表达式](http://www.cnblogs.com/TomXu/archive/2011/12/31/2289423.html)
+- [ECMA-262-3 in detail. Chapter 5. Functions](http://dmitrysoshnikov.com/ecmascript/chapter-5-functions/)
 </pre>
 
   <script>
     /*
-     *   匿名函数
-     *   http://www.cnblogs.com/TomXu/archive/2011/12/31/2289423.html
-     *   http://dmitrysoshnikov.com/ecmascript/chapter-5-functions/#question-about-surrounding-parentheses
+     * 匿名函数 http://www.cnblogs.com/TomXu/archive/2011/12/31/2289423.html
+     * http://dmitrysoshnikov.com/ecmascript/chapter-5-functions/#question-about-surrounding-parentheses
      */
     var foo = function() {
       alert(1)
