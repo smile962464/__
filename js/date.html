@@ -32,7 +32,17 @@
     console.log(new Date('6 Mar 2017 21:22:23 GMT')); // RFC 2822 格式
     console.log(new Date('Mon 06 Mar 2017 21:22:23 z')); // RFC 2822 格式
     console.log(new Date('Mon, 06 Mar 2017 21:22:23 +0000')); // RFC 2822 格式
-    console.log(new Date('2010-11-29').toUTCString()); // 标准 ISO 格式，toUTCString()
+    console.log(new Date().toUTCString()); // 标准 ISO 格式，toUTCString()
+    console.log(new Date().toISOString()); // 标准 ISO 格式，toISOString()
+
+
+    console.log('===========  =============');
+
+    var now = new Date;
+    var utc_timestamp = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(),
+      now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds());
+    console.log("Local timestamp " + now.getTime())
+    console.log("UTC timestamp  " + utc_timestamp)
 
 
     console.log('===========  =============');
@@ -73,10 +83,21 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/zh-cn.js"></script>
   <script>
+    /** https://momentjs.com/
+      Modularize moment.js https://github.com/moment/moment/issues/2373
+      https://github.com/date-fns/date-fns
+      https://www.npmjs.com/package/dateformat
+     */
     console.log(moment([2010, 11, 29, 10, 59, 59, 300])); // 参数: 年 月 日 时 分 秒 毫秒
     console.log(moment.utc([2010, 11, 29, 10, 59, 59, 300])); // 参数: 年 月 日 时 分 秒 毫秒。utc 时间
 
     console.log(moment().format(), moment.locale());
+    console.log(moment().utcOffset(), new Date().getTimezoneOffset());
+    console.log(moment().utcOffset(8), moment().locale('zh-cn').utcOffset(8));
+    console.log(moment().utcOffset(8).hours(), moment().locale('zh-cn').utcOffset(8).hours());
+    console.log(moment().format(), moment().utcOffset(8).format());
+
+    console.log('===========  =============');
 
     console.log(moment("2010-10-20T04:30+0000")); // 标准 ISO 格式
     // console.log(moment("2010-10-20 4:30 +0000")); // 非 ISO 格式，moment 提醒错误
@@ -86,6 +107,14 @@
     console.log(moment("2010-10-20 4:30",       "YYYY-MM-DD HH:mm"));
     // 非 ISO 格式，指定时区，用 moment 指定格式化为 UTC 时间 (Z: Offset from UTC)
     console.log(moment("2010-10-20 4:30 +0000", "YYYY-MM-DD HH:mm Z"));
+
+    console.log('===========  =============');
+
+    var time1 = moment().utcOffset(12);
+    var time2 = moment();
+    console.log(time1.isSame(time2, 'day')); // TRUE
+    console.log(time1.utc().format('MM-DD-YYYY')); //
+    console.log(time2.utc().format('MM-DD-YYYY')); //
 
   </script>
 </body>
