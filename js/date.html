@@ -55,6 +55,17 @@
     // 一年后：
     console.log(new Date(now.setYear(now.getFullYear() + 1)));
 
+    // 是否为闰年
+    // 遇到整百年时（如2000，1900，300）要被400整除才是闰年，否则为平年（2000闰年，1900平年，300平年）；遇到非整百年时（如2004，2005），只要被4整除就是闰年，不能被4整除为平年。
+    // 闰年的2月有29天，平年的2月有28天。
+    function isLeapYear(year) {
+      return (new Date(year, 1, 29).getDate() === 29);
+    }
+    // function isLeapYear(year) {
+    //   return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+    // }
+    console.log('isLeapYear', isLeapYear(1900));
+
     // 秒数转换为时间形式
     function toHHMMSS(sec_num) {
       var hours   = Math.floor(sec_num / 3600);
@@ -77,25 +88,30 @@
       return '' + date.getFullYear() + month + mday;
     }
     console.log(genDateStr());
-    console.log('===========  =============');
+
+    console.log('=========== raw Date end =============');
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/zh-cn.js"></script>
   <script>
     /** https://momentjs.com/
+     * moment 对象里的 `_d` 不管是否为 UTC 时间、始终表示“本地时间”，参考构造函数：https://github.com/moment/moment/blob/b8a7fc310eb3625e83fc0c8f1ea2840fa83c7378/src/lib/moment/constructor.js#L62
+     *
       Modularize moment.js https://github.com/moment/moment/issues/2373
+      https://github.com/JerrySievert/date-utils
       https://github.com/date-fns/date-fns
       https://www.npmjs.com/package/dateformat
      */
     console.log(moment([2010, 11, 29, 10, 59, 59, 300])); // 参数: 年 月 日 时 分 秒 毫秒
     console.log(moment.utc([2010, 11, 29, 10, 59, 59, 300])); // 参数: 年 月 日 时 分 秒 毫秒。utc 时间
 
-    console.log(moment().format(), moment.locale());
-    console.log(moment().utcOffset(), new Date().getTimezoneOffset());
+    console.log(moment().format(), moment.locale(), moment().isLeapYear());
+    console.log(moment().utcOffset(0), moment().utcOffset(), new Date().getTimezoneOffset());
+    console.log(moment().utcOffset(0).format(), moment().utcOffset(8).format());
     console.log(moment().utcOffset(8), moment().locale('zh-cn').utcOffset(8));
     console.log(moment().utcOffset(8).hours(), moment().locale('zh-cn').utcOffset(8).hours());
-    console.log(moment().format(), moment().utcOffset(8).format());
+    console.log(moment.utc(), moment.utc().format());
 
     console.log('===========  =============');
 
