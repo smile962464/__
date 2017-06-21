@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>图片工具</title>
+  <style>
+    .gray { color: #bbb; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <h3>图片生成、蜻蜓上传</h3><hr />
+  <form>
+    size: <input id="size" value="375x200" />
+    text: <input id="text" value="text" />
+    bgcolor: <input id="bgcolor" value="#ccc" />
+    (#0D8FDB #39DBAC #F8591A <a target="_blank" href="http://c0ffee.surge.sh/">更多</a>)
+    <br /><img id="img" src="" />
+  </form>
+  <div class="gray">
+    <a href="https://github.com/hustcc/placeholder.js" style="margin-right: 10px;">源码</a>
+    <a href="https://rmsportal.alipay.com/" target="_blank">蜻蜓（新标签打开）</a>
+  </div>
+  <script src="http://cdn.bootcss.com/placeholder.js/3.1.0/placeholder.js"></script>
+  <script>
+    var opts = {
+      size: '375x200',
+      bgcolor: '#ccc',
+      color: 'white',
+      text: 'text',
+      fstyle:'oblique',
+      fweight: 'normal',
+      fsize:'30',
+      ffamily: 'consolas'
+    };
+    function create() {
+      document.getElementById('img').setAttribute('src', placeholder.getData(opts));
+    }
+    create();
+    ['size', 'text', 'bgcolor'].forEach(function(i) {
+      document.getElementById(i).addEventListener('input', function() {
+        opts[i] = this.value;
+        create();
+      });
+    });
+  </script>
+
+
+  <h3>图片转 data-uri</h3><hr />
+
+  选择一个图片：
+  <input type="file" id="file" name="file" />
+  <div id="result" style="padding:10px;width:90%;height:400px;overflow:auto;border:1px solid #ccc;word-wrap:break-word;">
+  </div>
+
+  <script>
+    function ProcessFile(e) {
+      var file = document.getElementById('file').files[0];
+      if (file) {
+        var reader = new FileReader();
+        reader.onload = function (event) {
+          var txt = event.target.result;
+          document.getElementById("result").innerHTML = txt;
+        };
+      }
+      reader.readAsDataURL(file);
+    }
+    window.addEventListener("DOMContentLoaded", function () {
+      document.getElementById('file').addEventListener('change', ProcessFile, false);
+    }, false);
+  </script>
+</body>
+</html>
