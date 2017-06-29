@@ -259,10 +259,12 @@ shadowsocks代理模式分为「自动代理模式(pac模式)」和「全局模�
     "*.wxss": "css",
     "*.acss": "css"
   },
-  "terminal.external.osxExec": "iTerm.app",
   "typescript.check.tscVersion": false,
   "workbench.iconTheme": "vs-seti",
-  "emmet.useNewEmmet": true
+  "emmet.useNewEmmet": true,
+  "terminal.external.osxExec": "iTerm.app",
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  "terminal.enableAppInsights": false
 }
 // 快捷键
 [
@@ -270,7 +272,8 @@ shadowsocks代理模式分为「自动代理模式(pac模式)」和「全局模�
 ]
 // 扩展
 beautify / Indent 4-to-2 / JSON Tools / Path Intellisense / react-beautify / C/C++
-changeEncode / GBKtoUTF8 / Active File In Status Bar / EditorConfig for Visual Studio Code
+Terminal / filesize / Open HTML in Default Browser / EditorConfig for Visual Studio Code
+(changeEncode / GBKtoUTF8 / Active File In Status Bar 内置已支持) 
 ```
 
 ## atom
