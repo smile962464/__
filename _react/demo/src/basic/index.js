@@ -18,6 +18,7 @@ const App = React.createClass({
   },
   render() {
     return (<div>
+      <input type="checkbox" defaultChecked={false} value="on" />
       <h3>(Un)controlled Components</h3>
       <button onClick={this.cli}>switch</button>
       <h3>不变的key（可不设置）</h3>
