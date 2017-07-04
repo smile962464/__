@@ -161,7 +161,7 @@ var bind = function (fn, context) {
   }
 }
 var handler = function (x, y) {
-    console.log(x, y);
+  console.log(x, y);
 }
 var argh = bind(handler, undefined, 5, 10);
 ```
@@ -172,6 +172,44 @@ var reducer = arr.reduce(function(maxId, todo) {
   return Math.max(todo.id, maxId)
 }, -1)
 console.log(reducer);
+```
+
+```js
+// https://remysharp.com/2010/07/21/throttling-function-calls
+function debounce(fn, delay) {
+  var timer = null;
+  return function () {
+    var context = this, args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      fn.apply(context, args);
+    }, delay);
+  };
+}
+```
+
+```js
+// https://remysharp.com/2010/07/21/throttling-function-calls
+function throttle(fn, threshold) {
+  threshold = threshold || 200;
+  var last, timeout;
+
+  return function() {
+    var now = +new Date();
+    var args = arguments;
+    var trigger = function() {
+      last = now;
+      fn.apply( this, args );
+    }.bind( this );
+    if ( last && now < last + threshold ) {
+      // hold on to it
+      clearTimeout( timeout );
+      timeout = setTimeout( trigger, threshold );
+    } else {
+      trigger();
+    }
+  };
+}
 ```
 
 ## browser & dom
