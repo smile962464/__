@@ -74,6 +74,7 @@ git submodule status # 其他一些命令
 
 ## 更新 submodule
 cd submodule_dir
+git checkout master  # 注意：建议先切换到指定的分支、如 master ，然后再修改
 git pull origin master
 ## 更新主 module 对 submodule 的引用
 cd ..
@@ -88,8 +89,8 @@ git rm --cached submodule_dir  # 清除缓存
 发现两个分支的 submodule 的 HEAD 引用不同：
   要使用 branch1，则不进行操作
   要使用 branch2 分支的 submodule，需运行：`git submodule update`
-  如果这两个分支的 submodule 引用都不是最新的；则进入 submodule 目录，运行`git pull origin master`拉取submodule 最新版本。
-然后`git add [submodule path]`，再推送上去
+  如果这两个分支的 submodule 引用都不是最新的；则进入 submodule 目录，运行`git pull origin master`拉取 submodule 最新版本。
+然后在主仓库`git add [submodule path]`，再推送
 
 
 ### log
