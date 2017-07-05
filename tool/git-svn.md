@@ -20,9 +20,9 @@ cherry-pick 一般用于将 bugfix commit pick 到不同版本上。
 git pull -p
 git fetch -p (git fetch origin --prune) remove all your local branches which are remotely deleted.
 
-git remote add origin git@xxx.git        加入服务器
-git remote -v  列出现有的远程地址
-git remote set-url origin xxx 改变远程地址为xxx
+git remote add origin git@xxx.git    # 加入服务器
+git remote -v  # 列出现有的远程地址
+git remote set-url origin xxx  # 改变远程地址为xxx
 
 git mv --force myfile MyFile  # Mac 下文件名大小写不敏感，这样改文件名
 
@@ -32,32 +32,28 @@ git mv --force myfile MyFile  # Mac 下文件名大小写不敏感，这样改�
 use "git checkout -- <file>..." to discard changes in working directory
 git checkout .
 
-git clean -df  Remove untracked directories in addition to untracked files.
-git clean -xdf 删除所有 .gitignore 里指定的文件或目录，包括新建文件、node_modules 等
-git clean -f  删除untracked files（即远程仓库没有这个文件，新加的文件）
+git clean -df  # Remove untracked directories in addition to untracked files.
+git clean -xdf # 删除所有 .gitignore 里指定的文件或目录，包括新建文件、node_modules 等
+git clean -f  # 删除 untracked files（即远程仓库没有这个文件，新加的文件）
 git clean -f -n
 
 #### index内的回滚 (commit之前)
 git reset
-git reset HEAD <file>...  如果已经用add 命令把文件加入stage了，就先需要从stage中撤销
-git reset HEAD^    回退所有内容到上一个版本
-git reset HEAD^ a.py    回退a.py这个文件的版本到上一个版本  
-git reset 057d    回退到某个版本  
+git reset HEAD <file>...  # 如果已经用 add 命令把文件加入 stage 了，就先需要从 stage 中撤销
+git reset HEAD^    # 回退所有内容到上一个版本
+git reset HEAD^ a.py    # 回退 a.py 这个文件的版本到上一个版本  
+git reset 057d    # 回退到某个版本  
 
 #### commit之后的回滚
 git reset [--soft 不修改本地文件 | --hard 本地的文件修改都被丢弃]
 
-git reset --soft HEAD^   撤销commit，重新做
-git reset --hard 057d    回退到某个版本，注意：本地的文件修改都被丢弃
-git reset --hard origin/master   将本地的状态回退到和远程的一样
+git reset --soft HEAD^   # 撤销commit，重新做
+git reset --hard 057d    # 回退到某个版本，注意：本地的文件修改都被丢弃
+git reset --hard origin/master   # 将本地的状态回退到和远程的一样
 
-git checkout HEAD~1 -- file     运行 git merge xx 后，想撤销其中某个文件的merge
+git checkout HEAD~1 -- file     # 运行 git merge xx 后，想撤销其中某个文件的merge
 
-$ git branch topic/wip     (1) 新建分支wip
-$ git reset --hard HEAD~3  (2) 原分支上把最近三次提交丢弃
-$ git checkout topic/wip   (3) 切换到wip分支，继续工作
-
-git reflog       生成某个串，例如98abc5a  
+git reflog      # 生成某个串，例如98abc5a  
 git reset --hard 98abc5a  
 
 git stash                   # 暂存未提交的修改
@@ -67,51 +63,64 @@ git stash apply stash@{1}   # 恢复到某个stash版本
 git stash clear / drop <stash@{n}>     # 清除所有或某个stash版本
 
 ### submodule
+> [submodules 基础操作](http://linlexus.com/git-submodule-usage/)
 
-#### 初始化
-git submodule add git@mygithost:billboard lib/billboard
+git submodule add git@github.com:user/repoName repoName # 只用一次，添加进主仓库
+git clone --recursive git@github.com:user/repoName.git # 下载主仓库、并一起下载 submodule
+## 首次需要；并且在 git clone 时没有 recursive 下载 submodule 也需要
 git submodule init  
 git submodule update  
+git submodule status # 其他一些命令
 
-#### 操作
-带有submodule的某个仓库里，其中自己的分支 branch1 合并来自其他分支 branch2 的修改，
+## 更新 submodule
+cd submodule_dir
+git pull origin master
+## 更新主 module 对 submodule 的引用
+cd ..
+git commit -am 'update submodule'
+git push
+## 移除 submodule
+rm -f .gitmodules  # 移除 .gitmodules 文件
+vim .git/config  # 编辑 .git/config 删除相应的 submodule 配置
+git rm --cached submodule_dir  # 清除缓存
+
+带有 submodule 的某个仓库里，其中自己的分支 branch1 合并来自其他分支 branch2 的修改，
 发现两个分支的 submodule 的 HEAD 引用不同：
-  要使用 branch1（自己原本的），不进行操作
-  要使用 branch2 分支的 submodule，运行：`git submodule update`
-  如果这两个分支的submodule 引用可能都不是最新、最稳定的；进入submodule目录，运行`git push origin master`拉取submodule稳定版本。
+  要使用 branch1，则不进行操作
+  要使用 branch2 分支的 submodule，需运行：`git submodule update`
+  如果这两个分支的 submodule 引用都不是最新的；则进入 submodule 目录，运行`git pull origin master`拉取submodule 最新版本。
 然后`git add [submodule path]`，再推送上去
 
-[submodules增删改](https://chrisjean.com/git-submodules-adding-using-removing-and-updating/)
 
 ### log
 git log
-git log -p -2 显示最近的两次更新
-git log --stat 显示文件更改的统计结果
+git log -p -2   # 显示最近的两次更新
+git log --stat  # 显示文件更改的统计结果
 
-git diff [version1] [version2]  查看版本差异
-gitk              查看仓库的各类信息的gui  
+git diff [version1] [version2]   # 查看版本差异
+gitk              # 查看仓库的各类信息的gui  
 gitk --all
 
 ### 分支
-git branch    列出分支清单（分支前的 * 字符：表示当前所在的分支）  
-git branch -v   查看各个分支最后一个提交对象的信息  
-git branch -a/-r   查看所有分支 (git clone只会显示master分支)  
+git branch         # 列出分支清单（分支前的 * 字符：表示当前所在的分支）
+git branch -v      # 查看各个分支最后一个提交对象的信息
+git branch -a/-r   # 查看所有分支 (git clone只会显示master分支)
 
-git branch xx     新建分支xx  
-git checkout xx   切换到分支xx（HEAD指向此分支）  
-git checkout -b xx   新建并直接切换到xx分支
+git branch xx        # 新建分支xx  
+git checkout xx      # 切换到分支xx（HEAD指向此分支）
+git checkout -b xx   # 新建并直接切换到xx分支
 
-git checkout -b xx origin/xx    新建xx分支，并跟踪远程xx分支
-git checkout --track origin/xx   新建xx分支，并跟踪远程xx分支
+git checkout -b xx origin/xx     # 新建xx分支，并跟踪远程xx分支
+git checkout --track origin/xx   # 新建xx分支，并跟踪远程xx分支
 
-git branch -d xx     删除分支xx
-git push origin :xx  删除远程分支xx
-git push origin xx:xx  上传我本地的xx分支到远程仓库中去，仍称它为xx分支  
-git push origin xx   推送到xx分支
+git branch -d xx       # 删除分支xx
+git push origin :xx    # 删除远程分支xx
+git push origin xx:xx  # 上传我本地的xx分支到远程仓库中去，仍称它为xx分支
+git push origin xx     # 推送到xx分支
 
-git merge xx  合并xx分支到某分支（例如：合并到主分支，先切到master 再git merge xx）  
-git merge --no-ff xx  不执行"快进式合并"（fast-farward merge）
-git merge origin/xx   远程上有xx分支，并且git fetch origin，执行此命令，将合并此分支  
+git merge xx           # 合并xx分支到某分支（例如：合并到主分支，先切到master 再git merge xx）
+git merge --no-ff xx   # 不执行"快进式合并"（fast-farward merge）
+git merge origin/xx    # 远程上有xx分支，并且git fetch origin，执行此命令，将合并此分支
 
 ### 操作tag
 git tag 0.0.1   # 打轻量标签  
@@ -128,7 +137,7 @@ git checkout tag_name  # 检出标签
 
 1、点击github上要fork的仓库的fork按钮，本地repo会有一份拷贝  
 2、clone一份到本地：git clone git@github.com:[your_username]/xxx.git  
-3、跟踪原本的仓库：  
+3、跟踪原本的仓库：
 
     cd xxx
     git remote add upstream git://github.com/[ori_username]/xxx.git  
@@ -178,27 +187,18 @@ git rebase -i  重写历史
 
 ### 存取操作：
 
-git pull origin master              # 接收github仓库数据  
-git pull === git fetch + git merge
-git pull --rebase === git fetch + git rebase
+git pull origin master  # 接收 github 仓库数据  
+git pull                # 同 git fetch + git merge
+git pull --rebase       # 同 git fetch + git rebase
 
 git push -u origin master           # 第一次推送  
 git push
-
-### 提交上传：
-git add .               加入新文件  
-git add -A              加入new delete modify过的文件  
-git commit -m "xxx"     提交  
-git commit -a           将modify过的文件提交，自动打开编辑器  
-git commit -am "xxx"   将modify过的文件提交并注释，不必再用git add  
 
 ```
 
 
 # git实践
 ### GIT 开发流程及规范
-
-> by 乔花 。感谢
 
 遵循业内比较成熟的 GIT 分支模型，整个概况如下图所示：
 

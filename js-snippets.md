@@ -298,7 +298,7 @@ window.addEventListener(orientationEvent, function () {
 ```
 
 ```js
-function xhr(url) {
+function ajax(url) {
   var xhr = new XMLHttpRequest();
   xhr.onload = function() {
     if (xhr.status >= 200 && xhr.status < 400) {
