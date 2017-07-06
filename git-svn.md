@@ -11,24 +11,40 @@
 > git-tips: https://github.com/git-tips/tips
 
 ```sh
-如果你需要将自己开发分支上的某个 commit 快速提供给其他人用，但该分支上的其他 commit 不想 push：
+git pull                # 同 git fetch + git merge
+git pull --rebase       # 同 git fetch + git rebase
+git pull -p # remove all your local branches which are remotely deleted.
 
-git checkout develop 切换到 dev 分支，也可以新建个 feature 分支
-git cherry-pick 62ecb3 将目标 commit pick 到 develop 上
-cherry-pick 一般用于将 bugfix commit pick 到不同版本上。
+git fetch   # 同步远程repos, 更新本地仓库的所有 origin/* 分支信息
+git diff master origin/master   # 比较本地的 master 和远程的 master 分支差异
+git merge origin/master  # 合并远程的 repos 到本地的 master 分支上
 
-git pull -p
-git fetch -p (git fetch origin --prune) remove all your local branches which are remotely deleted.
+git diff [version1] [version2]   # 查看版本差异
+git log -p -2   # 显示最近的两次更新
+git log --stat  # 显示文件更改的统计结果
 
+# 使用 rebase 代替 merge 避免生成类似 merge branch “branch_name” 历史记录
+git pull --rebase origin master  # 在开发分支上 rebase 主分支.
+git rebase --continue
+git rebase --abort
+git rebase -i  # 重写历史，可以再用 git reflog 撤销到指定 commit
+
+git rebase -i [commit_id 16f8929]  # 修改 16f8929 之后的提交历史
+
+# cherry-pick
+git checkout develop   # 切换到 dev 分支，也可以新建个 feature 分支
+git cherry-pick 62ecb3 # pick 到 develop 上，一般用于将 bugfix commit pick 到不同版本上
+
+# remote
 git remote add origin git@xxx.git    # 加入服务器
 git remote -v  # 列出现有的远程地址
 git remote set-url origin xxx  # 改变远程地址为xxx
 
 git mv --force myfile MyFile  # Mac 下文件名大小写不敏感，这样改文件名
 
-### 回退恢复：
+# 回退恢复：
 
-#### working tree (add之前)
+#### working tree (add之前，原始状态)
 use "git checkout -- <file>..." to discard changes in working directory
 git checkout .
 
@@ -37,32 +53,33 @@ git clean -xdf # 删除所有 .gitignore 里指定的文件或目录，包括新
 git clean -f  # 删除 untracked files（即远程仓库没有这个文件，新加的文件）
 git clean -f -n
 
-#### index内的回滚 (commit之前)
+#### index 内的回滚 (add后 commit之前，暂存区)
 git reset
 git reset HEAD <file>...  # 如果已经用 add 命令把文件加入 stage 了，就先需要从 stage 中撤销
 git reset HEAD^    # 回退所有内容到上一个版本
 git reset HEAD^ a.py    # 回退 a.py 这个文件的版本到上一个版本  
 git reset 057d    # 回退到某个版本  
 
-#### commit之后的回滚
+#### commit 之后的回滚
 git reset [--soft 不修改本地文件 | --hard 本地的文件修改都被丢弃]
 
 git reset --soft HEAD^   # 撤销commit，重新做
 git reset --hard 057d    # 回退到某个版本，注意：本地的文件修改都被丢弃
 git reset --hard origin/master   # 将本地的状态回退到和远程的一样
 
-git checkout HEAD~1 -- file     # 运行 git merge xx 后，想撤销其中某个文件的merge
+git checkout HEAD~1 -- file   # 运行 git merge xx 后，想撤销其中某个文件的 merge
+git reflog   # 生成某个串，例如 98abc5a 再 git reset --hard 98abc5a
 
-git reflog      # 生成某个串，例如98abc5a  
-git reset --hard 98abc5a  
+## git head caret tilde 区别 https://scarletsky.github.io/2016/12/29/tilde-and-caret-in-git/
 
+# stash
 git stash                   # 暂存未提交的修改
 git stash pop               # 恢复上次未提交的修改  
 git stash list              # 列出各个 stash 版本  
 git stash apply stash@{1}   # 恢复到某个stash版本
 git stash clear / drop <stash@{n}>     # 清除所有或某个stash版本
 
-### submodule
+# submodule
 > [submodules 基础操作](http://linlexus.com/git-submodule-usage/)
 
 git submodule add git@github.com:user/repoName repoName # 只用一次，添加进主仓库
@@ -93,16 +110,10 @@ git rm --cached submodule_dir  # 清除缓存
 然后在主仓库`git add [submodule path]`，再推送
 
 
-### log
-git log
-git log -p -2   # 显示最近的两次更新
-git log --stat  # 显示文件更改的统计结果
-
-git diff [version1] [version2]   # 查看版本差异
 gitk              # 查看仓库的各类信息的gui  
 gitk --all
 
-### 分支
+# 分支
 git branch         # 列出分支清单（分支前的 * 字符：表示当前所在的分支）
 git branch -v      # 查看各个分支最后一个提交对象的信息
 git branch -a/-r   # 查看所有分支 (git clone只会显示master分支)
@@ -121,46 +132,37 @@ git push origin xx     # 推送到xx分支
 
 git merge xx           # 合并xx分支到某分支（例如：合并到主分支，先切到master 再git merge xx）
 git merge --no-ff xx   # 不执行"快进式合并"（fast-farward merge）
-git merge origin/xx    # 远程上有xx分支，并且git fetch origin，执行此命令，将合并此分支
+git merge origin/xx    # 远程上有 xx 分支，并且 git fetch origin 执行此命令，将合并此分支
 
-### 操作tag
-git tag 0.0.1   # 打轻量标签  
-git tag -a 0.0.1 -m 'Release version 0.0.1'  # 打标签
+# 操作tag
+git tag 0.0.1       # 打轻量标签
+git tag -a 0.0.1 -m 'Release version 0.0.1'
 git tag [-l]               # 列出全部的tag清單
 git push origin v1.5
-git push [origin] --tags    # 推送所有标签到服务器  
-git tag -d 0.0.1   # 删除本地标签  
+git push [origin] --tags    # 推送所有标签到服务器
+git tag -d 0.0.1   # 删除本地标签
 git push origin :refs/tags/0.0.1   # 删除远程标签
 git checkout tag_name  # 检出标签
 
-### fork & pull request
+# fork & pull request
 [pull request](http://www.worldhello.net/gotgithub/04-work-with-others/010-fork-and-pull.html)
 
-1、点击github上要fork的仓库的fork按钮，本地repo会有一份拷贝  
-2、clone一份到本地：git clone git@github.com:[your_username]/xxx.git  
-3、跟踪原本的仓库：
-
-    cd xxx
-    git remote add upstream git://github.com/[ori_username]/xxx.git  
-    git fetch upstream -- 获取原始代码库的更新
-
-4、推送提交
-
-    git push origin master
-
-5、原本仓库更新，获取更新
-
-    git fetch upstream
-    git merge upstream/master
+## 1、点击 github 上要 fork 的仓库的 fork 按钮
+git clone git@github.com:[your_username]/xxx.git  # clone一份到本地
+cd xxx
+git remote add upstream git://github.com/[ori_username]/xxx.git  
+git fetch upstream         # 获取原始代码库的更新
+git merge upstream/master  # 合并进来
+git push origin master     # 推送提交
 
 
-### 配置：
+# 配置
 git config                # 配置个人信息  
 git config --global alias.st status
 git config --global color.ui true
 git config --global core.ignorecase false  # Make git case sensitive
 
-生成ssh key: ssh-keygen -t rsa -C "your_email@youremail.com"
+ssh-keygen -t rsa -C "your_email@youremail.com"  # 生成 ssh key
 
 #### .gitconfig 文件内容示例
 
@@ -175,25 +177,6 @@ git config --global core.ignorecase false  # Make git case sensitive
       df = diff
     [push]
       default = simple
-
-### rebase操作
-
-git rebase --onto <new base-commit> <current base-commit>
-
-开发分支rebase主分支：
-git pull --rebase origin master
-git rebase --continue
-git rebase --abort
-git rebase -i  重写历史
-
-### 存取操作：
-
-git pull origin master  # 接收 github 仓库数据  
-git pull                # 同 git fetch + git merge
-git pull --rebase       # 同 git fetch + git rebase
-
-git push -u origin master           # 第一次推送  
-git push
 
 ```
 
