@@ -1,0 +1,3 @@
+echo "start joke server"
+cd ~/inner/__/js-css-html/node/_server \
+&& forever start server.js
