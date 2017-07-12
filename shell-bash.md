@@ -48,6 +48,29 @@ date # 显示系统的当前日期和时间
 say hello world  # 说话
 ```
 
+
+### 软/硬连接
+
+连接有软连接和硬连接(hard link)之分的，软连接(symbolic link)又叫符号连接。
+符号连接相当于Windows下的快捷方式。不可以对文件夹建立硬连接，我们通常用的还是软连接比较多。
+（注意：软连接和mac上的制作替身不同）
+
+```sh
+# 格式
+ln [option] source_file dist_file/dist_dir
+
+#若权限不足加 sudo
+ln -s source_file dist        # 建立软连接
+ln -s ../source/*.bar .        # 建立软连接，在当前目录
+
+ln source_file dist           # 建立硬连接
+rm -rf symbolic_name    # 注意不是rm -rf symbolic_name/
+```
+
+软连接可以 跨文件系统，硬连接不可以。软连接可以对一个不存在的文件名进行连接。软连接可以对目录进行连接。
+硬链接下修改源文件或者连接文件任何一个的时候，其他的文件都会做同步的修改。
+
+
 ### curl
 与服务器交互数据的工具，支持 http,https,ftp,ftps,telnet 等多种协议，常被用来抓取网页和监控Web服务器状态。
 [命令详解](http://aiezu.com/article/linux_curl_command.html)

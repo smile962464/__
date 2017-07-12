@@ -75,6 +75,7 @@ mac 自带的 ftp 功能，对 Android 系统文件是只读的，不能写入�
 警告：如果不按这个方式卸载，Safari 浏览器将打不开任何网页、会弹出报错“此网页出现问题，已重新载入”，同样
 底层使用 Safari 的 App Store 也打开会变成一片空白！
 
+---------
 
 ## 虚拟机
 
@@ -87,28 +88,49 @@ mac 自带的 ftp 功能，对 Android 系统文件是只读的，不能写入�
 虚拟机里查看 ip 地址可以看到，例如 10.0.2.2 可访问 host 主机的 localhost ，
 Genymotion android emulator 相应ip为 10.0.3.2。 
 
+---------
 
-## 软/硬连接
+## vs code
 
-连接有软连接和硬连接(hard link)之分的，软连接(symbolic link)又叫符号连接。
-符号连接相当于Windows下的快捷方式。不可以对文件夹建立硬连接，我们通常用的还是软连接比较多。
-（注意：软连接和mac上的制作替身不同）
-
-```sh
-# 格式
-ln [option] source_file dist_file/dist_dir
-
-#若权限不足加 sudo
-ln -s source_file dist        # 建立软连接
-ln -s ../source/*.bar .        # 建立软连接，在当前目录
-
-ln source_file dist           # 建立硬连接
-rm -rf symbolic_name    # 注意不是rm -rf symbolic_name/
+```js
+// 设置
+{
+  "editor.fontSize": 13,
+  "editor.tabSize": 2,
+  "editor.dragAndDrop": true,
+  "editor.scrollBeyondLastLine": false,
+  "editor.formatOnType": true,
+  "editor.renderIndentGuides": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.tabCompletion": true,
+  "editor.wordWrap": "on",
+  "window.title": "${activeEditorLong}",
+  "files.exclude": {
+    "**/.idea": true
+  },
+  "files.associations": {
+    "*.wxml": "xml",
+    "*.wxss": "css",
+    "*.acss": "css"
+  },
+  "typescript.check.tscVersion": false,
+  "workbench.iconTheme": "vs-seti",
+  "emmet.useNewEmmet": true,
+  "terminal.external.osxExec": "iTerm.app",
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  "terminal.enableAppInsights": false
+}
+// 快捷键
+[
+  { "key": "cmd+d",   "command": "editor.action.copyLinesDownAction" }
+]
+// 扩展
+beautify / Indent 4-to-2 / JSON Tools / Path Intellisense / react-beautify / C/C++
+Terminal / filesize / Open HTML in Default Browser / EditorConfig for Visual Studio Code
+(changeEncode / GBKtoUTF8 / Active File In Status Bar 内置已支持) 
 ```
 
-软连接可以 跨文件系统，硬连接不可以。软连接可以对一个不存在的文件名进行连接。软连接可以对目录进行连接。
-硬链接下修改源文件或者连接文件任何一个的时候，其他的文件都会做同步的修改。
-
+---------
 
 ## iTerm2 / oh-my-zsh
 
@@ -127,6 +149,8 @@ Mac 系统自带了 Zsh，用`zsh --version`命令查看，iTerm2 和系统 term
 
 查看某个命令文件所在的路径：比如`which java`，结果如果是`/usr/bin/..`，说明是软连接、再运行 ls -l `which java` 即可。
 
+
+---------
 
 ## [homebrew](https://brew.sh/) - macOS 不可或缺的套件管理器
 
@@ -166,6 +190,36 @@ Homebrew 安装的是源文件包, 下载源文件、编译、安装，比如安
 homebrew-cask 安装的是二进制软件包, 比如QQ，Chrome，evernote等。
 homebrew-cask 安装软件时自动创建软连接到 Application 目录，这样在 Launchpad 中也能查看到安装的软件，方便启动软件。
 
+---------
+
+`~/.tmux.conf`配置
+
+```sh
+#remap default "prefix" from Ctrl-b to Ctrl-a
+unbind ^b
+set -g prefix C-a
+
+bind r source-file ~/.tmux.conf \; display-message "Config reloaded"
+
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# split window
+bind | split-window -h
+bind - split-window -v
+
+# set shell
+set -g default-shell /bin/zsh
+
+# mouse options for selecting pane
+set -g mode-mouse on
+set -g mouse-select-pane on
+set -g mouse-select-window on
+```
+
+---------
 
 ## vim
 
@@ -221,70 +275,7 @@ ls -- 找出需要的color名字
 然后 in a vi editor session 输入 :colo delek
 ```
 
-
-## shadowsocks
-
-> shadowsocks使用的是sockets5代理，一般情况下只有浏览器支持，电脑上的其他软件很多不支持(可以配合proxifier做支持)。
-
-shadowsocks代理模式分为「自动代理模式(pac模式)」和「全局模式」，
-全局模式「并不是所有的电脑上的app都走代理」而只是所有浏览器访问的网站都走代理(包括国内外所有网站)。
-所以一般都使用PAC模式，并且[配合SwitchyOmega](http://www.jianshu.com/p/a6eecc4f66e6) 方便添加/删除特定网址到 pac 文件中。
-「自动代理模式」和「全局模式」切换时，系统的「偏好设置－网络－高级－代理」里会跟着切换。
-
-让 terminal 走代理（如curl）：使用 proxychains4 (需要 csrutil disable 关闭 sip)。
-在 zshrc 里设置`alias proxy="proxychains4 -q"`，`brew install wget`安装 wget ，
-即可使用如`proxy wget http://xxx.pdf`下载一些被墙的资源
-
-
-## vs code
-
-```js
-// 设置
-{
-  "editor.fontSize": 13,
-  "editor.tabSize": 2,
-  "editor.dragAndDrop": true,
-  "editor.scrollBeyondLastLine": false,
-  "editor.formatOnType": true,
-  "editor.renderIndentGuides": true,
-  "editor.renderWhitespace": "boundary",
-  "editor.tabCompletion": true,
-  "editor.wordWrap": "on",
-  "window.title": "${activeEditorLong}",
-  "files.exclude": {
-    "**/.idea": true
-  },
-  "files.associations": {
-    "*.wxml": "xml",
-    "*.wxss": "css",
-    "*.acss": "css"
-  },
-  "typescript.check.tscVersion": false,
-  "workbench.iconTheme": "vs-seti",
-  "emmet.useNewEmmet": true,
-  "terminal.external.osxExec": "iTerm.app",
-  "terminal.integrated.shell.osx": "/bin/zsh",
-  "terminal.enableAppInsights": false
-}
-// 快捷键
-[
-  { "key": "cmd+d",   "command": "editor.action.copyLinesDownAction" }
-]
-// 扩展
-beautify / Indent 4-to-2 / JSON Tools / Path Intellisense / react-beautify / C/C++
-Terminal / filesize / Open HTML in Default Browser / EditorConfig for Visual Studio Code
-(changeEncode / GBKtoUTF8 / Active File In Status Bar 内置已支持) 
-```
-
-## atom
-
-- 标题栏显示完整路径：安装 [custom-title](https://atom.io/packages/custom-title)，设置 `<%= fileName %><% if (projectPath) { %> - <%= filePath %> <% } %>`
-- [Sublime-Style-Column-Selection](https://atom.io/packages/Sublime-Style-Column-Selection)
-- [atom-beautify](https://atom.io/packages/atom-beautify) / [highlight-selected](https://atom.io/packages/highlight-selected) / [open-in-browser](https://atom.io/packages/open-in-browser)
-- japanese-wrap / line-length-break / indent-guide-improved
-- [插件project-ring](https://github.com/vellerefond/project-ring)：
-`Make The Current Project The Default At StartUp`
-
+---------
 
 ## markdown 语法
 
@@ -315,6 +306,22 @@ Terminal / filesize / Open HTML in Default Browser / EditorConfig for Visual Stu
   Next.js has been powering `https://zeit.co` since its inception.
 </details>
 
+---------
+
+## shadowsocks
+
+> shadowsocks使用的是sockets5代理，一般情况下只有浏览器支持，电脑上的其他软件很多不支持(可以配合proxifier做支持)。
+
+shadowsocks代理模式分为「自动代理模式(pac模式)」和「全局模式」，
+全局模式「并不是所有的电脑上的app都走代理」而只是所有浏览器访问的网站都走代理(包括国内外所有网站)。
+所以一般都使用PAC模式，并且[配合SwitchyOmega](http://www.jianshu.com/p/a6eecc4f66e6) 方便添加/删除特定网址到 pac 文件中。
+「自动代理模式」和「全局模式」切换时，系统的「偏好设置－网络－高级－代理」里会跟着切换。
+
+让 terminal 走代理（如curl）：使用 proxychains4 (需要 csrutil disable 关闭 sip)。
+在 zshrc 里设置`alias proxy="proxychains4 -q"`，`brew install wget`安装 wget ，
+即可使用如`proxy wget http://xxx.pdf`下载一些被墙的资源
+
+---------
 
 ## Apache
 
@@ -365,6 +372,8 @@ http://www.cnblogs.com/y500/p/3596473.html
 本目录`./other/apache`内`__http`为原始文件，`__https`为相应文件的 https 修改，方便直接替换。(ssl 证书另外自行生成)
 ```
 
+---------
+
 ## nginx
 
 ```sh
@@ -387,6 +396,8 @@ location / {
 http://localhost:8080  # 测试
 ```
 
+---------
+
 ## 路由器设置
 
 windows下 ipconfig 查出的 “默认网关” 地址一般就是 “路由器ip” 地址;
@@ -401,3 +412,14 @@ windows下 ipconfig 查出的 “默认网关” 地址一般就是 “路由器
     默认网关：192.168.1.253  (mac上是路由器)
 
 之后可输入 “192.168.1.253”，进入路由器设置界面，先添加“无线密码”，再修改路由器登陆口令，防止别人登陆进去。 
+
+---------
+
+## atom
+
+- 标题栏显示完整路径：安装 [custom-title](https://atom.io/packages/custom-title)，设置 `<%= fileName %><% if (projectPath) { %> - <%= filePath %> <% } %>`
+- [Sublime-Style-Column-Selection](https://atom.io/packages/Sublime-Style-Column-Selection)
+- [atom-beautify](https://atom.io/packages/atom-beautify) / [highlight-selected](https://atom.io/packages/highlight-selected) / [open-in-browser](https://atom.io/packages/open-in-browser)
+- japanese-wrap / line-length-break / indent-guide-improved
+- [插件project-ring](https://github.com/vellerefond/project-ring)：
+`Make The Current Project The Default At StartUp`
