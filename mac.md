@@ -16,6 +16,10 @@
 - XnConvert: 免费任务式图像处理软件，替代 photoshop 简单功能，比 Mac 预览工具更强。
 
 ```sh
+# 在 finder 里
+cmd + shift + .  # 切换显示“隐藏文件”
+cmd + shift +  # G 跳转 F 最近使用的全部文件 D 桌面 H 用户目录
+
 # 系统截图
 command + shift + 3(4)  # 截图保存成文件
 control + command + shift + 3(4)  # 截图只是保存在剪贴板里，不保存文件
@@ -32,7 +36,7 @@ Command + Alt + →/←  # 选择 上/下 一个标签
 ## 各种
 
 ```sh
-拖动 app 到 finder 工具栏方法：拖着 app 到 finder 工具栏时，按下`cmd + alt`
+拖着 app 到 finder 工具栏时，按下`cmd + alt` # 拖动 app 到 finder 工具栏
 
 defaults read com.apple.screencapture  # 查看系统截图设置
 defaults write com.apple.screencapture type jpg  # 将系统截屏后图片保存为 jpg 格式
@@ -192,7 +196,11 @@ homebrew-cask 安装软件时自动创建软连接到 Application 目录，这�
 
 ---------
 
-`~/.tmux.conf`配置
+## tmux
+- `tmux kill-server` 配置更改后、杀掉重启
+- `exit / prefix + x` 关掉 session
+
+`~/.tmux.conf`文件配置:
 
 ```sh
 #remap default "prefix" from Ctrl-b to Ctrl-a
@@ -214,9 +222,7 @@ bind - split-window -v
 set -g default-shell /bin/zsh
 
 # mouse options for selecting pane
-set -g mode-mouse on
-set -g mouse-select-pane on
-set -g mouse-select-window on
+set -g mouse on
 ```
 
 ---------

@@ -35,12 +35,15 @@
     console.log(new Date().toUTCString()); // 标准 ISO 格式，toUTCString()
     console.log(new Date().toISOString()); // 标准 ISO 格式，toISOString()
 
-
     console.log('===========  =============');
 
-    var now = new Date;
+    var now = new Date();
+    var now_utc = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
+    var utc_now = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
+
     var utc_timestamp = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(),
       now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds());
+    console.log("Local & UTC now \n", now, '\n', now_utc, '\n', utc_now)
     console.log("Local timestamp " + now.getTime())
     console.log("UTC timestamp  " + utc_timestamp)
 
@@ -66,6 +69,16 @@
     // }
     console.log('isLeapYear', isLeapYear(1900));
 
+    // format date object  e.g. 2017-01-01
+    function genDateStr(date) {
+      let mday = date.getDate();
+      let month = date.getMonth() + 1;
+      month = month < 10 ? `0${month}` : month;
+      mday = mday < 10 ? `0${mday}` : mday;
+      return `${date.getFullYear()}-${month}-${mday} ${date.getHours()}:${date.getMinutes()}`;
+    }
+    console.log(genDateStr(new Date()));
+
     // 秒数转换为时间形式
     function toHHMMSS(sec_num) {
       var hours   = Math.floor(sec_num / 3600);
@@ -78,16 +91,24 @@
     }
     console.log(toHHMMSS(100));
 
-    // generate current date string  e.g. 20170101
-    function genDateStr() {
-      var date = new Date();
-      var mday = date.getDate();
-      var month = date.getMonth() + 1;
-      month = month < 10 ? '0' + month : month;
-      mday = mday < 10 ? '0' + mday : mday;
-      return '' + date.getFullYear() + month + mday;
+    function firstDayOfMonth(date) {
+      return new Date(date.getFullYear(), date.getMonth(), 1).getDate();
     }
-    console.log(genDateStr());
+    function lastDayOfMonth(date) {
+      return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+    }
+    console.log(lastDayOfMonth(new Date(2016, 1)), firstDayOfMonth(new Date()));
+
+    function cloneDate(date) {
+      return new Date(+date);
+    }
+    var cd = cloneDate(new Date());
+    cd.setFullYear(2016);
+    cd.setMonth(1);
+    cd.setDate(10);
+    cd.setHours(8);
+    cd.setMinutes(40);
+    console.log(cd);
 
     console.log('=========== raw Date end =============');
   </script>
@@ -132,6 +153,13 @@
     console.log(time1.utc().format('MM-DD-YYYY')); //
     console.log(time2.utc().format('MM-DD-YYYY')); //
 
+    var now = moment();
+    console.log(now.year(), now.month(), now.date(), now.hour(), now.minute())
+    console.log(now.clone().endOf('month').date())
+    console.log(now.year(2016), now.month(1), now.date(5))
+    console.log(moment([2000, 1, 1, 0, 0, 0]).toString())
+    console.log(new Date(2000, 1, 1, 0, 0, 0).toString())
+    console.log(moment([2017, 6, 13, 0, 10, 10]).isBefore(moment(), 'day'))
   </script>
 </body>
 </html>
