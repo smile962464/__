@@ -102,7 +102,12 @@ touch事件在手机浏览器中的穿透问题，并不是由冒泡引起的，
 [「像素」「渲染像素」以及「物理像素」](http://www.zhihu.com/question/27261444/answer/35898885)
 [rem 产生的小数像素问题](http://taobaofed.org/blog/2015/11/04/mobile-rem-problem/)
 
-物理像素 / 设备像素 = devicePixelRatio . retina 屏 = 2 (1px = 2 物理像素) 6plus = 3
+> mm(毫米)=?px(像素) : 两者没有转换关系，一个是绝对量，一个是相对量。比如15吋的显示器，你可以设置成 1024*768 像素，也可以设置成 1280*960 像素，可以有很多种。
+> 像素就是CCD/CMOS上光电感应元件的数量，也即把影像放大数倍看到的小方点。作为图像的一种尺寸，只存在于电脑中，如同RGB色彩模式一样只存在于电脑中。
+> 像素是相对于显示器“屏幕分辨率”而言的，譬如，WONDOWS的用户所使用的分辨率一般是96像素/英寸。而MAC的用户所使用的分辨率一般是72像素/英寸。
+> 屏幕分辨率是指屏幕显示的分辨率，显示分辨率就是屏幕上显示的像素个数，分辨率160×128的意思是水平方向含有像素数为160个，垂直方向像素数128个。屏幕尺寸一样的情况下，分辨率越高，显示效果就越精细和细腻。
+> 显示器出厂时一般不标出表征显示器分辨率的 DPI 值，只给出点距，我们根据公式即可算出显示器的分辨率。
+> 影像分辨率单位 PPI(Pixel per Inch)，打印(打印机输出)分辨率单位是 DPI(dot per inch). 人眼能分辨出的最大分辨率是300dpi，超过这个分辨率，人的眼睛是无法看出差别的，也就是说300dpi和600dpi在人眼看来是没有差别的，所以现在的冲印设备最大的设计输出分辨率，就是300dpi。
 
 ```js
 console.log(window.devicePixelRatio) // devicePixelRatio
@@ -110,13 +115,14 @@ console.log(window.innerWidth) // device-width
 console.log(document.documentElement.clientWidth) // viewport width
 console.log(Math.sqrt(Math.pow(640, 2) + Math.pow(960, 2)) / 3.5) // iphone 4 ppi
 ```
+物理像素 / 设备像素 = devicePixelRatio . retina 屏 = 2 (1px = 2 物理像素) 6plus = 3
 
 - iPhone 4/4s : 屏宽320. (物理像素 640 * 960. 2x. 对角线 3.5-inch. PPI 326)
 - iPhone 5/5s/5c : 屏宽320. (物理像素 640 * 1136. 2x. 对角线 4-inch)
-- iPhone 6/6s : 标准模式屏宽375，放大模式屏宽320. (物理像素 750 * 1334. 2x. 对角线 4.7-inch)
-- iPhone6/6s Plus : 标准模式屏宽414，放大模式屏宽375. (物理像素 1080 * 1920. 3x. 对角线 5.5-inch)
+- iPhone 6/6s/7 : 标准模式屏宽375，放大模式屏宽320. (物理像素 750 * 1334. 2x. 对角线 4.7-inch. PPI 326)
+- iPhone 6/6s/7 Plus : 标准模式屏宽414，放大模式屏宽375. (物理像素 1080 * 1920. 3x. 对角线 5.5-inch. PPI 401)
 
-大部分移动设备默认的 viewport 都是980px，多数情况下要大于 device-width , 我们一般都要在移动端重置 viewport，让width=device-width , 这样可以做到按页面宽度100%充满屏幕，水平不出现滚动条.
+大部分移动设备默认的 viewport 都是 980px (layout viewport) 大于可视宽度(visual viewport)，多数情况下要大于 device-width(即ideal viewport width理想宽度) ,我们一般都要在移动端重置 viewport，让`width=device-width`, 使 layout viewport 变成理想宽度，这样可以做到按页面宽度 100% 充满屏幕，水平不出现滚动条.
 
 设计师按宽度750px（iPhone 6）做设计稿. 375pt下的设计效果适配到414pt和320pt偏差不会太大。假设以414pt为基准做出很优雅的设计，到320pt可能元素之间比例就不是那么回事了，比如图片和文字之间视觉比例可能失调。
 

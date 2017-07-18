@@ -199,6 +199,7 @@ homebrew-cask 安装软件时自动创建软连接到 Application 目录，这�
 ## tmux
 - `tmux kill-server` 配置更改后、杀掉重启
 - `exit / prefix + x` 关掉 session
+- `tmux clear` 清除输入历史
 
 `~/.tmux.conf`文件配置:
 
@@ -206,8 +207,6 @@ homebrew-cask 安装软件时自动创建软连接到 Application 目录，这�
 #remap default "prefix" from Ctrl-b to Ctrl-a
 unbind ^b
 set -g prefix C-a
-
-bind r source-file ~/.tmux.conf \; display-message "Config reloaded"
 
 bind h select-pane -L
 bind j select-pane -D
