@@ -40,15 +40,15 @@ Command + Alt + →/←  # 选择 上/下 一个标签
 ```sh
 拖着 app 到 finder 工具栏时，按下`cmd + alt` # 拖动 app 到 finder 工具栏
 
-defaults read com.apple.screencapture  # 查看系统截图设置
-defaults write com.apple.screencapture type jpg  # 将系统截屏后图片保存为 jpg 格式
-defaults write com.apple.screencapture location ~/Downloads/  # 将系统截屏后图片保存为 jpg 格式
-defaults delete com.apple.screencapture name  # 撤销修改截图名
-http://apple.stackexchange.com/questions/102452/can-i-undo-changes-made-via-defaults-write
-
 pmset noidle  # 阻止电脑睡眠。 同时按住 shift、control、电源键，关闭显示器
 Command + h  # 隐藏程序
 单词自动补全：在内置的文本编辑器里，输入几个字母后，点击 Escape 键，OS X 就会提示多个单词。
+
+defaults read com.apple.screencapture  # 查看系统截图设置
+defaults write com.apple.screencapture type jpg  # 将系统截屏后图片保存为 jpg 格式
+defaults write com.apple.screencapture location ~/Downloads/  # 修改截屏图片保存路径
+defaults delete com.apple.screencapture name  # 撤销修改截图名
+http://apple.stackexchange.com/questions/102452/can-i-undo-changes-made-via-defaults-write
 
 # dock 上增加最近打开程序的选项：
 defaults write com.apple.dock persistent-others -array-add '{ "tile-data" = { "list-type" = 1; }; "tile-type" = "recents-tile"; }'
@@ -56,7 +56,7 @@ killall Dock
 
 # 在桌面生成软连接（快捷方式）
 ln -s /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app ~/Desktop
-# 加入到 zsh/bash 中
+# 或者加入到 zsh/bash 中
 alias simulator='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
 ```
 
@@ -83,16 +83,63 @@ mac 自带的 ftp 功能，对 Android 系统文件是只读的，不能写入�
 
 ---------
 
-## 虚拟机
+## shadowsocks
 
-- 用 Virtualbox + win xp（注意：win-XP 要下载[官方正版](http://pcriver.com/operating-systems/windows-xp-professional-iso-download/)、不能是国内处理过的 ghost 版本）
-- [虚拟机里的 win 键盘是用的 ctrl 键](https://forums.virtualbox.org/viewtopic.php?f=8&t=63567&hilit=keyboard)
-- 安装后重启，或点击菜单 Devices -> Insert Guest Additions CD image… 使能访问 host 电脑并自动调整分辨率
-- 设置 Shared Folders 
+[官网](https://portal.shadowsocks.com.hk/) / [mac 客户端](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-%E5%B8%AE%E5%8A%A9)
 
-注意：当 virtualBox 运行时，Android 官方安装的虚拟机、开不起来！  
-虚拟机里查看 ip 地址可以看到，例如 10.0.2.2 可访问 host 主机的 localhost ，
-Genymotion android emulator 相应ip为 10.0.3.2。 
+> shadowsocks使用的是sockets5代理，一般情况下只有浏览器支持，电脑上的其他软件很多不支持(可以配合proxifier做支持)。  
+> shadowsocks代理模式分为「自动代理模式(pac模式)」和「全局模式」，全局模式「并不是电脑上所有的app都走代理」而只是所有浏览器访问的网站都走代理(包括国内外所有网站)。所以一般都使用PAC模式，并且配合 SwitchyOmega 方便添加/删除特定网址到 pac 文件中。「自动代理模式」和「全局模式」切换时，系统的「偏好设置－网络－高级－代理」里会跟着切换。
+
+让 terminal 走代理（如curl）：使用 proxychains-ng (需要 `csrutil disable` 关闭 sip)。
+安装：`brew install proxychains-ng`，再在 .zshrc 文件里设置 `alias proxy="proxychains4 -q"`，
+测试：`brew install wget`安装 wget ，即可使用`proxy wget http://xxx.pdf`下载一些被墙的资源
+
+---------
+
+## iTerm2 / oh-my-zsh
+
+- [cdto - 在 ITerm 里打开当前 Finder 路径](https://github.com/jbtule/cdto)
+- iTerm2 的 Profiles > Keys 里的 ⌥→ / ⌥← Action 设置为 Send Escape sequence ，b / f 
+
+```sh
+zsh --version  # Mac 系统自带了 zsh
+chsh -s /bin/zsh  # 修改 shell 为 zsh ，系统默认使用 /bin/bash 作为 default shell
+# 只在 iTerm2 里修改 shell : `Preferences -> Profiles -> Default -> General -> Command`
+```
+
+安装 [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)，它有众多的 Plugins (e.g. [git Plugin](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git)) 和 Themes.
+
+```sh
+setopt auto_pushd  # 通过 cd 切换目录时，zsh 会自动将前一个目录加到栈里
+brew install autojump  # 安装 autojump, 可以用`j –s`看你的历史路径库。
+```
+
+## [homebrew](https://brew.sh/) - macOS 不可或缺的套件管理器
+
+```sh
+brew help
+brew list / brew info <package name>
+
+# homebrew 国内源
+$ cd /usr/local && git remote set-url origin https://git.coding.net/homebrew/homebrew.git
+$ cd $home && brew update
+
+# homebrew-cask
+# 通常 OS X 下二进制软件是通过 App Store 安装的，homebrew-cask 是一个基于 HomeBrew 的软件安装程序，使用 homebrew-cask 可以在命令行下安装软件包，相对 Mac App Store 安装软件体验一致、简洁、优雅、快速，对常用软件支持更全面。
+
+# homebrew-cask 和 Homebrew 的区别：
+# - Homebrew 安装的是源文件包, 下载源文件、编译、安装，比如安装 wget, gnupg, mutt 等。
+# - homebrew-cask 安装的是二进制软件包, 比如 QQ，Chrome，evernote 等。
+# - homebrew-cask 安装软件时自动创建软连接到 Application 目录，这样在 Launchpad 中也能查看到安装的软件。
+brew install caskroom/cask/brew-cask  # 安装 homebrew-cask
+brew cask search         # 列出所有可以被安装的软件
+brew cask search drop    # 查找所有和drop相关的应用
+brew cask info thunder   # 查看迅雷应用的信息
+brew cask list           # 查看已安装的软件
+brew cask uninstall APP && brew cask install APP  # 软件更新，删除重装
+brew cask install / uninstall qq  # 安装 / 卸载QQ
+brew cask install thunder mou sublime-text google-chrome  # 一键装机
+```
 
 ---------
 
@@ -138,55 +185,6 @@ Terminal / filesize / Open HTML in Default Browser / EditorConfig for Visual Stu
 
 ---------
 
-## iTerm2 / oh-my-zsh
-
-- [cdto - 在 ITerm 里打开当前 Finder 路径](https://github.com/jbtule/cdto)
-- iTerm2 的 Profiles > Keys 里的 ⌥→ / ⌥← Action 设置为 Send Escape sequence ，b / f 
-
-```sh
-zsh --version  # Mac 系统自带了 zsh
-chsh -s /bin/zsh  # 修改 shell 为 zsh ，系统默认使用 /bin/bash 作为 default shell
-# 只在 iTerm2 里修改 shell : `Preferences -> Profiles -> Default -> General -> Command`
-```
-
-安装 [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)，它有众多的 Plugins (e.g. [git Plugin](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git)) 和 Themes.
-
-```sh
-setopt auto_pushd  # 通过 cd 切换目录时，zsh 会自动将前一个目录加到栈里
-brew install autojump  # 安装 autojump, 可以用`j –s`看你的历史路径库。
-```
-
-
-## [homebrew](https://brew.sh/) - macOS 不可或缺的套件管理器
-
-```sh
-brew help
-brew list / brew info <package name>
-
-# homebrew 国内源
-$ cd /usr/local && git remote set-url origin https://git.coding.net/homebrew/homebrew.git
-$ cd $home && brew update
-
-# homebrew-cask
-# 通常 OS X 下二进制软件是通过 App Store 安装的，homebrew-cask 是一个基于 HomeBrew 的软件安装程序，使用 homebrew-cask 可以在命令行下安装软件包，相对 Mac App Store 安装软件体验一致、简洁、优雅、快速，对常用软件支持更全面。
-
-# homebrew-cask 和 Homebrew 的区别：
-# - Homebrew 安装的是源文件包, 下载源文件、编译、安装，比如安装 wget, gnupg, mutt 等。
-# - homebrew-cask 安装的是二进制软件包, 比如 QQ，Chrome，evernote 等。
-# - homebrew-cask 安装软件时自动创建软连接到 Application 目录，这样在 Launchpad 中也能查看到安装的软件。
-brew install caskroom/cask/brew-cask  # 安装 homebrew-cask
-brew cask search         # 列出所有可以被安装的软件
-brew cask search drop    # 查找所有和drop相关的应用
-brew cask info thunder   # 查看迅雷应用的信息
-brew cask list           # 查看已安装的软件
-brew cask uninstall APP && brew cask install APP  # 软件更新，删除重装
-brew cask install / uninstall qq  # 安装 / 卸载QQ
-brew cask install thunder mou sublime-text google-chrome  # 一键装机
-```
-
-
----------
-
 ## tmux
 - `tmux kill-server` 配置更改后、杀掉重启
 - `exit / prefix + x` 关掉 session
@@ -217,17 +215,16 @@ set -g mouse on
 
 ---------
 
-## shadowsocks
+## 虚拟机
 
-[官网](https://portal.shadowsocks.com.hk/) / [mac 客户端](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-%E5%B8%AE%E5%8A%A9)
+- 用 Virtualbox + win xp（注意：win-XP 要下载[官方正版](http://pcriver.com/operating-systems/windows-xp-professional-iso-download/)、不能是国内处理过的 ghost 版本）
+- [虚拟机里的 win 键盘是用的 ctrl 键](https://forums.virtualbox.org/viewtopic.php?f=8&t=63567&hilit=keyboard)
+- 安装后重启，或点击菜单 Devices -> Insert Guest Additions CD image… 使能访问 host 电脑并自动调整分辨率
+- 设置 Shared Folders 
 
-> shadowsocks使用的是sockets5代理，一般情况下只有浏览器支持，电脑上的其他软件很多不支持(可以配合proxifier做支持)。  
-> shadowsocks代理模式分为「自动代理模式(pac模式)」和「全局模式」，全局模式「并不是电脑上所有的app都走代理」而只是所有浏览器访问的网站都走代理(包括国内外所有网站)。所以一般都使用PAC模式，并且配合 SwitchyOmega 方便添加/删除特定网址到 pac 文件中。「自动代理模式」和「全局模式」切换时，系统的「偏好设置－网络－高级－代理」里会跟着切换。
-
-让 terminal 走代理（如curl）：使用 proxychains-ng (需要 `csrutil disable` 关闭 sip)。
-安装：`brew install proxychains-ng`，再在 .zshrc 文件里设置 `alias proxy="proxychains4 -q"`，
-测试：`brew install wget`安装 wget ，即可使用`proxy wget http://xxx.pdf`下载一些被墙的资源
-
+注意：当 virtualBox 运行时，Android 官方安装的虚拟机、开不起来！  
+虚拟机里查看 ip 地址可以看到，例如 10.0.2.2 可访问 host 主机的 localhost ，
+Genymotion android emulator 相应ip为 10.0.3.2。 
 
 ---------
 
