@@ -1,12 +1,16 @@
 # mac (macOS Sierra 10.12)
 
+## 基本设置
+- 点击和手势：“系统偏好设置”，“触控板”，勾选轻点等
+- 三指拖移窗口：“系统偏好设置”，“辅助功能”，“鼠标与触控板”，“触控板选项”下勾选“启用拖移”，选择“三指拖移”
+
 ## 软件
 
 > 「xxx.app已损坏,打不开.你应该将它移到废纸篓」，并非你安装的软件已损坏，而是Mac系统的安全设置问题，
 > 因为这些应用都是破解或者汉化的（例如 Movist 破解版）, 解决方法就是临时改变Mac系统安全设置。
 > macOS 10.12 “安全性与隐私”里去掉了允许安装”任何来源“的软件设置，可以在终端里运行`sudo spctl --master-disable`打开
 
-- HandBrake / Movist / Dash / MacDown / Marp / Color Note / Gas Mask / charles / iStat-Menus / Spectacle / FileZilla / androidfiletransfer / meld / Cakebrew / pyCharm / mindnode lite / Unarchiver / airdroid / Media-Info / Axure / Visual_Paradigm / ParagonNTFS / Readiris-Corporate-ESD (ocr识别) / JD-Gui / Sequel-pro
+- HandBrake / Movist / Dash / MacDown / Marp / Color Note / Gas Mask / charles / iStat-Menus / Spectacle / FileZilla / androidfiletransfer / meld / Cakebrew / pyCharm / mindnode lite / Unarchiver / airdroid / Media-Info / Axure / Visual_Paradigm / ParagonNTFS / Readiris-Corporate-ESD (ocr识别) / JD-Gui / Sequel-pro / ngrok
 
 - 系统: AppCleaner / [OmniDiskSweeper](http://newping.cn/322) / Disk Drill / OnyX
 - 效率: [git-open](https://github.com/paulirish/git-open) 自动打开 git 远程仓库地址
@@ -128,7 +132,7 @@ Genymotion android emulator 相应ip为 10.0.3.2。
 [
   { "key": "cmd+d",   "command": "editor.action.copyLinesDownAction" }
 ]
-// 扩展
+// 扩展，安装目录: ~/.vscode/extensions
 beautify / Indent 4-to-2 / JSON Tools / Path Intellisense / react-beautify / C/C++
 Terminal / filesize / Open HTML in Default Browser / EditorConfig for Visual Studio Code
 (changeEncode / GBKtoUTF8 / Active File In Status Bar 内置已支持) 
@@ -138,23 +142,22 @@ Terminal / filesize / Open HTML in Default Browser / EditorConfig for Visual Stu
 
 ## iTerm2 / oh-my-zsh
 
-Mac 系统自带了 Zsh，用`zsh --version`命令查看，iTerm2 和系统 terminal 使用`/bin/bash`作为default shell,
-可以直接运行`chsh -s /bin/zsh`修改系统默认 shell 为 zsh 。也可以单独修改 iTerm2 在
-`Preferences -> Profiles -> Default -> General -> Command`里修改为`/bin/zsh`。
+- [cdto - 在 ITerm 里打开当前 Finder 路径](https://github.com/jbtule/cdto)
+- iTerm2 的 Profiles > Keys 里的 ⌥→ / ⌥← Action 设置为 Send Escape sequence ，b / f 
 
-之后安装 [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)，它有众多的 Plugins 和 Themes ,
-例如 [git Plugin](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git) 有许多方便操作的 git 命令别名。
+```sh
+zsh --version  # Mac 系统自带了 zsh
+chsh -s /bin/zsh  # 修改 shell 为 zsh ，系统默认使用 /bin/bash 作为 default shell
+# 只在 iTerm2 里修改 shell : `Preferences -> Profiles -> Default -> General -> Command`
+```
 
-运行`setopt auto_pushd`，这样通过 cd 切换目录时，zsh 会自动将前一个目录加到栈里。
+安装 [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)，它有众多的 Plugins (e.g. [git Plugin](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git)) 和 Themes.
 
-再运行`brew install autojump`安装 autojump, 好了可以用`j –s`看你的历史路径库。
+```sh
+setopt auto_pushd  # 通过 cd 切换目录时，zsh 会自动将前一个目录加到栈里
+brew install autojump  # 安装 autojump, 可以用`j –s`看你的历史路径库。
+```
 
-[cdto-在ITerm里打开当前Finder路径](https://github.com/jbtule/cdto)
-
-查看某个命令文件所在的路径：比如`which java`，结果如果是`/usr/bin/..`，说明是软连接、再运行 ls -l `which java` 即可。
-
-
----------
 
 ## [homebrew](https://brew.sh/) - macOS 不可或缺的套件管理器
 
@@ -166,33 +169,23 @@ brew list / brew info <package name>
 $ cd /usr/local && git remote set-url origin https://git.coding.net/homebrew/homebrew.git
 $ cd $home && brew update
 
-```
+# homebrew-cask
+# 通常 OS X 下二进制软件是通过 App Store 安装的，homebrew-cask 是一个基于 HomeBrew 的软件安装程序，使用 homebrew-cask 可以在命令行下安装软件包，相对 Mac App Store 安装软件体验一致、简洁、优雅、快速，对常用软件支持更全面。
 
-### homebrew-cask
-
-```sh
+# homebrew-cask 和 Homebrew 的区别：
+# - Homebrew 安装的是源文件包, 下载源文件、编译、安装，比如安装 wget, gnupg, mutt 等。
+# - homebrew-cask 安装的是二进制软件包, 比如 QQ，Chrome，evernote 等。
+# - homebrew-cask 安装软件时自动创建软连接到 Application 目录，这样在 Launchpad 中也能查看到安装的软件。
 brew install caskroom/cask/brew-cask  # 安装 homebrew-cask
-brew cask search  # 列出所有可以被安装的软件
-brew cask search drop  # 查找所有和drop相关的应用
-brew cask info thunder  # 查看迅雷应用的信息
-brew cask list  # 查看已安装的软件
-brew cask uninstall qq  # 卸载QQ
+brew cask search         # 列出所有可以被安装的软件
+brew cask search drop    # 查找所有和drop相关的应用
+brew cask info thunder   # 查看迅雷应用的信息
+brew cask list           # 查看已安装的软件
 brew cask uninstall APP && brew cask install APP  # 软件更新，删除重装
-
-# 一键装机
-brew cask install alfred
-brew cask install qq
-brew cask install thunder mou sublime-text google-chrome
+brew cask install / uninstall qq  # 安装 / 卸载QQ
+brew cask install thunder mou sublime-text google-chrome  # 一键装机
 ```
 
-通常 OS X 下二进制软件是通过 App Store 安装的，homebrew-cask 是一个基于HomeBrew的软件安装程序，
-使用homebrew-cask 可以在命令行下安装软件包，相对Mac App Store，还有一些优势：
-安装软件体验一致、简洁、优雅、快速；对常用软件支持更全面。
-
-homebrew-cask 和Homebrew 的区别：
-Homebrew 安装的是源文件包, 下载源文件、编译、安装，比如安装wget, gnupg, mutt等。
-homebrew-cask 安装的是二进制软件包, 比如QQ，Chrome，evernote等。
-homebrew-cask 安装软件时自动创建软连接到 Application 目录，这样在 Launchpad 中也能查看到安装的软件，方便启动软件。
 
 ---------
 
@@ -226,105 +219,17 @@ set -g mouse on
 
 ---------
 
-## vim
-
-vim 是 vi 的增强版本。相比vi添加了显示颜色等功能。
-![vim 键盘图](https://zos.alipayobjects.com/rmsportal/MOPJrAnojdFvAToZkESi.gif)
-
-```sh
-# 编辑模式
-输入 i 再输入其他字符。 按 esc 退出，切回命令模式
-
-# 命令模式
-按：h j k space键 导航方向
-ctrl-f  上翻一页
-ctrl-b  下翻一页
-^     跳至行首
-$     跳至行尾
-gg    跳至文件的第一行 
-G     到文件的最后一行
-
-tail -n10 path/filename 查看文件最后10行
-
-:w   保存
-:wq  :x  shift zz 保存修改并退出
-:q!  强制退出，放弃修改
-
-u     撤销  
-ctrl+r   重做（撤销一个撤销）
-.     重复上一个编辑命令
->>     将当前行右移一个单位
-<<     将当前行左移一个单位(一个tab符)
-==     自动缩进当前行
-
-/pattern     向后搜索字符串pattern  n继续搜索下一个  shift+n
-?pattern     向前搜索字符串pattern  #继续搜索上一个
-:s/vivian/sky/ 替换当前行第一个 vivian 为 sky
-:s/vivian/sky/g 替换当前行所有 vivian 为 sky
-:%s/source_pattern/target_pattern/g  全局替换
-
-复制 粘贴（如果粘贴外部内容，在i模式下，直接cmd+v）
-dd 删除光标所在行， dw 删除一个字(word) ，D 删除到行末
-x 删除当前字符，  X 删除前一个字符
-yy 复制一行，此命令前可跟数字，标识复制多行，如6yy，表示从当前行开始复制6行
-yw 复制一个字 ， y$ 复制到行末
-p 粘贴内容到当前行的下面 ，P 粘贴内容到当前行的上面
-
-# visual模式
-
-按 v 进入可视模式；移动光标键选定内容！w选择单词，y复制(或gy)，p粘贴，x删除，d删除后边
-
-[vi编辑器使用color-scheme](http://alvinalexander.com/linux/vi-vim-editor-color-scheme-colorscheme)
-cd /usr/share/vim/vim72/colors
-ls -- 找出需要的color名字
-然后 in a vi editor session 输入 :colo delek
-```
-
----------
-
-## markdown 语法
-
-- 标题 ( h1~h6 ) 格式为使用相应个数的 “#” 作前缀
-- 行末加两个或多个空格才是真正的换行 br 标签。
-- 空一行（两个回车）分段生成 p 标签
-- 引用 ">" 记号直接借鉴邮件标准
-- 使用 “-” “+” “*” 开头、来表示无序列表，使用 数字 + “.” 开头表示有序列表
-- 使用 * 或 _ 包裹文本产生 strong 效果：__strong__ **strong**
-
-- 使用 [test](http://example.net "optional title") 来标记普通链接。
-- 使用 ![img](https://zos.alipayobjects.com/rmsportal/lcLKYXUWPbqkavfJbMGx.png "optional title") 来标记图片。可以使用相对路径。
-
-#### 表格
-| Item      |    Value | Qty  |
-| :-------- | --------:| :--: |
-| Computer  | 1600 USD |  5   |
-| Phone     |   12 USD |  12  |
-
-#### 可折叠内容
-
-<details>
-  <summary>Is this production ready?</summary>
-  Next.js has been powering `https://zeit.co` since its inception.
-</details>
-<details>
-  <summary>Is this production ready?</summary>
-  Next.js has been powering `https://zeit.co` since its inception.
-</details>
-
----------
-
 ## shadowsocks
 
-> shadowsocks使用的是sockets5代理，一般情况下只有浏览器支持，电脑上的其他软件很多不支持(可以配合proxifier做支持)。
+[官网](https://portal.shadowsocks.com.hk/) / [mac 客户端](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-%E5%B8%AE%E5%8A%A9)
 
-shadowsocks代理模式分为「自动代理模式(pac模式)」和「全局模式」，
-全局模式「并不是所有的电脑上的app都走代理」而只是所有浏览器访问的网站都走代理(包括国内外所有网站)。
-所以一般都使用PAC模式，并且[配合SwitchyOmega](http://www.jianshu.com/p/a6eecc4f66e6) 方便添加/删除特定网址到 pac 文件中。
-「自动代理模式」和「全局模式」切换时，系统的「偏好设置－网络－高级－代理」里会跟着切换。
+> shadowsocks使用的是sockets5代理，一般情况下只有浏览器支持，电脑上的其他软件很多不支持(可以配合proxifier做支持)。  
+> shadowsocks代理模式分为「自动代理模式(pac模式)」和「全局模式」，全局模式「并不是电脑上所有的app都走代理」而只是所有浏览器访问的网站都走代理(包括国内外所有网站)。所以一般都使用PAC模式，并且配合 SwitchyOmega 方便添加/删除特定网址到 pac 文件中。「自动代理模式」和「全局模式」切换时，系统的「偏好设置－网络－高级－代理」里会跟着切换。
 
-让 terminal 走代理（如curl）：使用 proxychains4 (需要 csrutil disable 关闭 sip)。
-在 zshrc 里设置`alias proxy="proxychains4 -q"`，`brew install wget`安装 wget ，
-即可使用如`proxy wget http://xxx.pdf`下载一些被墙的资源
+让 terminal 走代理（如curl）：使用 proxychains4 (需要 `csrutil disable` 关闭 sip)。
+在 .zshrc 文件里设置 `alias proxy="proxychains4 -q"`，
+`brew install wget`安装 wget ，即可使用`proxy wget http://xxx.pdf`下载一些被墙的资源
+
 
 ---------
 

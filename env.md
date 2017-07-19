@@ -4,6 +4,7 @@
 
 - 注意：mac不区分文件名的大小写，类名及文件名大小写改变后，不会自动刷新。编译时可能抛出“找不到类”的错误，要重新删除相应文件，再下载下来
 - [macOS Sierra 安装 opencv 最简单方法](http://www.pyimagesearch.com/2016/12/19/install-opencv-3-on-macos-with-homebrew-the-easy-way/) 
+- Docker 镜像加速地址：登录阿里云、找到 Docker Hub 镜像站点，拷贝专属加速器地址。
 
 
 # cpp

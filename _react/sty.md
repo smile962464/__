@@ -17,6 +17,11 @@ The former is Passive programming, while the latter is Reactive programming
 - render 和 reactive 反复迭代即得到一个用户应该看到并可以操作的用户界面。
 
 
+## 服务端渲染
+`ReactDOMServer.renderToString()`执行时间、一般复杂的页面需要 20~50ms。数据如果是全局变量，用户并发访问服务器、就可能拿到了同一份数据，需要通过uuid来做标记，比较麻烦。redux 的 store 是一个通过函数构造的，数据是函数的参数，作为初始化数据，数据不是全局变量，没问题。函数式无副作用、无状态，利于并发。- @翰文
+高并发的应用，不推荐使用 react 服务器渲染，因为性能不算好，会拉低应用的 qps 。
+
+
 ## redux
 - [UI state应该放到哪里？](https://github.com/rackt/redux/issues/595)
 - [解读 redux 的设计思路与用法](http://div.io/topic/1309)
