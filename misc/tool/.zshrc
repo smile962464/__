@@ -1,35 +1,40 @@
-
-# 以下 zshrc 模板去掉了很多没用到的命令和注释
-#
-# 完整模板看这里：https://github.com/robbyrussell/oh-my-zsh/blob/master/templates/zshrc.zsh-template
-#
-
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load. Look in ~/.oh-my-zsh/themes/
-ZSH_THEME="ys"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
-
+# bin 目录加入环境变量
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=/usr/local/git/bin:$PATH
-export NODE_PATH=/usr/local/lib/node_modules
-
+# 使用 vim
 export EDITOR='vim'
 #export PS1="\u \w$"
 
-# 将覆盖掉 oh-my-zsh libs, plugins, and themes 提供的同名别名，运行 alias 查看所有别名
+## homebrew 加速
+export HOMEBREW_BOTTLE_DOMAIN=http://7xkcej.dl1.z0.glb.clouddn.com
+
+# 以下 zshrc 模板去掉了很多没用到的命令和注释
+# 完整模板看这里：https://github.com/robbyrussell/oh-my-zsh/blob/master/templates/zshrc.zsh-template
+#
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+# Set name of the theme to load. Look in ~/.oh-my-zsh/themes/
+ZSH_THEME="ys"
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
+
+# 运行 alias 查看所有别名
 #alias vi="subl"
+alias proxy="proxychains4 -q"  # 翻墙：打开 shadowsocks 翻墙，然后如：proxy npm i xxx
+
 alias sz="subl ~/.zshrc"
 alias se="source ~/.zshrc"
+alias npmr="open `npm root -g`"
 
-## 翻墙：打开shadowsocks翻墙，然后例如：proxy npm i xxx
-alias proxy="proxychains4 -q"
+export NVM_DIR="/Users/hua/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# brew install autojump 后提示需要添加的内容
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+# Python 虚拟环境 Virtualenv/VirtualenvWrapper
+#source /usr/local/bin/virtualenvwrapper.sh
 
 ## java  参考：http://chessman-126-com.iteye.com/blog/2162466
 export JAVA_6_HOME=`/usr/libexec/java_home -v 1.6` # Mac默认 JDK 6（Mac默认自带了一个jdk6版本）
@@ -72,22 +77,3 @@ export PATH="$ANDROID_NDK:$PATH"
 ## sofa-sdk
 #export SOFA_HOME="/Applications/sofa-sdk"
 #export PATH="$SOFA_HOME:$PATH"
-
-## homebrew
-export HOMEBREW_BOTTLE_DOMAIN=http://7xkcej.dl1.z0.glb.clouddn.com
-
-# brew install autojump 后提示需要添加的内容
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-
-# Virtualenv/VirtualenvWrapper
-#source /usr/local/bin/virtualenvwrapper.sh
-
-# added by travis gem
-[ -f /Users/hua/.travis/travis.sh ] && source /Users/hua/.travis/travis.sh
-
-export NVM_DIR="/Users/hua/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

@@ -14,8 +14,6 @@
 
 - 系统: AppCleaner / [OmniDiskSweeper](http://newping.cn/322) / Disk Drill / OnyX
 - 效率: [git-open](https://github.com/paulirish/git-open) 自动打开 git 远程仓库地址
-    - QuickLook-plugin: QLMarkdown.qlgenerator / QLStephen.qlgenerator / QuickLookJSON.qlgenerator
-
 - 截图、gif录屏: lightshot (Apowersoft截屏王 snip jietu(qq) Skitch) / kap (licecap gifify)
 - XnConvert: 免费任务式图像处理软件，替代 photoshop 简单功能，比 Mac 预览工具更强。
 
@@ -226,9 +224,9 @@ set -g mouse on
 > shadowsocks使用的是sockets5代理，一般情况下只有浏览器支持，电脑上的其他软件很多不支持(可以配合proxifier做支持)。  
 > shadowsocks代理模式分为「自动代理模式(pac模式)」和「全局模式」，全局模式「并不是电脑上所有的app都走代理」而只是所有浏览器访问的网站都走代理(包括国内外所有网站)。所以一般都使用PAC模式，并且配合 SwitchyOmega 方便添加/删除特定网址到 pac 文件中。「自动代理模式」和「全局模式」切换时，系统的「偏好设置－网络－高级－代理」里会跟着切换。
 
-让 terminal 走代理（如curl）：使用 proxychains4 (需要 `csrutil disable` 关闭 sip)。
-在 .zshrc 文件里设置 `alias proxy="proxychains4 -q"`，
-`brew install wget`安装 wget ，即可使用`proxy wget http://xxx.pdf`下载一些被墙的资源
+让 terminal 走代理（如curl）：使用 proxychains-ng (需要 `csrutil disable` 关闭 sip)。
+安装：`brew install proxychains-ng`，再在 .zshrc 文件里设置 `alias proxy="proxychains4 -q"`，
+测试：`brew install wget`安装 wget ，即可使用`proxy wget http://xxx.pdf`下载一些被墙的资源
 
 
 ---------
