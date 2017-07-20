@@ -114,7 +114,9 @@ proxy curl https://twitter.com/  # 方便点、在 .zshrc 里设置 `alias proxy
 ## iTerm2 / oh-my-zsh
 
 - [cdto - 在 ITerm 里打开当前 Finder 路径](https://github.com/jbtule/cdto)
-- iTerm2 的 Profiles > Keys 里的 ⌥→ / ⌥← Action 设置为 Send Escape sequence ，b / f 
+- iTerm2 的 Preferences > Keys 里 HotKey 设置为 Command + `
+- iTerm2 的 Profiles > Keys 里的 ⌥→ / ⌥← Action 设置为 Send Escape sequence , f / b
+- iTerm2 的 Profiles > Window > Style 设置为 Full-Width Top of Screen 使其显示在最顶部
 
 ```sh
 zsh --version  # Mac 系统自带了 zsh
@@ -201,11 +203,16 @@ Terminal / filesize / Open HTML in Default Browser / EditorConfig for Visual Stu
 ---------
 
 ## tmux
-- `tmux kill-server` 配置更改后、杀掉重启
-- `exit / prefix + x` 关掉 session
-- `tmux clear` 清除输入历史
 
-`~/.tmux.conf`文件配置:
+```sh
+brew install tmux  # 安装
+
+tmux kill-server  # 配置文件更改后、杀掉重启
+tmux clear  # 清除输入历史
+exit / prefix + x  # 关掉 session
+```
+
+`~/.tmux.conf`配置文件内容:
 
 ```sh
 #remap default "prefix" from Ctrl-b to Ctrl-a
