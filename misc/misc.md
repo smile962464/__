@@ -1,7 +1,7 @@
 
 # 各种
 
-you can't bind to ports <1024 if you are not root. 想要起 http://localhost 这样的默认 80 端口服务器，就需要系统自带的 Apache 设置，其他 
+you can't bind to ports <1024 if you are not root. 想要起 http://localhost 这样的默认 80 端口服务器，就需要系统自带的 Apache 设置，其他 server 需要有 sudo 权限和关联系统启动项、不方便。
 
 [正向代理与反向代理有什么区别](http://mp.weixin.qq.com/s/ikrI3rmSYs83wdSWqq2QIg)
 

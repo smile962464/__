@@ -248,7 +248,7 @@ Genymotion android emulator 相应ip为 10.0.3.2。
 ```sh
 httpd -v  # find the Apache version
 sudo apachectl start / stop / restart  # 开关重启
-sudo vi /etc/apache2/httpd.conf  # 编辑 Apche 的配置文件
+open /etc/apache2/httpd.conf  # 编辑 Apche 的配置文件
 
 找到 "#LoadModule php5_module libexec/apache2/libphp5.so"  去掉前边的`#`号，打开php
 
