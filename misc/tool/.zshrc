@@ -27,7 +27,7 @@ alias sz="subl ~/.zshrc"
 alias se="source ~/.zshrc"
 alias npmr="open `npm root -g`"
 
-export NVM_DIR="/Users/hua/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # brew install autojump 后提示需要添加的内容
@@ -48,15 +48,15 @@ export CLASSPATH=.:$JAVA_HOME/lib:
 export PATH=$PATH:$JAVA_HOME/bin
 
 ## android sdk
-export ANDROID_HOME=/Users/hua/Library/Android/sdk
-export ANDROID_SKD=/Users/hua/Library/Android/sdk
-export ANDROID_SKD_HOME=/Users/hua/Library/Android/sdk
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export ANDROID_SKD=$HOME/Library/Android/sdk
+export ANDROID_SKD_HOME=$HOME/Library/Android/sdk
 export PATH=${PATH}:$ANDROID_SKD_HOME/tools
 export PATH=${PATH}:$ANDROID_SKD_HOME/platform-tools
 
 ## android ndk
-export ANDROID_NDK=/Users/hua/Library/Android/android-ndk-r13b
-export ANDROID_NDK_HOME=/Users/hua/Library/Android/android-ndk-r13b
+export ANDROID_NDK=$HOME/Library/Android/android-ndk-r14b
+export ANDROID_NDK_HOME=$HOME/Library/Android/android-ndk-r14b
 export PATH="$ANDROID_NDK:$PATH"
 
 ## tomcat
