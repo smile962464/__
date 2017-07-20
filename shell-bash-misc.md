@@ -35,6 +35,9 @@ mtr # 诊断路由节点问题，如丢包、网站访问慢、结合了"tracero
 mtr -r [IP地址/域名]  # 以报告模式显示：从我的主机到目标主机经过的路由节点以及到各节点数据包的丢包率和ping命令的最短/最长时间和标准偏差。 
 # mtr 详细：https://meiriyitie.com/2015/05/26/diagnosing-network-issues-with-mtr/
 
+top  # 统计进程状态，和 Mac 的 活动监视器 功能类似
+brew install htop  # top 高级版，支持鼠标点击、方向键切换
+
 alias # 查看系统里别名
 w / who # 列出当前登录的所有用户
 whoami # 显示当前正进行操作的用户名
@@ -130,13 +133,6 @@ find / -size -1000k 　　#查找出小于1000KB的文件
 find . -name '*.DS_Store' -type f -delete   # 删除某目录及子目录下的 .DS_Store 文件
 ```
 
-### 其他常用命令
-
-```sh
-top  # 统计进程状态，和 Mac 的 活动监视器 功能类似
-brew install htop  # top 高级版，支持鼠标点击、方向键切换
-```
-
 ---------
 
 # linux 学习
@@ -158,6 +154,9 @@ linux下有些命令是shell自带的，有些命令是别人写好装进来的(
 
 bash 是目前大多数 Linux 发行版和苹果的 Mac OS X 操作系统的默认 Shell。需要重点学习！
 [bash-guide](https://github.com/Idnan/bash-guide)
+[mac-shell 介绍](http://ntop001.github.io/2015/06/06/mac-shell/)、
+[Zsh 和 Bash 的不同](https://xshell.net/shell/bash_zsh.html)，在 zsh 的 terminal 里运行 bash 脚本，可能有兼容问题，需要用 `emulate bash/sh` 切换为仿真模式。
+
 
 ```sh
 echo $PATH  # 查看PATH环境变量
@@ -198,27 +197,12 @@ $? $$ $!   # 预定义变量
 
 ```
 
-如果文件开头的 shebang 为 `#!/bin/bash` 会使用 bash 执行命令，而不管系统默认的 shell 是否为 bash。
-如果你没有写 shebang，那么此脚本文件会被用户当前的 Shell 所执行。
-在 zsh 的 terminal 里运行 bash 脚本，可能有兼容问题，需要用 `emulate bash/sh` 切换为仿真模式。
-
-[mac-shell 介绍](http://ntop001.github.io/2015/06/06/mac-shell/)、
-[Zsh 和 Bash 的不同](https://xshell.net/shell/bash_zsh.html)
-
-[Execute combine multiple linux commands in one line](http://stackoverflow.com/questions/13077241/execute-combine-multiple-linux-commands-in-one-line)
-
-[SSH原理与运用](http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html)、  
-[ssh密码登陆](http://superuser.com/questions/655582/how-to-ssh-with-username-and-password-linux)、
-[ssh密码登陆1](http://stackoverflow.com/questions/4780893/use-expect-in-bash-script-to-provide-password-to-ssh-command)、  
-[expect-inside-a-bash-script](http://stackoverflow.com/questions/15133474/how-to-use-expect-inside-a-bash-script)
-
-挂载就是把目录和盘符连接在一起的过程。挂载命令：mount 。
-.tar.gz格式是先打包为.tar格式，再压缩为.gz格式。
-
 ### 应用示例
 
 ```sh
-#! /bin/sh
+#!/bin/sh
+## 如果文件开头的 shebang 为 `#!/bin/bash` 会使用 bash 执行命令，而不管系统默认的 shell 是否为 bash。
+## 如果你没有写 shebang，那么此脚本文件会被用户当前的 Shell 所执行。
 
 node -v
 npm -v

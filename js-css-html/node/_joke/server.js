@@ -15,8 +15,8 @@ var port = 9998;
 var jsonContentType = 'application/json; charset=utf-8';
 
 var enumExts = ['jpg', 'jpeg', 'gif', 'png'];
-var local1 = '/Users/hua/Downloads/_/iCloud/2008-now.txt';
-var local2 = '/Users/hua/Downloads/_/iCloud/图片收集';
+var local1 = '/Users/hua/Library/Mobile\ Documents/com~apple~CloudDocs/2008-now.txt';
+var local2 = '/Users/hua/Library/Mobile\ Documents/com~apple~CloudDocs/图片收集';
 
 function handleJoke1(res) {
   var content = fs.readFileSync(local1).toString().split('\n\n');
@@ -28,7 +28,6 @@ function handleJoke2(res) {
   var dirName;
   // fs.walk(local2).pipe(excludeDirFilter).on('data', function (item) {
   fs.walk(local2).on('data', function (item) {
-    // console.log(item.stats.isDirectory(), item.path)
     // 过滤掉 子目录 内容
     if (item.stats.isDirectory() && item.path !== local2) {
       dirName = item.path;
@@ -68,6 +67,7 @@ http.createServer(function (request, response) {
   }
 }).listen(port);
 
+// Server Specific picture, e.g. http://localhost:9997/_bizhi5.jpg
 var file = new static.Server(local2, { cache: 72, headers: {'X-Hello':'World!'} });
 http.createServer(function (request, response) {
   request.addListener('end', function () {

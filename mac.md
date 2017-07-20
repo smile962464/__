@@ -1,23 +1,10 @@
 # mac (macOS Sierra 10.12)
 
-## 基本设置
-- 点击和手势：“系统偏好设置”，“触控板”，勾选轻点等
-- 三指拖移窗口：“系统偏好设置”，“辅助功能”，“鼠标与触控板”，“触控板选项”下勾选“启用拖移”，选择“三指拖移”
-
-## 软件
-
-> 「xxx.app已损坏,打不开.你应该将它移到废纸篓」，并非你安装的软件已损坏，而是Mac系统的安全设置问题，
-> 因为这些应用都是破解或者汉化的（例如 Movist 破解版）, 解决方法就是临时改变Mac系统安全设置。
-> macOS 10.12 “安全性与隐私”里去掉了允许安装”任何来源“的软件设置，可以在终端里运行`sudo spctl --master-disable`打开
-
-- HandBrake / Movist / Dash / MacDown / Marp / Color Note / Gas Mask / charles / iStat-Menus / Spectacle / FileZilla / androidfiletransfer / meld / Cakebrew / pyCharm / mindnode lite / Unarchiver / airdroid / Media-Info / Axure / Visual_Paradigm / ParagonNTFS / Readiris-Corporate-ESD (ocr识别) / JD-Gui / Sequel-pro / ngrok
-
-- 系统: AppCleaner / [OmniDiskSweeper](http://newping.cn/322) / Disk Drill / OnyX
-- 效率: [git-open](https://github.com/paulirish/git-open) 自动打开 git 远程仓库地址
-- 截图、gif录屏: lightshot (Apowersoft截屏王 snip jietu(qq) Skitch) / kap (licecap gifify)
-- XnConvert: 免费任务式图像处理软件，替代 photoshop 简单功能，比 Mac 预览工具更强。
-
 ```sh
+pmset noidle  # 阻止电脑睡眠。 同时按住 shift、control、电源键，关闭显示器
+Command + h  # 隐藏程序
+单词自动补全：在内置的文本编辑器里，输入几个字母后，点击 Escape 键，OS X 就会提示多个单词。
+
 # 在 finder 里
 cmd + shift + .  # 切换显示“隐藏文件”
 cmd + shift +  # G 跳转 F 最近使用的全部文件 D 桌面 H 用户目录
@@ -35,20 +22,29 @@ Command + 1/2/3  # 跳到相应标签
 Command + Alt + →/←  # 选择 上/下 一个标签
 ```
 
-## 各种
+## 系统设置
+
+- 点击和手势：“系统偏好设置”，“触控板”，勾选轻点等
+- 三指拖移窗口：“系统偏好设置”，“辅助功能”，“鼠标与触控板”，“触控板选项”下勾选“启用拖移”，选择“三指拖移”
+
+- 重启，开机按住`Command + R`，以 Recovery 分区启动，命令行输入`csrutil enable --without debug`关闭调试模式，或者`csrutil disable`关闭 Enforce System Integrity Protection. 输入`csrutil status`查看状态。
+
+- 在启动系统登录后、添加自动打开的程序：System Preferences(系统偏好设置) > Users & Groups(用户与群组) > Login items(登录项) 点击"+"、找到自己写的可执行 bash 文件，加入即可。
+
+- iCloud 目录多出了“Keynote / Pages ...“等空目录，是为了引导你安装相应软件，安装完之后、可以在
+”系统偏好设置 -> iCloud -> iCloud Drive -> 选项“里去掉勾选相应项目，文件夹里的空目录自动会消失。
+
+- mac 自带的 ftp 功能，对 Android 系统文件是只读的，不能写入，使用 第三方 ftp 客户端可以写入。
+
 
 ```sh
 拖着 app 到 finder 工具栏时，按下`cmd + alt` # 拖动 app 到 finder 工具栏
 
-pmset noidle  # 阻止电脑睡眠。 同时按住 shift、control、电源键，关闭显示器
-Command + h  # 隐藏程序
-单词自动补全：在内置的文本编辑器里，输入几个字母后，点击 Escape 键，OS X 就会提示多个单词。
-
+# http://apple.stackexchange.com/questions/102452/can-i-undo-changes-made-via-defaults-write
 defaults read com.apple.screencapture  # 查看系统截图设置
 defaults write com.apple.screencapture type jpg  # 将系统截屏后图片保存为 jpg 格式
 defaults write com.apple.screencapture location ~/Downloads/  # 修改截屏图片保存路径
 defaults delete com.apple.screencapture name  # 撤销修改截图名
-http://apple.stackexchange.com/questions/102452/can-i-undo-changes-made-via-defaults-write
 
 # dock 上增加最近打开程序的选项：
 defaults write com.apple.dock persistent-others -array-add '{ "tile-data" = { "list-type" = 1; }; "tile-type" = "recents-tile"; }'
@@ -60,26 +56,20 @@ ln -s /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app ~/De
 alias simulator='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
 ```
 
-iCloud 目录多出了“Keynote / Pages ...“等空目录，是为了引导你安装相应软件，安装完之后、可以在
-”系统偏好设置 -> iCloud -> iCloud Drive -> 选项“里去掉勾选相应项目，文件夹里的空目录自动会消失。
+## 软件
 
-在启动系统登录后、添加自动打开的程序：System Preferences > Users & Groups > Login items
-点击"+"、找到自己写的可执行 bash 文件，加入即可。
+> macOS 10.12 “安全性与隐私”里去掉了允许安装”任何来源“的软件设置，可以在终端里运行`sudo spctl --master-disable`打开
+> 「xxx.app已损坏,打不开.你应该将它移到废纸篓」，并非你安装的软件已损坏，而是 Mac 系统的安全设置问题，因为这些应用都是破解或者汉化的, 解决方法是改变 Mac 系统安全设置
 
-重启，开机按住`Command + R`，以 Recovery 分区启动，命令行输入
-`csrutil enable --without debug`关闭调试模式，`csrutil disable`关闭 Enforce System Integrity Protection. [Mac sip安全机制介绍](https://support.apple.com/en-us/HT204899) / [csrutil status](https://developer.apple.com/library/content/documentation/Security/Conceptual/System_Integrity_Protection_Guide/ConfiguringSystemIntegrityProtection/ConfiguringSystemIntegrityProtection.html#//apple_ref/doc/uid/TP40016462-CH5-SW1)
+- HandBrake / Movist / Dash / MacDown / Marp / Color Note / Gas Mask / charles / iStat-Menus / Spectacle / FileZilla / androidfiletransfer / meld / Cakebrew / pyCharm / mindnode lite / Unarchiver / airdroid / Media-Info / Axure / Visual_Paradigm / ParagonNTFS / Readiris-Corporate-ESD (ocr识别) / JD-Gui / Sequel-pro / ngrok
 
-mac 磁盘空间变得越来越少，有些软件有内存泄露问题：查看`/private/var/vm`下 swapfile 文件多少（不能删除）, 关闭重启电脑
+- 系统: AppCleaner / [OmniDiskSweeper](http://newping.cn/322) / Disk Drill / OnyX
+- 效率: [git-open](https://github.com/paulirish/git-open) 自动打开 git 远程仓库地址
+- 截图、gif录屏: lightshot (Apowersoft截屏王 snip jietu(qq) Skitch) / kap (licecap gifify)
+- XnConvert: 免费任务式图像处理软件，替代 photoshop 简单功能，比 Mac 预览工具更强。
+- [Enounce MySpeed](http://www.enounce.com/myspeed-mac-download-trial) 加减速网页中 flash 播放速度，
+    - 注意其【卸载方式】比较麻烦，[需要下载专门的 RemoveMySpeed 卸载工具](http://www.enounce.com/faqs-myspeed#uninstall)，警告：如果不这样卸载，Safari 浏览器将打不开任何网页、会弹出报错“此网页出现问题，已重新载入”，同样底层使用 Safari 的 App Store 也打开会变成一片空白！
 
-微信客户端收藏的图片位置：`~/Library/Containers/com.tencent.xinWeChat/Data/Library/Application\ Support/`
-
-mac 自带的 ftp 功能，对 Android 系统文件是只读的，不能写入，使用 第三方 ftp 客户端可以写入。
-
-[Enounce MySpeed](http://www.enounce.com/myspeed-mac-download-trial): 
-是一个能很方便地【加减速网页中 flash 播放速度】的工具(也包括加速html5视频)，但注意其【卸载方式】比较麻烦，
-[需要下载专门的 RemoveMySpeed 卸载工具](http://www.enounce.com/faqs-myspeed#uninstall)，
-警告：如果不按这个方式卸载，Safari 浏览器将打不开任何网页、会弹出报错“此网页出现问题，已重新载入”，同样
-底层使用 Safari 的 App Store 也打开会变成一片空白！
 
 ---------
 

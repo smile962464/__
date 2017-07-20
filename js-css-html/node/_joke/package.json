@@ -1,13 +1,9 @@
 {
   "name": "_joke",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./server.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "fs-extra": "^0.30.0",
     "node-static": "~0.7.9",
