@@ -11,17 +11,25 @@
 > git-tips: https://github.com/git-tips/tips
 
 ```sh
+# diff & log
+git diff [version1] [version2]   # 查看版本差异
+git log -p -2   # 显示最近的两次更新
+git log --stat  # 显示文件更改的统计结果
+
+# pull
 git pull                # 同 git fetch + git merge
 git pull --rebase       # 同 git fetch + git rebase
 git pull -p # remove all your local branches which are remotely deleted.
 
+# fetch merge remote
 git fetch   # 同步远程repos, 更新本地仓库的所有 origin/* 分支信息
 git diff master origin/master   # 比较本地的 master 和远程的 master 分支差异
 git merge origin/master  # 合并远程的 repos 到本地的 master 分支上
 
-git diff [version1] [version2]   # 查看版本差异
-git log -p -2   # 显示最近的两次更新
-git log --stat  # 显示文件更改的统计结果
+# merge local
+git checkout master
+git merge --squash dev  # 类似 git rebase -i 能合并要 dev 的所有提交历史到一个
+git commit -m "Add new feature."
 
 # 使用 rebase 代替 merge 避免生成类似 merge branch “branch_name” 历史记录
 git pull --rebase origin master  # 在开发分支上 rebase 主分支.
@@ -30,6 +38,10 @@ git rebase --abort
 git rebase -i  # 重写历史，可以再用 git reflog 撤销到指定 commit
 
 git rebase -i [commit_id 16f8929]  # 修改 16f8929 之后的提交历史
+
+# merge 和 rebase 的问题：
+#- 如果用 rebase ，需要经常 reapply 其他提交的改动， commit 的时间顺序也会乱掉。
+#- 如果用最直接的 merge ，会产生重复无用的比如 Merge pull request pull_id from xx_branch 或者 Merge branch “branch_name” 信息，不利于 review 提交记录。
 
 # cherry-pick
 git checkout develop   # 切换到 dev 分支，也可以新建个 feature 分支
