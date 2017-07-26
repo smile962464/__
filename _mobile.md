@@ -64,14 +64,6 @@ weinre --boundHost IP  # 执行后、打开地址 IP:8080
 此问题出现在包括 iOS 10 在内的大多数手机系统里；另外部分手机会出现点击选中延迟感严重的问题
 ```
 
-### scroll 事件问题
-- ios上scroll事件，只在scroll结束时触发（ios < 8），安卓会一直触发。
-- iOS < 8 pauses painting during scrolling.
-- 滚动过程中要「fixed标题栏」，在惯性滚动过程中不会触发scroll事件。
-- [iOS 与 惯性滚动](https://fe.ele.me/momentum-scrolling-on-ios/)
-
-iScroll：并没有监听`onscroll`事件。
-
 ### Touch事件穿透问题 (Ghost Clicks)
 click事件在手机浏览器中的触发顺序：touchstart -> touchmove -> touchend -> click
 
@@ -143,6 +135,11 @@ Android 上小于 1px 的边线会被显示为 0px ，iOS8 之后支持 0.5px �
 ## 其他
 
 页面横向能拖动问题：注意哪里设置了 width 之和为 100% ，但没设置`box-sizing: border-box;`
+
+使用 https://github.com/kisenka/svg-sprite-loader 做 svg icon 图片部分 svg 渲染不出来：
+
+- https://github.com/kisenka/svg-sprite-loader/issues/53 去掉 svg file 里的 mask
+- 或者 改变默认样式设置 https://github.com/kisenka/svg-sprite-loader/issues/59 `visibility:hidden`改为`display:none`
 
 ```css
 /* transform闪动问题：*/
