@@ -3,12 +3,19 @@ const scroller = document.querySelector('.scroller');
 
 const arr = len => Array.from(new Array(len), (x, i) => i);
 const html = (c, ci) => `<div style="border:1px dotted rgb(${Math.round(Math.random() * ci)},10,20)">${c}</div>`;
-document.querySelector('#main').innerHTML = arr(20).
+document.querySelector('#main').innerHTML = arr(10).
   reduce((previousValue, currentValue, index) => `${html(
     arr(20).reduce((pv, cv, ii) => html(`${index}-${ii} ${pv}`, 50), ''),
     255
   )}${previousValue}`, '');
+const logEle = document.querySelector('#log');
+function log(c) {
+  logEle.innerHTML = c;
+}
 
+/**
+ *  SimulatedScroller start
+ */
 const rException = /^(INPUT|TEXTAREA|BUTTON|SELECT)$/;
 const rAF = window.requestAnimationFrame ||
     window.webkitRequestAnimationFrame ||
@@ -48,11 +55,15 @@ function momentum(current, start, time, deceleration) {
   let _endTime;
   let _isAnimating;
 
+  let reachTop = false;
+  let reachBottom = false;
+
   function start(e) {
     const target = e.target;
     if (rException.test(target.tagName)) {
       return;
     }
+    log('touch start');
     // console.log(e, _event(e));
     const _e = _event(e);
     _lastEl = _e.target;
@@ -80,9 +91,14 @@ function momentum(current, start, time, deceleration) {
     _distY += _diff;
     _lastY += _diff;
     _pageY = _e.pageY;
+    // log(`${_e.pageY} ${_pageY} ${_lastY} ${_diff}`);
     _translate(_lastY);
-
-    e.preventDefault();
+    
+    // 滚动到 顶部/底部 后再继续滚动，不应该再 preventDefault
+    if (!(reachTop && _diff > 0 || reachBottom && _diff < 0)) {
+      console.log('not reach top/bottom');
+      e.preventDefault();
+    }
   }
 
   function end(e) {
@@ -115,18 +131,31 @@ function momentum(current, start, time, deceleration) {
     }
     return e;
   }
+
   function _translate(y) {
     let _y = y;
+
     const MAX_HEIGHT = scroller.offsetHeight - container.offsetHeight;
     if (_y < -MAX_HEIGHT) {
+      log('scroll to bottom');
       _y = -MAX_HEIGHT;
+      reachBottom = true;
+    } else {
+      reachBottom = false;
     }
+    
     if (_y > 0) {
+      log('scroll to top');
       _y = 0;
+      reachTop = true;
+    } else {
+      reachTop = false;
     }
-    _distY = Math.round(_y);
+    
+    _lastY = Math.round(_y);
     scroller.style.transform = `translate3d(0, ${Math.round(_y)}px, 0) scale(1)`;
   }
+
   function _animate(destY, startY, duration) {
     const startTime = Date.now();
     const destTime = startTime + duration;
@@ -138,6 +167,8 @@ function momentum(current, start, time, deceleration) {
 
       if (now >= destTime) {
         _translate(destY);
+        console.log('scroll complete');
+        log('scroll complete');
         return;
       }
 
