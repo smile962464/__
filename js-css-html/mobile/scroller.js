@@ -26,6 +26,16 @@ const rAF = window.requestAnimationFrame ||
       window.setTimeout(callback, 1000 / 60);
     };
 
+function _event(e) {
+  if (e.touches && e.touches.length) {
+    return e.touches[0];
+  }
+  if (e.changedTouches && e.changedTouches.length) {
+    return e.changedTouches[0];
+  }
+  return e;
+}
+
 function momentum(current, start, time, deceleration) {
   const distance = current - start;
   const speed = Math.abs(distance) / time;
@@ -65,12 +75,12 @@ function momentum(current, start, time, deceleration) {
     }
     log('touch start');
     // console.log(e, _event(e));
+    _startTime = Date.now();
     const _e = _event(e);
     _lastEl = _e.target;
-    _startTime = Date.now();
+    _pageY = _e.pageY;
     _startY = _lastY;
     _distY = 0;
-    _pageY = _e.pageY;
 
     if (_isAnimating) {
       _isAnimating = false;
@@ -88,9 +98,10 @@ function momentum(current, start, time, deceleration) {
     const _e = _event(e);
     const _diff = Math.round(_e.pageY - _pageY);
 
+    _pageY = _e.pageY;
     _distY += _diff;
     _lastY += _diff;
-    _pageY = _e.pageY;
+    
     // log(`${_e.pageY} ${_pageY} ${_lastY} ${_diff}`);
     _translate(_lastY);
     
@@ -106,6 +117,7 @@ function momentum(current, start, time, deceleration) {
       return;
     }
     _lastEl = null;
+    // Maybe for normal click offset of the content
     if (Math.abs(_distY) < 10) {
       return;
     }
@@ -120,16 +132,6 @@ function momentum(current, start, time, deceleration) {
         _animate(_lastY, _startY, _duration);
       }
     }
-  }
-  
-  function _event(e) {
-    if (e.touches && e.touches.length) {
-      return e.touches[0];
-    }
-    if (e.changedTouches && e.changedTouches.length) {
-      return e.changedTouches[0];
-    }
-    return e;
   }
 
   function _translate(y) {
@@ -153,7 +155,7 @@ function momentum(current, start, time, deceleration) {
     }
     
     _lastY = Math.round(_y);
-    scroller.style.transform = `translate3d(0, ${Math.round(_y)}px, 0) scale(1)`;
+    scroller.style.transform = `translate3d(0, ${_lastY}px, 0) scale(1)`;
   }
 
   function _animate(destY, startY, duration) {

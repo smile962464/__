@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title></title>
+</head>
+<body>
+
+<div id="animate" style="position: relative; width:30px; height: 50px; background-color: #ccc;"></div>
+
+<script src="./tween.js"></script>
+<script>
+  var element = document.getElementById("animate");
+  var dest = 200;
+  animate({
+    easingMethod: window.EasingFunctions.easeInQuad,
+    duration: 1000,
+    stepCallback: (value, now) => {
+      console.log(dest * value, now)
+      element.style.left = dest * value + "px";
+    },
+    completedCallback: () => console.log('completedCallback')
+  });
+
+  function animate({
+    stepCallback = () => {}, 
+    completedCallback = () => {}, 
+    duration = 2000,
+    easingMethod
+  }) {
+    var start = +new Date();
+    var lastFrame = start;
+    var percent = 0;
+
+    function step() {
+      var now = +new Date();
+
+      if (duration) {
+        percent = (now - start) / duration;
+        if (percent > 1) {
+          percent = 1;
+        }
+      }
+
+      var value = easingMethod ? easingMethod(percent) : percent;
+
+      if (stepCallback(value, now) === false || percent === 1) {
+        completedCallback();
+      } else {
+        lastFrame = now;
+        requestAnimationFrame(step);
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+</script>
+</body>
+</html>
