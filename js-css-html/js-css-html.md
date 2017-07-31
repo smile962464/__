@@ -1,6 +1,7 @@
 
 # misc
 
+- [image-compressor](https://github.com/xkeshi/image-compressor)
 - [pwabuilder](http://www.pwabuilder.com/)
 
 - [高性能无尽列表（元素可回收）](https://github.com/bvaughn/react-virtualized)

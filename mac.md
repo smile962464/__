@@ -183,6 +183,8 @@ brew cask install thunder mou sublime-text google-chrome  # 一键装机
 // 快捷键
 [
   { "key": "cmd+d",   "command": "editor.action.copyLinesDownAction" }
+  // { "key": "ctrl+alt+o",            "command": "terminal.open" }, // 安装 Terminal 扩展后
+  { "key": "alt+`",                "command": "terminal.open" }
 ]
 // 扩展，安装目录: ~/.vscode/extensions
 beautify / Indent 4-to-2 / JSON Tools / Path Intellisense / react-beautify / C/C++
@@ -195,7 +197,8 @@ Terminal / filesize / Open HTML in Default Browser / EditorConfig for Visual Stu
 ## tmux
 
 ```sh
-brew install tmux  # 安装
+brew install tmux  # 安装 （目前最新版 tmux v2.5 鼠标滚动有问题，建议本地编译安装 v2.3 版本）
+# 配合 v2.3 版本 的插件 make mouse scroll smoothly https://github.com/NHDaly/tmux-better-mouse-mode
 
 tmux kill-server  # 配置文件更改后、杀掉重启
 tmux clear  # 清除输入历史
