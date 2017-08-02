@@ -15,6 +15,7 @@ npm uninstall / rm <pkg> [-g | -S|--save| -D|--save-dev ]
 npm view <pkg> version(s)  # 查看模块的版本
 npm info <pkg>  # 查看模块的详细信息
 npm ls [-g]  # 查看当前安装模块的版本
+npm ls -g --depth=0 
 
 npm repo / bugs / docs [<pkgname>]  # 浏览器自动打开提交 repo / bug / docs 的地址
 npm bin [-g]  # 可执行文件位置
