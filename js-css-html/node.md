@@ -5,8 +5,14 @@ node module version example:
 
 ```sh
 npm help install  # 地址：https://docs.npmjs.com/cli/install
+npm i -g npm@latest  # 升级 npm 到最新
 
+# 使用 nvm 同时安装多个 node 版本
+nvm ls
+
+# 使用 tnpm 加速
 npm install tnpm -g --registry="http://registry.npm.alibaba-inc.com"
+sudo tnpm uninstall tnpm -g  # 如果把 tnpm 安装在 nvm 里的某个 node 版本的 node_modules 目录里
 
 npm init [-f]  # 用 -f 不弹出选项框、直接生成默认文件
 npm install / i <pkg> [-g | -S|--save| -D|--save-dev ]
@@ -52,9 +58,6 @@ node -e "$(curl -fsSL https://a.alipayobjects.com/u/localhost/js/201406/2u6LQfOL
 peerDependencies: 
 [npm2-npm3](https://codingwithspike.wordpress.com/2016/01/21/dealing-with-the-deprecation-of-peerdependencies-in-npm-3/)
 
-### nvm管理多个node版本
-- 手动安装：`git clone git@gitlab.alibaba-inc.com:node/nvm.git ~/.nvm`
-- 然后：`cd ~/.nvm`、`source nvm.sh`、`nvm ls`、`nvm install 0.11.12`
 
 ### node 适合场景：
 - 创业公司很合适，尤其当创始人之一是熟悉前端的同学的话，用Node实现Web系统很合适。
