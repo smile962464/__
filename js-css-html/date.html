@@ -7,6 +7,7 @@
 </head>
 <body>
 <pre>
+- [各地时间](https://time.is/)
 - [日期和时间字符串](https://docs.microsoft.com/en-us/scripting/javascript/date-and-time-strings-javascript)
 - [计算日期和时间](https://docs.microsoft.com/en-us/scripting/javascript/calculating-dates-and-times-javascript)
 - [safari 对时间格式支持的差异](http://stackoverflow.com/questions/4310953/invalid-date-in-safari)
@@ -28,19 +29,23 @@
   console.log(new Date('2010/11/29')); // 非 ISO 格式，所有浏览器都支持
   console.log(new Date('11/29/2010')); // 非 ISO 格式，所有浏览器都支持
   console.log(new Date("2010-10-20 4:30 +0000")); // 非 ISO 格式，不同浏览器解析结果可能不同
-
+  
   console.log('===========  =============');
 
   console.log(new Date('6 Mar 2017 21:22:23 GMT')); // RFC 2822 格式
   console.log(new Date('Mon 06 Mar 2017 21:22:23 z')); // RFC 2822 格式
   console.log(new Date('Mon, 06 Mar 2017 21:22:23 +0000')); // RFC 2822 格式
-  console.log(new Date().toUTCString()); // 标准 ISO 格式，toUTCString()
-  console.log(new Date().toISOString()); // 标准 ISO 格式，toISOString()
+  console.log(new Date().toUTCString()); // 标准 ISO 格式
+  console.log(new Date().toISOString()); // 标准 ISO 格式
+
+  // getTimezoneOffset() 获得的“时区值”：
+  // 一般用于自己换算时间，不对 new Date() 构造时间产生任何影响，
+  // 但 toISOString() / toUTCString() 结果计算方式是 “localTime + 时区值”
 
   console.log('===========  =============');
 
   var now = new Date();
-  var now_utc = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
+  var now_utc = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
   var utc_now = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
 
   var utc_timestamp = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(),
