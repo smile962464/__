@@ -91,45 +91,49 @@ touch事件在手机浏览器中的穿透问题，并不是由冒泡引起的，
 
 
 ### 屏幕尺寸
-[「像素」「渲染像素」以及「物理像素」](http://www.zhihu.com/question/27261444/answer/35898885)
-[rem 产生的小数像素问题](http://taobaofed.org/blog/2015/11/04/mobile-rem-problem/)
 
 > mm(毫米)=?px(像素) : 两者没有转换关系，一个是绝对量，一个是相对量。比如15吋的显示器，你可以设置成 1024*768 像素，也可以设置成 1280*960 像素，可以有很多种。
 > 像素就是CCD/CMOS上光电感应元件的数量，也即把影像放大数倍看到的小方点。作为图像的一种尺寸，只存在于电脑中，如同RGB色彩模式一样只存在于电脑中。
-> 像素是相对于显示器“屏幕分辨率”而言的，譬如，WONDOWS的用户所使用的分辨率一般是96像素/英寸。而MAC的用户所使用的分辨率一般是72像素/英寸。
+> 像素是相对于显示器“屏幕分辨率”而言的，譬如，WONDOWS的用户所使用的分辨率一般是 96像素/英寸。而MAC的用户所使用的分辨率一般是 72像素/英寸。
 > 屏幕分辨率是指屏幕显示的分辨率，显示分辨率就是屏幕上显示的像素个数，分辨率160×128的意思是水平方向含有像素数为160个，垂直方向像素数128个。屏幕尺寸一样的情况下，分辨率越高，显示效果就越精细和细腻。
+> 影像分辨率单位 PPI(Pixel per Inch)，打印(打印机输出)分辨率单位是 DPI(dot per inch). 人眼能分辨出的最大分辨率是300dpi，超过这个分辨率，人的眼睛是无法看出差别的，也就是说 300dpi 和 600dpi 在人眼看来是没有差别的，所以现在的冲印设备最大的设计输出分辨率，就是300dpi。
 > 显示器出厂时一般不标出表征显示器分辨率的 DPI 值，只给出点距，我们根据公式即可算出显示器的分辨率。
-> 影像分辨率单位 PPI(Pixel per Inch)，打印(打印机输出)分辨率单位是 DPI(dot per inch). 人眼能分辨出的最大分辨率是300dpi，超过这个分辨率，人的眼睛是无法看出差别的，也就是说300dpi和600dpi在人眼看来是没有差别的，所以现在的冲印设备最大的设计输出分辨率，就是300dpi。
-
-```js
-console.log(window.devicePixelRatio) // devicePixelRatio
-console.log(window.innerWidth) // device-width
-console.log(document.documentElement.clientWidth) // viewport width
-console.log(Math.sqrt(Math.pow(640, 2) + Math.pow(960, 2)) / 3.5) // iphone 4 ppi
-```
-物理像素 / 设备像素 = devicePixelRatio . retina 屏 = 2 (1px = 2 物理像素) 6plus = 3
 
 - iPhone 4/4s : 屏宽320. (物理像素 640 * 960. 2x. 对角线 3.5-inch. PPI 326)
 - iPhone 5/5s/5c : 屏宽320. (物理像素 640 * 1136. 2x. 对角线 4-inch)
 - iPhone 6/6s/7 : 标准模式屏宽375，放大模式屏宽320. (物理像素 750 * 1334. 2x. 对角线 4.7-inch. PPI 326)
 - iPhone 6/6s/7 Plus : 标准模式屏宽414，放大模式屏宽375. (物理像素 1080 * 1920. 3x. 对角线 5.5-inch. PPI 401)
 
-大部分移动设备默认的 viewport 都是 980px (layout viewport) 大于可视宽度(visual viewport)，多数情况下要大于 device-width(即ideal viewport width理想宽度) ,我们一般都要在移动端重置 viewport，让`width=device-width`, 使 layout viewport 变成理想宽度，这样可以做到按页面宽度 100% 充满屏幕，水平不出现滚动条.
+```js
+console.log(window.devicePixelRatio) // retina 屏 = 2 (1px = 2 物理像素) 6plus = 3
+// 物理像素 / 逻辑像素 = devicePixelRatio
+console.log(window.innerWidth) // device-width
+console.log(document.documentElement.clientWidth) // viewport width
+console.log(Math.sqrt(Math.pow(640, 2) + Math.pow(960, 2)) / 3.5) // iphone 4 ppi
+```
 
-设计师按宽度750px（iPhone 6）做设计稿. 375pt下的设计效果适配到414pt和320pt偏差不会太大。假设以414pt为基准做出很优雅的设计，到320pt可能元素之间比例就不是那么回事了，比如图片和文字之间视觉比例可能失调。
+- [Physical Pixels / Logical Pixels](https://developer.appway.com/screen/ShowSingleRecipe/selectedRecipeId/1429057950522)
+    - [Are pixels in Photoshop logical or physical?](https://graphicdesign.stackexchange.com/questions/81055/are-pixels-in-photoshop-logical-or-physical/81083)
+- [「像素」「渲染像素」以及「物理像素」](http://www.zhihu.com/question/27261444/answer/35898885)
+- [css 单位标准](https://www.w3.org/TR/css3-values/#absolute-lengths)
+- [Android 设备单位转换](https://pixplicity.com/dp-px-converter/)
+- [Android 设备单位](https://stackoverflow.com/questions/2025282/what-is-the-difference-between-px-dip-dp-and-sp-on-android)
+- [iOS 设备尺寸](http://iosres.com/)
 
-使用 rem 的好处：
-rem 是一个相对单位，能方便地根据设备的不同分辨率设置 html 的 font-size 来改变使用 rem 的元素的尺寸。
-而 px 是绝对单位，不管 html 的 font-size 是多少，它都显示为绝对的大小、不会改变。
+大部分移动设备默认的 viewport 都是 980px (layout viewport) 大于可视宽度(visual viewport)，多数情况下要大于 device-width(即 ideal viewport width 理想宽度) ,我们一般都要在移动端重置 viewport，让`width=device-width`, 使 layout viewport 变成理想宽度，这样可以做到按页面宽度 100% 充满屏幕，水平不出现滚动条。
 
-Android 上小于 1px 的边线会被显示为 0px ，iOS8 之后支持 0.5px 宽度。
+高清方案 / 边线：
 
-边线不显示问题：
-如果设置 html 的 `font-size=100px` 作为 rem base 值， 则`1px == 0.01rem`，
-而 0.01rem 宽度的边线、在某些低版本 Android 上以及 pc chrome 手机模拟情况下，
-会出现不显示问题(实际计算出的宽度小于 1px)，所以，在代码里把 1px 改写成 1PX ，
-如果使用 postcss-pxtorem 工具来把 px 转为 rem，1PX 的写法能避免被转为 0.01rem ，
-并且 1PX 是能正常被浏览器渲染的(不区分大小写)。
+- 为了便于计算, 通常让`1px == 0.01rem`即按 100 倍换算, 设计师按宽度 750px (iPhone 6 物理宽度, 2 * 理想宽度) 做设计（适配到其他设备比例偏差不会太大），前端也按这个写 css 尺寸。那么：
+    - dpr=1 `<html style="font-size: 50px">`, 设备: windows 电脑, mac (mar pro dpr为2).
+    - dpr=2 `<html style="font-size: 100px">`, 设备: iPhone 4~6, Android.
+    - dpr=2~4 `<html style="font-size: 100~200px">`, 设备: iPhone plus, Android Nexus 6P 等.
+    - 总结：用 rem 能方便灵活适配不同设备；通过 dpr 值缩小页面到相应的物理像素、自然支持 1px 细腻边线等效果。
+- Android 上小于 1px 的边线、会变为 0px 而不能显示， iOS8 之后支持 0.5px 宽度。
+    - 在代码里把`1px`改写成`1PX`, 使用`postcss-pxtorem`工具时, `1PX`的写法能避免被转为`0.01rem`, 并且`1PX`是能正常被浏览器渲染的(不区分大小写)。
+    - [rem 产生的小数像素问题](http://taobaofed.org/blog/2015/11/04/mobile-rem-problem/)
+- [1px 边线方案总结](https://www.w3cplus.com/css/fix-1px-for-retina.html)
+    - ref: https://ariya.io/2011/08/mobile-web-logical-pixel-vs-physical-pixel
 
 
 ## 其他
