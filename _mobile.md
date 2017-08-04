@@ -124,11 +124,18 @@ console.log(Math.sqrt(Math.pow(640, 2) + Math.pow(960, 2)) / 3.5) // iphone 4 pp
 
 高清方案 / 边线：
 
-- 为了便于计算, 通常让`1px == 0.01rem`即按 100 倍换算, 设计师按宽度 750px (iPhone 6 物理宽度, 2 * 理想宽度) 做设计（适配到其他设备比例偏差不会太大），前端也按这个写 css 尺寸。那么：
+- 为了便于计算, 通常让`1px == 0.01rem`即按 100 倍换算, 设计师按宽度 750px (iPhone 6 物理宽度, 2 * 理想宽度, [why?](https://www.zhihu.com/question/25308946/answer/32240185)) 做设计（适配到其他设备比例偏差不会太大），前端也按这个写 css 尺寸。那么：
     - dpr=1 `<html style="font-size: 50px">`, 设备: windows 电脑, mac (mar pro dpr为2).
     - dpr=2 `<html style="font-size: 100px">`, 设备: iPhone 4~6, Android.
     - dpr=2~4 `<html style="font-size: 100~200px">`, 设备: iPhone plus, Android Nexus 6P 等.
-    - 总结：用 rem 能方便灵活适配不同设备；通过 dpr 值缩小页面到相应的物理像素、自然支持 1px 细腻边线等效果。
+- 总结：
+    - 根据不同设备dpr、去改变 html 元素上的 font-size 值、用 rem 能方便实现“元素尺寸等比缩放”效果。
+        - 缺点：依赖的第三方组件，js内联px高度设置，iframe 等都需要适配。
+    - 根据不同设备dpr、缩小 viewport scale 设置、自然支持 1px 物理像素的“细腻边线”效果。
+        - 缺点：地图使用 canvas 绘制，而 canvas 的本质是位图，缩放后会糊掉。
+    - 对于“横屏”或“大屏”设备、需要支持显示更多内容，适配规则：文字流式，控件弹性，图片等比缩放。
+        - 控件弹性指的是，navigation、cell、bar等适配过程中垂直方向上高度不变；水平方向宽度变化时，通过调整元素间距或元素右对齐的方式实现自适应。这样屏幕越大，在垂直方向上可以显示更多内容，发挥大屏幕的优势。
+        - 具体做法：不能全用 rem, 需要不变的地方用 px 代替 rem 。
 - Android 上小于 1px 的边线、会变为 0px 而不能显示， iOS8 之后支持 0.5px 宽度。
     - 在代码里把`1px`改写成`1PX`, 使用`postcss-pxtorem`工具时, `1PX`的写法能避免被转为`0.01rem`, 并且`1PX`是能正常被浏览器渲染的(不区分大小写)。
     - [rem 产生的小数像素问题](http://taobaofed.org/blog/2015/11/04/mobile-rem-problem/)
