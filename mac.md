@@ -61,12 +61,15 @@ alias simulator='open /Applications/Xcode.app/Contents/Developer/Applications/Si
 > macOS 10.12 “安全性与隐私”里去掉了允许安装”任何来源“的软件设置，可以在终端里运行`sudo spctl --master-disable`打开
 > 「xxx.app已损坏,打不开.你应该将它移到废纸篓」，并非你安装的软件已损坏，而是 Mac 系统的安全设置问题，因为这些应用都是破解或者汉化的, 解决方法是改变 Mac 系统安全设置
 
-- HandBrake / Movist / Dash / MacDown / Marp / Color Note / Gas Mask / charles / iStat-Menus / Spectacle / FileZilla / androidfiletransfer / meld / Cakebrew / pyCharm / mindnode lite / Unarchiver / airdroid / Media-Info / Axure / Visual_Paradigm / ParagonNTFS / Readiris-Corporate-ESD (ocr识别) / JD-Gui / Sequel-pro / ngrok
+- Dash / MacDown / Marp / Color Note / Gas Mask / charles / iStat-Menus / Spectacle / FileZilla / androidfiletransfer / meld / Cakebrew / pyCharm / mindnode lite / Unarchiver / airdroid / Axure / Visual_Paradigm / ParagonNTFS / Readiris-Corporate-ESD (ocr识别) / JD-Gui / Sequel-pro / ngrok
 
-- 系统: AppCleaner / [OmniDiskSweeper](http://newping.cn/322) / Disk Drill / OnyX
 - 效率: [git-open](https://github.com/paulirish/git-open) 自动打开 git 远程仓库地址
+- 系统: AppCleaner / [OmniDiskSweeper](http://newping.cn/322) / Disk Drill / OnyX
 - 截图、gif录屏: lightshot (Apowersoft截屏王 snip jietu(qq) Skitch) / kap (licecap gifify)
 - XnConvert: 免费任务式图像处理软件，替代 photoshop 简单功能，比 Mac 预览工具更强。
+- 影音：HandBrake / Movist / Media-Info / MKVToolnix(开源免费 mkv 文件字幕抽取)
+    - MKV 文件没有 Track: subtitles, 那就是内嵌字幕，即字幕和视频画面在一起、无法提取出来。
+    - MKV 封装的字幕一般是外挂字幕，可以把字幕提取出来。但 mp4 / avi 则是把字幕直接粘到视频上，字幕本身就变成了视频的一部分，没办法分离，而这些格式可以再封装成 mkv 视频。
 - [Enounce MySpeed](http://www.enounce.com/myspeed-mac-download-trial) 加减速网页中 flash 播放速度，
     - 注意其【卸载方式】比较麻烦，[需要下载专门的 RemoveMySpeed 卸载工具](http://www.enounce.com/faqs-myspeed#uninstall)，警告：如果不这样卸载，Safari 浏览器将打不开任何网页、会弹出报错“此网页出现问题，已重新载入”，同样底层使用 Safari 的 App Store 也打开会变成一片空白！
 

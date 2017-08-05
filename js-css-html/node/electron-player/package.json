@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "fs-extra": "~0.30.0",
-    "jquery": "~3.1.1"
+    "jquery": "~3.1.1",
+    "subtitles-parser": "0.0.2"
   }
 }

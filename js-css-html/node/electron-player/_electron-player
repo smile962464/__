@@ -1,3 +1,0 @@
-echo "start electron player"
-cd ~/inner/__/js-css-html/node/electron-player \
-&& npm start

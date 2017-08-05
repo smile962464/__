@@ -35,5 +35,7 @@ printf "\n"
 echo "MY_Info: execute 'forever list' "
 forever list
 
+# [ -d ~/Desktop/TEMPORAL/ ] && echo "DIRECTORY EXISTS" || echo "DIRECTORY DOES NOT EXIST"
+
 printf "\n"
 read -n1 -rsp $'Press any key to exit...\n'
