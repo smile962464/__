@@ -37,8 +37,12 @@ fs.readdir(localPath, function (err, files) {
 })
 
 function mkVideo() {
+  // http://docs.videojs.com/docs/api/player.html
+  // https://github.com/videojs/video.js/blob/master/docs/guides/components.md
   var player = videojs('mvideo', {
     playbackRates: [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4],
+    inactivityTimeout: 1500,
+    aspectRatio: '16:9',
     controlBar: {
       muteToggle: true,
       progressControl: {
@@ -50,6 +54,25 @@ function mkVideo() {
     this.hotkeys();
     // this.play(); // if you don't trust autoplay for some reason
   });
+  // console.log(player.el())
+  // player.volume(0.5);
+  player.on('mouseout', function () { this.userActive(false) });
+  // var button = player.addChild('button');
+  // console.log(button.el()); // -> button element
+
+  var Component = videojs.getComponent('Component');
+  var Myc = videojs.extend(Component, {
+    constructor: function(player, options) {
+      Component.apply(this, arguments);
+    },
+    createEl: function() {
+      return videojs.createEl('div', { id: 'ratelist'});
+    }
+  });
+  videojs.registerComponent('Myc', Myc);
+  var ratelist = player.addChild('Myc');
+  // console.log(ratelist);
+  document.getElementById('ratelist').innerHTML = document.getElementById('tmp').innerHTML;
 
   var subtitle;
   var rateEle = $('.rate');
@@ -66,8 +89,8 @@ function mkVideo() {
         player.playbackRate(playbackRateBig);
         rateEle.html(rateText + playbackRateBig);
         initRateChange = true;
+        // console.log(player.currentTime(), player.playbackRate(), subtitle);
       }
-      // console.log(player.currentTime(), player.playbackRate(), subtitle);
       var curr = parseInt(player.currentTime() * 1000);
       var len = subtitle.length;
       for (var index = 0; index < len; index++) {
@@ -83,7 +106,7 @@ function mkVideo() {
           break;
         } else if (curr > sub.endTime &&
           subtitle[index + 1] && curr < subtitle[index + 1].startTime) {
-          // console.log('> end', index)
+          // console.log('> end', index, curr, sub.endTime, subtitle[index + 1].startTime)
           startRateChange = false;
           if (!endRateChange) {
             player.playbackRate(playbackRateBig);
