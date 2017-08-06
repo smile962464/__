@@ -20,6 +20,9 @@
       max-height: 688px;
       max-width: calc(688px / 0.5625);
     }
+    .vjs-paused .vjs-control-bar {
+      opacity: 0;
+    }
 
     .rate, .list-container {
       position: absolute; right: 20px; z-index: 999; color: white; font-size: 15px; }
@@ -47,7 +50,7 @@
       <div class="collapse" id="playlist"></div>
     </div>
   </template>
-  <script src="http://vjs.zencdn.net/5.11.6/video.js"></script>
+  <script src="http://vjs.zencdn.net/5.11.6/video.min.js"></script>
   <!-- videojs-dock.js -->
   <script src="https://gw.alipayobjects.com/os/rmsportal/EjmvXAeRayDABBQwzEQo.js"></script>
   <!-- videojs.hotkeys.min.js -->
