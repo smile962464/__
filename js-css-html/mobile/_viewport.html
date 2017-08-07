@@ -1,27 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
   <meta charset="utf-8" />
-  <!-- <meta name="viewport" content="width=750" /> -->
-  <!-- <meta name="viewport" content="width=device-width" /> -->
-  <!-- <meta name="viewport" content="initial-scale=1.0" /> -->
-  <!-- <meta name="viewport" content="initial-scale=0.5" /> -->
-  <!-- 最常用 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-touch-fullscreen" content="yes" />
-  <title>demo</title>
-  <style></style>
+  <!-- 以下两个都对，在大多数浏览器都表现正常。即 width=device-width 或 scale 可以只设置其中一个
+  <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5 user-scalable=no" />
+  -->
+
+  <!-- 以下设置都可以 
+  <meta name="viewport" content="width=750" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="viewport" content="initial-scale=1.0" />
+  <meta name="viewport" content="initial-scale=0.5" />
+  -->
+
+  <!-- 设置已废弃的“target-densitydpi=device-dpi”，来兼容 小米2
+  <meta name="viewport" content="target-densitydpi=device-dpi, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5,user-scalable=no" />
+  -->
+
+  <!--
+    部分 vivo, 云os 等非主流设备，无法改变默认 980 viewport 宽度，即 document.documentElement.clientWidth == 980 
+    对此，设置 width=device-width, scale=1 不应用高清方案
+  <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1,maximum-scale=1, minimum-scale=1, user-scalable=no" />
+  -->
+
+  <!-- Taobao 高清脚本 效果 https://m.taobao.com , 以下是在 Android / iOS dpr=2 / iOS dpr=3 设备下结果
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+  <meta name="viewport" content="initial-scale=0.3333333333333333, maximum-scale=0.3333333333333333, minimum-scale=0.3333333333333333, user-scalable=no">
+  -->
+
+  <!-- Taobao 高清脚本 https://github.com/amfe/lib-flexible/blob/master/src/flexible.js -->
+  <!-- <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js"></script> -->
+
+  <!-- Alipay 高清脚本  -->
+  <script src="https://gw.alipayobjects.com/os/rmsportal/wvyABECOyfFcFuGWjLLA.js"></script>
+  <script>
+    const _baseFontSize = 100;
+    const _psdWidth = 750;
+    // 按 设计稿比例 缩放
+    // document.documentElement.style.fontSize = `${_baseFontSize / _psdWidth * document.documentElement.clientWidth}px`;
+    // 设置 1rem = 100px (0.01rem = 1px)  但页面有 scale 缩放，最终 0.02rem = 1px 物理像素
+    // document.addEventListener('DOMContentLoaded', () => document.body.style.fontSize = `${16 * 0.02}rem`);
+  </script>
+  <script>
+    console.log('dpr: ', window.devicePixelRatio)
+    console.log('screenW: ', window.screen.width)
+    console.log('innerWidth: ', window.innerWidth) // device-width
+    console.log('clientW: ', document.documentElement.clientWidth) // viewport width
+  </script>
+
+  <!-- 业界“最常用”设置方式，页面无缩放 -->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+
+  <style>
+    body{ font-size: 32px; }
+  </style>
 </head>
 <body>
-  viewport 写法，对文字大小的影响
-  <script>
-    console.log('outerWidth: ', window.outerWidth)
-    console.log('innerWidth: ', window.innerWidth)
-    console.log('screenW: ', window.screen.width)
-    console.log('clientW: ', document.documentElement.clientWidth)
-  </script>
+  <h3>知识点</h3>
+  <div>
+    viewport 的 width 没设置的话，默认是980px；
+    如果设置了 initial-scale 则 viewport = device-width / scale；
+    如果同时设置了 width 和 initial-scale，则取 min-width，即应用这 2 个的较小值 [ref](https://www.quirksmode.org/blog/archives/2013/10/preliminary_met.html)
+  </div>
+
+  <h2>在不同设备下查看</h2>
+  <div>viewport 写法，对展示效果的影响</div>
+  <p>注意：Chrome 里最小 font-size 为 12, 所以在 iOS 真机上看到文字大小可能不一致</p>
+
+  <div style="font-size: 32px;">文字大小 font-size: 32px;</div>
+
+  <div style="font-size: 0.14rem;">文字大小 font-size: 0.14rem;</div>
+  <div style="font-size: 14px;">文字大小 font-size: 14px;</div>
+  <div style="margin:10px;width:80%; height: 100px; border: 1px solid red;">1px 边框</div>
+  <div style="margin:10px;width:80%; height: 1rem; border: 0.01rem solid red;">0.01rem 边框（Android 设备不可见）</div>
 </body>
 </html>

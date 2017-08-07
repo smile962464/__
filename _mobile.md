@@ -139,6 +139,7 @@ console.log(Math.sqrt(Math.pow(640, 2) + Math.pow(960, 2)) / 3.5) // iphone 4 pp
 - Android 上小于 1px 的边线、会变为 0px 而不能显示， iOS8 之后支持 0.5px 宽度。
     - 在代码里把`1px`改写成`1PX`, 使用`postcss-pxtorem`工具时, `1PX`的写法能避免被转为`0.01rem`, 并且`1PX`是能正常被浏览器渲染的(不区分大小写)。
     - [rem 产生的小数像素问题](http://taobaofed.org/blog/2015/11/04/mobile-rem-problem/)
+- [Retina屏的移动设备如何实现真正1px的线？](http://jinlong.github.io/2015/05/24/css-retina-hairlines/)
 - [1px 边线方案总结](https://www.w3cplus.com/css/fix-1px-for-retina.html)
     - ref: https://ariya.io/2011/08/mobile-web-logical-pixel-vs-physical-pixel
 
