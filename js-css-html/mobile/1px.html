@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    .demo {margin: 30px 10px; width:100px; height: 50px;}
+
+    /* box-shadow 会带来性能问题，颜色不好处理、有阴影。 圆角可以实现  */
+    .shadow {
+      box-shadow:0 1px 1px -1px rgba(0, 0, 0, 0.5);
+    }
+
+    /* 圆角无法实现？ 在 pc 上看不到效果，代码多、多边线不容易支持 */
+    .bg {
+      background-image:linear-gradient(180deg, red, red 50%, transparent 50%),
+        linear-gradient(270deg, red, red 50%, transparent 50%),
+        linear-gradient(0deg, red, red 50%, transparent 50%),
+        linear-gradient(90deg, red, red 50%, transparent 50%);
+      background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%;
+      background-repeat: no-repeat;
+      background-position: top, right top, bottom, left top;
+      padding: 10px;
+    }
+
+    /* framework7 等许多 UI 库采用此方法。 圆角无法实现  */
+    .transform {
+      position: relative;
+      border-radius: 6px;
+    }
+    .transform:after {
+      content:"";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      transform: scaleY(.5);
+      transform-origin: 0 0;
+      border-bottom: 1px solid red;
+    }
+
+    /* https://weui.io/#button 用 伪元素 放大两倍再缩小 */
+    .cover {
+      position: relative;
+    }
+    .cover::after {
+      content: " ";
+      width: 200%;
+      height: 200%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: scale(.5);
+      transform-origin: 0 0;
+      box-sizing: border-box;
+      border: 1px solid red;
+      border-radius: 10px;
+    }
+
+    /* iOS 8+ */
+    .normal {
+      border-bottom: 1px solid red;
+    }
+    @media (-webkit-min-device-pixel-ratio: 2) {
+      .hairline {
+        border-width: 0.5px;
+      }
+    }
+
+    .radius {border-radius: 6px;}
+  </style>
+</head>
+<body>
+  <div class="demo radius shadow"></div>
+  <div class="demo radius bg">手机上查看边线效果</div>
+  <div class="demo radius transform"></div>
+  <div class="demo radius cover"></div>
+  <div class="demo radius normal hairline"></div>
+</body>
+</html>
