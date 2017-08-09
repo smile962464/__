@@ -4,7 +4,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    .demo {margin: 30px 10px; width:100px; height: 50px;}
+    .demo {margin: 40px 10px; padding: 5px; width: 200px;}
+    .radius {border-radius: 6px;}
+
+    /* iOS 8+ */
+    .normal {
+      border-bottom: 1px solid red;
+    }
+    @media (-webkit-min-device-pixel-ratio: 2) {
+      .hairline {
+        border-width: 0.5px;
+      }
+    }
 
     /* box-shadow 会带来性能问题，颜色不好处理、有阴影。 圆角可以实现  */
     .shadow {
@@ -24,19 +35,39 @@
     }
 
     /* framework7 等许多 UI 库采用此方法。 圆角无法实现  */
-    .transform {
+    .tf {
       position: relative;
       border-radius: 6px;
     }
-    .transform:after {
-      content:"";
+    /* https://github.com/nolimits4web/Framework7/blob/master/src/less/ios/_mixins.less
+      hairline
+    */
+    .tf::before {
+      content: '';
       position: absolute;
-      bottom: 0;
       left: 0;
-      right: 0;
-      transform: scaleY(.5);
-      transform-origin: 0 0;
+      top: 0;
+      bottom: auto;
+      right: auto;
+      display: block;
+      width: 100%;
+      height: 1px; background-color: red;
+      transform-origin: 50% 0;
+      transform: scaleY(.5); 
+    }
+    .tf::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: auto;
+      top: auto;
+      display: block;
+      width: 100%; /* or use `right: 0` to get it */
+      /* height: 1px; background-color: red;  framework7 use height instead of border-height */
       border-bottom: 1px solid red;
+      transform-origin: 50% 100%;
+      transform: scaleY(.5); /* scale(1/dpr) */
     }
 
     /* https://weui.io/#button 用 伪元素 放大两倍再缩小 */
@@ -44,7 +75,7 @@
       position: relative;
     }
     .cover::after {
-      content: " ";
+      content: "";
       width: 200%;
       height: 200%;
       position: absolute;
@@ -56,25 +87,19 @@
       border: 1px solid red;
       border-radius: 10px;
     }
-
-    /* iOS 8+ */
-    .normal {
-      border-bottom: 1px solid red;
-    }
-    @media (-webkit-min-device-pixel-ratio: 2) {
-      .hairline {
-        border-width: 0.5px;
-      }
-    }
-
-    .radius {border-radius: 6px;}
   </style>
 </head>
 <body>
-  <div class="demo radius shadow"></div>
-  <div class="demo radius bg">手机上查看边线效果</div>
-  <div class="demo radius transform"></div>
-  <div class="demo radius cover"></div>
-  <div class="demo radius normal hairline"></div>
+  viewport: width=device-width, initial-scale=1.0 <br>
+  window.devicePixelRatio: <script>document.write(window.devicePixelRatio)</script>
+  documentElement.clientWidth: <script>document.write(document.documentElement.clientWidth)</script>
+
+  <div class="demo radius normal hairline">Work on iOS8+</div>
+  <div class="demo radius shadow">Not quite normal, not recommended</div>
+  <div class="demo radius bg">Work on phone, no border radius</div>
+  <div class="demo radius tf">Work, no border radius, recommended</div>
+  <div class="demo radius tf" style="height:30px; overflow:scroll;">have scroller<br>scroll<br>scroll<br></div>
+  <div class="demo radius cover">recommended</div>
+  <div class="demo radius cover" style="height: 31px;">odd number 奇数值 在某些机型问题（因为产生了小数？）</div>
 </body>
 </html>

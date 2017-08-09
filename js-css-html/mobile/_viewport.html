@@ -44,10 +44,10 @@
     // document.addEventListener('DOMContentLoaded', () => document.body.style.fontSize = `${16 * 0.02}rem`);
   </script>
   <script>
-    console.log('dpr: ', window.devicePixelRatio)
-    console.log('screenW: ', window.screen.width)
-    console.log('innerWidth: ', window.innerWidth) // device-width
-    console.log('clientW: ', document.documentElement.clientWidth) // viewport width
+    document.write('dpr: ' + window.devicePixelRatio); document.write('<br>');
+    document.write('screenWidth: ' + window.screen.width); document.write('<br>');
+    document.write('innerWidth (device-width): ' + window.innerWidth); document.write('<br>');
+    document.write('clientWidth (viewport width): ' + document.documentElement.clientWidth);
   </script>
 
   <!-- 业界“最常用”设置方式，页面无缩放 -->
@@ -74,6 +74,8 @@
   <div style="font-size: 0.14rem;">文字大小 font-size: 0.14rem;</div>
   <div style="font-size: 14px;">文字大小 font-size: 14px;</div>
   <div style="margin:10px;width:80%; height: 100px; border: 1px solid red;">1px 边框</div>
-  <div style="margin:10px;width:80%; height: 1rem; border: 0.01rem solid red;">0.01rem 边框（Android 设备不可见）</div>
+  <div style="margin:10px;width:80%; height: 1rem; border: 0.01rem solid red;">
+    0.01rem 边框（Android webview(支付宝)、原生浏览器不可见, Chrome 没问题）
+  </div>
 </body>
 </html>
