@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    .demo {margin: 40px 10px; padding: 5px; width: 200px;}
-    .radius {border-radius: 6px;}
+    .demo {margin: 40px 10px; padding: 5px; max-width: 200px;}
+    .radius {border-radius: 5px;}
 
     /* iOS 8+ */
     .normal {
@@ -97,22 +97,30 @@
   window.devicePixelRatio: <script>document.write(window.devicePixelRatio)</script>
   documentElement.clientWidth: <script>document.write(document.documentElement.clientWidth)</script>
 
-  <div class="demo radius normal hairline">[Abandon] 0.5px, Normal on iOS8+, but no line on some Android</div>
-  <div class="demo radius shadow">[Abandon] box-shadow, Not quite normal on iOS</div>
-  <div class="demo radius bg">
-    [Recommend under some conditions] background-image, Complex statement, Work but no border radius
+  <div class="demo radius normal hairline">
+    <b>Abandon</b> 0.5px, Normal on iOS8+, but no line on some Android
   </div>
-  
+  <div class="demo radius shadow">
+    <b>Abandon</b> box-shadow, Not quite normal on iOS
+  </div>
+  <div class="demo radius bg">
+    [<b>Recommend</b> under some conditions] background-image, Complex statement, Work but no border radius
+  </div>
+
   <div class="demo radius tf">
-    [Recommended under some conditions] transform: scale, Work but no border radius
+    <b>Recommend</b> under some conditions] transform: scale, Work but no border radius
   </div>
   <div class="demo radius tf" style="height:30px; overflow:scroll;">
-    [Problem] transform: scale, when have scroller，部分 Android 浏览器不显示“底边线”
+    <b>Problem</b> transform: scale, when have scroller，部分 Android 浏览器不显示“底边线”
   </div>
-  <div class="demo radius cover">[Recommended under some conditions]</div>
+
   <div class="demo radius cover" style="height: 31px;">
-    [Problem] odd number 奇数值 在某些机型有显示问题（因为产生了小数？）
+    <b>Problem</b> odd number 奇数值 在某些机型有显示问题（因为产生了小数？）
   </div>
+  <div class="demo radius cover">[Recommend under some conditions]</div>
+  <div class="demo radius cover" style="display: inline-block;">inline-block</div>
+  <div class="demo radius cover" style="display: inline-block; overflow: hidden;">em</div>
+  <div class="demo radius cover" style="display: inline-block; overflow: hidden;">em</div>
 
 </body>
 </html>
