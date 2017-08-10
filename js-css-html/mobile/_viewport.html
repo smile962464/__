@@ -50,9 +50,10 @@
     document.write('clientWidth (viewport width): ' + document.documentElement.clientWidth);
   </script>
 
-  <!-- 业界“最常用”设置方式，页面无缩放 -->
+  <!-- 业界“常用”设置方式，但在 HTC U-1w 页面会放大 -->
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
-
+  <!-- 以下写全，页面能显示正常 -->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" /> -->
   <style>
     body{ font-size: 32px; }
   </style>
