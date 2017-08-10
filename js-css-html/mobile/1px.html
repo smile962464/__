@@ -122,5 +122,10 @@
   <div class="demo radius cover" style="display: inline-block; overflow: hidden;">em</div>
   <div class="demo radius cover" style="display: inline-block; overflow: hidden;">em</div>
 
+  <p>
+    <b>猜想：</b> transform scale 缩放产生的边框、实际渲染像素都 小于1px ，
+    浏览器在处理这个小数值时、可能需要“舍弃”或“从邻近像素补充”颜色，导致有时候“仅仅因为”内容文字不同、
+    所占的像素宽度不同，而导致 scale 后的 小于1px 的边线不能显示。（Chrome 浏览器）
+  </p>
 </body>
 </html>
