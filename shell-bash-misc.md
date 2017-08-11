@@ -337,6 +337,30 @@ ls -- 找出需要的color名字
 
 ---------
 
+## Marp 示例
+
+```
+<!-- page_number: true -->
+<!-- footer: mobile.ant.design -->
+<!-- prerender: true -->
+![bg](https://zos.alipayobjects.com/rmsportal/casYcIzdKMnTUsvBLlnn.png)
+
+## First page
+
+---
+
+## Second page
+
+:+1: :smile: :smiley: :laughing:
+
+<br><br>
+
+- [emoji-cheat-sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet/)
+- [Emoji Unicode Tables](http://www.unicode.org/emoji/charts/full-emoji-list.html)
+
+<br><br><br>
+```
+
 ## markdown 语法
 
 - 标题 ( h1~h6 ) 格式为使用相应个数的 “#” 作前缀

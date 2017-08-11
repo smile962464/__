@@ -3,71 +3,122 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base target="_blank">
   <title>图片工具</title>
-  <style>
-    .gray { color: #bbb; font-size: 12px; }
-  </style>
 </head>
 <body>
   <h3>图片生成、蜻蜓上传</h3><hr />
   <form>
-    size: <input id="size" value="375x200" />
-    text: <input id="text" value="text" />
-    bgcolor: <input id="bgcolor" value="#ccc" />
-    (#0D8FDB #39DBAC #F8591A <a target="_blank" href="http://c0ffee.surge.sh/">更多</a>)
-    <br /><img id="img" src="" />
+  size: <input id="size" value="375x200" />
+  text: <input id="text" value="text" />
+  bgcolor: <input id="bgcolor" value="#ccc" />
+  (#0D8FDB #39DBAC #F8591A <a href="http://c0ffee.surge.sh/">更多颜色选择</a>)
+  <br /><img id="img" src="" />
   </form>
-  <div class="gray">
-    <a href="https://github.com/hustcc/placeholder.js" style="margin-right: 10px;">源码</a>
-    <a href="https://rmsportal.alipay.com/" target="_blank">蜻蜓（新标签打开）</a>
+  <div style="font-size: 13px;">
+  <a href="https://github.com/hustcc/placeholder.js" style="margin-right: 10px;">源码</a>
+  <a href="https://rmsportal.alipay.com/">蜻蜓（新标签打开）</a>
+  蜻蜓图片地址后加 <b>@100h.src</b> 进行缩放
+  <a href="https://gw.alipayobjects.com/zos/rmsportal/vCJZRKbehNudCnUXYyAm.png@100h.src">示例</a>
   </div>
   <script src="http://cdn.bootcss.com/placeholder.js/3.1.0/placeholder.js"></script>
   <script>
-    var opts = {
-      size: '375x200',
-      bgcolor: '#ccc',
-      color: 'white',
-      text: 'text',
-      fstyle:'oblique',
-      fweight: 'normal',
-      fsize:'30',
-      ffamily: 'consolas'
-    };
-    function create() {
-      document.getElementById('img').setAttribute('src', placeholder.getData(opts));
-    }
+  var opts = {
+    size: '375x200',
+    bgcolor: '#ccc',
+    color: 'white',
+    text: 'text',
+    fstyle:'oblique',
+    fweight: 'normal',
+    fsize:'30',
+    ffamily: 'consolas'
+  };
+  function create() {
+    document.getElementById('img').setAttribute('src', placeholder.getData(opts));
+  }
+  create();
+  ['size', 'text', 'bgcolor'].forEach(function(i) {
+    document.getElementById(i).addEventListener('input', function() {
+    opts[i] = this.value;
     create();
-    ['size', 'text', 'bgcolor'].forEach(function(i) {
-      document.getElementById(i).addEventListener('input', function() {
-        opts[i] = this.value;
-        create();
-      });
     });
+  });
+  </script>
+
+
+  <h3>图片缩放</h3><hr />
+  <canvas id="canvas" width=300></canvas>
+  canvas width：<input type="text" id="cwidth" /><br>
+  图片地址：<input type="text" id="imgurl" /><br>
+  Original image size: <span id="imgsize"></span> <br>
+  <img id="image" style="width:500px;">
+  <script>
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext('2d');
+    var cwidth = document.getElementById('cwidth');
+    var imgurl = document.getElementById('imgurl');
+    var url;
+    var img = new Image;
+    img.onload = function () {
+      var nw = img.naturalWidth, nh = img.naturalHeight;
+      document.getElementById('imgsize').innerHTML = nw + 'x' + nh;
+      var r = nw / canvas.width;
+      canvas.height = nh / r;
+      // https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/drawImage
+      ctx.drawImage(img, 0, 0, nw / r, nh / r);
+    };
+    cwidth.value = canvas.width;
+    cwidth.addEventListener('change', function() {
+      canvas.width = this.value;
+      setImage(imgurl.value);
+    });
+    imgurl.addEventListener('change', function() {
+      url = this.value;
+      setImage(url);
+    });
+    setImage();
+    function setImage(_url = 'http://i.imgur.com/5xZxGCa.jpg') {
+      document.getElementById('image').src = _url;
+      imgurl.value = _url;
+      img.src = _url;
+    }
   </script>
 
 
   <h3>图片转 data-uri</h3><hr />
 
-  选择一个图片：
-  <input type="file" id="file" name="file" />
-  <div id="result" style="padding:10px;width:90%;height:400px;overflow:auto;border:1px solid #ccc;word-wrap:break-word;">
-  </div>
+  选择一个图片：<input type="file" id="file" name="file" /> <br>
+  <button class="copybtn">copy</button>
+  <textarea id="result" style="padding:10px;width:90%;height:400px;overflow:auto;border:1px solid #ccc;word-wrap:break-word;"></textarea>
 
   <script>
-    function ProcessFile(e) {
-      var file = document.getElementById('file').files[0];
-      if (file) {
-        var reader = new FileReader();
-        reader.onload = function (event) {
-          var txt = event.target.result;
-          document.getElementById("result").innerHTML = txt;
-        };
-      }
-      reader.readAsDataURL(file);
+  function ProcessFile(e) {
+    var file = document.getElementById('file').files[0];
+    if (file) {
+    var reader = new FileReader();
+      reader.onload = function (event) {
+        var txt = event.target.result;
+        document.getElementById("result").innerHTML = txt;
+      };
     }
-    window.addEventListener("DOMContentLoaded", function () {
-      document.getElementById('file').addEventListener('change', ProcessFile, false);
-    }, false);
+    reader.readAsDataURL(file);
+  }
+  window.addEventListener("DOMContentLoaded", function () {
+    document.getElementById('file').addEventListener('change', ProcessFile, false);
+  }, false);
+
+  var copybtn = document.querySelector('.copybtn');
+  copybtn.addEventListener('click', function(event) {
+    var copyTextarea = document.querySelector('#result');
+    copyTextarea.select();
+    try {
+      var successful = document.execCommand('copy');
+      var msg = successful ? 'successful' : 'unsuccessful';
+      console.log('Copying text command was ' + msg);
+    } catch (err) {
+      console.log('Oops, unable to copy');
+    }
+  });
   </script>
 </body>
 </html>

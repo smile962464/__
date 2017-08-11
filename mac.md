@@ -240,9 +240,8 @@ set -g mouse on
 - 安装后重启，或点击菜单 Devices -> Insert Guest Additions CD image… 使能访问 host 电脑并自动调整分辨率
 - 设置 Shared Folders 
 
-注意：当 virtualBox 运行时，Android 官方安装的虚拟机、开不起来！  
-虚拟机里查看 ip 地址可以看到，例如 10.0.2.2 可访问 host 主机的 localhost ，
-Genymotion android emulator 相应ip为 10.0.3.2。 
+> 注意：当 virtualBox 运行时，Android 官方安装的虚拟机、开不起来！  
+> 虚拟机里查看 ip 地址可以看到，例如 10.0.2.2 可访问 host 主机的 localhost , Genymotion android emulator 相应ip为 10.0.3.2
 
 ---------
 
