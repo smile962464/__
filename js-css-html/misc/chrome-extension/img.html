@@ -47,9 +47,9 @@
 
 
   <h3>图片缩放</h3><hr />
-  <canvas id="canvas" width=300></canvas>
+  <canvas id="canvas" width=300></canvas><br>
   canvas width：<input type="text" id="cwidth" /><br>
-  图片地址：<input type="text" id="imgurl" /><br>
+  图片地址：<input type="text" id="imgurl" style="width:500px;" /><br>
   Original image size: <span id="imgsize"></span> <br>
   <img id="image" style="width:500px;">
   <script>
@@ -86,39 +86,37 @@
 
 
   <h3>图片转 data-uri</h3><hr />
-
   选择一个图片：<input type="file" id="file" name="file" /> <br>
-  <button class="copybtn">copy</button>
+  <button class="copybtn">copy</button> <br>
   <textarea id="result" style="padding:10px;width:90%;height:400px;overflow:auto;border:1px solid #ccc;word-wrap:break-word;"></textarea>
-
   <script>
-  function ProcessFile(e) {
-    var file = document.getElementById('file').files[0];
-    if (file) {
-    var reader = new FileReader();
-      reader.onload = function (event) {
-        var txt = event.target.result;
-        document.getElementById("result").innerHTML = txt;
-      };
+    function ProcessFile(e) {
+      var file = document.getElementById('file').files[0];
+      if (file) {
+      var reader = new FileReader();
+        reader.onload = function (event) {
+          var txt = event.target.result;
+          document.getElementById("result").innerHTML = txt;
+        };
+      }
+      reader.readAsDataURL(file);
     }
-    reader.readAsDataURL(file);
-  }
-  window.addEventListener("DOMContentLoaded", function () {
-    document.getElementById('file').addEventListener('change', ProcessFile, false);
-  }, false);
+    window.addEventListener("DOMContentLoaded", function () {
+      document.getElementById('file').addEventListener('change', ProcessFile, false);
+    }, false);
 
-  var copybtn = document.querySelector('.copybtn');
-  copybtn.addEventListener('click', function(event) {
-    var copyTextarea = document.querySelector('#result');
-    copyTextarea.select();
-    try {
-      var successful = document.execCommand('copy');
-      var msg = successful ? 'successful' : 'unsuccessful';
-      console.log('Copying text command was ' + msg);
-    } catch (err) {
-      console.log('Oops, unable to copy');
-    }
-  });
+    var copybtn = document.querySelector('.copybtn');
+    copybtn.addEventListener('click', function(event) {
+      var copyTextarea = document.querySelector('#result');
+      copyTextarea.select();
+      try {
+        var successful = document.execCommand('copy');
+        var msg = successful ? 'successful' : 'unsuccessful';
+        console.log('Copying text command was ' + msg);
+      } catch (err) {
+        console.log('Oops, unable to copy');
+      }
+    });
   </script>
 </body>
 </html>

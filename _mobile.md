@@ -25,6 +25,7 @@ Android Browser 使用 V8.
 android 使用颜色格式包含[`ARGB`](https://developer.android.com/guide/topics/resources/more-resources.html#Color)，这在[IE 6-8](https://beijingyoung.com/articles/rgba-argb-converter/)里也支持，[转换方式](https://css-tricks.com/8-digit-hex-codes/)。
 chrome62 will support [`#RGBA`/`#RRGGBBAA`](https://www.chromestatus.com/feature/5685348285808640) 8-digit hex color.
 
+[android 应用架构](http://www.jianshu.com/p/3edcf85539a6)
 
 # hybrid app 
 
