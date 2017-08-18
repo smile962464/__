@@ -176,12 +176,11 @@ brew cask install thunder mou sublime-text google-chrome  # 一键装机
     "*.wxss": "css",
     "*.acss": "css"
   },
-  "typescript.check.tscVersion": false,
   "workbench.iconTheme": "vs-seti",
-  "emmet.useNewEmmet": true,
   "terminal.external.osxExec": "iTerm.app",
   "terminal.integrated.shell.osx": "/bin/zsh",
-  "terminal.enableAppInsights": false
+  "terminal.enableAppInsights": false,
+  "window.zoomLevel": 0
 }
 // 快捷键
 [
