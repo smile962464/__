@@ -1,4 +1,13 @@
 
+- 一切皆是组件。
+- 利用shadowDom实现些其他什么？
+
+### [Template Binding](https://www.polymer-project.org/docs/polymer/template.html)
+Template Binding extends the <template> element with new attributes for binding data: 
+bind、repeat、if、ref
+
+[示例](https://github.com/Polymer/TemplateBinding/tree/master/examples/how_to)
+
 # web components & Components
 - [webcomponents.org](http://webcomponents.org/)
 - [中文](http://docs.polymerchina.org/)
@@ -9,7 +18,6 @@
 
 - [Google Web Components](http://googlewebcomponents.github.io/)
 - [Custom Elements](http://customelements.io/)
-- []()
 
 ## Shadow DOM & template & custom-elements
 - [Shadow DOM 101](http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/)
@@ -18,7 +26,6 @@
 
 - [custom elements](http://www.html5rocks.com/en/tutorials/webcomponents/customelements/)
 - [介绍custom-elements，GitHub如何应用](http://webcomponents.org/articles/introduction-to-custom-elements/)
-- []()
 
 
 ## Polymer
@@ -26,9 +33,6 @@
 - [谈谈Google Polymer以及Web UI框架的未来](http://www.csdn.net/article/2013-05-27/2815450-google-polymer)
 - [observe-js](https://github.com/Polymer/observe-js)
 - [TemplateBinding](https://github.com/Polymer/TemplateBinding)
-- []()
-- []()
-- []()
 
 
 ## mdv

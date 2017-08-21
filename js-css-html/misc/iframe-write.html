@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+演示向 iframe 中写入内容的几种方法
+<iframe id="demoIfa" frameborder="0"></iframe>
+
+<template id="ifr_content">
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8" />
+      <script src="http://static.alipayobjects.com/laputa/angularjs/1.2.16/angular.min.js"></script>
+      <script>
+        window.onload = function () {
+          console.log(angular, 'layout onload');
+        }
+      </script>
+    </head>
+    <body>
+      <p>文档片段</p>
+      <script>
+        console.log('exec directly', angular); //可能未定义错误
+      </script>
+    </body>
+    </html>
+</template>
+
+  <script>
+      var finalHtml = document.getElementById('ifr_content').innerHTML;
+      var demoIfa = document.getElementById('demoIfa');
+    // 向iframe里写入html的方式
+    // setSrc(finalHtml);
+    setHtml(finalHtml);
+    // writeIra(finalHtml);
+
+    //方法一：设置iframe的src 为data文本
+    function setSrc(finalHtml) {
+      //中文会乱码
+      demoIfa.src = 'data:text/html,' + escape(finalHtml);
+      demoIfa.addEventListener('load', function () {
+        console.log(demoIfa.contentWindow.document.body.innerHTML)
+      });
+    }
+    //方法二：直接设置 iframe 元素的文档
+    function setHtml(finalHtml) {
+      var ifaDom = demoIfa.contentDocument || demoIfa.contentWindow.document;
+      ifaDom.querySelector('html').innerHTML = finalHtml;
+    }
+    //方法三：正确方法！
+    function writeIra(finalHtml) {
+      //iframe里和父文档都有angular时，会重复加载会引起问题，当必须要重复时，先设置其为undefined
+      //demoIfa.contentWindow.angular = undefined;
+      var ifaDom = demoIfa.contentDocument || demoIfa.contentWindow.document;
+      ifaDom.open();
+      ifaDom.write(finalHtml);
+      ifaDom.close();
+    }
+  </script>
+</body>
+</html>
