@@ -61,7 +61,7 @@ alias simulator='open /Applications/Xcode.app/Contents/Developer/Applications/Si
 > macOS 10.12 “安全性与隐私”里去掉了允许安装”任何来源“的软件设置，可以在终端里运行`sudo spctl --master-disable`打开
 > 「xxx.app已损坏,打不开.你应该将它移到废纸篓」，并非你安装的软件已损坏，而是 Mac 系统的安全设置问题，因为这些应用都是破解或者汉化的, 解决方法是改变 Mac 系统安全设置
 
-- Dash / MacDown / Marp / Color Note(https://itunes.apple.com/us/app/color-note/id1099028591) / Gas Mask / charles / iStat-Menus / Spectacle / FileZilla / androidfiletransfer / meld / Cakebrew / pyCharm / mindnode lite / Unarchiver / airdroid / Axure / Visual_Paradigm / ParagonNTFS / Readiris-Corporate-ESD (ocr识别) / JD-Gui / Sequel-pro / ngrok
+- Dash / MacDown / Marp / Color Note(https://itunes.apple.com/us/app/color-note/id1099028591) / Gas Mask / charles / iStat-Menus / RedQuits / Spectacle / FileZilla / androidfiletransfer / meld / Cakebrew / pyCharm / mindnode lite / Unarchiver / airdroid / Axure / Visual_Paradigm / ParagonNTFS / Readiris-Corporate-ESD (ocr识别) / JD-Gui / Sequel-pro / ngrok
 
 - 效率: [git-open](https://github.com/paulirish/git-open) 自动打开 git 远程仓库地址
 - 系统: AppCleaner / [OmniDiskSweeper](http://newping.cn/322) / Disk Drill / OnyX
