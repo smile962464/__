@@ -32,6 +32,8 @@ chrome62 will support [`#RGBA`/`#RRGGBBAA`](https://www.chromestatus.com/feature
 [Apache Cordova - 前身是 PhoneGap](https://cordova.apache.org/) 是移动 hybrid 开发方式先驱，
 其他公司内部部署的 bridge 等，大都效仿于它。
 
+[H5与Native交互之JSBridge技术](http://tech.youzan.com/jsbridge/)
+
 一般 hybrid 应用流程：用户从click开始，到 launch WebView , WebView 去加载 CDN 上的 HTML 文件，页面 loading 起来后才会去获取 JSON 数据。但在 launch WebView 的时候网络处于空等状态，这会浪费时间。Android 机器 launch WebView 大概需要1秒以内（客户端如果是多进程的架构，WebView 在另一个进程内部，launch 一次 WebView 除了进程 loading 还有浏览器内核的加载）。
 [Tencent/VasSonic](https://github.com/Tencent/VasSonic) / 
 [手机QQ Hybrid 的架构如何优化演进？](https://mp.weixin.qq.com/s/evzDnTsHrAr2b9jcevwBzA)
