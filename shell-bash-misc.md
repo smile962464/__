@@ -92,16 +92,13 @@ curl -i https://api.github.com -H "Origin: http://example.com"  # 设置 CORS
 ```
 
 ### grep
-grep是根据文件的内容进行查找，会对文件的每一行按照给定的模式(patter)进行匹配查找。  
-[介绍](http://www.cnblogs.com/peida/archive/2012/12/17/2821195.html)
+[grep](http://www.cnblogs.com/peida/archive/2012/12/17/2821195.html) 搜索文件内容，会对文件的每一行按照给定的 pattern 进行匹配查找。
 
-格式：grep [-r递归 -n行号 -i忽略大小写 -I忽略二进制文件] 搜索字符串/正则表达式 [filename]
+格式：`grep [-r递归 -n行号 -i忽略大小写 -I忽略二进制文件] 搜索字符串/正则表达式 [filename]`
 
 ```sh
-grep pattern *   # 搜索 当前目录 的所有文件内容
-grep pattern *.doc       # 搜索当前目录下doc文档
-grep -rn pattern *   # 搜索 当前目录及子目录 的所有文件内容
-grep '^[^48]' data.doc      # 不匹配行首是48的行
+grep -rn 'grep' *  # 以 字符串 grep 来搜索 当前目录及子目录 的所有文件内容
+grep grep$ she*.md  # 以 正则表达式 grep$ 来搜索 当前目录下 文件名匹配 she*.md 的文件内容
 
 grep -r --include=\*.{cpp,h} pattern rootdir
 grep -ir --include="*.js" pattern *
@@ -112,23 +109,27 @@ grep -rI --exclude-dir="\.svn" "pattern" *   # 忽略二进制文件和svn隐藏
 
 grep -r --color --exclude-dir={custom,lib,scripts} --exclude={*.xml,error_log} "beta" *
 
-cat test.txt | grep ^u   # 找出以u开头的行内容
-cat test.txt | grep hat$  # 输出以hat结尾的行内容
-cat test.txt | grep -E "ed|at"  # 显示包含ed或者at字符的内容行
+cat test.txt | grep ^u   # 找出以 u开头 的行内容
+cat test.txt | grep hat$  # 输出以 hat结尾 的行内容
+cat test.txt | grep -E "ed|at"  # 显示包含 ed或者at 字符的内容行
 cat test.txt | grep -f test2.txt  # 从文件中（test2.txt）读取关键词进行搜索
 ```
 
 ### find
-find命令是根据文件的属性进行查找，如文件名，文件大小，所有者，所属组，是否为空，访问时间，修改时间等。
+[find](http://www.binarytides.com/linux-find-command-examples/) 命令是根据文件的属性进行查找，如文件名，文件大小，所有者，所属组，是否为空，访问时间，修改时间等。
+[exclude directory](https://stackoverflow.com/questions/13460482/exclude-a-sub-directory-using-find)
 
 ```sh
-find / -name httpd.conf　　#在根目录下查找文件httpd.conf，表示在整个硬盘查找
-find /etc -name httpd.conf　　#在/etc目录下文件httpd.conf
-find . -name '*srm*' 　　#表示当前目录下查找文件名中含有字符串‘srm’的文件
+find  # 在 当前目录以及子目录 列出所有文件
+find /etc -name httpd.conf  # 在 /etc 目录下文件 httpd.conf
+find . -name '*bash*'    # 在 当前目录以及子目录 下查找文件名中含有字符串 bash 的文件
+find . -name "*.js" -not -path "*node_modules*"  # 排除路径中含有 node_modules 的文件
+find . -name "*.js" -not -path "*node_modules*" -not -path "*js-css-html*" # 排除多个路径
+find . \( -name "*.py" -o -name "*.js" \) -not -path "*node_modules*"  # 查找多个文件类型
 
-find / -amin -10 　　# 查找在系统中最后10分钟访问的文件(access time)
-find / -mmin -5 　　# 查找在系统中最后5分钟里修改过的文件(modify time)
-find / -size -1000k 　　#查找出小于1000KB的文件
+find / -amin -10   # 查找在系统中最后10分钟访问的文件(access time)
+find / -mmin -5   # 查找在系统中最后5分钟里修改过的文件(modify time)
+find / -size -1000k   #查找出小于1000KB的文件
 
 find . -name '*.DS_Store' -type f -delete   # 删除某目录及子目录下的 .DS_Store 文件
 ```

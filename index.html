@@ -4,8 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>http://warmhug.github.io/__</title>
+  <style>
+    li {margin: 5px 0;}
+  </style>
 </head>
 <body>
-  http://warmhug.github.io/__
+  <ul id="list"></ul>
+  <script>
+    const pre = 'http://warmhug.github.io/__';
+    let html = '';
+    ajax('./_file.txt', res => {
+      // console.log(res, res.split('\n'));
+      res.split('\n').forEach(i => {
+        if (i) {
+          const path = i.replace('.', '');
+          html += `<li><a href="${pre + path}">.${path}</a></li>`
+        }
+      });
+      document.querySelector('#list').innerHTML = html;
+    })
+    
+    function ajax(url, success, fail) {
+      var xhr = new XMLHttpRequest();
+      xhr.onload = function() {
+        if (xhr.status >= 200 && xhr.status < 400) {
+          success(xhr.responseText);
+        } else {
+          fail(xhr);
+        }
+      };
+      xhr.open("GET", url, true);
+      xhr.send();
+    }
+  </script>
 </body>
 </html>

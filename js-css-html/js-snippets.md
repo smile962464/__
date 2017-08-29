@@ -298,14 +298,13 @@ window.addEventListener(orientationEvent, function () {
 ```
 
 ```js
-function ajax(url) {
+function ajax(url, success, fail) {
   var xhr = new XMLHttpRequest();
   xhr.onload = function() {
     if (xhr.status >= 200 && xhr.status < 400) {
-      // Success!
-      console.log(xhr.responseText);
+      success(xhr.responseText);
     } else {
-      // We reached our target server, but it returned an error
+      fail(xhr);
     }
   };
   xhr.open("GET", url, true);
