@@ -11,14 +11,14 @@
 <body>
   <ul id="list"></ul>
   <script>
-    const pre = 'http://warmhug.github.io/__';
+    const pre = location.href || 'http://warmhug.github.io/__/';
     let html = '';
     ajax('./_file.txt', res => {
       // console.log(res, res.split('\n'));
       res.split('\n').forEach(i => {
         if (i) {
-          const path = i.replace('.', '');
-          html += `<li><a href="${pre + path}">.${path}</a></li>`
+          const path = i.replace('./', '');
+          html += `<li><a href="${pre + path}">./${path}</a></li>`
         }
       });
       document.querySelector('#list').innerHTML = html;
