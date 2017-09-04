@@ -96,11 +96,22 @@ a component cannot mutate its props — they are always consistent with what its
 
 ### 生命周期
 
+图示 dia­gram :
+![https://tylermcginnis.com/an-introduction-to-life-cycle-events-in-react-js/](https://gw.alipayobjects.com/zos/rmsportal/KMqUOATjGIAemLuRLNWF.png)  
+![http://www.cnblogs.com/twobin/p/4949888.html](https://gw.alipayobjects.com/zos/rmsportal/JRAlcAXhcdkagRIirtUP.jpg)
+
+- 当首次装载组件时，按顺序执行 getDefaultProps、getInitialState、componentWillMount、render 和 componentDidMount；
+- 当卸载组件时，执行 componentWillUnmount；
+- 当重新装载组件时，此时按顺序执行 getInitialState、componentWillMount、render 和 componentDidMount，但并不执行 getDefaultProps；
+- 当再次渲染组件时，组件接受到更新状态，此时按顺序执行 componentWillReceiveProps、shouldComponentUpdate、componentWillUpdate、render 和 componentDidUpdate。
+
+注意点：
+
 - getDefaultProps() 只会运行一次
 - getInitialState()、componentDidMount() 有几个实例，就运行几次
-    - 例如嵌套元素`<ele> <ele> </ele> </ele>`，从里到外依次执行componentDidMount
-- render() 当state被改变，就会运行，但不一定更改相应的实际dom
-- componentWillReceiveProps() 当props被改变时运行。
+    - 例如嵌套元素`<ele> <ele> </ele> </ele>`，从里到外依次执行 componentDidMount
+- render() 当 state 被改变，就会运行，但不一定更改相应的实际dom
+- componentWillReceiveProps() 当 props 被改变时运行。
 
 [3 Reasons why I stopped using React.setState](https://medium.com/@mweststrate/3-reasons-why-i-stopped-using-react-setstate-ab73fc67a42e#.o2lwoysxh)
 
