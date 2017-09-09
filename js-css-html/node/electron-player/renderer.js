@@ -76,14 +76,22 @@ function mkVideo() {
 
   var subtitle;
   var rateEle = $('.rate');
-  var rateText = '动态加速度：';
   var initRateChange = false;
   var startRateChange = false;
   var endRateChange = false;
   var playbackRateBig = 3;  // 加速度
-  var playbackRateNormal = 1;  // 正常速度
+  var playbackRateNormal = 1.2;  // 正常速度
+  window.ad = function(val, p) {
+    console.log(val, p);
+    p ? (playbackRateBig = val) : (playbackRateNormal = val);
+  }
+  var rateTextFn = (p, n) => `
+   P: <input type="number" value=${p} style="width:40px;color:blue;" onchange="ad(this.value, 1)">,
+   N: <input type="number" value=${n} step="0.1" style="width:40px;color:blue;" onchange="ad(this.value)">,
+  动态加速度：`;
   player.on('timeupdate', function() {
     if (subtitle) {
+      var rateText = rateTextFn(playbackRateBig, playbackRateNormal);
       // 一开始一般没字幕，就设置加速
       if (!initRateChange) {
         player.playbackRate(playbackRateBig);
