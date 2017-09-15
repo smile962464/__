@@ -275,8 +275,6 @@
 ./js-css-html/node/examples/jsonp.html
 ./js-css-html/node/hello-test/app.html
 ./js-css-html/node/hello-test/README.md
-./js-css-html/node/sty/debug/debugger.md
-./js-css-html/node/sty/debug/node-inspector.md
 ./js-css-html/node.md
 ./mac.md
 ./misc/AI-Math-Algorithm.md

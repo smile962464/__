@@ -47,6 +47,10 @@ git rebase -i [commit_id 16f8929]  # 修改 16f8929 之后的提交历史
 #- 如果用 rebase ，需要经常 reapply 其他提交的改动， commit 的时间顺序也会乱掉。
 #- 如果用最直接的 merge ，会产生重复无用的比如 Merge pull request pull_id from xx_branch 或者 Merge branch “branch_name” 信息，不利于 review 提交记录。
 
+# 修改提交信息  https://help.github.com/articles/changing-a-commit-message/
+git commit --amend  # 修改 most recently commit
+git push --force  # 强制提交 most recently pushed commit
+
 # cherry-pick
 git checkout develop   # 切换到 dev 分支，也可以新建个 feature 分支
 git cherry-pick 62ecb3 # pick 到 develop 上，一般用于将 bugfix commit pick 到不同版本上
